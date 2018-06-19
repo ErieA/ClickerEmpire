@@ -18,7 +18,17 @@ public class GameSave extends SQLiteOpenHelper {
     public static final String WOOD_col = "WOOD";
     public static final String STONE_col = "STONE";
     public static final String POPULATION = "POPULATION";
-    public GameSave(Context context) {
+
+    private static GameSave gameSave;
+
+    public static synchronized GameSave getGameSave(Context context){
+        if(gameSave == null) {
+            gameSave = new GameSave(context);
+        }
+        return gameSave;
+    }
+
+    private GameSave(Context context) {
         super(context, DATABASE_NAME, null, 1);
     }
 

@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">ClickerEmpire</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="l">&lt;</string>
+    <string name="ll">&lt;&lt;</string>
+    <string name="lll">&lt;&lt;&lt;</string>
+    <string name="llll">&lt;&lt;&lt;&lt;</string>
+    <string name="g">&gt;</string>
+    <string name="gg">&gt;&gt;</string>
+    <string name="ggg">&gt;&gt;&gt;</string>
+    <string name="gggg">&gt;&gt;&gt;&gt;</string>
 </resources>

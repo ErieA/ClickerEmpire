@@ -1,5 +1,6 @@
 package not.bored.clickerempire;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -13,12 +14,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity
         implements buildings.buildingBuilder, jobs.employmentOffice{
-    GameSave gameSave = new GameSave(this);
+    GameSave gameSave = GameSave.getGameSave(this);
     int atomicHUT = 0;
     int workerCost = 1;
     Thread thread = new Thread() {
@@ -53,22 +55,6 @@ public class MainActivity extends FragmentActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        Intent intent = getIntent();
-//        String o = intent.getStringExtra("rename");
-//        if((o != null) && (o.equals("rename"))){
-//            TextView civname = findViewById(R.id.civname);
-//            String newcivname = intent.getStringExtra("newcivName");
-//            String food = intent.getStringExtra("food");
-//            String wood = intent.getStringExtra("wood");
-//            String stone = intent.getStringExtra("stone");
-//            TextView num_food = findViewById(R.id.num_food);
-//            TextView num_wood = findViewById(R.id.num_wood);
-//            TextView num_stone = findViewById(R.id.num_stone);
-//            civname.setText(newcivname);
-//            num_food.setText(food);
-//            num_wood.setText(wood);
-//            num_stone.setText(stone);
-//        }
         Button collect_food = findViewById(R.id.collect_food);
         Button collect_wood = findViewById(R.id.collect_wood);
         Button collect_stone = findViewById(R.id.collect_stone);
@@ -147,8 +133,14 @@ public class MainActivity extends FragmentActivity
             @Override
             public void onClick(View view) {
                 TextView population = findViewById(R.id.population);
-                TextView num_workers = findViewById(R.id.num_workers);
-                int amt = Integer.parseInt(num_workers.getText().toString());
+                EditText num_workers = findViewById(R.id.num_workers);
+                int amt;
+                if(num_workers.getText().toString().equals("")){
+                    amt = 0;
+                }
+                else{
+                    amt = Integer.parseInt(num_workers.getText().toString());
+                }
                 if(amt != 0){
                     createWorker(population, amt);
                 }
@@ -157,7 +149,7 @@ public class MainActivity extends FragmentActivity
         add_worker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TextView num_workers = findViewById(R.id.num_workers);
+                EditText num_workers = findViewById(R.id.num_workers);
                 int amt = Integer.parseInt(num_workers.getText().toString());
                 amt++;
                 num_workers.setText("" + amt);
@@ -166,7 +158,7 @@ public class MainActivity extends FragmentActivity
         substract_worker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TextView num_workers = findViewById(R.id.num_workers);
+                EditText num_workers = findViewById(R.id.num_workers);
                 int amt = Integer.parseInt(num_workers.getText().toString());
                 amt--;
                 if(amt>=1){
@@ -375,46 +367,52 @@ public class MainActivity extends FragmentActivity
     }
 
     @Override
-    public void addFarmer() {
-        gameSave.updateNoMax("FARMERS", 1);
-        gameSave.updateNoMax("UNEMPLOYED", -1);
-        this.modifyunemployed(-1);
+    public void addFarmer(int amount) {
+        int namount = -1 * amount;
+        gameSave.updateNoMax("FARMERS", amount);
+        gameSave.updateNoMax("UNEMPLOYED", namount);
+        this.modifyunemployed(namount);
 //        Toast.makeText(MainActivity.this,"farmer added", Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void substractFarmer() {
-        gameSave.updateNoMax("FARMERS", -1);
-        gameSave.updateNoMax("UNEMPLOYED", 1);
-        this.modifyunemployed(1);
+    public void substractFarmer(int amount) {
+        int namount = -1 * amount;
+        gameSave.updateNoMax("FARMERS", namount);
+        gameSave.updateNoMax("UNEMPLOYED", amount);
+        this.modifyunemployed(amount);
     }
 
     @Override
-    public void addLumberjack() {
-        gameSave.updateNoMax("LUMBERJACKS", 1);
-        gameSave.updateNoMax("UNEMPLOYED", -1);
-        this.modifyunemployed(-1);
+    public void addLumberjack(int amount) {
+        int namount = -1 * amount;
+        gameSave.updateNoMax("LUMBERJACKS", amount);
+        gameSave.updateNoMax("UNEMPLOYED", namount);
+        this.modifyunemployed(namount);
     }
 
     @Override
-    public void substractLumberjack() {
-        gameSave.updateNoMax("LUMBERJACKS", -1);
-        gameSave.updateNoMax("UNEMPLOYED", 1);
-        this.modifyunemployed(1);
+    public void substractLumberjack(int amount) {
+        int namount = -1 * amount;
+        gameSave.updateNoMax("LUMBERJACKS", namount);
+        gameSave.updateNoMax("UNEMPLOYED", amount);
+        this.modifyunemployed(amount);
     }
 
     @Override
-    public void addStonemason() {
-        gameSave.updateNoMax("STONEMASONS", 1);
-        gameSave.updateNoMax("UNEMPLOYED", -1);
-        this.modifyunemployed(-1);
+    public void addStonemason(int amount) {
+        int namount = -1 * amount;
+        gameSave.updateNoMax("STONEMASONS", amount);
+        gameSave.updateNoMax("UNEMPLOYED", namount);
+        this.modifyunemployed(namount);
     }
 
     @Override
-    public void substractStonemason() {
-        gameSave.updateNoMax("STONEMASONS", -1);
-        gameSave.updateNoMax("UNEMPLOYED", 1);
-        this.modifyunemployed(1);
+    public void substractStonemason(int amount) {
+        int namount = -1 * amount;
+        gameSave.updateNoMax("STONEMASONS", namount);
+        gameSave.updateNoMax("UNEMPLOYED", amount);
+        this.modifyunemployed(amount);
     }
 
     @Override
