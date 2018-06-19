@@ -371,7 +371,6 @@ public class MainActivity extends FragmentActivity
     public int totalUnemployed(){
         int c =Integer.parseInt(gameSave.resourceAmount("UNEMPLOYED"));
 //        Toast.makeText(MainActivity.this,"whhatttt+ " + c, Toast.LENGTH_SHORT).show();
-
         return c;
     }
 
