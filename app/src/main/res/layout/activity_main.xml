@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:screenOrientation="portrait"
@@ -101,7 +100,7 @@
         android:id="@+id/num_food"
         android:layout_width="wrap_content"
         android:layout_height="38dp"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="168dp"
         android:text="0/200"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textSize="18sp"
@@ -131,12 +130,12 @@
         app:layout_constraintTop_toBottomOf="@+id/num_wood" />
 
     <TextView
-        android:id="@+id/food_speed"
+        android:id="@+id/FOOD"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="156dp"
+        android:layout_marginTop="170dp"
         android:text="0/s"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.957"
@@ -144,30 +143,30 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/wood_speed"
+        android:id="@+id/WOOD"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="124dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:text="0/s"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.89"
         app:layout_constraintStart_toEndOf="@+id/num_wood"
-        app:layout_constraintTop_toBottomOf="@+id/food_speed" />
+        app:layout_constraintTop_toBottomOf="@+id/FOOD" />
 
     <TextView
-        android:id="@+id/stone_speed"
+        android:id="@+id/STONE"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="28dp"
         android:text="0/s"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.957"
         app:layout_constraintStart_toEndOf="@+id/num_stone"
-        app:layout_constraintTop_toBottomOf="@+id/wood_speed" />
+        app:layout_constraintTop_toBottomOf="@+id/WOOD" />
 
     <Button
         android:id="@+id/resetdb"
@@ -260,5 +259,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
 
 </android.support.constraint.ConstraintLayout>

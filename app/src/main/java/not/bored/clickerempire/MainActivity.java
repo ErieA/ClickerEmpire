@@ -17,7 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity
-        implements buildings.buildingBuilder, jobs.OnFragmentInteractionListener{
+        implements buildings.buildingBuilder, jobs.employmentOffice{
     GameSave gameSave = new GameSave(this);
     int atomicHUT = 0;
     int workerCost = 1;
@@ -30,7 +30,18 @@ public class MainActivity extends FragmentActivity
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            //update shit here
+                            int farmers = Integer.parseInt(workerAmount("FARMERS"));
+                            TextView food = findViewById(R.id.num_food);
+                            TextView foodspeed = findViewById(R.id.FOOD);
+                            workerCollect(food, "FOOD", farmers, foodspeed);
+                            int lumberjacks = Integer.parseInt(workerAmount("LUMBERJACKS"));
+                            TextView wood = findViewById(R.id.num_wood);
+                            TextView woodspeed = findViewById(R.id.WOOD);
+                            workerCollect(wood, "WOOD", lumberjacks, woodspeed);
+                            int stonemasons = Integer.parseInt(workerAmount("STONEMASONS"));
+                            TextView stone = findViewById(R.id.num_stone);
+                            TextView stonespeed = findViewById(R.id.STONE);
+                            workerCollect(stone, "STONE", stonemasons, stonespeed);
                         }
                     });
                 }
@@ -90,6 +101,7 @@ public class MainActivity extends FragmentActivity
                 num_wood.setText(new_val);
                 num_stone.setText(new_val);
                 population.setText("Population: 0/0");
+                atomicHUT = 0;
             }
         });
         collect_food.setOnClickListener(new View.OnClickListener() {
@@ -172,7 +184,7 @@ public class MainActivity extends FragmentActivity
             FragmentTransaction ft = fm.beginTransaction();
             ft.replace(R.id.fragment, fragment);
             ft.commit();
-            Toast.makeText(MainActivity.this,"bulidings", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(MainActivity.this,"bulidings", Toast.LENGTH_SHORT).show();
         }
         else if(view == findViewById(R.id.upgrades)){
             fragment = new upgrades();
@@ -180,7 +192,7 @@ public class MainActivity extends FragmentActivity
             FragmentTransaction ft = fm.beginTransaction();
             ft.replace(R.id.fragment, fragment);
             ft.commit();
-            Toast.makeText(MainActivity.this,"upgrades", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(MainActivity.this,"upgrades", Toast.LENGTH_SHORT).show();
         }
         else if(view == findViewById(R.id.jobs)){
             fragment = new jobs();
@@ -188,7 +200,7 @@ public class MainActivity extends FragmentActivity
             FragmentTransaction ft = fm.beginTransaction();
             ft.replace(R.id.fragment, fragment);
             ft.commit();
-            Toast.makeText(MainActivity.this,"jobs", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(MainActivity.this,"jobs", Toast.LENGTH_SHORT).show();
         }
     }
     public void createWorker(TextView pop, int amt){
@@ -208,7 +220,8 @@ public class MainActivity extends FragmentActivity
             Toast.makeText(MainActivity.this,"Not enough food", Toast.LENGTH_SHORT).show();
         }
         else{
-            pop.setText("Population: " + current + "/" + max);
+            String p = "Population: " + current + "/" + max;
+            pop.setText(p);
             TextView unemployed = findViewById(R.id.unemployed);
             String unemployedtxt = unemployed.getText().toString();
             int index = unemployedtxt.indexOf(' ') + 1;
@@ -217,6 +230,7 @@ public class MainActivity extends FragmentActivity
             unemployedtxt = "Unemployed: " + unemployedworkers;
             unemployed.setText(unemployedtxt);
             gameSave.update("POPULATION", amt);
+            gameSave.updateNoMax("UNEMPLOYED", amt);
             TextView foodtv = findViewById(R.id.num_food);
             collect(foodtv, "FOOD", cost);
 //            Toast.makeText(MainActivity.this,"Worker created", Toast.LENGTH_SHORT).show();
@@ -232,18 +246,50 @@ public class MainActivity extends FragmentActivity
             boolean saved = gameSave.update(res, amount);
             if(saved){
                 String amt = gameSave.showamt(res);
-                Toast.makeText(MainActivity.this, res +" added to db: " + amt, Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, res +" added to the DataBase: " + amt, Toast.LENGTH_SHORT).show();
             }
             else{
                 String amt = gameSave.showamt(res);
-                Toast.makeText(MainActivity.this, res +" not added to db: " + amt, Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, res +" not added to the DataBase: " + amt, Toast.LENGTH_SHORT).show();
             }
+            current = current + amount;
             if(current<=max){
-                current = current + amount;
                 String new_val = "" + current + "/" + max;
                 tv.setText(new_val);
             }
         }
+    }
+    //place indicator to prevent file from being accessed too much
+    public void workerCollect(TextView tv, String res, int amount, TextView sp) {
+        String str_amt = tv.getText().toString();
+        String array[] = str_amt.split("/");
+        int max = Integer.parseInt(array[1]);
+        int current = Integer.parseInt(array[0]);
+        int currentdb = Integer.parseInt(gameSave.resourceAmount(res));
+        if((!((current+amount)<0)) || (!((currentdb+amount)<0))){
+            String speed = "" + amount + "/s";
+            sp.setText(speed);
+            int newcurrent = current + amount;
+            if(newcurrent<=max){
+                String new_val = "" + newcurrent + "/" + max;
+                tv.setText(new_val);
+                gameSave.update(res, amount);
+            }
+            else if(newcurrent>max){
+                String new_val = "" + max + "/" + max;
+                tv.setText(new_val);
+                amount = max - current;
+                gameSave.update(res, amount);
+            }
+        }
+    }
+
+    public void modifyunemployed(int amt){
+        TextView unemployed = findViewById(R.id.unemployed);
+        int total = Integer.parseInt(unemployed.getText().toString().substring(12));
+        total += amt;
+        String newu = "Unemployed: " + total;
+        unemployed.setText(newu);
     }
     @Override
     public void onBackPressed() {
@@ -301,7 +347,7 @@ public class MainActivity extends FragmentActivity
             gameSave.updatemax("POPULATION", 2);
             gameSave.createbuilding("HUTS",1, 2);
             String amt = gameSave.showamt("HUTS");
-            Toast.makeText(MainActivity.this,"huts" + amt, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(MainActivity.this,"huts" + amt, Toast.LENGTH_SHORT).show();
             return true;
         }
     }
@@ -314,16 +360,71 @@ public class MainActivity extends FragmentActivity
     public boolean atomicHUT() {
         if(atomicHUT == 0){
             atomicHUT++;
-            Toast.makeText(MainActivity.this,"atomicHUT" + atomicHUT, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(MainActivity.this,"atomicHUT" + atomicHUT, Toast.LENGTH_SHORT).show();
             return true;
         }
         else{
             return false;
         }
     }
+    @Override
+    public int totalUnemployed(){
+        int c =Integer.parseInt(gameSave.resourceAmount("UNEMPLOYED"));
+//        Toast.makeText(MainActivity.this,"whhatttt+ " + c, Toast.LENGTH_SHORT).show();
+        return c;
+    }
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
+    public void addFarmer() {
+        gameSave.updateNoMax("FARMERS", 1);
+        gameSave.updateNoMax("UNEMPLOYED", -1);
+        this.modifyunemployed(-1);
+//        Toast.makeText(MainActivity.this,"farmer added", Toast.LENGTH_SHORT).show();
+    }
 
+    @Override
+    public void substractFarmer() {
+        gameSave.updateNoMax("FARMERS", -1);
+        gameSave.updateNoMax("UNEMPLOYED", 1);
+        this.modifyunemployed(1);
+    }
+
+    @Override
+    public void addLumberjack() {
+        gameSave.updateNoMax("LUMBERJACKS", 1);
+        gameSave.updateNoMax("UNEMPLOYED", -1);
+        this.modifyunemployed(-1);
+    }
+
+    @Override
+    public void substractLumberjack() {
+        gameSave.updateNoMax("LUMBERJACKS", -1);
+        gameSave.updateNoMax("UNEMPLOYED", 1);
+        this.modifyunemployed(1);
+    }
+
+    @Override
+    public void addStonemason() {
+        gameSave.updateNoMax("STONEMASONS", 1);
+        gameSave.updateNoMax("UNEMPLOYED", -1);
+        this.modifyunemployed(-1);
+    }
+
+    @Override
+    public void substractStonemason() {
+        gameSave.updateNoMax("STONEMASONS", -1);
+        gameSave.updateNoMax("UNEMPLOYED", 1);
+        this.modifyunemployed(1);
+    }
+
+    @Override
+    public void toast(int i) {
+//        Toast.makeText(MainActivity.this,"there are " + i + " farmers", Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public String workerAmount(String worker) {
+        return gameSave.resourceAmount(worker);
     }
 }

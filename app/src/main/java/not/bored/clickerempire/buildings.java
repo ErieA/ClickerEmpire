@@ -59,10 +59,10 @@ public class buildings extends Fragment {
         View view = inflater.inflate(R.layout.fragment_buildings, container, false);
         Button buildhut = view.findViewById(R.id.buildhut);
         TextView num_hut = (TextView) view.findViewById(R.id.num_hut);
-        if(builder.atomicHUT()){
+//        if(builder.atomicHUT()){
             String amt = builder.resourceAmount("HUTS");
             num_hut.setText(amt);
-        }
+//        }
         buildhut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -120,8 +120,8 @@ public class buildings extends Fragment {
 //     */
     public interface buildingBuilder {
         // TODO: Update argument type and name
-        public boolean buildHut();
-        public String resourceAmount(String resource);
-        public boolean atomicHUT();
+        boolean buildHut();
+        String resourceAmount(String resource);
+        boolean atomicHUT();
     }
 }

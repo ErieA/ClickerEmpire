@@ -54,6 +54,23 @@ public class GameSave extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + RESOURCES);
         onCreate(db);
     }
+    public boolean updateNoMax(String res, int amt){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "SELECT " + res + " FROM " + RESOURCES + " WHERE ID = 1";
+        Cursor data = db.rawQuery(sql,null);
+        StringBuffer buffer = new StringBuffer();
+        while(data.moveToNext()){
+            buffer.append(data.getString(0));
+        }
+        data.close();
+        String str = buffer.toString();
+        int current = Integer.parseInt(str);
+        current = current + amt;
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(res, current);
+        long result = db.update(RESOURCES, contentValues, null, null);
+        return result != -1;
+    }
     public boolean update(String res, int amt){
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "SELECT " + res + ", " + res + "_MAX FROM " + RESOURCES + " WHERE ID = 1";
@@ -64,6 +81,7 @@ public class GameSave extends SQLiteOpenHelper {
             buffer.append(",");
             buffer.append(data.getString(1));
         }
+        data.close();
         String str = buffer.toString();
         String[] array = str.split(",");
         int current = Integer.parseInt(array[0]);
@@ -73,7 +91,6 @@ public class GameSave extends SQLiteOpenHelper {
         contentValues.put(res, current);
         if(current<=max){
             long result = db.update(RESOURCES, contentValues, null, null);
-
             return result != -1;
         }
         else {
@@ -88,6 +105,7 @@ public class GameSave extends SQLiteOpenHelper {
         while(data.moveToNext()){
             buffer.append(data.getString(0));
         }
+        data.close();
         String str = buffer.toString();
         int max = Integer.parseInt(str);
         max = max + amt;
@@ -95,7 +113,6 @@ public class GameSave extends SQLiteOpenHelper {
         String res_max = res + "_MAX";
         contentValues.put(res_max, max);
         long result = db.update(RESOURCES, contentValues, null, null);
-
         return result != -1;
     }
     public boolean createbuilding(String building, int amt, int populattion){
@@ -108,6 +125,7 @@ public class GameSave extends SQLiteOpenHelper {
             buffer.append(",");
             buffer.append(data.getString(1));
         }
+        data.close();
         String str[] = buffer.toString().split(",");
         int current = Integer.parseInt(str[0]);
         int population = Integer.parseInt(str[1]);
@@ -126,6 +144,7 @@ public class GameSave extends SQLiteOpenHelper {
         while(data.moveToNext()){
             buffer.append(data.getString(0));
         }
+        data.close();
         String c = buffer.toString();
         return  c;
     }
@@ -137,23 +156,9 @@ public class GameSave extends SQLiteOpenHelper {
         while(data.moveToNext()){
             buffer.append(data.getString(0));
         }
+        data.close();
         String c = buffer.toString();
         return  c;
-    }
-    public boolean assignJob(String job, int amount){
-        int unemployed = Integer.parseInt(this.resourceAmount("UNEMPLOYED"));
-        if((unemployed == 0) || ((unemployed - amount) < 0)){
-            return false;
-        }
-        SQLiteDatabase db = this.getWritableDatabase();
-        unemployed -= amount;
-        int workers = Integer.parseInt(this.resourceAmount(job));
-        workers += amount;
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("UNEMPLOYED", unemployed);
-        contentValues.put(job, workers);
-        long result = db.update(RESOURCES, contentValues, null, null);
-        return result != -1;
     }
     public boolean resetdb(){
         SQLiteDatabase db = this.getWritableDatabase();
