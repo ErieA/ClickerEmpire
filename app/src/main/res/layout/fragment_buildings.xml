@@ -8,38 +8,137 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <android.support.constraint.ConstraintLayout
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="?android:windowBackground">
 
-        <Button
-            android:id="@+id/buildhut"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="Build Hut"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/num_hut"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:textAlignment="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.95"
-            app:layout_constraintStart_toEndOf="@+id/buildhut"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.499" />
+            <Button
+                android:id="@+id/buildtent"
+                android:layout_width="wrap_content"
+                android:layout_height="34dp"
+                android:text="Build Tent"
+                android:textSize="10sp" />
 
-    </android.support.constraint.ConstraintLayout>
+            <TextView
+                android:id="@+id/num_tent"
+                android:layout_width="196dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="textEnd" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <Button
+                android:id="@+id/buildhut"
+                android:layout_width="wrap_content"
+                android:layout_height="34dp"
+                android:text="Build Hut"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/num_hut"
+                android:layout_width="235dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="textEnd" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <Button
+                android:id="@+id/buildhouse"
+                android:layout_width="wrap_content"
+                android:layout_height="34dp"
+                android:text="Build House"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/num_house"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="textEnd" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <Button
+                android:id="@+id/buildmansion"
+                android:layout_width="wrap_content"
+                android:layout_height="34dp"
+                android:text="Build Mansion"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/num_mansion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="textEnd" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <Button
+                android:id="@+id/buildbarn"
+                android:layout_width="wrap_content"
+                android:layout_height="34dp"
+                android:text="Build Barn"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/num_barn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="textEnd" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <Button
+                android:id="@+id/buildwoodstockpile"
+                android:layout_width="wrap_content"
+                android:layout_height="34dp"
+                android:text="Build Wood Stockpile"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/num_woodstockpile"
+                android:layout_width="258dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="textEnd" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/buildstonestockpile"
+                android:layout_width="wrap_content"
+                android:layout_height="34dp"
+                android:text="Build Stone Stockpile"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/num_stonestockpile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="textEnd" />
+        </TableRow>
+    </TableLayout>
+
 </FrameLayout>

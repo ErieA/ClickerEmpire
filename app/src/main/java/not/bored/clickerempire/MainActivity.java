@@ -1,16 +1,11 @@
 package not.bored.clickerempire;
 
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
@@ -48,6 +43,7 @@ public class MainActivity extends FragmentActivity
                     });
                 }
             } catch (InterruptedException e) {
+                Toast.makeText(MainActivity.this,"Oops, something went wrong", Toast.LENGTH_LONG).show();
             }
         }
     };
@@ -65,7 +61,8 @@ public class MainActivity extends FragmentActivity
         Button substract_worker = findViewById(R.id.substract_worker);
         String pop_max = gameSave.resourceAmount("POPULATION_MAX");
         String pop = gameSave.resourceAmount("POPULATION");
-        population.setText("Population: " + pop + "/" + pop_max);
+        String str = "Population: " + pop + "/" + pop_max;
+        population.setText(str);
         final Button buildings = findViewById(R.id.buildings);
         final Button upgrades = findViewById(R.id.upgrades);
         final Button jobs = findViewById(R.id.jobs);
@@ -152,7 +149,8 @@ public class MainActivity extends FragmentActivity
                 EditText num_workers = findViewById(R.id.num_workers);
                 int amt = Integer.parseInt(num_workers.getText().toString());
                 amt++;
-                num_workers.setText("" + amt);
+                String a = "" + amt;
+                num_workers.setText(a);
             }
         });
         substract_worker.setOnClickListener(new View.OnClickListener() {
@@ -162,7 +160,8 @@ public class MainActivity extends FragmentActivity
                 int amt = Integer.parseInt(num_workers.getText().toString());
                 amt--;
                 if(amt>=1){
-                    num_workers.setText("" + amt);
+                    String a = "" + amt;
+                    num_workers.setText(a);
                 }
             }
         });
@@ -304,13 +303,14 @@ public class MainActivity extends FragmentActivity
             alert.setTitle("Exit?");
             alert.show();
     }
+
     @Override
-    public boolean buildHut() {
+    public boolean buildTent() {
         TextView num_wood = findViewById(R.id.num_wood);
         String wood = num_wood.getText().toString();
         String array[] = wood.split("/");
         int max = Integer.parseInt(array[1]);
-        int current = Integer.parseInt(array[0]);
+        int currentwood = Integer.parseInt(array[0]);
         TextView num_stone = findViewById(R.id.num_stone);
         String stone = num_stone.getText().toString();
         String array1[] = stone.split("/");
@@ -320,29 +320,242 @@ public class MainActivity extends FragmentActivity
         String pop = population.getText().toString();
         String pop1 = pop.substring(12);
         String pop2[] = pop1.split("/");
-        if((current<=0) || (currentstone<=0)){
+        if((currentwood<2) || (currentstone<=2)){
             return false;
         }
         else{
-            currentstone--;
-            current--;
-            String new_val = "" + current + "/" + max;
+            currentstone-=2;
+            currentwood-=2;
+            String new_val = "" + currentwood + "/" + max;
             String new_val_stone = "" + currentstone + "/" + maxstone;
             int new_pop_max = Integer.parseInt(pop2[1]);
-            new_pop_max = new_pop_max + 2;
+            new_pop_max = new_pop_max + 1;
             String new_population_text = "Population: " + pop2[0] + "/" + new_pop_max;
             population.setText(new_population_text);
             num_wood.setText(new_val);
             num_stone.setText(new_val_stone);
-            gameSave.update(GameSave.WOOD_col, -1);
-            gameSave.update(GameSave.STONE_col, -1);
-            gameSave.updatemax("POPULATION", 2);
-            gameSave.createbuilding("HUTS",1, 2);
-            String amt = gameSave.showamt("HUTS");
-//            Toast.makeText(MainActivity.this,"huts" + amt, Toast.LENGTH_SHORT).show();
+            gameSave.update(GameSave.WOOD_col, -2);
+            gameSave.update(GameSave.STONE_col, -2);
+            gameSave.updatemax("POPULATION", 1);
+            gameSave.createbuilding("TENTS",1);
             return true;
         }
     }
+
+    @Override
+    public boolean buildHut() {
+        TextView num_wood = findViewById(R.id.num_wood);
+        String wood = num_wood.getText().toString();
+        String array[] = wood.split("/");
+        int max = Integer.parseInt(array[1]);
+        int currentwood = Integer.parseInt(array[0]);
+        TextView num_stone = findViewById(R.id.num_stone);
+        String stone = num_stone.getText().toString();
+        String array1[] = stone.split("/");
+        int maxstone = Integer.parseInt(array1[1]);
+        int currentstone = Integer.parseInt((array1[0]));
+        TextView population = findViewById(R.id.population);
+        String pop = population.getText().toString();
+        String pop1 = pop.substring(12);
+        String pop2[] = pop1.split("/");
+        if((currentwood<20) || (currentstone<10)){
+            return false;
+        }
+        else{
+            currentstone-=10;
+            currentwood-=20;
+            String new_val = "" + currentwood + "/" + max;
+            String new_val_stone = "" + currentstone + "/" + maxstone;
+            int new_pop_max = Integer.parseInt(pop2[1]);
+            new_pop_max = new_pop_max + 4;
+            String new_population_text = "Population: " + pop2[0] + "/" + new_pop_max;
+            population.setText(new_population_text);
+            num_wood.setText(new_val);
+            num_stone.setText(new_val_stone);
+            gameSave.update(GameSave.WOOD_col, -20);
+            gameSave.update(GameSave.STONE_col, -10);
+            gameSave.updatemax("POPULATION", 4);
+            gameSave.createbuilding("HUTS",1);
+            return true;
+        }
+    }
+
+    @Override
+    public boolean buildHouse() {
+        TextView num_wood = findViewById(R.id.num_wood);
+        String wood = num_wood.getText().toString();
+        String array[] = wood.split("/");
+        int max = Integer.parseInt(array[1]);
+        int currentwood = Integer.parseInt(array[0]);
+        TextView num_stone = findViewById(R.id.num_stone);
+        String stone = num_stone.getText().toString();
+        String array1[] = stone.split("/");
+        int maxstone = Integer.parseInt(array1[1]);
+        int currentstone = Integer.parseInt((array1[0]));
+        TextView population = findViewById(R.id.population);
+        String pop = population.getText().toString();
+        String pop1 = pop.substring(12);
+        String pop2[] = pop1.split("/");
+        if((currentwood<100) || (currentstone<100)){
+            return false;
+        }
+        else{
+            currentstone-=100;
+            currentwood-=100;
+            String new_val = "" + currentwood + "/" + max;
+            String new_val_stone = "" + currentstone + "/" + maxstone;
+            int new_pop_max = Integer.parseInt(pop2[1]);
+            new_pop_max = new_pop_max + 50;
+            String new_population_text = "Population: " + pop2[0] + "/" + new_pop_max;
+            population.setText(new_population_text);
+            num_wood.setText(new_val);
+            num_stone.setText(new_val_stone);
+            gameSave.update(GameSave.WOOD_col, -100);
+            gameSave.update(GameSave.STONE_col, -100);
+            gameSave.updatemax("POPULATION", 50);
+            gameSave.createbuilding("HOUSES",1);
+            return true;
+        }
+    }
+
+    @Override
+    public boolean buildMansion() {
+        TextView num_wood = findViewById(R.id.num_wood);
+        String wood = num_wood.getText().toString();
+        String array[] = wood.split("/");
+        int max = Integer.parseInt(array[1]);
+        int currentwood = Integer.parseInt(array[0]);
+        TextView num_stone = findViewById(R.id.num_stone);
+        String stone = num_stone.getText().toString();
+        String array1[] = stone.split("/");
+        int maxstone = Integer.parseInt(array1[1]);
+        int currentstone = Integer.parseInt((array1[0]));
+        TextView population = findViewById(R.id.population);
+        String pop = population.getText().toString();
+        String pop1 = pop.substring(12);
+        String pop2[] = pop1.split("/");
+        if((currentwood<200) || (currentstone<200)){
+            return false;
+        }
+        else{
+            currentstone-=200;
+            currentwood-=200;
+            String new_val = "" + currentwood + "/" + max;
+            String new_val_stone = "" + currentstone + "/" + maxstone;
+            int new_pop_max = Integer.parseInt(pop2[1]);
+            new_pop_max = new_pop_max + 100;
+            String new_population_text = "Population: " + pop2[0] + "/" + new_pop_max;
+            population.setText(new_population_text);
+            num_wood.setText(new_val);
+            num_stone.setText(new_val_stone);
+            gameSave.update(GameSave.WOOD_col, -200);
+            gameSave.update(GameSave.STONE_col, -200);
+            gameSave.updatemax("POPULATION", 100);
+            gameSave.createbuilding("MANSIONS",1);
+            return true;
+        }
+    }
+
+    @Override
+    public boolean buildBarn() {
+        TextView num_wood = findViewById(R.id.num_wood);
+        String wood = num_wood.getText().toString();
+        String array[] = wood.split("/");
+        int max = Integer.parseInt(array[1]);
+        int currentwood = Integer.parseInt(array[0]);
+        TextView num_stone = findViewById(R.id.num_stone);
+        String stone = num_stone.getText().toString();
+        String array1[] = stone.split("/");
+        int maxstone = Integer.parseInt(array1[1]);
+        int currentstone = Integer.parseInt((array1[0]));
+        if((currentwood<100) || (currentstone<50)){
+            return false;
+        }
+        else{
+            Toast.makeText(MainActivity.this,"What the fuck", Toast.LENGTH_SHORT).show();
+            currentstone-=50;
+            currentwood-=100;
+            String new_val = "" + currentwood + "/" + max;
+            String new_val_stone = "" + currentstone + "/" + maxstone;
+            num_wood.setText(new_val);
+            num_stone.setText(new_val_stone);
+            TextView num_food = findViewById(R.id.num_food);
+            String food = num_food.getText().toString();
+            String array2[] = food.split("/");
+            int maxfood = Integer.parseInt(array2[1]) + 200;
+            int currentfood = Integer.parseInt(array2[0]);
+            String new_food = "" + currentfood + "/" + maxfood;
+            num_food.setText(new_food);
+            gameSave.update(GameSave.WOOD_col, -100);
+            gameSave.update(GameSave.STONE_col, -50);
+            gameSave.updatemax("FOOD", 200);
+            gameSave.createbuilding("BARNS",1);
+            return true;
+        }
+    }
+
+    @Override
+    public boolean buildWoodStockpile() {
+        TextView num_wood = findViewById(R.id.num_wood);
+        String wood = num_wood.getText().toString();
+        String array[] = wood.split("/");
+        int max = Integer.parseInt(array[1]);
+        int currentwood = Integer.parseInt(array[0]);
+        TextView num_stone = findViewById(R.id.num_stone);
+        String stone = num_stone.getText().toString();
+        String array1[] = stone.split("/");
+        int maxstone = Integer.parseInt(array1[1]);
+        int currentstone = Integer.parseInt((array1[0]));
+        if((currentwood<100) || (currentstone<50)){
+            return false;
+        }
+        else{
+            currentstone-=50;
+            currentwood-=100;
+            max +=200;
+            String new_val = "" + currentwood + "/" + max;
+            String new_val_stone = "" + currentstone + "/" + maxstone;
+            num_wood.setText(new_val);
+            num_stone.setText(new_val_stone);
+            gameSave.update(GameSave.WOOD_col, -100);
+            gameSave.update(GameSave.STONE_col, -50);
+            gameSave.updatemax("WOOD", 200);
+            gameSave.createbuilding("WOODSTOCKPILES",1);
+            return true;
+        }
+    }
+
+    @Override
+    public boolean buildStoneStockpile() {
+        TextView num_wood = findViewById(R.id.num_wood);
+        String wood = num_wood.getText().toString();
+        String array[] = wood.split("/");
+        int max = Integer.parseInt(array[1]);
+        int currentwood = Integer.parseInt(array[0]);
+        TextView num_stone = findViewById(R.id.num_stone);
+        String stone = num_stone.getText().toString();
+        String array1[] = stone.split("/");
+        int maxstone = Integer.parseInt(array1[1]);
+        int currentstone = Integer.parseInt((array1[0]));
+        if((currentwood<100) || (currentstone<50)){
+            return false;
+        }
+        else{
+            currentstone-=50;
+            currentwood-=100;
+            maxstone += 200;
+            String new_val = "" + currentwood + "/" + max;
+            String new_val_stone = "" + currentstone + "/" + maxstone;
+            num_wood.setText(new_val);
+            num_stone.setText(new_val_stone);
+            gameSave.update(GameSave.WOOD_col, -100);
+            gameSave.update(GameSave.STONE_col, -50);
+            gameSave.updatemax("STONE", 200);
+            gameSave.createbuilding("STONESTOCKPILES",1);
+            return true;
+        }
+    }
+
     @Override
     public String resourceAmount(String resource){
         return gameSave.resourceAmount(resource);

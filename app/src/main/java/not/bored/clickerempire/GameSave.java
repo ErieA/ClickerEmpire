@@ -48,14 +48,17 @@ public class GameSave extends SQLiteOpenHelper {
                 "HUTS INTEGER NOT NULL," +
                 "HOUSES INTEGER NOT NULL," +
                 "MANSIONS INTEGER NOT NULL," +
+                "BARNS INTEGER NOT NULL," +
+                "WOODSTOCKPILES INTEGER NOT NULL," +
+                "STONESTOCKPILES INTGER NOT NULL," +
                 "FARMERS INTEGER NOT NULL," +
                 "LUMBERJACKS INTEGER NOT NULL," +
                 "STONEMASONS INTEGER NOT NULL," +
                 "UNEMPLOYED INTEGER NOT NULL)";
         db.execSQL(sql);
         sql = "INSERT INTO RESOURCES (FOOD, FOOD_MAX, WOOD, WOOD_MAX, STONE, STONE_MAX, POPULATION, POPULATION_MAX, " +
-                "TENTS, HUTS, HOUSES, MANSIONS, FARMERS, LUMBERJACKS, STONEMASONS, UNEMPLOYED) " +
-                "VALUES ('0','200','0','200','0','200','0','0','0','0','0','0','0','0','0','0')";
+                "TENTS, HUTS, HOUSES, MANSIONS, BARNS, WOODSTOCKPILES, STONESTOCKPILES, FARMERS, LUMBERJACKS, STONEMASONS, UNEMPLOYED) " +
+                "VALUES ('0','200','0','200','0','200','0','0','0','0','0','0','0','0','0','0','0','0','0')";
         db.execSQL(sql);
     }
 
@@ -125,24 +128,20 @@ public class GameSave extends SQLiteOpenHelper {
         long result = db.update(RESOURCES, contentValues, null, null);
         return result != -1;
     }
-    public boolean createbuilding(String building, int amt, int populattion){
+    public boolean createbuilding(String building, int amt){
         SQLiteDatabase db = this.getWritableDatabase();
-        String sql = "SELECT " + building + ", POPULATION_MAX FROM " + RESOURCES + " WHERE ID = 1";
+        String sql = "SELECT " + building + " FROM " + RESOURCES + " WHERE ID = 1";
         Cursor data = db.rawQuery(sql,null);
         StringBuffer buffer = new StringBuffer();
         while(data.moveToNext()){
             buffer.append(data.getString(0));
-            buffer.append(",");
-            buffer.append(data.getString(1));
         }
         data.close();
-        String str[] = buffer.toString().split(",");
-        int current = Integer.parseInt(str[0]);
-        int population = Integer.parseInt(str[1]);
+        String str = buffer.toString();
+        int current = Integer.parseInt(str);
         current = current + amt;
         ContentValues contentValues = new ContentValues();
         contentValues.put(building, current);
-        contentValues.put("POPULATION_MAX", population);
         long result = db.update(RESOURCES, contentValues, null, null);
         return result != -1;
     }
