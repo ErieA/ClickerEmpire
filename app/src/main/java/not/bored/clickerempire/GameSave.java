@@ -36,12 +36,12 @@ public class GameSave extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String sql = "CREATE TABLE " + RESOURCES +
                 "(ID INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "FOOD INTEGER NOT NULL," +
-                "FOOD_MAX INTEGER NOT NULL," +
-                "WOOD INTEGER NOT NULL," +
-                "WOOD_MAX INTEGER NOT NULL," +
-                "STONE INTEGER NOT NULL," +
-                "STONE_MAX INTEGER NOT NULL," +
+                "FOOD REAL NOT NULL," +
+                "FOOD_MAX REAL NOT NULL," +
+                "WOOD REAL NOT NULL," +
+                "WOOD_MAX REAL NOT NULL," +
+                "STONE REAL NOT NULL," +
+                "STONE_MAX REAL NOT NULL," +
                 "POPULATION INTEGER NOT NULL," +
                 "POPULATION_MAX INTEGER NOT NULL," +
                 "TENTS INTEGER NOT NULL," +
@@ -50,7 +50,7 @@ public class GameSave extends SQLiteOpenHelper {
                 "MANSIONS INTEGER NOT NULL," +
                 "BARNS INTEGER NOT NULL," +
                 "WOODSTOCKPILES INTEGER NOT NULL," +
-                "STONESTOCKPILES INTGER NOT NULL," +
+                "STONESTOCKPILES INTEGER NOT NULL," +
                 "FARMERS INTEGER NOT NULL," +
                 "LUMBERJACKS INTEGER NOT NULL," +
                 "STONEMASONS INTEGER NOT NULL," +
@@ -84,7 +84,7 @@ public class GameSave extends SQLiteOpenHelper {
         long result = db.update(RESOURCES, contentValues, null, null);
         return result != -1;
     }
-    public boolean update(String res, int amt){
+    public boolean update(String res, double amt){
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "SELECT " + res + ", " + res + "_MAX FROM " + RESOURCES + " WHERE ID = 1";
         Cursor data = db.rawQuery(sql,null);
@@ -97,20 +97,23 @@ public class GameSave extends SQLiteOpenHelper {
         data.close();
         String str = buffer.toString();
         String[] array = str.split(",");
-        int current = Integer.parseInt(array[0]);
-        int max = Integer.parseInt(array[1]);
+        double current = Double.parseDouble(array[0]);
+        Double max = Double.parseDouble(array[1]);
         current = current + amt;
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(res, current);
         if(current<=max){
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(res, current);
             long result = db.update(RESOURCES, contentValues, null, null);
             return result != -1;
         }
-        else {
-            return false;
+        else{
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(res, max);
+            long result = db.update(RESOURCES, contentValues, null, null);
+            return result != -1;
         }
     }
-    public boolean updatemax(String res, int amt){
+    public boolean updatemax(String res, double amt){
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "SELECT " + res + "_MAX FROM " + RESOURCES + " WHERE ID = 1";
         Cursor data = db.rawQuery(sql,null);
@@ -120,7 +123,7 @@ public class GameSave extends SQLiteOpenHelper {
         }
         data.close();
         String str = buffer.toString();
-        int max = Integer.parseInt(str);
+        double max = Double.parseDouble(str);
         max = max + amt;
         ContentValues contentValues = new ContentValues();
         String res_max = res + "_MAX";

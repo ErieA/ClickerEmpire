@@ -1,23 +1,39 @@
 package not.bored.clickerempire;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends FragmentActivity
+import java.text.DecimalFormat;
+
+public class MainActivity extends AppCompatActivity
         implements buildings.buildingBuilder, jobs.employmentOffice{
     GameSave gameSave = GameSave.getGameSave(this);
     int atomicHUT = 0;
-    int workerCost = 1;
+    int workerCost = 20;
+    double workerConsume = -1;
+    double workerProduce = 1.4;
+    double workerWoodProduction = .4;
+    double workerStoneProduction = .2;
+    private DrawerLayout mDrawerLayout;
+    DecimalFormat df = new DecimalFormat("0.0");
     Thread thread = new Thread() {
         @Override
         public void run() {
@@ -27,18 +43,18 @@ public class MainActivity extends FragmentActivity
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            int farmers = Integer.parseInt(workerAmount("FARMERS"));
+                            double farm = consume();
                             TextView food = findViewById(R.id.num_food);
                             TextView foodspeed = findViewById(R.id.FOOD);
-                            workerCollect(food, "FOOD", farmers, foodspeed);
-                            int lumberjacks = Integer.parseInt(workerAmount("LUMBERJACKS"));
+                            workerCollect(food, "FOOD", farm, foodspeed);
+                            double lumberjacks = Double.parseDouble(workerAmount("LUMBERJACKS"));
                             TextView wood = findViewById(R.id.num_wood);
                             TextView woodspeed = findViewById(R.id.WOOD);
-                            workerCollect(wood, "WOOD", lumberjacks, woodspeed);
-                            int stonemasons = Integer.parseInt(workerAmount("STONEMASONS"));
+                            workerCollect(wood, "WOOD", lumberjacks * workerWoodProduction, woodspeed);
+                            double stonemasons = Double.parseDouble(workerAmount("STONEMASONS"));
                             TextView stone = findViewById(R.id.num_stone);
                             TextView stonespeed = findViewById(R.id.STONE);
-                            workerCollect(stone, "STONE", stonemasons, stonespeed);
+                            workerCollect(stone, "STONE", stonemasons * workerStoneProduction, stonespeed);
                         }
                     });
                 }
@@ -51,18 +67,26 @@ public class MainActivity extends FragmentActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.setDisplayHomeAsUpEnabled(true);
+        actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
+        Intent intent = getIntent();
+        String o = intent.getStringExtra("rename");
+        if((o != null) && (o.equals("rename"))){
+            String newcivname = intent.getStringExtra("newcivName");
+            actionbar.setTitle(newcivname);
+            //edit the db so that it can have the name of the civilization saved and then update the action bar
+        }
         Button collect_food = findViewById(R.id.collect_food);
         Button collect_wood = findViewById(R.id.collect_wood);
         Button collect_stone = findViewById(R.id.collect_stone);
         Button reset = findViewById(R.id.resetdb);
         Button createWorkers = findViewById(R.id.create_worker);
-        TextView population = findViewById(R.id.population);
         Button add_worker = findViewById(R.id.add_worker);
         Button substract_worker = findViewById(R.id.substract_worker);
-        String pop_max = gameSave.resourceAmount("POPULATION_MAX");
-        String pop = gameSave.resourceAmount("POPULATION");
-        String str = "Population: " + pop + "/" + pop_max;
-        population.setText(str);
+        setScreen();
         final Button buildings = findViewById(R.id.buildings);
         final Button upgrades = findViewById(R.id.upgrades);
         final Button jobs = findViewById(R.id.jobs);
@@ -70,20 +94,7 @@ public class MainActivity extends FragmentActivity
             @Override
             public void onClick(View view) {
                 gameSave.resetdb();
-                TextView num_food = findViewById(R.id.num_food);
-                TextView num_wood = findViewById(R.id.num_wood);
-                TextView num_stone = findViewById(R.id.num_stone);
-                TextView population = findViewById(R.id.population);
-                TextView unemployed = findViewById(R.id.unemployed);
-                unemployed.setText("Unemployed: 0");
-                String str_amt = num_food.getText().toString();
-                String array[] = str_amt.split("/");
-                int max = Integer.parseInt(array[1]);
-                String new_val = "0/" + max;
-                num_food.setText(new_val);
-                num_wood.setText(new_val);
-                num_stone.setText(new_val);
-                population.setText("Population: 0/0");
+                setScreen();
                 atomicHUT = 0;
             }
         });
@@ -165,7 +176,55 @@ public class MainActivity extends FragmentActivity
                 }
             }
         });
+        mDrawerLayout = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                // set item as selected to persist highlight
+                item.setChecked(true);
+                // close drawer when item is tapped
+                mDrawerLayout.closeDrawers();
+                int id = item.getItemId();
+
+                if (id == R.id.rename) {
+                    Intent rename = new Intent(getApplicationContext(), Rename.class);
+                    startActivity(rename);
+                }
+                // Add code here to update the UI based on the item selected
+                // For example, swap UI fragments here
+
+
+                return true;
+            }
+        });
         thread.start(); //starts automatic updates
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                mDrawerLayout.openDrawer(GravityCompat.START);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    public void setScreen(){
+        String pop = "Population: " + gameSave.resourceAmount("POPULATION") + "/" + gameSave.resourceAmount("POPULATION_MAX");
+        String unemployed = "Unemployed: " +gameSave.resourceAmount("UNEMPLOYED");
+        String food = gameSave.resourceAmount("FOOD") + "/" + gameSave.resourceAmount("FOOD_MAX");
+        String wood = gameSave.resourceAmount("WOOD") + "/" + gameSave.resourceAmount("WOOD_MAX");
+        String stone = gameSave.resourceAmount("STONE") + "/" + gameSave.resourceAmount("STONE_MAX");
+        TextView poptv = findViewById(R.id.population);
+        TextView unemployedtv = findViewById(R.id.unemployed);
+        TextView foodtv = findViewById(R.id.num_food);
+        TextView woodtv = findViewById(R.id.num_wood);
+        TextView stonetv = findViewById(R.id.num_stone);
+        poptv.setText(pop);
+        unemployedtv.setText(unemployed);
+        foodtv.setText(food);
+        woodtv.setText(wood);
+        stonetv.setText(stone);
     }
     public void changeFragment(View view){
         Fragment fragment;
@@ -175,23 +234,19 @@ public class MainActivity extends FragmentActivity
             FragmentTransaction ft = fm.beginTransaction();
             ft.replace(R.id.fragment, fragment);
             ft.commit();
-//            Toast.makeText(MainActivity.this,"bulidings", Toast.LENGTH_SHORT).show();
         }
         else if(view == findViewById(R.id.upgrades)){
             fragment = new upgrades();
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
             ft.replace(R.id.fragment, fragment);
-            ft.commit();
-//            Toast.makeText(MainActivity.this,"upgrades", Toast.LENGTH_SHORT).show();
-        }
+            ft.commit();}
         else if(view == findViewById(R.id.jobs)){
             fragment = new jobs();
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
             ft.replace(R.id.fragment, fragment);
             ft.commit();
-//            Toast.makeText(MainActivity.this,"jobs", Toast.LENGTH_SHORT).show();
         }
     }
     public void createWorker(TextView pop, int amt){
@@ -200,14 +255,14 @@ public class MainActivity extends FragmentActivity
         String pops[] = pop_num.split("/");
         int current = Integer.parseInt(pops[0]);
         int max = Integer.parseInt(pops[1]);
-        int food = Integer.parseInt(gameSave.resourceAmount(GameSave.FOOD_col));
-        int cost = amt * workerCost * (-1);
+        double food = Double.parseDouble(gameSave.resourceAmount(GameSave.FOOD_col));
+        double cost = amt * workerCost * (-1);
         food = food + cost;
         current = current + amt;
         if(current>max){
             Toast.makeText(MainActivity.this,"Not enough space", Toast.LENGTH_SHORT).show();
         }
-        else if(food<0){
+        else if(food<0.0){
             Toast.makeText(MainActivity.this,"Not enough food", Toast.LENGTH_SHORT).show();
         }
         else{
@@ -224,15 +279,14 @@ public class MainActivity extends FragmentActivity
             gameSave.updateNoMax("UNEMPLOYED", amt);
             TextView foodtv = findViewById(R.id.num_food);
             collect(foodtv, "FOOD", cost);
-//            Toast.makeText(MainActivity.this,"Worker created", Toast.LENGTH_SHORT).show();
         }
     }
-    public void collect(TextView tv, String res, int amount) {
+    public void collect(TextView tv, String res, double amount) {
         String str_amt = tv.getText().toString();
         String array[] = str_amt.split("/");
-        int max = Integer.parseInt(array[1]);
-        int current = Integer.parseInt(array[0]);
-        int currentdb = Integer.parseInt(gameSave.resourceAmount(res));
+        double max = Double.parseDouble(array[1]);
+        double current = Double.parseDouble(array[0]);
+        double currentdb = Double.parseDouble(gameSave.resourceAmount(res));
         if((!((current+amount)<0)) || (!((currentdb+amount)<0))){
             boolean saved = gameSave.update(res, amount);
             if(saved){
@@ -245,24 +299,23 @@ public class MainActivity extends FragmentActivity
             }
             current = current + amount;
             if(current<=max){
-                String new_val = "" + current + "/" + max;
+                String new_val = "" + df.format(current) + "/" + max;
                 tv.setText(new_val);
             }
         }
     }
-    //place indicator to prevent file from being accessed too much
-    public void workerCollect(TextView tv, String res, int amount, TextView sp) {
+    public void workerCollect(TextView tv, String res, double amount, TextView sp) {
         String str_amt = tv.getText().toString();
         String array[] = str_amt.split("/");
-        int max = Integer.parseInt(array[1]);
-        int current = Integer.parseInt(array[0]);
-        int currentdb = Integer.parseInt(gameSave.resourceAmount(res));
+        double max = Double.parseDouble(array[1]);
+        double current = Double.parseDouble(array[0]);
+        double currentdb = Double.parseDouble(gameSave.resourceAmount(res));
+        String speed = "" + df.format(amount)+ "/s";
+        sp.setText(speed);
         if((!((current+amount)<0)) || (!((currentdb+amount)<0))){
-            String speed = "" + amount + "/s";
-            sp.setText(speed);
-            int newcurrent = current + amount;
-            if(newcurrent<=max){
-                String new_val = "" + newcurrent + "/" + max;
+            double newcurrent = current + amount;
+            if(newcurrent<=max && newcurrent>0){
+                String new_val = "" + df.format(newcurrent) + "/" + max;
                 tv.setText(new_val);
                 gameSave.update(res, amount);
             }
@@ -272,6 +325,16 @@ public class MainActivity extends FragmentActivity
                 amount = max - current;
                 gameSave.update(res, amount);
             }
+            else if(newcurrent<=0){
+                String new_val = "0/" + max;
+                tv.setText(new_val);
+                gameSave.update(res, 0);
+            }
+        }
+        else if((((current+amount)<0)) || (((currentdb+amount)<0))){
+            String new_val = "0.0/" + max;
+            tv.setText(new_val);
+            gameSave.update(res, -currentdb);
         }
     }
 
@@ -282,8 +345,21 @@ public class MainActivity extends FragmentActivity
         String newu = "Unemployed: " + total;
         unemployed.setText(newu);
     }
+    public double consume(){
+        double population = Double.parseDouble(workerAmount("POPULATION"));
+        double farmers = Double.parseDouble(workerAmount("FARMERS"));
+        double consumption = population * workerConsume;
+        double production = farmers * workerProduce;
+        double fin =  Double.parseDouble(df.format(consumption + production));
+        return fin;
+    }
     @Override
     public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        }
+        else{
             AlertDialog.Builder aBuilder = new AlertDialog.Builder(MainActivity.this);
             aBuilder.setMessage("Do you want to exit?")
                     .setCancelable(false)
@@ -302,6 +378,7 @@ public class MainActivity extends FragmentActivity
             AlertDialog alert = aBuilder.create();
             alert.setTitle("Exit?");
             alert.show();
+        }
     }
 
     @Override
@@ -309,18 +386,18 @@ public class MainActivity extends FragmentActivity
         TextView num_wood = findViewById(R.id.num_wood);
         String wood = num_wood.getText().toString();
         String array[] = wood.split("/");
-        int max = Integer.parseInt(array[1]);
-        int currentwood = Integer.parseInt(array[0]);
+        double max = Double.parseDouble(array[1]);
+        double currentwood = Double.parseDouble(array[0]);
         TextView num_stone = findViewById(R.id.num_stone);
         String stone = num_stone.getText().toString();
         String array1[] = stone.split("/");
-        int maxstone = Integer.parseInt(array1[1]);
-        int currentstone = Integer.parseInt((array1[0]));
+        double maxstone = Double.parseDouble(array1[1]);
+        double currentstone = Double.parseDouble(array1[0]);
         TextView population = findViewById(R.id.population);
         String pop = population.getText().toString();
         String pop1 = pop.substring(12);
         String pop2[] = pop1.split("/");
-        if((currentwood<2) || (currentstone<=2)){
+        if((currentwood<2) || (currentstone<2)){
             return false;
         }
         else{
@@ -347,13 +424,13 @@ public class MainActivity extends FragmentActivity
         TextView num_wood = findViewById(R.id.num_wood);
         String wood = num_wood.getText().toString();
         String array[] = wood.split("/");
-        int max = Integer.parseInt(array[1]);
-        int currentwood = Integer.parseInt(array[0]);
+        double max = Double.parseDouble(array[1]);
+        double currentwood = Double.parseDouble(array[0]);
         TextView num_stone = findViewById(R.id.num_stone);
         String stone = num_stone.getText().toString();
         String array1[] = stone.split("/");
-        int maxstone = Integer.parseInt(array1[1]);
-        int currentstone = Integer.parseInt((array1[0]));
+        double maxstone = Double.parseDouble(array1[1]);
+        double currentstone = Double.parseDouble(array1[0]);
         TextView population = findViewById(R.id.population);
         String pop = population.getText().toString();
         String pop1 = pop.substring(12);
@@ -385,13 +462,13 @@ public class MainActivity extends FragmentActivity
         TextView num_wood = findViewById(R.id.num_wood);
         String wood = num_wood.getText().toString();
         String array[] = wood.split("/");
-        int max = Integer.parseInt(array[1]);
-        int currentwood = Integer.parseInt(array[0]);
+        double max = Double.parseDouble(array[1]);
+        double currentwood = Double.parseDouble(array[0]);
         TextView num_stone = findViewById(R.id.num_stone);
         String stone = num_stone.getText().toString();
         String array1[] = stone.split("/");
-        int maxstone = Integer.parseInt(array1[1]);
-        int currentstone = Integer.parseInt((array1[0]));
+        double maxstone = Double.parseDouble(array1[1]);
+        double currentstone = Double.parseDouble(array1[0]);
         TextView population = findViewById(R.id.population);
         String pop = population.getText().toString();
         String pop1 = pop.substring(12);
@@ -423,13 +500,13 @@ public class MainActivity extends FragmentActivity
         TextView num_wood = findViewById(R.id.num_wood);
         String wood = num_wood.getText().toString();
         String array[] = wood.split("/");
-        int max = Integer.parseInt(array[1]);
-        int currentwood = Integer.parseInt(array[0]);
+        double max = Double.parseDouble(array[1]);
+        double currentwood = Double.parseDouble(array[0]);
         TextView num_stone = findViewById(R.id.num_stone);
         String stone = num_stone.getText().toString();
         String array1[] = stone.split("/");
-        int maxstone = Integer.parseInt(array1[1]);
-        int currentstone = Integer.parseInt((array1[0]));
+        double maxstone = Double.parseDouble(array1[1]);
+        double currentstone = Double.parseDouble(array1[0]);
         TextView population = findViewById(R.id.population);
         String pop = population.getText().toString();
         String pop1 = pop.substring(12);
@@ -461,13 +538,13 @@ public class MainActivity extends FragmentActivity
         TextView num_wood = findViewById(R.id.num_wood);
         String wood = num_wood.getText().toString();
         String array[] = wood.split("/");
-        int max = Integer.parseInt(array[1]);
-        int currentwood = Integer.parseInt(array[0]);
+        double max = Double.parseDouble(array[1]);
+        double currentwood = Double.parseDouble(array[0]);
         TextView num_stone = findViewById(R.id.num_stone);
         String stone = num_stone.getText().toString();
         String array1[] = stone.split("/");
-        int maxstone = Integer.parseInt(array1[1]);
-        int currentstone = Integer.parseInt((array1[0]));
+        double maxstone = Double.parseDouble(array1[1]);
+        double currentstone = Double.parseDouble(array1[0]);
         if((currentwood<100) || (currentstone<50)){
             return false;
         }
@@ -482,8 +559,8 @@ public class MainActivity extends FragmentActivity
             TextView num_food = findViewById(R.id.num_food);
             String food = num_food.getText().toString();
             String array2[] = food.split("/");
-            int maxfood = Integer.parseInt(array2[1]) + 200;
-            int currentfood = Integer.parseInt(array2[0]);
+            double maxfood = Double.parseDouble(array2[1]) + 200;
+            double currentfood = Double.parseDouble(array2[0]);
             String new_food = "" + currentfood + "/" + maxfood;
             num_food.setText(new_food);
             gameSave.update(GameSave.WOOD_col, -100);
@@ -499,13 +576,13 @@ public class MainActivity extends FragmentActivity
         TextView num_wood = findViewById(R.id.num_wood);
         String wood = num_wood.getText().toString();
         String array[] = wood.split("/");
-        int max = Integer.parseInt(array[1]);
-        int currentwood = Integer.parseInt(array[0]);
+        double max = Double.parseDouble(array[1]);
+        double currentwood = Double.parseDouble(array[0]);
         TextView num_stone = findViewById(R.id.num_stone);
         String stone = num_stone.getText().toString();
         String array1[] = stone.split("/");
-        int maxstone = Integer.parseInt(array1[1]);
-        int currentstone = Integer.parseInt((array1[0]));
+        double maxstone = Double.parseDouble(array1[1]);
+        double currentstone = Double.parseDouble(array1[0]);
         if((currentwood<100) || (currentstone<50)){
             return false;
         }
@@ -530,13 +607,13 @@ public class MainActivity extends FragmentActivity
         TextView num_wood = findViewById(R.id.num_wood);
         String wood = num_wood.getText().toString();
         String array[] = wood.split("/");
-        int max = Integer.parseInt(array[1]);
-        int currentwood = Integer.parseInt(array[0]);
+        double max = Double.parseDouble(array[1]);
+        double currentwood = Double.parseDouble(array[0]);
         TextView num_stone = findViewById(R.id.num_stone);
         String stone = num_stone.getText().toString();
         String array1[] = stone.split("/");
-        int maxstone = Integer.parseInt(array1[1]);
-        int currentstone = Integer.parseInt((array1[0]));
+        double maxstone = Double.parseDouble(array1[1]);
+        double currentstone = Double.parseDouble(array1[0]);
         if((currentwood<100) || (currentstone<50)){
             return false;
         }
