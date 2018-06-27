@@ -2,6 +2,7 @@ package not.bored.clickerempire;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.drm.DrmStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -55,6 +56,9 @@ public class MainActivity extends AppCompatActivity
                             TextView stone = findViewById(R.id.num_stone);
                             TextView stonespeed = findViewById(R.id.STONE);
                             workerCollect(stone, "STONE", stonemasons * workerStoneProduction, stonespeed);
+                            ActionBar actionBar = getSupportActionBar();
+                            String name = civType() + " of " + gameSave.resourceAmount("CIVILIZATION_NAME");
+                            actionBar.setTitle(name);
                         }
                     });
                 }
@@ -76,7 +80,9 @@ public class MainActivity extends AppCompatActivity
         String o = intent.getStringExtra("rename");
         if((o != null) && (o.equals("rename"))){
             String newcivname = intent.getStringExtra("newcivName");
-            actionbar.setTitle(newcivname);
+            gameSave.updateName(newcivname);
+            String name = civType() + " of " + newcivname;
+            actionbar.setTitle(name);
             //edit the db so that it can have the name of the civilization saved and then update the action bar
         }
         Button collect_food = findViewById(R.id.collect_food);
@@ -86,7 +92,7 @@ public class MainActivity extends AppCompatActivity
         Button createWorkers = findViewById(R.id.create_worker);
         Button add_worker = findViewById(R.id.add_worker);
         Button substract_worker = findViewById(R.id.substract_worker);
-        setScreen();
+        setScreen(actionbar);
         final Button buildings = findViewById(R.id.buildings);
         final Button upgrades = findViewById(R.id.upgrades);
         final Button jobs = findViewById(R.id.jobs);
@@ -94,7 +100,8 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 gameSave.resetdb();
-                setScreen();
+                ActionBar actionbar = getSupportActionBar();
+                setScreen(actionbar);
                 atomicHUT = 0;
             }
         });
@@ -189,6 +196,8 @@ public class MainActivity extends AppCompatActivity
 
                 if (id == R.id.rename) {
                     Intent rename = new Intent(getApplicationContext(), Rename.class);
+                    String name = gameSave.resourceAmount("CIVILIZATION_NAME");
+                    rename.putExtra("name", name);
                     startActivity(rename);
                 }
                 // Add code here to update the UI based on the item selected
@@ -209,7 +218,7 @@ public class MainActivity extends AppCompatActivity
         }
         return super.onOptionsItemSelected(item);
     }
-    public void setScreen(){
+    public void setScreen(ActionBar actionBar){
         String pop = "Population: " + gameSave.resourceAmount("POPULATION") + "/" + gameSave.resourceAmount("POPULATION_MAX");
         String unemployed = "Unemployed: " +gameSave.resourceAmount("UNEMPLOYED");
         String food = gameSave.resourceAmount("FOOD") + "/" + gameSave.resourceAmount("FOOD_MAX");
@@ -225,6 +234,9 @@ public class MainActivity extends AppCompatActivity
         foodtv.setText(food);
         woodtv.setText(wood);
         stonetv.setText(stone);
+
+        String civName = civType() + " of " + gameSave.resourceAmount("CIVILIZATION_NAME");
+        actionBar.setTitle(civName);
     }
     public void changeFragment(View view){
         Fragment fragment;
@@ -352,6 +364,47 @@ public class MainActivity extends AppCompatActivity
         double production = farmers * workerProduce;
         double fin =  Double.parseDouble(df.format(consumption + production));
         return fin;
+    }
+    public String civType(){
+        int pop = Integer.parseInt(gameSave.resourceAmount("POPULATION"));
+        if(pop<20){
+            return "Thorp";
+        }
+        else if(pop>=20 && pop<60){
+            return "Hamlet";
+        }
+        else if(pop>=60 && pop<200){
+            return "Village";
+        }
+        else if(pop>=200 && pop<2000){
+            return "Small Town";
+        }
+        else if(pop>=2000 && pop<5000){
+            return "Large Town";
+        }
+        else if(pop>=5000 && pop<10000){
+            return "Small City";
+        }
+        else if(pop>=10000 && pop<20000){
+            return "Large City";
+        }
+        else if(pop>=20000 && pop<50000){
+            return "Metropolis";
+        }
+        else if(pop>=50000 && pop<100000){
+            return "Small Nation";
+        }
+        else if(pop>=100000 && pop<200000){
+            return "Nation";
+        }
+        else if(pop>=200000 && pop<500000){
+            return "Large Nation";
+        }
+        else{
+            return "Empire";
+        }
+
+
     }
     @Override
     public void onBackPressed() {

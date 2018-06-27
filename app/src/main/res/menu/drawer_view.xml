@@ -4,16 +4,16 @@
     tools:showIn="navigation_view">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:title="dfsfsdf" />
-        <item
             android:id="@+id/rename"
             android:title="Rename Civilization" />
         <item
+            android:id="@+id/nav_camera"
+            android:title="Doesn't work" />
+        <item
             android:id="@+id/nav_slideshow"
-            android:title="Ssdlfksj" />
+            android:title="Doesn't work" />
         <item
             android:id="@+id/nav_manage"
-            android:title="Tools" />
+            android:title="Doesn't work" />
     </group>
 </menu>

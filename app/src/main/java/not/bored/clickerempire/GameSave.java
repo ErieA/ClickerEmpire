@@ -36,6 +36,7 @@ public class GameSave extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String sql = "CREATE TABLE " + RESOURCES +
                 "(ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "CIVILIZATION_NAME TEXT NOT NULL," +
                 "FOOD REAL NOT NULL," +
                 "FOOD_MAX REAL NOT NULL," +
                 "WOOD REAL NOT NULL," +
@@ -56,9 +57,9 @@ public class GameSave extends SQLiteOpenHelper {
                 "STONEMASONS INTEGER NOT NULL," +
                 "UNEMPLOYED INTEGER NOT NULL)";
         db.execSQL(sql);
-        sql = "INSERT INTO RESOURCES (FOOD, FOOD_MAX, WOOD, WOOD_MAX, STONE, STONE_MAX, POPULATION, POPULATION_MAX, " +
+        sql = "INSERT INTO RESOURCES (CIVILIZATION_NAME, FOOD, FOOD_MAX, WOOD, WOOD_MAX, STONE, STONE_MAX, POPULATION, POPULATION_MAX, " +
                 "TENTS, HUTS, HOUSES, MANSIONS, BARNS, WOODSTOCKPILES, STONESTOCKPILES, FARMERS, LUMBERJACKS, STONEMASONS, UNEMPLOYED) " +
-                "VALUES ('0','200','0','200','0','200','0','0','0','0','0','0','0','0','0','0','0','0','0')";
+                "VALUES ('Clicker','0','200','0','200','0','200','0','0','0','0','0','0','0','0','0','0','0','0','0')";
         db.execSQL(sql);
     }
 
@@ -177,5 +178,12 @@ public class GameSave extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + RESOURCES);
         onCreate(db);
         return true;
+    }
+    public boolean updateName(String name){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("CIVILIZATION_NAME", name);
+        long result = db.update(RESOURCES, contentValues, null, null);
+        return result != -1;
     }
 }

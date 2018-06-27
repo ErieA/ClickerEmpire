@@ -23,12 +23,14 @@ public class Rename extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rename);
-
+        Intent intent = getIntent();
+        String name = intent.getStringExtra("name");
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionbar = getSupportActionBar();
         actionbar.setDisplayHomeAsUpEnabled(true);
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
+        actionbar.setTitle(name);
         mDrawerLayout = findViewById(R.id.drawer_layout);
         Button rename = findViewById(R.id.rename_button);
         rename.setOnClickListener(new View.OnClickListener() {
