@@ -330,6 +330,7 @@ public class MainActivity extends AppCompatActivity
             }
         }
     }
+
     public void setScreen(ActionBar actionBar){
         String pop = "Population: " + gameSave.resourceAmount("POPULATION") + "/" + gameSave.resourceAmount("POPULATION_MAX");
         String unemployed = "Unemployed: " +gameSave.resourceAmount("UNEMPLOYED");
@@ -346,9 +347,42 @@ public class MainActivity extends AppCompatActivity
         foodtv.setText(food);
         woodtv.setText(wood);
         stonetv.setText(stone);
-
         String civName = civType() + " of " + gameSave.resourceAmount("CIVILIZATION_NAME");
         actionBar.setTitle(civName);
+
+
+//        Fragment jobs = getSupportFragmentManager().findFragmentById(R.id.jobs);
+//        TextView farmers = jobs.getView().findViewById(R.id.farmers);
+//        String f =  gameSave.resourceAmount("FARMERS");
+//        farmers.setText(f);
+//        TextView lumberjacks = jobs.getView().findViewById(R.id.lumberjacks);
+//        String l =  gameSave.resourceAmount("LUMBERJACKS");
+//        lumberjacks.setText(l);
+//        TextView stonemasons = jobs.getView().findViewById(R.id.stonemasons);
+//        String s =  gameSave.resourceAmount("STONEMASONS");
+//        stonemasons.setText(s);
+//        Fragment buildings = getSupportFragmentManager().findFragmentById(R.id.buildings);
+//        TextView tents = buildings.getView().findViewById(R.id.num_tent);
+//        String t =  gameSave.resourceAmount("TENTS");
+//        tents.setText(t);
+//        TextView hut = buildings.getView().findViewById(R.id.num_hut);
+//        String h =  gameSave.resourceAmount("HUTS");
+//        hut.setText(h);
+//        TextView houses = buildings.getView().findViewById(R.id.num_house);
+//        String hs =  gameSave.resourceAmount("HOUSES");
+//        houses.setText(hs);
+//        TextView mansions = buildings.getView().findViewById(R.id.num_mansion);
+//        String m =  gameSave.resourceAmount("MANSIONS");
+//        mansions.setText(m);
+//        TextView barns = buildings.getView().findViewById(R.id.num_barn);
+//        String b = gameSave.resourceAmount("BARNS");
+//        barns.setText(b);
+//        TextView ws= buildings.getView().findViewById(R.id.num_woodstockpile);
+//        String wss =  gameSave.resourceAmount("WOODSTOCKPILES");
+//        ws.setText(wss);
+//        TextView ss = buildings.getView().findViewById(R.id.num_stonestockpile);
+//        String sss =  gameSave.resourceAmount("STONESTOCKPILES");
+//        ss.setText(sss);
     }
     public void changeFragment(View view){
         Fragment fragment;
@@ -880,5 +914,4 @@ public class MainActivity extends AppCompatActivity
     public String workerAmount(String worker) {
         return gameSave.resourceAmount(worker);
     }
-
 }

@@ -14,22 +14,12 @@ import android.widget.TextView;
 public class jobs extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-//    private static final String ARG_PARAM1 = "param1";
-//    private static final String ARG_PARAM2 = "param2";
     private employmentOffice office;
     public jobs() {
         // Required empty public constructor
     }
 
 //    // TODO: Rename and change types and number of parameters
-//    public static jobs newInstance(String param1, String param2) {
-//        jobs fragment = new jobs();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
