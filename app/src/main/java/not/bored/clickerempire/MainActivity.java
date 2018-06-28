@@ -1,8 +1,11 @@
 package not.bored.clickerempire;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.drm.DrmStore;
+import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -21,8 +24,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.text.DecimalFormat;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity
         implements buildings.buildingBuilder, jobs.employmentOffice{
@@ -63,10 +66,34 @@ public class MainActivity extends AppCompatActivity
                     });
                 }
             } catch (InterruptedException e) {
-                Toast.makeText(MainActivity.this,"Oops, something went wrong", Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this,"Paused", Toast.LENGTH_LONG).show();
             }
         }
     };
+    Thread saver = new Thread() {
+        @Override
+        public void run() {
+            try {
+                while (!thread.isInterrupted()) {
+                    int i = 60000*60;
+                    Thread.sleep(i);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            saveGame();
+                        }
+                    });
+                }
+            } catch (InterruptedException e) {
+                Toast.makeText(MainActivity.this,"Paused", Toast.LENGTH_LONG).show();
+            }
+        }
+    };
+    public void pause(){
+        thread.interrupt();
+    }
+    public void resume(){
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -200,6 +227,61 @@ public class MainActivity extends AppCompatActivity
                     rename.putExtra("name", name);
                     startActivity(rename);
                 }
+                else if (id == R.id.save_game){
+//                    pause();
+                    AlertDialog.Builder aBuilder = new AlertDialog.Builder(MainActivity.this);
+                    aBuilder.setMessage("Saving game will overwrite previous save game data. Are you sure you want to save?")
+                            .setCancelable(false)
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    Toast.makeText(MainActivity.this,"Game saved", Toast.LENGTH_SHORT).show();
+                                    saveGame();
+                                }
+                            })
+                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.cancel();
+//                                    resume();
+                                }
+                            });
+                    AlertDialog alert = aBuilder.create();
+                    alert.setTitle("Save Game");
+                    alert.show();
+                }
+                else if (id == R.id.load_game){
+//                    pause();
+                    AlertDialog.Builder aBuilder = new AlertDialog.Builder(MainActivity.this);
+                    aBuilder.setMessage("Loading game will overwrite game progress. Are you sure you want to load?")
+                            .setCancelable(false)
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    Toast.makeText(MainActivity.this,"Game loaded", Toast.LENGTH_SHORT).show();
+//                                    resume();
+                                    loadGame();
+                                    setScreen(getSupportActionBar());
+                                }
+                            })
+                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.cancel();
+//                                    resume();
+                                }
+                            });
+                    AlertDialog alert = aBuilder.create();
+                    alert.setTitle("Save Game");
+                    alert.show();
+                }
+                else if (id == R.id.pause) {
+                    Toast.makeText(MainActivity.this,"Paused", Toast.LENGTH_LONG).show();
+//                    pause();
+                }
+                else if (id == R.id.resume) {
+//                    resume();
+                }
                 // Add code here to update the UI based on the item selected
                 // For example, swap UI fragments here
 
@@ -208,6 +290,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
         thread.start(); //starts automatic updates
+        saver.start();
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -217,6 +300,35 @@ public class MainActivity extends AppCompatActivity
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+    public void saveGame(){
+        SharedPreferences saveGame = getSharedPreferences("saveGame",MODE_PRIVATE);
+        SharedPreferences.Editor editor = saveGame.edit();
+        Map<String, String> map = gameSave.save();
+        for (Map.Entry<String, String> entry : map.entrySet()){
+            String key = entry.getKey();
+            String val = entry.getValue();
+            editor.putString(key, val);
+        }
+        editor.apply();
+    }
+    public void loadGame(){
+        SharedPreferences loadGame = getSharedPreferences("saveGame", MODE_PRIVATE);
+        Map<String, String> map = (Map<String, String>) loadGame.getAll();
+        for (Map.Entry<String, String> entry : map.entrySet()){
+            String key = entry.getKey();
+            String val = entry.getValue();
+            if(key.equals("CIVILIZATION_NAME")){
+                Toast.makeText(MainActivity.this,key + "  " + val, Toast.LENGTH_SHORT).show();
+                gameSave.updateName(val);
+            }
+            else if((key.equals("FOOD")) || (key.equals("FOOD_MAX")) || (key.equals("WOOD")) || (key.equals("WOOD_MAX")) || (key.equals("STONE")) || (key.equals("STONE_MAX"))){
+                gameSave.set(key, Double.parseDouble(val));
+            }
+            else{
+                gameSave.set(key, Integer.parseInt(val));
+            }
+        }
     }
     public void setScreen(ActionBar actionBar){
         String pop = "Population: " + gameSave.resourceAmount("POPULATION") + "/" + gameSave.resourceAmount("POPULATION_MAX");
@@ -768,4 +880,5 @@ public class MainActivity extends AppCompatActivity
     public String workerAmount(String worker) {
         return gameSave.resourceAmount(worker);
     }
+
 }

@@ -7,13 +7,16 @@
             android:id="@+id/rename"
             android:title="Rename Civilization" />
         <item
-            android:id="@+id/nav_camera"
-            android:title="Doesn't work" />
+            android:id="@+id/save_game"
+            android:title="Save Game" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:title="Doesn't work" />
+            android:id="@+id/load_game"
+            android:title="Load Game" />
         <item
-            android:id="@+id/nav_manage"
-            android:title="Doesn't work" />
+            android:id="@+id/pause"
+            android:title="Pause" />
+        <item
+            android:id="@+id/resume"
+            android:title="Resume" />
     </group>
 </menu>

@@ -7,6 +7,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by Erie M. Adames on 6/12/2018.
  */
@@ -132,6 +135,13 @@ public class GameSave extends SQLiteOpenHelper {
         long result = db.update(RESOURCES, contentValues, null, null);
         return result != -1;
     }
+    public boolean set(String res, double amt){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(res, amt);
+        long result = db.update(RESOURCES, contentValues, null, null);
+        return result != -1;
+    }
     public boolean createbuilding(String building, int amt){
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "SELECT " + building + " FROM " + RESOURCES + " WHERE ID = 1";
@@ -185,5 +195,34 @@ public class GameSave extends SQLiteOpenHelper {
         contentValues.put("CIVILIZATION_NAME", name);
         long result = db.update(RESOURCES, contentValues, null, null);
         return result != -1;
+    }
+    public Map<String, String> save(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "SELECT * FROM " + RESOURCES + " WHERE ID = 1";
+        Cursor data = db.rawQuery(sql,null);
+        StringBuffer buffer = new StringBuffer();
+        while(data.moveToNext()){
+            buffer.append(data.getString(1));buffer.append(",");buffer.append(data.getString(2));buffer.append(",");
+            buffer.append(data.getString(3));buffer.append(",");buffer.append(data.getString(4));buffer.append(",");
+            buffer.append(data.getString(5));buffer.append(",");buffer.append(data.getString(6));buffer.append(",");
+            buffer.append(data.getString(7));buffer.append(",");buffer.append(data.getString(8));buffer.append(",");
+            buffer.append(data.getString(9));buffer.append(",");buffer.append(data.getString(10));buffer.append(",");
+            buffer.append(data.getString(11));buffer.append(",");buffer.append(data.getString(12));buffer.append(",");
+            buffer.append(data.getString(13));buffer.append(",");buffer.append(data.getString(14));buffer.append(",");
+            buffer.append(data.getString(15));buffer.append(",");buffer.append(data.getString(16));buffer.append(",");
+            buffer.append(data.getString(17));buffer.append(",");buffer.append(data.getString(18));buffer.append(",");
+            buffer.append(data.getString(19));buffer.append(",");buffer.append(data.getString(20));
+        }
+        data.close();
+        Map<String, String> map = new HashMap<String, String>();
+        String save[] = buffer.toString().split(",");
+        map.put("CIVILIZATION_NAME", save[0]);map.put("FOOD", save[1]);map.put("FOOD_MAX", save[2]);
+        map.put("WOOD", save[3]);map.put("WOOD_MAX", save[4]);map.put("STONE", save[5]);
+        map.put("STONE_MAX", save[6]);map.put("POPULATION", save[7]);map.put("POPULATION_MAX", save[8]);
+        map.put("TENTS", save[9]);map.put("HUTS", save[10]);map.put("HOUSES", save[11]);map.put("MANSIONS", save[12]);
+        map.put("BARNS", save[13]);map.put("WOODSTOCKPILES", save[14]);map.put("STONESTOCKPILES", save[15]);
+        map.put("FARMERS", save[16]);map.put("LUMBERJACKS", save[17]);map.put("STONEMASONS", save[18]);
+        map.put("UNEMPLOYED", save[19]);
+        return map;
     }
 }
