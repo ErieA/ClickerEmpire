@@ -479,10 +479,6 @@ public class MainActivity extends AppCompatActivity
         String speed = "" + df.format(amount)+ "/s";
         sp.setText(speed);
         double i =currentdb+amount;
-        if(res=="FOOD"){
-
-//            Toast.makeText(MainActivity.this,res + " db curr Amount: " + i, Toast.LENGTH_SHORT).show();
-        }
         if(((currentdb+amount)>0)){
             double newcurrent = currentdb + amount;
             if(newcurrent<=max && newcurrent>0){
@@ -526,13 +522,7 @@ public class MainActivity extends AppCompatActivity
         else if((((currentdb+amount)<=0))){
             String new_val = "0.0/" + max;
             tv.setText(new_val);
-            boolean show = gameSave.set(res, 0);
-            if (show){
-                Toast.makeText(MainActivity.this,"Setting to 0", Toast.LENGTH_SHORT).show();
-            }
-            else{
-                Toast.makeText(MainActivity.this,"fail", Toast.LENGTH_SHORT).show();
-            }
+            gameSave.set(res, 0);
         }
     }
 
