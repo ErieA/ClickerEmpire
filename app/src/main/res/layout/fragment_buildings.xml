@@ -7,138 +7,238 @@
     tools:context="not.bored.clickerempire.buildings">
 
     <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scrollbars="none"
+        android:layout_weight="1">
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="?android:windowBackground">
-
-        <TableRow
+        <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:stretchColumns="0,1"
+            android:background="?android:windowBackground">
 
-            <Button
-                android:id="@+id/buildtent"
-                android:layout_width="wrap_content"
-                android:layout_height="34dp"
-                android:text="Build Tent"
-                android:textSize="10sp" />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/num_tent"
-                android:layout_width="196dp"
-                android:layout_height="wrap_content"
-                android:textAlignment="textEnd" />
-        </TableRow>
+                <Button
+                    android:id="@+id/buildtent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
+                    android:text="Build Tent"
+                    android:textSize="10sp" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+                <TextView
+                    android:id="@+id/num_tent"
+                    android:layout_width="196dp"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textEnd" />
+            </TableRow>
 
-            <Button
-                android:id="@+id/buildhut"
-                android:layout_width="wrap_content"
-                android:layout_height="34dp"
-                android:text="Build Hut"
-                android:textSize="10sp" />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
 
-            <TextView
-                android:id="@+id/num_hut"
-                android:layout_width="235dp"
-                android:layout_height="wrap_content"
-                android:textAlignment="textEnd" />
-        </TableRow>
+                <Button
+                    android:id="@+id/buildhut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
+                    android:text="Build Hut"
+                    android:textSize="10sp" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+                <TextView
+                    android:id="@+id/num_hut"
+                    android:layout_width="235dp"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textEnd" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/buildhouse"
-                android:layout_width="wrap_content"
-                android:layout_height="34dp"
-                android:text="Build House"
-                android:textSize="10sp" />
+                <Button
+                    android:id="@+id/buildcottage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
+                    android:text="Build Cottage"
+                    android:textSize="10sp" />
 
-            <TextView
-                android:id="@+id/num_house"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAlignment="textEnd" />
-        </TableRow>
+                <TextView
+                    android:id="@+id/num_cottage"
+                    android:layout_width="196dp"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textEnd"
+                    android:layout_gravity="end"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+                <Button
+                    android:id="@+id/buildhouse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
+                    android:text="Build House"
+                    android:textSize="10sp" />
 
-            <Button
-                android:id="@+id/buildmansion"
-                android:layout_width="wrap_content"
-                android:layout_height="34dp"
-                android:text="Build Mansion"
-                android:textSize="10sp" />
+                <TextView
+                    android:id="@+id/num_house"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textEnd"
+                    android:layout_gravity="end"/>
+            </TableRow>
 
-            <TextView
-                android:id="@+id/num_mansion"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAlignment="textEnd" />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
 
-        </TableRow>
+                <Button
+                    android:id="@+id/buildmansion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
+                    android:text="Build Mansion"
+                    android:textSize="10sp" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+                <TextView
+                    android:id="@+id/num_mansion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textEnd"
+                    android:layout_gravity="end"/>
 
-            <Button
-                android:id="@+id/buildbarn"
-                android:layout_width="wrap_content"
-                android:layout_height="34dp"
-                android:text="Build Barn"
-                android:textSize="10sp" />
+            </TableRow>
 
-            <TextView
-                android:id="@+id/num_barn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAlignment="textEnd" />
-        </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+                <Button
+                    android:id="@+id/buildbarn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
+                    android:text="Build Barn"
+                    android:textSize="10sp" />
 
-            <Button
-                android:id="@+id/buildwoodstockpile"
-                android:layout_width="wrap_content"
-                android:layout_height="34dp"
-                android:text="Build Wood Stockpile"
-                android:textSize="10sp" />
+                <TextView
+                    android:id="@+id/num_barn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textEnd"
+                    android:layout_gravity="end"/>
+            </TableRow>
 
-            <TextView
-                android:id="@+id/num_woodstockpile"
-                android:layout_width="258dp"
-                android:layout_height="wrap_content"
-                android:textAlignment="textEnd" />
-        </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                <Button
+                    android:id="@+id/buildwoodstockpile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
+                    android:text="Build Wood Stockpile"
+                    android:textSize="10sp" />
 
-            <Button
-                android:id="@+id/buildstonestockpile"
-                android:layout_width="wrap_content"
-                android:layout_height="34dp"
-                android:text="Build Stone Stockpile"
-                android:textSize="10sp" />
+                <TextView
+                    android:id="@+id/num_woodstockpile"
+                    android:layout_width="258dp"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textEnd"
+                    android:layout_gravity="end"/>
+            </TableRow>
 
-            <TextView
-                android:id="@+id/num_stonestockpile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAlignment="textEnd" />
-        </TableRow>
-    </TableLayout>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
+                <Button
+                    android:id="@+id/buildstonestockpile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
+                    android:text="Build Stone Stockpile"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/num_stonestockpile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textEnd"
+                    android:layout_gravity="end"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/buildtannery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
+                    android:text="Build Tannery"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/num_tannery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textEnd"
+                    android:layout_gravity="end"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/buildsmithy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
+                    android:text="Build Smithy"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/num_smithy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textEnd"
+                    android:layout_gravity="end"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/buildtemple"
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
+                    android:text="Build Temple"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/num_temples"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:textAlignment="textEnd" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/buildbarracks"
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
+                    android:text="Build Barracks"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/num_barracks"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textEnd"
+                    android:layout_gravity="end"/>
+            </TableRow>
+        </TableLayout>
+    </ScrollView>
 </FrameLayout>

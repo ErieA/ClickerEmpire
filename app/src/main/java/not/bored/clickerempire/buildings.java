@@ -10,48 +10,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class buildings extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+
+    public buildings() {}
 
     private buildingBuilder builder;
-
-    public buildings() {
-        // Required empty public constructor
-    }
-//
-//    /**
-//     * Use this factory method to create a new instance of
-//     * this fragment using the provided parameters.
-//     *
-//     * @param param1 Parameter 1.
-//     * @param param2 Parameter 2.
-//     * @return A new instance of fragment buildings.
-//     */
-//    // TODO: Rename and change types and number of parameters
-//    public static buildings newInstance(String param1, String param2) {
-//        buildings fragment = new buildings();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
-//
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
-//        }
-//    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -101,50 +64,170 @@ public class buildings extends Fragment {
                 }
             }
         });
-        Button buildhouse = view.findViewById(R.id.buildhouse);
-        TextView num_house = view.findViewById(R.id.num_house);
-        amt = builder.resourceAmount("HOUSES");
-        num_house.setText(amt);
-        buildhouse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TextView num_house = getActivity().findViewById(R.id.num_house);
-                String str = num_house.getText().toString();
-                if(str == ""){
-                    str = "0";
+        if(builder.checkMUpgrade()){
+            Button buildhouse = view.findViewById(R.id.buildhouse);
+            TextView num_house = view.findViewById(R.id.num_house);
+            amt = builder.resourceAmount("HOUSES");
+            num_house.setText(amt);
+            buildhouse.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    TextView num_house = getActivity().findViewById(R.id.num_house);
+                    String str = num_house.getText().toString();
+                    if(str == ""){
+                        str = "0";
+                    }
+                    int num = Integer.parseInt(str);
+                    num++;
+                    boolean build = builder.buildHouse();
+                    if(build){
+                        num_house.setText(""+num);
+                        num_house.invalidate();
+                        num_house.requestLayout();
+                    }
                 }
-                int num = Integer.parseInt(str);
-                num++;
-                boolean build = builder.buildHouse();
-                if(build){
-                    num_house.setText(""+num);
-                    num_house.invalidate();
-                    num_house.requestLayout();
+            });
+            Button buildmansion = view.findViewById(R.id.buildmansion);
+            TextView num_mansion = view.findViewById(R.id.num_mansion);
+            amt = builder.resourceAmount("MANSIONS");
+            num_mansion.setText(amt);
+            buildmansion.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    TextView num_mansion = getActivity().findViewById(R.id.num_mansion);
+                    String str = num_mansion.getText().toString();
+                    if(str == ""){
+                        str = "0";
+                    }
+                    int num = Integer.parseInt(str);
+                    num++;
+                    boolean build = builder.buildMansion();
+                    if(build){
+                        num_mansion.setText(""+num);
+                        num_mansion.invalidate();
+                        num_mansion.requestLayout();
+                    }
                 }
-            }
-        });
-        Button buildmansion = view.findViewById(R.id.buildmansion);
-        TextView num_mansion = view.findViewById(R.id.num_mansion);
-        amt = builder.resourceAmount("MANSIONS");
-        num_mansion.setText(amt);
-        buildmansion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TextView num_mansion = getActivity().findViewById(R.id.num_mansion);
-                String str = num_mansion.getText().toString();
-                if(str == ""){
-                    str = "0";
+            });
+            Button buildcottage = view.findViewById(R.id.buildcottage);
+            TextView num_cottage = view.findViewById(R.id.num_cottage);
+            amt = builder.resourceAmount("COTTAGES");
+            num_cottage.setText(amt);
+            buildcottage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    TextView num_cottage = getActivity().findViewById(R.id.num_cottage);
+                    String str = num_cottage.getText().toString();
+                    if(str == ""){
+                        str = "0";
+                    }
+                    int num = Integer.parseInt(str);
+                    num++;
+                    boolean build = builder.buildCottage();
+                    if(build){
+                        num_cottage.setText(""+num);
+                        num_cottage.invalidate();
+                        num_cottage.requestLayout();
+                    }
                 }
-                int num = Integer.parseInt(str);
-                num++;
-                boolean build = builder.buildMansion();
-                if(build){
-                    num_mansion.setText(""+num);
-                    num_mansion.invalidate();
-                    num_mansion.requestLayout();
+            });
+            Button buildtannery = view.findViewById(R.id.buildtannery);
+            TextView num_tannery = view.findViewById(R.id.num_tannery);
+            amt = builder.resourceAmount("TANNERIES");
+            num_tannery.setText(amt);
+            buildtannery.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    TextView num_tannery = getActivity().findViewById(R.id.num_tannery);
+                    String str = num_tannery.getText().toString();
+                    if(str == ""){
+                        str = "0";
+                    }
+                    int num = Integer.parseInt(str);
+                    num++;
+                    boolean build = builder.buildTannery();
+                    if(build){
+                        num_tannery.setText(""+num);
+                        num_tannery.invalidate();
+                        num_tannery.requestLayout();
+                    }
                 }
-            }
-        });
+            });
+            Button buildsmithy = view.findViewById(R.id.buildsmithy);
+            TextView num_smithy = view.findViewById(R.id.num_smithy);
+            amt = builder.resourceAmount("SMITHIES");
+            num_smithy.setText(amt);
+            buildsmithy.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    TextView num_smithy = getActivity().findViewById(R.id.num_smithy);
+                    String str = num_smithy.getText().toString();
+                    if(str == ""){
+                        str = "0";
+                    }
+                    int num = Integer.parseInt(str);
+                    num++;
+                    boolean build = builder.buildSmithy();
+                    if(build){
+                        num_smithy.setText(""+num);
+                        num_smithy.invalidate();
+                        num_smithy.requestLayout();
+                    }
+                }
+            });
+            Button buildtemple = view.findViewById(R.id.buildtemple);
+            TextView num_temple = view.findViewById(R.id.num_temples);
+            amt = builder.resourceAmount("TEMPLES");
+            num_temple.setText(amt);
+            buildtemple.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    TextView num_temple = getActivity().findViewById(R.id.num_temples);
+                    String str = num_temple.getText().toString();
+                    if(str == ""){
+                        str = "0";
+                    }
+                    int num = Integer.parseInt(str);
+                    num++;
+                    boolean build = builder.buildTemple();
+                    if(build){
+                        num_temple.setText(""+num);
+                        num_temple.invalidate();
+                        num_temple.requestLayout();
+                    }
+                }
+            });
+            Button buildbarracks = view.findViewById(R.id.buildbarracks);
+            TextView num_barracks = view.findViewById(R.id.num_barracks);
+            amt = builder.resourceAmount("BARRACKS");
+            num_barracks.setText(amt);
+            buildbarracks.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    TextView num_barracks = getActivity().findViewById(R.id.num_barracks);
+                    String str = num_barracks.getText().toString();
+                    if(str == ""){
+                        str = "0";
+                    }
+                    int num = Integer.parseInt(str);
+                    num++;
+                    boolean build = builder.buildBarracks();
+                    if(build){
+                        num_barracks.setText(""+num);
+                        num_barracks.invalidate();
+                        num_barracks.requestLayout();
+                    }
+                }
+            });
+        }
+        else{
+            view.findViewById(R.id.buildcottage).setVisibility(View.GONE);
+            view.findViewById(R.id.num_cottage).setVisibility(View.GONE);
+            view.findViewById(R.id.buildhouse).setVisibility(View.GONE);
+            view.findViewById(R.id.num_house).setVisibility(View.GONE);
+            view.findViewById(R.id.buildmansion).setVisibility(View.GONE);
+            view.findViewById(R.id.num_mansion).setVisibility(View.GONE);
+        }
         Button buildbarn = view.findViewById(R.id.buildbarn);
         TextView num_barn = view.findViewById(R.id.num_barn);
         amt = builder.resourceAmount("BARNS");
@@ -213,14 +296,7 @@ public class buildings extends Fragment {
         });
         return view;
     }
-    //
-//    // TODO: Rename method, update argument and hook method into UI event
-//    public void onButtonPressed(Uri uri) {
-//        if (mListener != null) {
-//            mListener.onFragmentInteraction(uri);
-//        }
-//    }
-//
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -231,33 +307,21 @@ public class buildings extends Fragment {
                     + " must implement OnFragmentInteractionListener");
         }
     }
-    //
-//    @Override
-//    public void onDetach() {
-//        super.onDetach();
-//        mListener = null;
-//    }
-//
-//    /**
-//     * This interface must be implemented by activities that contain this
-//     * fragment to allow an interaction in this fragment to be communicated
-//     * to the activity and potentially other fragments contained in that
-//     * activity.
-//     * <p>
-//     * See the Android Training lesson <a href=
-//     * "http://developer.android.com/training/basics/fragments/communicating.html"
-//     * >Communicating with Other Fragments</a> for more information.
-//     */
     public interface buildingBuilder {
         // TODO: Update argument type and name
         boolean buildTent();
         boolean buildHut();
+        boolean buildCottage();
         boolean buildHouse();
         boolean buildMansion();
         boolean buildBarn();
         boolean buildWoodStockpile();
         boolean buildStoneStockpile();
+        boolean buildTannery();
+        boolean buildSmithy();
+        boolean buildTemple();
+        boolean buildBarracks();
+        boolean checkMUpgrade();
         String resourceAmount(String resource);
-        boolean atomicHUT();
     }
 }

@@ -1,11 +1,8 @@
 package not.bored.clickerempire;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.drm.DrmStore;
-import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -26,16 +23,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 import java.text.DecimalFormat;
 import java.util.Map;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity
-        implements buildings.buildingBuilder, jobs.employmentOffice{
+        implements buildings.buildingBuilder, jobs.employmentOffice, upgrades.upgrade, specialResources.specialResourcesListener{
     GameSave gameSave = GameSave.getGameSave(this);
-    int atomicHUT = 0;
     int workerCost = 20;
     double workerConsume = -1;
     double workerProduce = 1.4;
     double workerWoodProduction = .4;
     double workerStoneProduction = .2;
+    double barnMax = 200;
     private DrawerLayout mDrawerLayout;
     DecimalFormat df = new DecimalFormat("0.0");
     Thread thread = new Thread() {
@@ -51,6 +49,7 @@ public class MainActivity extends AppCompatActivity
                             TextView food = findViewById(R.id.num_food);
                             TextView foodspeed = findViewById(R.id.FOOD);
                             workerCollect(food, "FOOD", farm, foodspeed);
+                            killWorkers(farm);
                             double lumberjacks = Double.parseDouble(workerAmount("LUMBERJACKS"));
                             TextView wood = findViewById(R.id.num_wood);
                             TextView woodspeed = findViewById(R.id.WOOD);
@@ -93,11 +92,13 @@ public class MainActivity extends AppCompatActivity
         thread.interrupt();
     }
     public void resume(){
+        thread.start();
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        gameSave.resetdb();
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionbar = getSupportActionBar();
@@ -112,24 +113,25 @@ public class MainActivity extends AppCompatActivity
             actionbar.setTitle(name);
             //edit the db so that it can have the name of the civilization saved and then update the action bar
         }
-        Button collect_food = findViewById(R.id.collect_food);
+        final Button collect_food = findViewById(R.id.collect_food);
         Button collect_wood = findViewById(R.id.collect_wood);
         Button collect_stone = findViewById(R.id.collect_stone);
         Button reset = findViewById(R.id.resetdb);
         Button createWorkers = findViewById(R.id.create_worker);
         Button add_worker = findViewById(R.id.add_worker);
         Button substract_worker = findViewById(R.id.substract_worker);
-        setScreen(actionbar);
+        loadGame();
         final Button buildings = findViewById(R.id.buildings);
         final Button upgrades = findViewById(R.id.upgrades);
         final Button jobs = findViewById(R.id.jobs);
+        final Button specialRes= findViewById(R.id.specialresources);
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 gameSave.resetdb();
                 ActionBar actionbar = getSupportActionBar();
                 setScreen(actionbar);
-                atomicHUT = 0;
+//                atomicHUT = 0;
             }
         });
         collect_food.setOnClickListener(new View.OnClickListener() {
@@ -137,6 +139,10 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
                 TextView num_food = findViewById(R.id.num_food);
                 collect(num_food, "FOOD", 1);
+                boolean val = new Random().nextInt(10)==0;
+                if(val){
+                    gameSave.updateNoMax("SKINS",1);
+                }
             }
         });
         collect_wood.setOnClickListener(new View.OnClickListener() {
@@ -144,6 +150,10 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
                 TextView num_wood = findViewById(R.id.num_wood);
                 collect(num_wood,"WOOD", 1);
+                boolean val = new Random().nextInt(10)==0;
+                if(val){
+                    gameSave.updateNoMax("HERBS",1);
+                }
             }
         });
         collect_stone.setOnClickListener(new View.OnClickListener() {
@@ -151,12 +161,22 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
                 TextView num_stone = findViewById(R.id.num_stone);
                 collect(num_stone, "STONE", 1);
+                boolean val = new Random().nextInt(10)==0;
+                if(val){
+                    gameSave.updateNoMax("ORE",1);
+                }
             }
         });
         buildings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 changeFragment(buildings);
+            }
+        });
+        specialRes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeFragment(specialRes);
             }
         });
         upgrades.setOnClickListener(new View.OnClickListener() {
@@ -261,7 +281,6 @@ public class MainActivity extends AppCompatActivity
                                     Toast.makeText(MainActivity.this,"Game loaded", Toast.LENGTH_SHORT).show();
 //                                    resume();
                                     loadGame();
-                                    setScreen(getSupportActionBar());
                                 }
                             })
                             .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -304,6 +323,8 @@ public class MainActivity extends AppCompatActivity
     public void saveGame(){
         SharedPreferences saveGame = getSharedPreferences("saveGame",MODE_PRIVATE);
         SharedPreferences.Editor editor = saveGame.edit();
+        editor.clear();
+        editor.apply();
         Map<String, String> map = gameSave.save();
         for (Map.Entry<String, String> entry : map.entrySet()){
             String key = entry.getKey();
@@ -319,7 +340,6 @@ public class MainActivity extends AppCompatActivity
             String key = entry.getKey();
             String val = entry.getValue();
             if(key.equals("CIVILIZATION_NAME")){
-                Toast.makeText(MainActivity.this,key + "  " + val, Toast.LENGTH_SHORT).show();
                 gameSave.updateName(val);
             }
             else if((key.equals("FOOD")) || (key.equals("FOOD_MAX")) || (key.equals("WOOD")) || (key.equals("WOOD_MAX")) || (key.equals("STONE")) || (key.equals("STONE_MAX"))){
@@ -329,8 +349,8 @@ public class MainActivity extends AppCompatActivity
                 gameSave.set(key, Integer.parseInt(val));
             }
         }
+        setScreen(getSupportActionBar());
     }
-
     public void setScreen(ActionBar actionBar){
         String pop = "Population: " + gameSave.resourceAmount("POPULATION") + "/" + gameSave.resourceAmount("POPULATION_MAX");
         String unemployed = "Unemployed: " +gameSave.resourceAmount("UNEMPLOYED");
@@ -349,40 +369,8 @@ public class MainActivity extends AppCompatActivity
         stonetv.setText(stone);
         String civName = civType() + " of " + gameSave.resourceAmount("CIVILIZATION_NAME");
         actionBar.setTitle(civName);
-
-
-//        Fragment jobs = getSupportFragmentManager().findFragmentById(R.id.jobs);
-//        TextView farmers = jobs.getView().findViewById(R.id.farmers);
-//        String f =  gameSave.resourceAmount("FARMERS");
-//        farmers.setText(f);
-//        TextView lumberjacks = jobs.getView().findViewById(R.id.lumberjacks);
-//        String l =  gameSave.resourceAmount("LUMBERJACKS");
-//        lumberjacks.setText(l);
-//        TextView stonemasons = jobs.getView().findViewById(R.id.stonemasons);
-//        String s =  gameSave.resourceAmount("STONEMASONS");
-//        stonemasons.setText(s);
-//        Fragment buildings = getSupportFragmentManager().findFragmentById(R.id.buildings);
-//        TextView tents = buildings.getView().findViewById(R.id.num_tent);
-//        String t =  gameSave.resourceAmount("TENTS");
-//        tents.setText(t);
-//        TextView hut = buildings.getView().findViewById(R.id.num_hut);
-//        String h =  gameSave.resourceAmount("HUTS");
-//        hut.setText(h);
-//        TextView houses = buildings.getView().findViewById(R.id.num_house);
-//        String hs =  gameSave.resourceAmount("HOUSES");
-//        houses.setText(hs);
-//        TextView mansions = buildings.getView().findViewById(R.id.num_mansion);
-//        String m =  gameSave.resourceAmount("MANSIONS");
-//        mansions.setText(m);
-//        TextView barns = buildings.getView().findViewById(R.id.num_barn);
-//        String b = gameSave.resourceAmount("BARNS");
-//        barns.setText(b);
-//        TextView ws= buildings.getView().findViewById(R.id.num_woodstockpile);
-//        String wss =  gameSave.resourceAmount("WOODSTOCKPILES");
-//        ws.setText(wss);
-//        TextView ss = buildings.getView().findViewById(R.id.num_stonestockpile);
-//        String sss =  gameSave.resourceAmount("STONESTOCKPILES");
-//        ss.setText(sss);
+        Button jobs = findViewById(R.id.jobs);
+//        changeFragment(jobs);
     }
     public void changeFragment(View view){
         Fragment fragment;
@@ -392,7 +380,7 @@ public class MainActivity extends AppCompatActivity
             FragmentTransaction ft = fm.beginTransaction();
             ft.replace(R.id.fragment, fragment);
             ft.commit();
-        }
+            }
         else if(view == findViewById(R.id.upgrades)){
             fragment = new upgrades();
             FragmentManager fm = getSupportFragmentManager();
@@ -401,6 +389,13 @@ public class MainActivity extends AppCompatActivity
             ft.commit();}
         else if(view == findViewById(R.id.jobs)){
             fragment = new jobs();
+            FragmentManager fm = getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            ft.replace(R.id.fragment, fragment);
+            ft.commit();
+        }
+        else if(view == findViewById(R.id.specialresources)){
+            fragment = new specialResources();
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
             ft.replace(R.id.fragment, fragment);
@@ -439,6 +434,30 @@ public class MainActivity extends AppCompatActivity
             collect(foodtv, "FOOD", cost);
         }
     }
+    public void killWorkers(double amt){
+        int amount = (int) Math.floor(amt);
+//        Toast.makeText(MainActivity.this,"Amount: " + amount + " Food: " + gameSave.resourceAmount("FOOD") + " Pop: " + gameSave.resourceAmount("POPULATION"), Toast.LENGTH_SHORT).show();
+        if(amount<0 && Integer.parseInt(gameSave.resourceAmount("FOOD"))<=0 && Integer.parseInt(gameSave.resourceAmount("POPULATION")) > 0){
+            TextView population = findViewById(R.id.population);
+            int currentpop = Integer.parseInt(gameSave.resourceAmount("POPULATION"));
+            int newpop = currentpop + amount;
+            if(newpop<=0){
+                String pop = "Population: 0/" + gameSave.resourceAmount("POPULATION");
+                population.setText(pop);
+                gameSave.set("POPULATION",0);
+                TextView unemployed = findViewById(R.id.unemployed);
+                String newu = "Unemployed: " + 0;
+                unemployed.setText(newu);
+
+            }
+            else{
+                String pop = "Population: " + newpop + gameSave.resourceAmount("POPULATION");
+                population.setText(pop);
+                gameSave.update("POPULATION",amount);
+                modifyunemployed(amount);
+            }
+        }
+    }
     public void collect(TextView tv, String res, double amount) {
         String str_amt = tv.getText().toString();
         String array[] = str_amt.split("/");
@@ -446,15 +465,7 @@ public class MainActivity extends AppCompatActivity
         double current = Double.parseDouble(array[0]);
         double currentdb = Double.parseDouble(gameSave.resourceAmount(res));
         if((!((current+amount)<0)) || (!((currentdb+amount)<0))){
-            boolean saved = gameSave.update(res, amount);
-            if(saved){
-                String amt = gameSave.showamt(res);
-                Toast.makeText(MainActivity.this, res +" added to the DataBase: " + amt, Toast.LENGTH_SHORT).show();
-            }
-            else{
-                String amt = gameSave.showamt(res);
-                Toast.makeText(MainActivity.this, res +" not added to the DataBase: " + amt, Toast.LENGTH_SHORT).show();
-            }
+            gameSave.update(res, amount);
             current = current + amount;
             if(current<=max){
                 String new_val = "" + df.format(current) + "/" + max;
@@ -463,15 +474,17 @@ public class MainActivity extends AppCompatActivity
         }
     }
     public void workerCollect(TextView tv, String res, double amount, TextView sp) {
-        String str_amt = tv.getText().toString();
-        String array[] = str_amt.split("/");
-        double max = Double.parseDouble(array[1]);
-        double current = Double.parseDouble(array[0]);
+        double max = Double.parseDouble(gameSave.resourceAmount(res+"_MAX"));
         double currentdb = Double.parseDouble(gameSave.resourceAmount(res));
         String speed = "" + df.format(amount)+ "/s";
         sp.setText(speed);
-        if((!((current+amount)<0)) || (!((currentdb+amount)<0))){
-            double newcurrent = current + amount;
+        double i =currentdb+amount;
+        if(res=="FOOD"){
+
+//            Toast.makeText(MainActivity.this,res + " db curr Amount: " + i, Toast.LENGTH_SHORT).show();
+        }
+        if(((currentdb+amount)>0)){
+            double newcurrent = currentdb + amount;
             if(newcurrent<=max && newcurrent>0){
                 String new_val = "" + df.format(newcurrent) + "/" + max;
                 tv.setText(new_val);
@@ -480,7 +493,7 @@ public class MainActivity extends AppCompatActivity
             else if(newcurrent>max){
                 String new_val = "" + max + "/" + max;
                 tv.setText(new_val);
-                amount = max - current;
+                amount = max - currentdb;
                 gameSave.update(res, amount);
             }
             else if(newcurrent<=0){
@@ -488,20 +501,55 @@ public class MainActivity extends AppCompatActivity
                 tv.setText(new_val);
                 gameSave.update(res, 0);
             }
+            boolean val = new Random().nextInt(10)==0;
+            int newamt = (int)amount/10;
+            if(val){
+                switch (res) {
+                    case "FOOD":
+                        if(checkUpgrade("SKINNING")){
+                            gameSave.updateNoMax("SKINS",newamt);
+                        }
+                        break;
+                    case "WOOD":
+                        if(checkUpgrade("HARVESTING")){
+                            gameSave.updateNoMax("HERBS",newamt);
+                        }
+                        break;
+                    case "STONE":
+                        if(checkUpgrade("PROSPECTING")){
+                            gameSave.updateNoMax("ORE",newamt);
+                        }
+                        break;
+                }
+            }
         }
-        else if((((current+amount)<0)) || (((currentdb+amount)<0))){
+        else if((((currentdb+amount)<=0))){
             String new_val = "0.0/" + max;
             tv.setText(new_val);
-            gameSave.update(res, -currentdb);
+            boolean show = gameSave.set(res, 0);
+            if (show){
+                Toast.makeText(MainActivity.this,"Setting to 0", Toast.LENGTH_SHORT).show();
+            }
+            else{
+                Toast.makeText(MainActivity.this,"fail", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
     public void modifyunemployed(int amt){
         TextView unemployed = findViewById(R.id.unemployed);
-        int total = Integer.parseInt(unemployed.getText().toString().substring(12));
+        int total = Integer.parseInt(gameSave.resourceAmount("UNEMPLOYED"));
         total += amt;
-        String newu = "Unemployed: " + total;
-        unemployed.setText(newu);
+        if (total >= 0) {
+            String newu = "Unemployed: " + total;
+            unemployed.setText(newu);
+            gameSave.updateNoMax("UNEMPLOYED",amt);
+        }
+        else{
+            String newu = "Unemployed: " + 0;
+            unemployed.setText(newu);
+            gameSave.setInt("UNEMPLOYED",0);
+        }
     }
     public double consume(){
         double population = Double.parseDouble(workerAmount("POPULATION"));
@@ -655,7 +703,43 @@ public class MainActivity extends AppCompatActivity
             return true;
         }
     }
-
+    @Override
+    public boolean buildCottage() {
+        TextView num_wood = findViewById(R.id.num_wood);
+        String wood = num_wood.getText().toString();
+        String array[] = wood.split("/");
+        double max = Double.parseDouble(array[1]);
+        double currentwood = Double.parseDouble(array[0]);
+        TextView num_stone = findViewById(R.id.num_stone);
+        String stone = num_stone.getText().toString();
+        String array1[] = stone.split("/");
+        double maxstone = Double.parseDouble(array1[1]);
+        double currentstone = Double.parseDouble(array1[0]);
+        TextView population = findViewById(R.id.population);
+        String pop = population.getText().toString();
+        String pop1 = pop.substring(12);
+        String pop2[] = pop1.split("/");
+        if((currentwood<10) || (currentstone<30)){
+            return false;
+        }
+        else{
+            currentstone-=30;
+            currentwood-=10;
+            String new_val = "" + currentwood + "/" + max;
+            String new_val_stone = "" + currentstone + "/" + maxstone;
+            int new_pop_max = Integer.parseInt(pop2[1]);
+            new_pop_max = new_pop_max + 6;
+            String new_population_text = "Population: " + pop2[0] + "/" + new_pop_max;
+            population.setText(new_population_text);
+            num_wood.setText(new_val);
+            num_stone.setText(new_val_stone);
+            gameSave.update(GameSave.WOOD_col, -20);
+            gameSave.update(GameSave.STONE_col, -10);
+            gameSave.updatemax("POPULATION", 4);
+            gameSave.createbuilding("COTTAGES",1);
+            return true;
+        }
+    }
     @Override
     public boolean buildHouse() {
         TextView num_wood = findViewById(R.id.num_wood);
@@ -758,13 +842,13 @@ public class MainActivity extends AppCompatActivity
             TextView num_food = findViewById(R.id.num_food);
             String food = num_food.getText().toString();
             String array2[] = food.split("/");
-            double maxfood = Double.parseDouble(array2[1]) + 200;
+            double maxfood = Double.parseDouble(array2[1]) + barnMax;
             double currentfood = Double.parseDouble(array2[0]);
             String new_food = "" + currentfood + "/" + maxfood;
             num_food.setText(new_food);
             gameSave.update(GameSave.WOOD_col, -100);
             gameSave.update(GameSave.STONE_col, -50);
-            gameSave.updatemax("FOOD", 200);
+            gameSave.updatemax("FOOD", barnMax);
             gameSave.createbuilding("BARNS",1);
             return true;
         }
@@ -833,21 +917,35 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    public boolean buildTannery() {
+        return false;
+    }
+
+    @Override
+    public boolean buildSmithy() {
+        return false;
+    }
+
+    @Override
+    public boolean buildTemple() {
+        return false;
+    }
+
+    @Override
+    public boolean buildBarracks() {
+        return false;
+    }
+
+    @Override
+    public boolean checkMUpgrade() {
+        return Integer.parseInt(gameSave.resourceAmount("MASONRY")) == 1;
+    }
+
+    @Override
     public String resourceAmount(String resource){
         return gameSave.resourceAmount(resource);
     }
 
-    @Override
-    public boolean atomicHUT() {
-        if(atomicHUT == 0){
-            atomicHUT++;
-//            Toast.makeText(MainActivity.this,"atomicHUT" + atomicHUT, Toast.LENGTH_SHORT).show();
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
     @Override
     public int totalUnemployed(){
         int c =Integer.parseInt(gameSave.resourceAmount("UNEMPLOYED"));
@@ -903,15 +1001,99 @@ public class MainActivity extends AppCompatActivity
         gameSave.updateNoMax("UNEMPLOYED", amount);
         this.modifyunemployed(amount);
     }
-
-    @Override
-    public void toast(int i) {
-//        Toast.makeText(MainActivity.this,"there are " + i + " farmers", Toast.LENGTH_SHORT).show();
-
-    }
-
     @Override
     public String workerAmount(String worker) {
         return gameSave.resourceAmount(worker);
+    }
+    @Override
+    public boolean upgradeSkinning() {
+        if(Double.parseDouble(gameSave.resourceAmount("SKINS")) > 10){
+            gameSave.updateNoMax("SKINS",-10);
+            return gameSave.setInt("SKINNING",1);
+        }
+        else {
+            Toast.makeText(MainActivity.this,"Not enough resources to purchase this upgrade", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean upgradeHarvesting() {
+        if(Double.parseDouble(gameSave.resourceAmount("HERBS")) > 10){
+            gameSave.updateNoMax("HERBS",-10);
+            return gameSave.setInt("HARVESTING",1);
+        }
+        else {
+            Toast.makeText(MainActivity.this,"Not enough resources to purchase this upgrade", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean upgradeProspecting() {
+        if(Double.parseDouble(gameSave.resourceAmount("ORE")) > 10){
+            gameSave.updateNoMax("ORE",-10);
+            return gameSave.setInt("PROSPECTING",1);
+        }
+        else {
+            Toast.makeText(MainActivity.this,"Not enough resources to purchase this upgrade", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean upgradeMasonry() {
+        if(Double.parseDouble(gameSave.resourceAmount("STONE")) > 100 && Double.parseDouble(gameSave.resourceAmount("WOOD")) > 100){
+            TextView stone = findViewById(R.id.num_stone);
+            collect(stone,"STONE", -100);
+            TextView wood = findViewById(R.id.num_wood);
+            collect(wood,"WOOD", -100);
+            return gameSave.setInt("MASONRY",1);
+        }
+        else {
+            Toast.makeText(MainActivity.this,"Not enough resources to purchase this upgrade", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+    @Override
+    public boolean granaries(){
+        if(Double.parseDouble(gameSave.resourceAmount("STONE")) > 1000 && Double.parseDouble(gameSave.resourceAmount("WOOD")) > 1000){
+            double max = Double.parseDouble(gameSave.resourceAmount("FOOD_MAX"));
+            max-=200;
+            max*=2;
+            max+=200;
+            gameSave.set("FOOD_MAX",max);
+            setScreen(getSupportActionBar());
+            barnMax = 400;
+            return gameSave.setInt("GRANARIES",1);
+        }
+        else {
+            Toast.makeText(MainActivity.this,"Not enough resources to purchase this upgrade", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+    @Override
+    public boolean show(){
+        return Integer.parseInt(gameSave.resourceAmount("MASONRY")) == 1;
+    }
+
+    @Override
+    public boolean checkUpgrade(String upgrade) {
+        return Integer.parseInt(gameSave.resourceAmount(upgrade)) == 1;
+    }
+
+    @Override
+    public String Skins() {
+        return gameSave.resourceAmount("SKINS");
+    }
+
+    @Override
+    public String Herbs() {
+        return gameSave.resourceAmount("HERBS");
+    }
+
+    @Override
+    public String Ore() {
+        return gameSave.resourceAmount("ORE");
     }
 }

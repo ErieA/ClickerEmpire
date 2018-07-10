@@ -1,106 +1,180 @@
 package not.bored.clickerempire;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link upgrades.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link upgrades#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class upgrades extends Fragment {
-//    // TODO: Rename parameter arguments, choose names that match
-//    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-//    private static final String ARG_PARAM1 = "param1";
-//    private static final String ARG_PARAM2 = "param2";
-//
-//    // TODO: Rename and change types of parameters
-//    private String mParam1;
-//    private String mParam2;
-//
-//    private OnFragmentInteractionListener mListener;
-//
-//    public upgrades() {
-//        // Required empty public constructor
-//    }
-//
-//    /**
-//     * Use this factory method to create a new instance of
-//     * this fragment using the provided parameters.
-//     *
-//     * @param param1 Parameter 1.
-//     * @param param2 Parameter 2.
-//     * @return A new instance of fragment upgrades.
-//     */
-//    // TODO: Rename and change types and number of parameters
-//    public static upgrades newInstance(String param1, String param2) {
-//        upgrades fragment = new upgrades();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
-//
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
-//        }
-//    }
 
+    public upgrades() {
+        // Required empty public constructor
+    }
+    private upgrade upgrades;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_upgrades, container, false);
+        final View view = inflater.inflate(R.layout.fragment_upgrades, container, false);
+        final Button upgradeSkinning = view.findViewById(R.id.skinning);
+        upgradeSkinning.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(upgrades.upgradeSkinning()){
+                    upgradeSkinning.setVisibility(View.GONE);
+                    view.findViewById(R.id.textView).setVisibility(View.GONE);
+                    view.findViewById(R.id.skinning_cost).setVisibility(View.GONE);
+                }
+            }
+        });
+        if(upgrades.checkUpgrade("SKINNING")){
+            upgradeSkinning.setVisibility(View.GONE);
+            view.findViewById(R.id.textView).setVisibility(View.GONE);
+            view.findViewById(R.id.skinning_cost).setVisibility(View.GONE);
+        }
+        final Button upgradeHarvesting = view.findViewById(R.id.harvesting);
+        upgradeHarvesting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(upgrades.upgradeHarvesting()){
+                    upgradeHarvesting.setVisibility(View.GONE);
+                    view.findViewById(R.id.textView2).setVisibility(View.GONE);
+                    view.findViewById(R.id.harvesting_cost).setVisibility(View.GONE);
+                }
+            }
+        });
+        if(upgrades.checkUpgrade("HARVESTING")){
+            upgradeHarvesting.setVisibility(View.GONE);
+            view.findViewById(R.id.textView2).setVisibility(View.GONE);
+            view.findViewById(R.id.harvesting_cost).setVisibility(View.GONE);
+        }
+        final Button upgradeProspecting = view.findViewById(R.id.prospecting);
+        upgradeProspecting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(upgrades.upgradeProspecting()){
+                    upgradeProspecting.setVisibility(View.GONE);
+                    view.findViewById(R.id.textView3).setVisibility(View.GONE);
+                    view.findViewById(R.id.prospecting_cost).setVisibility(View.GONE);
+                }
+            }
+        });
+        if(upgrades.checkUpgrade("PROSPECTING")){
+            upgradeProspecting.setVisibility(View.GONE);
+            view.findViewById(R.id.textView3).setVisibility(View.GONE);
+            view.findViewById(R.id.prospecting_cost).setVisibility(View.GONE);
+        }
+        final Button upgradeDomestication = view.findViewById(R.id.domestication);
+        if(upgrades.checkUpgrade("DOMESTICATION")){
+            upgradeDomestication.setVisibility(View.GONE);
+            view.findViewById(R.id.textView6).setVisibility(View.GONE);
+            view.findViewById(R.id.skinning_cost2).setVisibility(View.GONE);
+        }
+        final Button upgradePloughshares = view.findViewById(R.id.ploughshares);
+        if(upgrades.checkUpgrade("PLOUGHSHARES")){
+            upgradePloughshares.setVisibility(View.GONE);
+            view.findViewById(R.id.textView7).setVisibility(View.GONE);
+            view.findViewById(R.id.skinning_cost3).setVisibility(View.GONE);
+        }
+        final Button upgradeIrrigation = view.findViewById(R.id.irrigation);
+        if(upgrades.checkUpgrade("IRRIGATION")){
+            upgradeIrrigation.setVisibility(View.GONE);
+            view.findViewById(R.id.textView8).setVisibility(View.GONE);
+            view.findViewById(R.id.skinning_cost4).setVisibility(View.GONE);
+        }
+        final Button upgradeConstruction = view.findViewById(R.id.construction);
+        if(upgrades.checkUpgrade("CONSTRUCTION")){
+            upgradeConstruction.setVisibility(View.GONE);
+            view.findViewById(R.id.textView9).setVisibility(View.GONE);
+            view.findViewById(R.id.skinning_cost5).setVisibility(View.GONE);
+        }
+        final Button upgradeGranaries = view.findViewById(R.id.granaries);
+        upgradeGranaries.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(upgrades.granaries()) {
+                    upgradeGranaries.setVisibility(View.GONE);
+                    view.findViewById(R.id.textView10).setVisibility(View.GONE);
+                    view.findViewById(R.id.skinning_cost6).setVisibility(View.GONE);
+                }
+            }
+        });
+        if(upgrades.checkUpgrade("GRANARIES")){
+            upgradeGranaries.setVisibility(View.GONE);
+            view.findViewById(R.id.textView10).setVisibility(View.GONE);
+            view.findViewById(R.id.skinning_cost6).setVisibility(View.GONE);
+        }
+        final Button upgradeMasonry = view.findViewById(R.id.masonry);
+        upgradeMasonry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(upgrades.upgradeMasonry()){
+                    upgradeMasonry.setVisibility(View.GONE);
+                    view.findViewById(R.id.textView4).setVisibility(View.GONE);
+                    view.findViewById(R.id.masonry_cost).setVisibility(View.GONE);
+                    upgradeDomestication.setVisibility(View.VISIBLE);
+                    upgradePloughshares.setVisibility(View.VISIBLE);
+                    upgradeIrrigation.setVisibility(View.VISIBLE);
+                    upgradeConstruction.setVisibility(View.VISIBLE);
+                    upgradeGranaries.setVisibility(View.VISIBLE);
+                    view.findViewById(R.id.textView6).setVisibility(View.VISIBLE);
+                    view.findViewById(R.id.textView7).setVisibility(View.VISIBLE);
+                    view.findViewById(R.id.textView8).setVisibility(View.VISIBLE);
+                    view.findViewById(R.id.textView9).setVisibility(View.VISIBLE);
+                    view.findViewById(R.id.textView10).setVisibility(View.VISIBLE);
+                    view.findViewById(R.id.skinning_cost2).setVisibility(View.VISIBLE);
+                    view.findViewById(R.id.skinning_cost3).setVisibility(View.VISIBLE);
+                    view.findViewById(R.id.skinning_cost4).setVisibility(View.VISIBLE);
+                    view.findViewById(R.id.skinning_cost5).setVisibility(View.VISIBLE);
+                    view.findViewById(R.id.skinning_cost6).setVisibility(View.VISIBLE);
+                }
+            }
+        });
+        if(upgrades.checkUpgrade("MASONRY")){
+            upgradeMasonry.setVisibility(View.GONE);
+            view.findViewById(R.id.textView4).setVisibility(View.GONE);
+            view.findViewById(R.id.masonry_cost).setVisibility(View.GONE);
+        }
+        if (!upgrades.show()) {
+            upgradeDomestication.setVisibility(View.GONE);
+            upgradePloughshares.setVisibility(View.GONE);
+            upgradeIrrigation.setVisibility(View.GONE);
+            upgradeConstruction.setVisibility(View.GONE);
+            upgradeGranaries.setVisibility(View.GONE);
+            view.findViewById(R.id.textView6).setVisibility(View.GONE);
+            view.findViewById(R.id.textView7).setVisibility(View.GONE);
+            view.findViewById(R.id.textView8).setVisibility(View.GONE);
+            view.findViewById(R.id.textView9).setVisibility(View.GONE);
+            view.findViewById(R.id.textView10).setVisibility(View.GONE);
+            view.findViewById(R.id.skinning_cost2).setVisibility(View.GONE);
+            view.findViewById(R.id.skinning_cost3).setVisibility(View.GONE);
+            view.findViewById(R.id.skinning_cost4).setVisibility(View.GONE);
+            view.findViewById(R.id.skinning_cost5).setVisibility(View.GONE);
+            view.findViewById(R.id.skinning_cost6).setVisibility(View.GONE);
+        }
+        return view;
     }
-//
-//    // TODO: Rename method, update argument and hook method into UI event
-//    public void onButtonPressed(Uri uri) {
-//        if (mListener != null) {
-//            mListener.onFragmentInteraction(uri);
-//        }
-//    }
-//
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
-//    }
-//
-//    @Override
-//    public void onDetach() {
-//        super.onDetach();
-//        mListener = null;
-//    }
-//
-//    /**
-//     * This interface must be implemented by activities that contain this
-//     * fragment to allow an interaction in this fragment to be communicated
-//     * to the activity and potentially other fragments contained in that
-//     * activity.
-//     * <p>
-//     * See the Android Training lesson <a href=
-//     * "http://developer.android.com/training/basics/fragments/communicating.html"
-//     * >Communicating with Other Fragments</a> for more information.
-//     */
-//    public interface OnFragmentInteractionListener {
-//        // TODO: Update argument type and name
-//        void onFragmentInteraction(Uri uri);
-//    }
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof upgrade) {
+            upgrades = (upgrade) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    public interface upgrade {
+        boolean upgradeSkinning();
+        boolean upgradeHarvesting();
+        boolean upgradeProspecting();
+        boolean upgradeMasonry();
+        boolean granaries();
+        boolean show();
+        boolean checkUpgrade(String upgrade);
+    }
 }

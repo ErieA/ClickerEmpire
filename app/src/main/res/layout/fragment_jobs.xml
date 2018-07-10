@@ -8,317 +8,241 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <android.support.constraint.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?android:windowBackground">
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/farmers"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="16dp"
-            android:text="Farmers: 0"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toStartOf="@+id/add_farmer"
-            app:layout_constraintHorizontal_bias="0.384"
-            app:layout_constraintStart_toEndOf="@+id/substract_farmer"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:gravity="center"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/farmers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Farmers: 0"
+                android:textSize="18sp" />
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/substract_farmer1000"
-            android:layout_width="42dp"
-            android:layout_height="38dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="40dp"
-            android:text="@string/llll"
-            android:textSize="8sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/substract_farmer1000"
+                android:layout_width="42dp"
+                android:layout_height="38dp"
+                android:text="@string/llll"
+                android:textSize="8sp"
+                android:layout_alignParentLeft="true"/>
 
-        <Button
-            android:id="@+id/add_farmer1000"
-            android:layout_width="42dp"
-            android:layout_height="38dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="40dp"
-            android:text="@string/gggg"
-            android:textSize="8sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <Button
+                android:id="@+id/add_farmer1000"
+                android:layout_width="42dp"
+                android:layout_height="38dp"
+                android:text="@string/gggg"
+                android:textSize="8sp"
+                android:layout_alignParentRight="true"/>
 
-        <TextView
-            android:id="@+id/lumberjacks"
-            android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/substract_farmer100"
+                android:layout_width="39dp"
+                android:layout_height="38dp"
+                android:text="@string/lll"
+                android:textSize="10sp"
+                android:layout_toRightOf="@+id/substract_farmer1000"/>
+
+            <Button
+                android:id="@+id/add_farmer100"
+                android:layout_width="39dp"
+                android:layout_height="38dp"
+                android:text="@string/ggg"
+                android:textSize="10sp"
+                android:layout_toLeftOf="@+id/add_farmer1000" />
+            <Button
+                android:id="@+id/substract_farmer10"
+                android:layout_width="36dp"
+                android:layout_height="38dp"
+                android:text="@string/ll"
+                android:textSize="11sp"
+                android:layout_toRightOf="@+id/substract_farmer100"/>
+
+            <Button
+                android:id="@+id/add_farmer10"
+                android:layout_width="36dp"
+                android:layout_height="38dp"
+                android:text="@string/gg"
+                android:textSize="11sp"
+                android:layout_toLeftOf="@+id/add_farmer100" />
+            <Button
+                android:id="@+id/substract_farmer"
+                android:layout_width="32dp"
+                android:layout_height="38dp"
+                android:text="@string/l"
+                android:layout_toRightOf="@+id/substract_farmer10"/>
+
+            <Button
+                android:id="@+id/add_farmer"
+                android:layout_width="32dp"
+                android:layout_height="38dp"
+                android:text="@string/g"
+                android:layout_toLeftOf="@+id/add_farmer10" />
+
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="8dp"
-            android:text="Lumberjacks: 0"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/stonemasons"
-            app:layout_constraintEnd_toStartOf="@+id/add_lumberjack"
-            app:layout_constraintHorizontal_bias="0.44"
-            app:layout_constraintStart_toEndOf="@+id/substract_lumberjack"
-            app:layout_constraintTop_toBottomOf="@+id/farmers"
-            app:layout_constraintVertical_bias="0.469" />
+            android:gravity="center"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/lumberjacks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lumberjacks: 0"
+                android:textSize="18sp"/>
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/stonemasons"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/substract_lumberjack1000"
+                android:layout_width="42dp"
+                android:layout_height="38dp"
+                android:text="@string/llll"
+                android:textSize="8sp"
+                android:layout_alignParentLeft="true"/>
+
+            <Button
+                android:id="@+id/add_lumberjack1000"
+                android:layout_width="42dp"
+                android:layout_height="38dp"
+                android:text="@string/gggg"
+                android:textSize="8sp"
+                android:layout_alignParentRight="true"/>
+            <Button
+                android:id="@+id/substract_lumberjack100"
+                android:layout_width="39dp"
+                android:layout_height="38dp"
+                android:text="@string/lll"
+                android:textSize="10sp"
+                android:layout_toRightOf="@+id/substract_lumberjack1000"/>
+
+            <Button
+                android:id="@+id/add_lumberjack100"
+                android:layout_width="39dp"
+                android:layout_height="38dp"
+                android:text="@string/ggg"
+                android:textSize="10sp"
+                android:layout_toLeftOf="@+id/add_lumberjack1000" />
+
+            <Button
+                android:id="@+id/substract_lumberjack10"
+                android:layout_width="36dp"
+                android:layout_height="38dp"
+                android:text="@string/ll"
+                android:textSize="11sp"
+                android:layout_toRightOf="@+id/substract_lumberjack100"/>
+
+            <Button
+                android:id="@+id/add_lumberjack10"
+                android:layout_width="36dp"
+                android:layout_height="38dp"
+                android:text="@string/gg"
+                android:textSize="11sp"
+                android:layout_toLeftOf="@+id/add_lumberjack100" />
+            <Button
+                android:id="@+id/substract_lumberjack"
+                android:layout_width="32dp"
+                android:layout_height="38dp"
+                android:text="@string/l"
+                android:layout_toRightOf="@+id/substract_lumberjack10"/>
+
+            <Button
+                android:id="@+id/add_lumberjack"
+                android:layout_width="32dp"
+                android:layout_height="38dp"
+                android:text="@string/g"
+                android:layout_toLeftOf="@+id/add_lumberjack10" />
+
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="60dp"
-            android:layout_marginEnd="8dp"
-            android:text="Stonemasons: 0"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/add_stonemason"
-            app:layout_constraintHorizontal_bias="0.43"
-            app:layout_constraintStart_toEndOf="@+id/substract_stonemason" />
+            android:gravity="center"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/stonemasons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Stonemasons: 0"
+                android:textSize="18sp"/>
 
-        <Button
-            android:id="@+id/substract_lumberjack1000"
-            android:layout_width="42dp"
-            android:layout_height="38dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/llll"
-            android:textSize="8sp"
-            app:layout_constraintBottom_toTopOf="@+id/substract_stonemason1000"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/substract_farmer1000"
-            app:layout_constraintVertical_bias="0.461" />
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/add_lumberjack1000"
-            android:layout_width="42dp"
-            android:layout_height="38dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/gggg"
-            android:textSize="8sp"
-            app:layout_constraintBottom_toTopOf="@+id/add_stonemason1000"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/add_farmer1000"
-            app:layout_constraintVertical_bias="0.461" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/substract_stonemason1000"
+                android:layout_width="42dp"
+                android:layout_height="38dp"
+                android:text="@string/llll"
+                android:textSize="8sp"
+                android:layout_alignParentLeft="true"/>
 
-        <Button
-            android:id="@+id/substract_stonemason1000"
-            android:layout_width="42dp"
-            android:layout_height="38dp"
-            android:layout_marginBottom="16dp"
-            android:layout_marginStart="16dp"
-            android:text="@string/llll"
-            android:textSize="8sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            <Button
+                android:id="@+id/add_stonemason1000"
+                android:layout_width="42dp"
+                android:layout_height="38dp"
+                android:text="@string/gggg"
+                android:textSize="8sp"
+                android:layout_alignParentRight="true"/>
+            <Button
+                android:id="@+id/substract_stonemason100"
+                android:layout_width="39dp"
+                android:layout_height="38dp"
+                android:text="@string/lll"
+                android:textSize="10sp"
+                android:layout_toRightOf="@+id/substract_stonemason1000"/>
 
-        <Button
-            android:id="@+id/add_stonemason1000"
-            android:layout_width="42dp"
-            android:layout_height="38dp"
-            android:layout_marginBottom="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/gggg"
-            android:textSize="8sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            <Button
+                android:id="@+id/add_stonemason100"
+                android:layout_width="39dp"
+                android:layout_height="38dp"
+                android:text="@string/ggg"
+                android:textSize="10sp"
+                android:layout_toLeftOf="@+id/add_stonemason1000" />
+            <Button
+                android:id="@+id/substract_stonemason10"
+                android:layout_width="36dp"
+                android:layout_height="38dp"
+                android:text="@string/ll"
+                android:textSize="11sp"
+                android:layout_toRightOf="@+id/substract_stonemason100"/>
 
-        <Button
-            android:id="@+id/substract_farmer"
-            android:layout_width="32dp"
-            android:layout_height="38dp"
-            android:layout_marginTop="40dp"
-            android:text="@string/l"
-            android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/substract_farmer10"
-            app:layout_constraintTop_toTopOf="parent" />
+            <Button
+                android:id="@+id/add_stonemason10"
+                android:layout_width="36dp"
+                android:layout_height="38dp"
+                android:text="@string/gg"
+                android:textSize="11sp"
+                android:layout_toLeftOf="@+id/add_stonemason100" />
+            <Button
+                android:id="@+id/substract_stonemason"
+                android:layout_width="32dp"
+                android:layout_height="38dp"
+                android:text="@string/l"
+                android:layout_toRightOf="@+id/substract_stonemason10"/>
 
-        <Button
-            android:id="@+id/substract_farmer10"
-            android:layout_width="36dp"
-            android:layout_height="38dp"
-            android:layout_marginTop="40dp"
-            android:text="@string/ll"
-            android:textSize="11sp"
-            app:layout_constraintStart_toEndOf="@+id/substract_farmer100"
-            app:layout_constraintTop_toTopOf="parent" />
+            <Button
+                android:id="@+id/add_stonemason"
+                android:layout_width="32dp"
+                android:layout_height="38dp"
+                android:text="@string/g"
+                android:layout_toLeftOf="@+id/add_stonemason10" />
 
-        <Button
-            android:id="@+id/substract_farmer100"
-            android:layout_width="39dp"
-            android:layout_height="38dp"
-            android:layout_marginTop="40dp"
-            android:text="@string/lll"
-            android:textSize="10sp"
-            app:layout_constraintStart_toEndOf="@+id/substract_farmer1000"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/add_farmer100"
-            android:layout_width="39dp"
-            android:layout_height="38dp"
-            android:layout_marginTop="40dp"
-            android:text="@string/ggg"
-            android:textSize="10sp"
-            app:layout_constraintEnd_toStartOf="@+id/add_farmer1000"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/add_farmer10"
-            android:layout_width="36dp"
-            android:layout_height="38dp"
-            android:layout_marginTop="40dp"
-            android:text="@string/gg"
-            android:textSize="11sp"
-            app:layout_constraintEnd_toStartOf="@+id/add_farmer100"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/add_farmer"
-            android:layout_width="32dp"
-            android:layout_height="38dp"
-            android:layout_marginTop="40dp"
-            android:text="@string/g"
-            app:layout_constraintEnd_toStartOf="@+id/add_farmer10"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/substract_lumberjack100"
-            android:layout_width="39dp"
-            android:layout_height="38dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/lll"
-            android:textSize="10sp"
-            app:layout_constraintBottom_toTopOf="@+id/substract_stonemason100"
-            app:layout_constraintStart_toEndOf="@+id/substract_lumberjack1000"
-            app:layout_constraintTop_toBottomOf="@+id/substract_farmer100"
-            app:layout_constraintVertical_bias="0.461" />
-
-        <Button
-            android:id="@+id/substract_lumberjack10"
-            android:layout_width="36dp"
-            android:layout_height="38dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/ll"
-            android:textSize="11sp"
-            app:layout_constraintBottom_toTopOf="@+id/substract_stonemason10"
-            app:layout_constraintStart_toEndOf="@+id/substract_lumberjack100"
-            app:layout_constraintTop_toBottomOf="@+id/substract_farmer10"
-            app:layout_constraintVertical_bias="0.461" />
-
-        <Button
-            android:id="@+id/substract_lumberjack"
-            android:layout_width="32dp"
-            android:layout_height="38dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/l"
-            app:layout_constraintBottom_toTopOf="@+id/substract_stonemason"
-            app:layout_constraintStart_toEndOf="@+id/substract_lumberjack10"
-            app:layout_constraintTop_toBottomOf="@+id/substract_farmer"
-            app:layout_constraintVertical_bias="0.461" />
-
-        <Button
-            android:id="@+id/add_lumberjack100"
-            android:layout_width="39dp"
-            android:layout_height="38dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/ggg"
-            android:textSize="10sp"
-            app:layout_constraintBottom_toTopOf="@+id/add_stonemason100"
-            app:layout_constraintEnd_toStartOf="@+id/add_lumberjack1000"
-            app:layout_constraintTop_toBottomOf="@+id/add_farmer100"
-            app:layout_constraintVertical_bias="0.461" />
-
-        <Button
-            android:id="@+id/add_lumberjack10"
-            android:layout_width="36dp"
-            android:layout_height="38dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/gg"
-            android:textSize="11sp"
-            app:layout_constraintBottom_toTopOf="@+id/add_stonemason10"
-            app:layout_constraintEnd_toStartOf="@+id/add_lumberjack100"
-            app:layout_constraintTop_toBottomOf="@+id/add_farmer10"
-            app:layout_constraintVertical_bias="0.461" />
-
-        <Button
-            android:id="@+id/add_lumberjack"
-            android:layout_width="32dp"
-            android:layout_height="38dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/g"
-            app:layout_constraintBottom_toTopOf="@+id/add_stonemason"
-            app:layout_constraintEnd_toStartOf="@+id/add_lumberjack10"
-            app:layout_constraintTop_toBottomOf="@+id/add_farmer"
-            app:layout_constraintVertical_bias="0.461" />
-
-        <Button
-            android:id="@+id/substract_stonemason100"
-            android:layout_width="39dp"
-            android:layout_height="38dp"
-            android:layout_marginBottom="16dp"
-            android:text="@string/lll"
-            android:textSize="10sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/substract_stonemason1000" />
-
-        <Button
-            android:id="@+id/substract_stonemason10"
-            android:layout_width="36dp"
-            android:layout_height="38dp"
-            android:layout_marginBottom="16dp"
-            android:text="@string/ll"
-            android:textSize="11sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/substract_stonemason100" />
-
-        <Button
-            android:id="@+id/substract_stonemason"
-            android:layout_width="32dp"
-            android:layout_height="38dp"
-            android:layout_marginBottom="16dp"
-            android:text="@string/l"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/substract_stonemason10" />
-
-        <Button
-            android:id="@+id/add_stonemason100"
-            android:layout_width="39dp"
-            android:layout_height="38dp"
-            android:layout_marginBottom="16dp"
-            android:text="@string/ggg"
-            android:textSize="10sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/add_stonemason1000" />
-
-        <Button
-            android:id="@+id/add_stonemason10"
-            android:layout_width="39dp"
-            android:layout_height="38dp"
-            android:layout_marginBottom="16dp"
-            android:text="@string/gg"
-            android:textSize="11sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/add_stonemason100" />
-
-        <Button
-            android:id="@+id/add_stonemason"
-            android:layout_width="32dp"
-            android:layout_height="38dp"
-            android:layout_marginBottom="16dp"
-            android:text="@string/g"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/add_stonemason10" />
-    </android.support.constraint.ConstraintLayout>
-
+        </RelativeLayout>
+    </LinearLayout>
 </FrameLayout>

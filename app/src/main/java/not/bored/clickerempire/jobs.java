@@ -369,7 +369,6 @@ public class jobs extends Fragment {
         void substractLumberjack(int amount);
         void addStonemason(int amount);
         void substractStonemason(int amount);
-        void toast(int i);
         String workerAmount(String worker);
 
     }
