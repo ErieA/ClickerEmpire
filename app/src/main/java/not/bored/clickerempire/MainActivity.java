@@ -436,8 +436,7 @@ public class MainActivity extends AppCompatActivity
     }
     public void killWorkers(double amt){
         int amount = (int) Math.floor(amt);
-//        Toast.makeText(MainActivity.this,"Amount: " + amount + " Food: " + gameSave.resourceAmount("FOOD") + " Pop: " + gameSave.resourceAmount("POPULATION"), Toast.LENGTH_SHORT).show();
-        if(amount<0 && Integer.parseInt(gameSave.resourceAmount("FOOD"))<=0 && Integer.parseInt(gameSave.resourceAmount("POPULATION")) > 0){
+        if(amount<0 && Double.parseDouble(gameSave.resourceAmount("FOOD"))<=0 && Integer.parseInt(gameSave.resourceAmount("POPULATION")) > 0){
             TextView population = findViewById(R.id.population);
             int currentpop = Integer.parseInt(gameSave.resourceAmount("POPULATION"));
             int newpop = currentpop + amount;
@@ -445,16 +444,96 @@ public class MainActivity extends AppCompatActivity
                 String pop = "Population: 0/" + gameSave.resourceAmount("POPULATION");
                 population.setText(pop);
                 gameSave.set("POPULATION",0);
+                gameSave.set("UNEMPLOYED",0);
+                gameSave.set("FARMERS",0);
+                gameSave.set("LUMBERJACKS",0);
+                gameSave.set("STONEMASONS",0);
                 TextView unemployed = findViewById(R.id.unemployed);
-                String newu = "Unemployed: " + 0;
+                String newu = "Unemployed: 0";
                 unemployed.setText(newu);
 
             }
             else{
-                String pop = "Population: " + newpop + gameSave.resourceAmount("POPULATION");
+                if(Integer.parseInt(gameSave.resourceAmount("POPULATION"))>0){
+                    kill(-amount);
+                }
+
+            }
+        }
+    }
+    public void kill(int amount){
+        int unemployed = Integer.parseInt(gameSave.resourceAmount("UNEMPLOYED"));
+        if(unemployed>0){
+            if(amount>unemployed){
+                modifyunemployed(-unemployed);
+                gameSave.update("POPULATION",-unemployed);
+                String pop = "Population: " + gameSave.resourceAmount("POPULATION") + "/" + gameSave.resourceAmount("POPULATION_MAX");
+                TextView population = findViewById(R.id.population);
                 population.setText(pop);
-                gameSave.update("POPULATION",amount);
-                modifyunemployed(amount);
+                kill(amount-unemployed);
+            }
+            else{
+                modifyunemployed(-amount);
+                gameSave.update("POPULATION",-amount);
+                String pop = "Population: " + gameSave.resourceAmount("POPULATION") + "/" + gameSave.resourceAmount("POPULATION_MAX");
+                TextView population = findViewById(R.id.population);
+                population.setText(pop);
+            }
+        }
+        else {
+            int farmers = Integer.parseInt(gameSave.resourceAmount("FARMERS"));
+            int lumberjacks = Integer.parseInt(gameSave.resourceAmount("LUMBERJACKS"));
+            int stonemasons = Integer.parseInt(gameSave.resourceAmount("STONEMASONS"));
+            if(stonemasons>0){
+                if(amount>stonemasons){
+                    gameSave.update("POPULATION",-stonemasons);
+                    gameSave.updateNoMax("STONEMASONS",-stonemasons);
+                    String pop = "Population: " + gameSave.resourceAmount("POPULATION") + "/" + gameSave.resourceAmount("POPULATION_MAX");
+                    TextView population = findViewById(R.id.population);
+                    population.setText(pop);
+                    kill(amount-stonemasons);
+                }
+                else{
+                    gameSave.update("POPULATION",-amount);
+                    gameSave.updateNoMax("STONEMASONS",-amount);
+                    String pop = "Population: " + gameSave.resourceAmount("POPULATION") + "/" + gameSave.resourceAmount("POPULATION_MAX");
+                    TextView population = findViewById(R.id.population);
+                    population.setText(pop);
+                }
+            }
+            if(lumberjacks>0){
+                if(amount>lumberjacks){
+                    gameSave.update("POPULATION",-lumberjacks);
+                    gameSave.updateNoMax("LUMBERJACKS",-lumberjacks);
+                    String pop = "Population: " + gameSave.resourceAmount("POPULATION") + "/" + gameSave.resourceAmount("POPULATION_MAX");
+                    TextView population = findViewById(R.id.population);
+                    population.setText(pop);
+                    kill(amount-lumberjacks);
+                }
+                else{
+                    gameSave.update("POPULATION",-amount);
+                    gameSave.updateNoMax("LUMBERJACKS",-amount);
+                    String pop = "Population: " + gameSave.resourceAmount("POPULATION") + "/" + gameSave.resourceAmount("POPULATION_MAX");
+                    TextView population = findViewById(R.id.population);
+                    population.setText(pop);
+                }
+            }
+            if(farmers>0){
+                if(amount>farmers){
+                    gameSave.update("POPULATION",-farmers);
+                    gameSave.updateNoMax("FARMERS",-farmers);
+                    String pop = "Population: " + gameSave.resourceAmount("POPULATION") + "/" + gameSave.resourceAmount("POPULATION_MAX");
+                    TextView population = findViewById(R.id.population);
+                    population.setText(pop);
+                    kill(amount-farmers);
+                }
+                else{
+                    gameSave.update("POPULATION",-amount);
+                    gameSave.updateNoMax("FARMERS",-amount);
+                    String pop = "Population: " + gameSave.resourceAmount("POPULATION") + "/" + gameSave.resourceAmount("POPULATION_MAX");
+                    TextView population = findViewById(R.id.population);
+                    population.setText(pop);
+                }
             }
         }
     }
@@ -498,7 +577,7 @@ public class MainActivity extends AppCompatActivity
                 gameSave.update(res, 0);
             }
             boolean val = new Random().nextInt(10)==0;
-            int newamt = (int)amount/10;
+            int newamt = (int)amount;
             if(val){
                 switch (res) {
                     case "FOOD":
@@ -937,59 +1016,57 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public int totalUnemployed(){
-        int c =Integer.parseInt(gameSave.resourceAmount("UNEMPLOYED"));
-//        Toast.makeText(MainActivity.this,"whhatttt+ " + c, Toast.LENGTH_SHORT).show();
-        return c;
-    }
-
-    @Override
     public void addFarmer(int amount) {
-        int namount = -1 * amount;
-        gameSave.updateNoMax("FARMERS", amount);
-        gameSave.updateNoMax("UNEMPLOYED", namount);
-        this.modifyunemployed(namount);
-//        Toast.makeText(MainActivity.this,"farmer added", Toast.LENGTH_SHORT).show();
+        int unemployed = Integer.parseInt(gameSave.resourceAmount("UNEMPLOYED"));
+        if(amount<=unemployed){
+            gameSave.updateNoMax("FARMERS", amount);
+            modifyunemployed(-amount);
+        }
     }
 
     @Override
     public void substractFarmer(int amount) {
-        int namount = -1 * amount;
-        gameSave.updateNoMax("FARMERS", namount);
-        gameSave.updateNoMax("UNEMPLOYED", amount);
-        this.modifyunemployed(amount);
+        int amt = Integer.parseInt(gameSave.resourceAmount("FARMERS"));
+        if(amt>=amount){
+            gameSave.updateNoMax("FARMERS", -amount);
+            modifyunemployed(amount);
+        }
     }
 
     @Override
     public void addLumberjack(int amount) {
-        int namount = -1 * amount;
-        gameSave.updateNoMax("LUMBERJACKS", amount);
-        gameSave.updateNoMax("UNEMPLOYED", namount);
-        this.modifyunemployed(namount);
+        int unemployed = Integer.parseInt(gameSave.resourceAmount("UNEMPLOYED"));
+        if(amount<=unemployed){
+            gameSave.updateNoMax("LUMBERJACKS", amount);
+            modifyunemployed(-amount);
+        }
     }
 
     @Override
     public void substractLumberjack(int amount) {
-        int namount = -1 * amount;
-        gameSave.updateNoMax("LUMBERJACKS", namount);
-        gameSave.updateNoMax("UNEMPLOYED", amount);
-        this.modifyunemployed(amount);
+        int amt = Integer.parseInt(gameSave.resourceAmount("LUMBERJACKS"));
+        if(amt>=amount){
+            gameSave.updateNoMax("LUMBERJACKS", -amount);
+            modifyunemployed(amount);
+        }
     }
 
     @Override
     public void addStonemason(int amount) {
-        int namount = -1 * amount;
-        gameSave.updateNoMax("STONEMASONS", amount);
-        gameSave.updateNoMax("UNEMPLOYED", namount);
-        this.modifyunemployed(namount);
+        int unemployed = Integer.parseInt(gameSave.resourceAmount("UNEMPLOYED"));
+        if(amount<=unemployed){
+            gameSave.updateNoMax("STONEMASONS", amount);
+            modifyunemployed(-amount);
+        }
     }
 
     @Override
     public void substractStonemason(int amount) {
-        int namount = -1 * amount;
-        gameSave.updateNoMax("STONEMASONS", namount);
-        gameSave.updateNoMax("UNEMPLOYED", amount);
-        this.modifyunemployed(amount);
+        int amt = Integer.parseInt(gameSave.resourceAmount("STONEMASONS"));
+        if(amt>=amount){
+            gameSave.updateNoMax("STONEMASONS", -amount);
+            modifyunemployed(amount);
+        }
     }
     @Override
     public String workerAmount(String worker) {
@@ -1085,5 +1162,20 @@ public class MainActivity extends AppCompatActivity
     @Override
     public String Ore() {
         return gameSave.resourceAmount("ORE");
+    }
+
+    @Override
+    public String farmers() {
+        return gameSave.resourceAmount("FARMERS");
+    }
+
+    @Override
+    public String lumberjacks() {
+        return gameSave.resourceAmount("LUMBERJACKS");
+    }
+
+    @Override
+    public String stonemasons() {
+        return gameSave.resourceAmount("STONEMASONS");
     }
 }
