@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity
         @Override
         public void run() {
             try {
-                while (!thread.isInterrupted()) {
+                while (thread != null) {
                     Thread.sleep(1000);
                     runOnUiThread(new Runnable() {
                         @Override
@@ -88,17 +88,10 @@ public class MainActivity extends AppCompatActivity
             }
         }
     };
-    public void pause(){
-        thread.interrupt();
-    }
-    public void resume(){
-        thread.start();
-    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        gameSave.resetdb();
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionbar = getSupportActionBar();
@@ -113,14 +106,13 @@ public class MainActivity extends AppCompatActivity
             actionbar.setTitle(name);
             //edit the db so that it can have the name of the civilization saved and then update the action bar
         }
-        final Button collect_food = findViewById(R.id.collect_food);
+        Button collect_food = findViewById(R.id.collect_food);
         Button collect_wood = findViewById(R.id.collect_wood);
         Button collect_stone = findViewById(R.id.collect_stone);
         Button reset = findViewById(R.id.resetdb);
         Button createWorkers = findViewById(R.id.create_worker);
         Button add_worker = findViewById(R.id.add_worker);
         Button substract_worker = findViewById(R.id.substract_worker);
-        loadGame();
         final Button buildings = findViewById(R.id.buildings);
         final Button upgrades = findViewById(R.id.upgrades);
         final Button jobs = findViewById(R.id.jobs);
@@ -131,7 +123,6 @@ public class MainActivity extends AppCompatActivity
                 gameSave.resetdb();
                 ActionBar actionbar = getSupportActionBar();
                 setScreen(actionbar);
-//                atomicHUT = 0;
             }
         });
         collect_food.setOnClickListener(new View.OnClickListener() {
@@ -242,13 +233,14 @@ public class MainActivity extends AppCompatActivity
                 int id = item.getItemId();
 
                 if (id == R.id.rename) {
+                    pause();
                     Intent rename = new Intent(getApplicationContext(), Rename.class);
                     String name = gameSave.resourceAmount("CIVILIZATION_NAME");
                     rename.putExtra("name", name);
                     startActivity(rename);
                 }
                 else if (id == R.id.save_game){
-//                    pause();
+                    pause();
                     AlertDialog.Builder aBuilder = new AlertDialog.Builder(MainActivity.this);
                     aBuilder.setMessage("Saving game will overwrite previous save game data. Are you sure you want to save?")
                             .setCancelable(false)
@@ -257,13 +249,14 @@ public class MainActivity extends AppCompatActivity
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     Toast.makeText(MainActivity.this,"Game saved", Toast.LENGTH_SHORT).show();
                                     saveGame();
+                                    resume();
                                 }
                             })
                             .setNegativeButton("No", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     dialogInterface.cancel();
-//                                    resume();
+                                    resume();
                                 }
                             });
                     AlertDialog alert = aBuilder.create();
@@ -271,7 +264,7 @@ public class MainActivity extends AppCompatActivity
                     alert.show();
                 }
                 else if (id == R.id.load_game){
-//                    pause();
+                    pause();
                     AlertDialog.Builder aBuilder = new AlertDialog.Builder(MainActivity.this);
                     aBuilder.setMessage("Loading game will overwrite game progress. Are you sure you want to load?")
                             .setCancelable(false)
@@ -279,15 +272,15 @@ public class MainActivity extends AppCompatActivity
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     Toast.makeText(MainActivity.this,"Game loaded", Toast.LENGTH_SHORT).show();
-//                                    resume();
                                     loadGame();
+                                    resume();
                                 }
                             })
                             .setNegativeButton("No", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     dialogInterface.cancel();
-//                                    resume();
+                                    resume();
                                 }
                             });
                     AlertDialog alert = aBuilder.create();
@@ -296,20 +289,56 @@ public class MainActivity extends AppCompatActivity
                 }
                 else if (id == R.id.pause) {
                     Toast.makeText(MainActivity.this,"Paused", Toast.LENGTH_LONG).show();
-//                    pause();
+                    pause();
                 }
                 else if (id == R.id.resume) {
-//                    resume();
+                    resume();
                 }
-                // Add code here to update the UI based on the item selected
-                // For example, swap UI fragments here
-
 
                 return true;
             }
         });
         thread.start(); //starts automatic updates
         saver.start();
+    }
+    public void pause(){
+        thread = null;
+    }
+    public void resume(){
+        thread = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    while (thread != null) {
+                        Thread.sleep(1000);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                double farm = consume();
+                                TextView food = findViewById(R.id.num_food);
+                                TextView foodspeed = findViewById(R.id.FOOD);
+                                workerCollect(food, "FOOD", farm, foodspeed);
+                                killWorkers(farm);
+                                double lumberjacks = Double.parseDouble(workerAmount("LUMBERJACKS"));
+                                TextView wood = findViewById(R.id.num_wood);
+                                TextView woodspeed = findViewById(R.id.WOOD);
+                                workerCollect(wood, "WOOD", lumberjacks * workerWoodProduction, woodspeed);
+                                double stonemasons = Double.parseDouble(workerAmount("STONEMASONS"));
+                                TextView stone = findViewById(R.id.num_stone);
+                                TextView stonespeed = findViewById(R.id.STONE);
+                                workerCollect(stone, "STONE", stonemasons * workerStoneProduction, stonespeed);
+                                ActionBar actionBar = getSupportActionBar();
+                                String name = civType() + " of " + gameSave.resourceAmount("CIVILIZATION_NAME");
+                                actionBar.setTitle(name);
+                            }
+                        });
+                    }
+                } catch (InterruptedException e) {
+                    Toast.makeText(MainActivity.this,"Paused", Toast.LENGTH_LONG).show();
+                }
+            }
+        };
+        thread.start();
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

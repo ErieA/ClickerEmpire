@@ -227,6 +227,14 @@ public class buildings extends Fragment {
             view.findViewById(R.id.num_house).setVisibility(View.GONE);
             view.findViewById(R.id.buildmansion).setVisibility(View.GONE);
             view.findViewById(R.id.num_mansion).setVisibility(View.GONE);
+            view.findViewById(R.id.buildtannery).setVisibility(View.GONE);
+            view.findViewById(R.id.num_tannery).setVisibility(View.GONE);
+            view.findViewById(R.id.buildsmithy).setVisibility(View.GONE);
+            view.findViewById(R.id.num_smithy).setVisibility(View.GONE);
+            view.findViewById(R.id.buildtemple).setVisibility(View.GONE);
+            view.findViewById(R.id.num_temples).setVisibility(View.GONE);
+            view.findViewById(R.id.buildbarracks).setVisibility(View.GONE);
+            view.findViewById(R.id.num_barracks).setVisibility(View.GONE);
         }
         Button buildbarn = view.findViewById(R.id.buildbarn);
         TextView num_barn = view.findViewById(R.id.num_barn);

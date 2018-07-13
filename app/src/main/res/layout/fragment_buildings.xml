@@ -19,67 +19,83 @@
             android:stretchColumns="0,1"
             android:background="?android:windowBackground">
 
-            <TableRow
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/buildtent"
                     android:layout_width="wrap_content"
                     android:layout_height="34dp"
+                    android:layout_weight="1"
                     android:text="Build Tent"
                     android:textSize="10sp" />
 
                 <TextView
                     android:id="@+id/num_tent"
-                    android:layout_width="196dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAlignment="textEnd" />
-            </TableRow>
+                    android:layout_weight="4"
+                    android:textAlignment="textEnd"
+                    android:layout_gravity="end"/>
+            </LinearLayout>
 
-            <TableRow
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/buildhut"
                     android:layout_width="wrap_content"
                     android:layout_height="34dp"
+                    android:layout_weight="1"
                     android:text="Build Hut"
                     android:textSize="10sp" />
 
                 <TextView
                     android:id="@+id/num_hut"
-                    android:layout_width="235dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAlignment="textEnd" />
-            </TableRow>
-            <TableRow
+                    android:layout_weight="4"
+                    android:textAlignment="textEnd"
+                    android:layout_gravity="end"/>
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/buildcottage"
                     android:layout_width="wrap_content"
                     android:layout_height="34dp"
+                    android:layout_weight="1"
                     android:text="Build Cottage"
                     android:textSize="10sp" />
 
                 <TextView
                     android:id="@+id/num_cottage"
-                    android:layout_width="196dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="4"
                     android:textAlignment="textEnd"
                     android:layout_gravity="end"/>
-            </TableRow>
-            <TableRow
+            </LinearLayout>
+
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/buildhouse"
                     android:layout_width="wrap_content"
                     android:layout_height="34dp"
+                    android:layout_weight="1"
                     android:text="Build House"
                     android:textSize="10sp" />
 
@@ -87,18 +103,21 @@
                     android:id="@+id/num_house"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="4"
                     android:textAlignment="textEnd"
                     android:layout_gravity="end"/>
-            </TableRow>
+            </LinearLayout>
 
-            <TableRow
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/buildmansion"
                     android:layout_width="wrap_content"
                     android:layout_height="34dp"
+                    android:layout_weight="1"
                     android:text="Build Mansion"
                     android:textSize="10sp" />
 
@@ -106,19 +125,22 @@
                     android:id="@+id/num_mansion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="4"
                     android:textAlignment="textEnd"
                     android:layout_gravity="end"/>
 
-            </TableRow>
+            </LinearLayout>
 
-            <TableRow
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/buildbarn"
                     android:layout_width="wrap_content"
                     android:layout_height="34dp"
+                    android:layout_weight="1"
                     android:text="Build Barn"
                     android:textSize="10sp" />
 
@@ -126,37 +148,43 @@
                     android:id="@+id/num_barn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="4"
                     android:textAlignment="textEnd"
                     android:layout_gravity="end"/>
-            </TableRow>
+            </LinearLayout>
 
-            <TableRow
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/buildwoodstockpile"
                     android:layout_width="wrap_content"
                     android:layout_height="34dp"
+                    android:layout_weight="1"
                     android:text="Build Wood Stockpile"
                     android:textSize="10sp" />
 
                 <TextView
                     android:id="@+id/num_woodstockpile"
-                    android:layout_width="258dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="4"
                     android:textAlignment="textEnd"
                     android:layout_gravity="end"/>
-            </TableRow>
+            </LinearLayout>
 
-            <TableRow
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/buildstonestockpile"
                     android:layout_width="wrap_content"
                     android:layout_height="34dp"
+                    android:layout_weight="1"
                     android:text="Build Stone Stockpile"
                     android:textSize="10sp" />
 
@@ -164,17 +192,21 @@
                     android:id="@+id/num_stonestockpile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="4"
                     android:textAlignment="textEnd"
                     android:layout_gravity="end"/>
-            </TableRow>
-            <TableRow
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/buildtannery"
                     android:layout_width="wrap_content"
                     android:layout_height="34dp"
+                    android:layout_weight="1"
                     android:text="Build Tannery"
                     android:textSize="10sp" />
 
@@ -182,17 +214,21 @@
                     android:id="@+id/num_tannery"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="4"
                     android:textAlignment="textEnd"
                     android:layout_gravity="end"/>
-            </TableRow>
-            <TableRow
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/buildsmithy"
                     android:layout_width="wrap_content"
                     android:layout_height="34dp"
+                    android:layout_weight="1"
                     android:text="Build Smithy"
                     android:textSize="10sp" />
 
@@ -200,17 +236,21 @@
                     android:id="@+id/num_smithy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="4"
                     android:textAlignment="textEnd"
                     android:layout_gravity="end"/>
-            </TableRow>
-            <TableRow
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/buildtemple"
                     android:layout_width="wrap_content"
                     android:layout_height="34dp"
+                    android:layout_weight="1"
                     android:text="Build Temple"
                     android:textSize="10sp" />
 
@@ -218,17 +258,21 @@
                     android:id="@+id/num_temples"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:textAlignment="textEnd" />
-            </TableRow>
-            <TableRow
+                    android:layout_weight="4"
+                    android:textAlignment="textEnd"
+                    android:layout_gravity="end"/>
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/buildbarracks"
                     android:layout_width="wrap_content"
                     android:layout_height="34dp"
+                    android:layout_weight="1"
                     android:text="Build Barracks"
                     android:textSize="10sp" />
 
@@ -236,9 +280,10 @@
                     android:id="@+id/num_barracks"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="4"
                     android:textAlignment="textEnd"
                     android:layout_gravity="end"/>
-            </TableRow>
+            </LinearLayout>
         </TableLayout>
     </ScrollView>
 </FrameLayout>

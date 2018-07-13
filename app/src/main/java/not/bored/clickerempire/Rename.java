@@ -33,6 +33,8 @@ public class Rename extends AppCompatActivity {
         actionbar.setTitle(name);
         mDrawerLayout = findViewById(R.id.drawer_layout);
         Button rename = findViewById(R.id.rename_button);
+        EditText ET = findViewById(R.id.new_empire_name);
+        ET.setText(name);
         rename.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
