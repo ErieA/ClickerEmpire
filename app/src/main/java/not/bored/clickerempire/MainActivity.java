@@ -1103,7 +1103,7 @@ public class MainActivity extends AppCompatActivity
     }
     @Override
     public boolean upgradeSkinning() {
-        if(Double.parseDouble(gameSave.resourceAmount("SKINS")) > 10){
+        if(Double.parseDouble(gameSave.resourceAmount("SKINS")) >= 10){
             gameSave.updateNoMax("SKINS",-10);
             return gameSave.setInt("SKINNING",1);
         }
@@ -1115,7 +1115,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean upgradeHarvesting() {
-        if(Double.parseDouble(gameSave.resourceAmount("HERBS")) > 10){
+        if(Double.parseDouble(gameSave.resourceAmount("HERBS")) >= 10){
             gameSave.updateNoMax("HERBS",-10);
             return gameSave.setInt("HARVESTING",1);
         }
@@ -1127,7 +1127,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean upgradeProspecting() {
-        if(Double.parseDouble(gameSave.resourceAmount("ORE")) > 10){
+        if(Double.parseDouble(gameSave.resourceAmount("ORE")) >= 10){
             gameSave.updateNoMax("ORE",-10);
             return gameSave.setInt("PROSPECTING",1);
         }
@@ -1139,7 +1139,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean upgradeMasonry() {
-        if(Double.parseDouble(gameSave.resourceAmount("STONE")) > 100 && Double.parseDouble(gameSave.resourceAmount("WOOD")) > 100){
+        if(Double.parseDouble(gameSave.resourceAmount("STONE")) >= 100 && Double.parseDouble(gameSave.resourceAmount("WOOD")) >= 100){
             TextView stone = findViewById(R.id.num_stone);
             collect(stone,"STONE", -100);
             TextView wood = findViewById(R.id.num_wood);
@@ -1153,7 +1153,7 @@ public class MainActivity extends AppCompatActivity
     }
     @Override
     public boolean granaries(){
-        if(Double.parseDouble(gameSave.resourceAmount("STONE")) > 1000 && Double.parseDouble(gameSave.resourceAmount("WOOD")) > 1000){
+        if(Double.parseDouble(gameSave.resourceAmount("STONE")) >= 1000 && Double.parseDouble(gameSave.resourceAmount("WOOD")) >= 1000){
             double max = Double.parseDouble(gameSave.resourceAmount("FOOD_MAX"));
             max-=200;
             max*=2;
@@ -1168,11 +1168,6 @@ public class MainActivity extends AppCompatActivity
             return false;
         }
     }
-    @Override
-    public boolean show(){
-        return Integer.parseInt(gameSave.resourceAmount("MASONRY")) == 1;
-    }
-
     @Override
     public boolean checkUpgrade(String upgrade) {
         return Integer.parseInt(gameSave.resourceAmount(upgrade)) == 1;

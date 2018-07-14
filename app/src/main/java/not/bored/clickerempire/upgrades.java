@@ -138,7 +138,7 @@ public class upgrades extends Fragment {
             view.findViewById(R.id.textView4).setVisibility(View.GONE);
             view.findViewById(R.id.masonry_cost).setVisibility(View.GONE);
         }
-        if (!upgrades.show()) {
+        if (!upgrades.checkUpgrade("MASONRY")) {
             upgradeDomestication.setVisibility(View.GONE);
             upgradePloughshares.setVisibility(View.GONE);
             upgradeIrrigation.setVisibility(View.GONE);
@@ -174,7 +174,6 @@ public class upgrades extends Fragment {
         boolean upgradeProspecting();
         boolean upgradeMasonry();
         boolean granaries();
-        boolean show();
         boolean checkUpgrade(String upgrade);
     }
 }
