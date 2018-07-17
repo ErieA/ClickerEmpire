@@ -68,24 +68,64 @@ public class upgrades extends Fragment {
             view.findViewById(R.id.prospecting_cost).setVisibility(View.GONE);
         }
         final Button upgradeDomestication = view.findViewById(R.id.domestication);
+        upgradeDomestication.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(upgrades.upgradeDomestication()){
+                    upgradeDomestication.setVisibility(View.GONE);
+                    view.findViewById(R.id.textView6).setVisibility(View.GONE);
+                    view.findViewById(R.id.skinning_cost2).setVisibility(View.GONE);
+                }
+            }
+        });
         if(upgrades.checkUpgrade("DOMESTICATION")){
             upgradeDomestication.setVisibility(View.GONE);
             view.findViewById(R.id.textView6).setVisibility(View.GONE);
             view.findViewById(R.id.skinning_cost2).setVisibility(View.GONE);
         }
         final Button upgradePloughshares = view.findViewById(R.id.ploughshares);
+        upgradePloughshares.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(upgrades.upgradePloughshares()){
+                    upgradePloughshares.setVisibility(View.GONE);
+                    view.findViewById(R.id.textView7).setVisibility(View.GONE);
+                    view.findViewById(R.id.skinning_cost3).setVisibility(View.GONE);
+                }
+            }
+        });
         if(upgrades.checkUpgrade("PLOUGHSHARES")){
             upgradePloughshares.setVisibility(View.GONE);
             view.findViewById(R.id.textView7).setVisibility(View.GONE);
             view.findViewById(R.id.skinning_cost3).setVisibility(View.GONE);
         }
         final Button upgradeIrrigation = view.findViewById(R.id.irrigation);
+        upgradeIrrigation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(upgrades.upgradeIrrigation()){
+                    upgradeIrrigation.setVisibility(View.GONE);
+                    view.findViewById(R.id.textView8).setVisibility(View.GONE);
+                    view.findViewById(R.id.skinning_cost4).setVisibility(View.GONE);
+                }
+            }
+        });
         if(upgrades.checkUpgrade("IRRIGATION")){
             upgradeIrrigation.setVisibility(View.GONE);
             view.findViewById(R.id.textView8).setVisibility(View.GONE);
             view.findViewById(R.id.skinning_cost4).setVisibility(View.GONE);
         }
         final Button upgradeConstruction = view.findViewById(R.id.construction);
+        upgradeConstruction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(upgrades.upgradeConstruction()){
+                    upgradeConstruction.setVisibility(View.GONE);
+                    view.findViewById(R.id.textView9).setVisibility(View.GONE);
+                    view.findViewById(R.id.skinning_cost5).setVisibility(View.GONE);
+                }
+            }
+        });
         if(upgrades.checkUpgrade("CONSTRUCTION")){
             upgradeConstruction.setVisibility(View.GONE);
             view.findViewById(R.id.textView9).setVisibility(View.GONE);
@@ -107,6 +147,7 @@ public class upgrades extends Fragment {
             view.findViewById(R.id.textView10).setVisibility(View.GONE);
             view.findViewById(R.id.skinning_cost6).setVisibility(View.GONE);
         }
+
         final Button upgradeMasonry = view.findViewById(R.id.masonry);
         upgradeMasonry.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,6 +214,10 @@ public class upgrades extends Fragment {
         boolean upgradeHarvesting();
         boolean upgradeProspecting();
         boolean upgradeMasonry();
+        boolean upgradeDomestication();
+        boolean upgradePloughshares();
+        boolean upgradeIrrigation();
+        boolean upgradeConstruction();
         boolean granaries();
         boolean checkUpgrade(String upgrade);
     }

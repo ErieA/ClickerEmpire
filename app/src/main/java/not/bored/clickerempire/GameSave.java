@@ -16,11 +16,54 @@ import java.util.Map;
 
 public class GameSave extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "GameSave.db";
+    public static final String CIVILIZATION_NAME = "CIVILIZATION_NAME";
     public static final String RESOURCES = "Resources";
-    public static final String FOOD_col = "FOOD";
-    public static final String WOOD_col = "WOOD";
-    public static final String STONE_col = "STONE";
+    public static final String FOOD = "FOOD";
+    public static final String FOOD_MAX = "FOOD_MAX";
+    public static final String WOOD = "WOOD";
+    public static final String WOOD_MAX = "WOOD_MAX";
+    public static final String STONE = "STONE";
+    public static final String STONE_MAX = "STONE_MAX";
+    public static final String SKINS = "SKINS";
+    public static final String LEATHER = "LEATHER";
+    public static final String HERBS = "HERBS";
+    public static final String PIETY = "PIETY";
+    public static final String ORE = "ORE";
+    public static final String METAL = "METAL";
     public static final String POPULATION = "POPULATION";
+    public static final String POPULATION_MAX = "POPULATION_MAX";
+    public static final String TENTS = "TENTS";
+    public static final String HUTS = "HUTS";
+    public static final String COTTAGES = "COTTAGES";
+    public static final String HOUSES = "HOUSES";
+    public static final String MANSIONS = "MANSIONS";
+    public static final String BARNS = "BARNS";
+    public static final String WOODSTOCKPILES = "WOODSTOCKPILES";
+    public static final String STONESTOCKPILES = "STONESTOCKPILES";
+    public static final String FARMERS = "FARMERS";
+    public static final String LUMBERJACKS = "LUMBERJACKS";
+    public static final String STONEMASONS = "STONEMASONS";
+    public static final String UNEMPLOYED = "UNEMPLOYED";
+    public static final String SKINNING = "SKINNING";
+    public static final String HARVESTING = "HARVESTING";
+    public static final String PROSPECTING = "PROSPECTING";
+    public static final String MASONRY = "MASONRY";
+    public static final String DOMESTICATION = "DOMESTICATION";
+    public static final String PLOUGHSHARES = "PLOUGHSHARES";
+    public static final String IRRIGATION = "IRRIGATION";
+    public static final String CONSTRUCTION = "CONSTRUCTION";
+    public static final String GRANARIES = "GRANARIES";
+    public static final String TANNERIES = "TANNERIES";
+    public static final String SMITHIES = "SMITHIES";
+    public static final String APOTHECARIES = "APOTHECARIES";
+    public static final String BARRACKS = "BARRACKS";
+    public static final String FARMERPRODUCTIONLEVEL = "FARMERPRODUCTIONLEVEL";
+    public static final String TANNERS = "TANNERS";
+    public static final String BLACKSMITHS = "BLACKSMITHS";
+    public static final String HEALERS = "HEALERS";
+
+
+
 
     private static GameSave gameSave;
 
@@ -77,8 +120,12 @@ public class GameSave extends SQLiteOpenHelper {
                 "GRANARIES INTEGER NOT NULL," +
                 "TANNERIES INTEGER NOT NULL," +
                 "SMITHIES INTEGER NOT NULL," +
-                "TEMPLES INTEGER NOT NULL," +
-                "BARRACKS INTEGER NOT NULL)";
+                "APOTHECARIES INTEGER NOT NULL," +
+                "BARRACKS INTEGER NOT NULL," +
+                "FARMERPRODUCTIONLEVEL INTEGER NOT NULL," +
+                "TANNERS INTEGER NOT NULL," +
+                "BLACKSMITHS INTEGER NOT NULL," +
+                "HEALERS INTEGER NOT NULL)";
         db.execSQL(sql);
         sql = "INSERT INTO " + RESOURCES + " ( CIVILIZATION_NAME," +
                 " FOOD," +
@@ -118,8 +165,12 @@ public class GameSave extends SQLiteOpenHelper {
                 " GRANARIES," +
                 " TANNERIES," +
                 " SMITHIES," +
-                " TEMPLES," +
-                " BARRACKS) " +
+                " APOTHECARIES," +
+                " BARRACKS," +
+                " FARMERPRODUCTIONLEVEL," +
+                " TANNERS," +
+                " BLACKSMITHS," +
+                " HEALERS) " +
                 "VALUES ('Clicker'," +
                 "'0'," +
                 "'200'," +
@@ -127,6 +178,10 @@ public class GameSave extends SQLiteOpenHelper {
                 "'200'," +
                 "'0'," +
                 "'200'," +
+                "'0'," +
+                "'0'," +
+                "'0'," +
+                "'0'," +
                 "'0'," +
                 "'0'," +
                 "'0'," +
@@ -168,7 +223,7 @@ public class GameSave extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + RESOURCES);
         onCreate(db);
     }
-    public boolean updateNoMax(String res, int amt){
+    public boolean updateNoMax(String res, double amt){
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "SELECT " + res + " FROM " + RESOURCES + " WHERE ID = 1";
         Cursor data = db.rawQuery(sql,null);
@@ -178,7 +233,7 @@ public class GameSave extends SQLiteOpenHelper {
         }
         data.close();
         String str = buffer.toString();
-        int current = Integer.parseInt(str);
+        double current = Double.parseDouble(str);
         current = current + amt;
         ContentValues contentValues = new ContentValues();
         contentValues.put(res, current);
@@ -344,51 +399,59 @@ public class GameSave extends SQLiteOpenHelper {
             buffer.append(data.getString(37));buffer.append(",");
             buffer.append(data.getString(38));buffer.append(",");
             buffer.append(data.getString(39));buffer.append(",");
-            buffer.append(data.getString(40));
+            buffer.append(data.getString(40));buffer.append(",");
+            buffer.append(data.getString(41));buffer.append(",");
+            buffer.append(data.getString(42));buffer.append(",");
+            buffer.append(data.getString(43));buffer.append(",");
+            buffer.append(data.getString(44));
         }
         data.close();
         Map<String, String> map = new HashMap<String, String>();
         String save[] = buffer.toString().split(",");
-        map.put("CIVILIZATION_NAME", save[0]);
-        map.put("FOOD", save[1]);
+        map.put(CIVILIZATION_NAME, save[0]);
+        map.put(FOOD, save[1]);
         map.put("FOOD_MAX", save[2]);
-        map.put("WOOD", save[3]);
+        map.put(WOOD, save[3]);
         map.put("WOOD_MAX", save[4]);
-        map.put("STONE", save[5]);
+        map.put(STONE, save[5]);
         map.put("STONE_MAX", save[6]);
-        map.put("SKINS", save[7]);
-        map.put("LEATHER", save[8]);
-        map.put("HERBS", save[9]);
-        map.put("PIETY", save[10]);
-        map.put("ORE", save[11]);
-        map.put("METAL", save[12]);
-        map.put("POPULATION", save[13]);
+        map.put(SKINS, save[7]);
+        map.put(LEATHER, save[8]);
+        map.put(HERBS, save[9]);
+        map.put(PIETY, save[10]);
+        map.put(ORE, save[11]);
+        map.put(METAL, save[12]);
+        map.put(POPULATION, save[13]);
         map.put("POPULATION_MAX", save[14]);
-        map.put("TENTS", save[15]);
-        map.put("HUTS", save[16]);
-        map.put("HUTS", save[17]);
-        map.put("HOUSES", save[18]);
-        map.put("MANSIONS", save[19]);
-        map.put("BARNS", save[20]);
-        map.put("WOODSTOCKPILES", save[21]);
-        map.put("STONESTOCKPILES", save[22]);
-        map.put("FARMERS", save[23]);
-        map.put("LUMBERJACKS", save[24]);
-        map.put("STONEMASONS", save[25]);
-        map.put("UNEMPLOYED", save[26]);
-        map.put("SKINNING", save[27]);
-        map.put("HARVESTING", save[28]);
-        map.put("PROSPECTING", save[29]);
-        map.put("MASONRY", save[30]);
-        map.put("DOMESTICATION", save[31]);
-        map.put("PLOUGHSHARES", save[32]);
-        map.put("IRRIGATION", save[33]);
-        map.put("CONSTRUCTION", save[34]);
-        map.put("GRANARIES", save[35]);
-        map.put("TANNERIES", save[36]);
-        map.put("SMITHIES", save[37]);
-        map.put("TEMPLES", save[38]);
-        map.put("BARRACKS", save[39]);
+        map.put(TENTS, save[15]);
+        map.put(HUTS, save[16]);
+        map.put(COTTAGES, save[17]);
+        map.put(HOUSES, save[18]);
+        map.put(MANSIONS, save[19]);
+        map.put(BARNS, save[20]);
+        map.put(WOODSTOCKPILES, save[21]);
+        map.put(STONESTOCKPILES, save[22]);
+        map.put(FARMERS, save[23]);
+        map.put(LUMBERJACKS, save[24]);
+        map.put(STONEMASONS, save[25]);
+        map.put(UNEMPLOYED, save[26]);
+        map.put(SKINNING, save[27]);
+        map.put(HARVESTING, save[28]);
+        map.put(PROSPECTING, save[29]);
+        map.put(MASONRY, save[30]);
+        map.put(DOMESTICATION, save[31]);
+        map.put(PLOUGHSHARES, save[32]);
+        map.put(IRRIGATION, save[33]);
+        map.put(CONSTRUCTION, save[34]);
+        map.put(GRANARIES, save[35]);
+        map.put(TANNERIES, save[36]);
+        map.put(SMITHIES, save[37]);
+        map.put(APOTHECARIES, save[38]);
+        map.put(BARRACKS, save[39]);
+        map.put(FARMERPRODUCTIONLEVEL, save[40]);
+        map.put(TANNERS, save[41]);
+        map.put(BLACKSMITHS, save[42]);
+        map.put(HEALERS, save[43]);
         return map;
     }
 }

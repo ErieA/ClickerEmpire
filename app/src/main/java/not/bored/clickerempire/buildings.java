@@ -175,25 +175,25 @@ public class buildings extends Fragment {
                     }
                 }
             });
-            Button buildtemple = view.findViewById(R.id.buildtemple);
-            TextView num_temple = view.findViewById(R.id.num_temples);
-            amt = builder.resourceAmount("TEMPLES");
-            num_temple.setText(amt);
-            buildtemple.setOnClickListener(new View.OnClickListener() {
+            Button buildapothecary = view.findViewById(R.id.buildapothecary);
+            TextView num_apothecary = view.findViewById(R.id.num_apothecary);
+            amt = builder.resourceAmount("APOTHECARIES");
+            num_apothecary.setText(amt);
+            buildapothecary.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    TextView num_temple = getActivity().findViewById(R.id.num_temples);
-                    String str = num_temple.getText().toString();
+                    TextView num_apothecary = getActivity().findViewById(R.id.num_apothecary);
+                    String str = num_apothecary.getText().toString();
                     if(str == ""){
                         str = "0";
                     }
                     int num = Integer.parseInt(str);
                     num++;
-                    boolean build = builder.buildTemple();
+                    boolean build = builder.buildApothecary();
                     if(build){
-                        num_temple.setText(""+num);
-                        num_temple.invalidate();
-                        num_temple.requestLayout();
+                        num_apothecary.setText(""+num);
+                        num_apothecary.invalidate();
+                        num_apothecary.requestLayout();
                     }
                 }
             });
@@ -231,8 +231,8 @@ public class buildings extends Fragment {
             view.findViewById(R.id.num_tannery).setVisibility(View.GONE);
             view.findViewById(R.id.buildsmithy).setVisibility(View.GONE);
             view.findViewById(R.id.num_smithy).setVisibility(View.GONE);
-            view.findViewById(R.id.buildtemple).setVisibility(View.GONE);
-            view.findViewById(R.id.num_temples).setVisibility(View.GONE);
+            view.findViewById(R.id.buildapothecary).setVisibility(View.GONE);
+            view.findViewById(R.id.num_apothecary).setVisibility(View.GONE);
             view.findViewById(R.id.buildbarracks).setVisibility(View.GONE);
             view.findViewById(R.id.num_barracks).setVisibility(View.GONE);
         }
@@ -327,7 +327,7 @@ public class buildings extends Fragment {
         boolean buildStoneStockpile();
         boolean buildTannery();
         boolean buildSmithy();
-        boolean buildTemple();
+        boolean buildApothecary();
         boolean buildBarracks();
         boolean checkMUpgrade();
         String resourceAmount(String resource);

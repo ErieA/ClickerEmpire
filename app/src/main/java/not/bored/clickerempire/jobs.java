@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
@@ -34,15 +36,21 @@ public class jobs extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            TextView farmers = getActivity().findViewById(R.id.farmers);
-                            String f = "Farmers: " + office.farmers();
-                            farmers.setText(f);
-                            TextView lumberjacks = getActivity().findViewById(R.id.lumberjacks);
-                            String l = "Lumberjacks: " + office.lumberjacks();
-                            lumberjacks.setText(l);
-                            TextView stonemasons = getActivity().findViewById(R.id.stonemasons);
-                            String s = "Stonemasons: " + office.stonemasons();
-                            stonemasons.setText(s);
+                            try{
+                                TextView farmers = getActivity().findViewById(R.id.farmers);
+                                String f = "Farmers: " + office.farmers();
+                                farmers.setText(f);
+                                TextView lumberjacks = getActivity().findViewById(R.id.lumberjacks);
+                                String l = "Lumberjacks: " + office.lumberjacks();
+                                lumberjacks.setText(l);
+                                TextView stonemasons = getActivity().findViewById(R.id.stonemasons);
+                                String s = "Stonemasons: " + office.stonemasons();
+                                stonemasons.setText(s);
+                            }
+                            catch (NullPointerException e) {
+                                office.toast("Something fishy is going on");
+                                e.printStackTrace();
+                            }
                         }
                     });
                 }
@@ -59,7 +67,8 @@ public class jobs extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_jobs, container, false);
-
+//        LinearLayout all = view.findViewById(R.id.all);
+//        all.setVisibility(View.VISIBLE);
         //1
         Button addFarmer = view.findViewById(R.id.add_farmer);
         Button substractFarmer = view.findViewById(R.id.substract_farmer);
@@ -91,6 +100,7 @@ public class jobs extends Fragment {
         Button substractLumberjack1000 = view.findViewById(R.id.substract_lumberjack1000);
         Button addstonemason1000 = view.findViewById(R.id.add_stonemason1000);
         Button substractstonemason1000 = view.findViewById(R.id.substract_stonemason1000);
+
 
         addFarmer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -329,7 +339,9 @@ public class jobs extends Fragment {
         String stonemasons();
         void addStonemason(int amount);
         void substractStonemason(int amount);
+        boolean checkMUpgrade();
         String workerAmount(String worker);
+        void toast(String string);
 
     }
 }

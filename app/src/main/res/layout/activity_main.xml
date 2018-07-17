@@ -201,12 +201,12 @@
                         android:layout_weight="1"/>
                 </LinearLayout>
 
-                <fragment
-                    android:id="@+id/fragment"
-                    android:name="not.bored.clickerempire.jobs"
-                    android:layout_width="match_parent"
-                    android:layout_height="314dp"
-                    tools:layout="@layout/fragment_jobs" />
+            <fragment
+                android:id="@+id/fragment"
+                android:name="not.bored.clickerempire.jobs"
+                android:layout_width="match_parent"
+                android:layout_height="405dp"
+                tools:layout="@layout/fragment_jobs" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
