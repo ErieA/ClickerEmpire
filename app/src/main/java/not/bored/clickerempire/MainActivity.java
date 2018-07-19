@@ -517,6 +517,9 @@ public class MainActivity extends AppCompatActivity
                 gameSave.set(gameSave.FARMERS,0);
                 gameSave.set(gameSave.LUMBERJACKS,0);
                 gameSave.set(gameSave.STONEMASONS,0);
+                gameSave.set(gameSave.HEALERS,0);
+                gameSave.set(gameSave.BLACKSMITHS,0);
+                gameSave.set(gameSave.TANNERS,0);
             }
             else{
                 if(Integer.parseInt(gameSave.resourceAmount(gameSave.POPULATION))>0){
@@ -557,7 +560,7 @@ public class MainActivity extends AppCompatActivity
                     gameSave.updateNoMax(gameSave.HEALERS,-amount);
                 }
             }
-            if(tanners>0){
+            else if(tanners>0){
                 if(amount>tanners){
                     gameSave.update(gameSave.POPULATION,-tanners);
                     gameSave.updateNoMax(gameSave.TANNERS,-tanners);
@@ -568,7 +571,7 @@ public class MainActivity extends AppCompatActivity
                     gameSave.updateNoMax(gameSave.TANNERS,-amount);
                 }
             }
-            if(blacksmiths>0){
+            else if(blacksmiths>0){
                 if(amount>blacksmiths){
                     gameSave.update(gameSave.POPULATION,-blacksmiths);
                     gameSave.updateNoMax(gameSave.BLACKSMITHS,-blacksmiths);
@@ -579,7 +582,7 @@ public class MainActivity extends AppCompatActivity
                     gameSave.updateNoMax(gameSave.BLACKSMITHS,-amount);
                 }
             }
-            if(stonemasons>0){
+            else if(stonemasons>0){
                 if(amount>stonemasons){
                     gameSave.update(gameSave.POPULATION,-stonemasons);
                     gameSave.updateNoMax(gameSave.STONEMASONS,-stonemasons);
@@ -590,7 +593,7 @@ public class MainActivity extends AppCompatActivity
                     gameSave.updateNoMax(gameSave.STONEMASONS,-amount);
                 }
             }
-            if(lumberjacks>0){
+            else if(lumberjacks>0){
                 if(amount>lumberjacks){
                     gameSave.update(gameSave.POPULATION,-lumberjacks);
                     gameSave.updateNoMax(gameSave.LUMBERJACKS,-lumberjacks);
@@ -601,7 +604,7 @@ public class MainActivity extends AppCompatActivity
                     gameSave.updateNoMax(gameSave.LUMBERJACKS,-amount);
                 }
             }
-            if(farmers>0){
+            else if(farmers>0){
                 if(amount>farmers){
                     gameSave.update(gameSave.POPULATION,-farmers);
                     gameSave.updateNoMax(gameSave.FARMERS,-farmers);
