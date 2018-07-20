@@ -71,25 +71,6 @@ public class MainActivity extends AppCompatActivity
             }
         }
     };
-    Thread saver = new Thread() {
-        @Override
-        public void run() {
-            try {
-                while (!thread.isInterrupted()) {
-                    int i = 60000*60;
-                    Thread.sleep(i);
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            saveGame();
-                        }
-                    });
-                }
-            } catch (InterruptedException e) {
-                Toast.makeText(MainActivity.this,"Paused", Toast.LENGTH_LONG).show();
-            }
-        }
-    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -303,8 +284,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
         changeFragment(jobs);
-        thread.start(); //starts automatic updates
-        saver.start();
+        thread.start();
     }
 
     public void pause(){
