@@ -32,18 +32,18 @@ public class jobs extends Fragment {
         public void run() {
             try {
                 while (!thread.isInterrupted()) {
-                    Thread.sleep(500);
+                    Thread.sleep(100);
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             try{
-                                TextView farmers = getActivity().findViewById(R.id.farmers);
+                                TextView farmers = getActivity().findViewById(R.id.farmersj);
                                 String f = "Farmers: " + office.farmers();
                                 farmers.setText(f);
-                                TextView lumberjacks = getActivity().findViewById(R.id.lumberjacks);
+                                TextView lumberjacks = getActivity().findViewById(R.id.lumberjacksj);
                                 String l = "Lumberjacks: " + office.lumberjacks();
                                 lumberjacks.setText(l);
-                                TextView stonemasons = getActivity().findViewById(R.id.stonemasons);
+                                TextView stonemasons = getActivity().findViewById(R.id.stonemasonsj);
                                 String s = "Stonemasons: " + office.stonemasons();
                                 stonemasons.setText(s);
                             }
@@ -67,8 +67,6 @@ public class jobs extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_jobs, container, false);
-//        LinearLayout all = view.findViewById(R.id.all);
-//        all.setVisibility(View.VISIBLE);
         //1
         Button addFarmer = view.findViewById(R.id.add_farmer);
         Button substractFarmer = view.findViewById(R.id.substract_farmer);
@@ -106,7 +104,7 @@ public class jobs extends Fragment {
             @Override
             public void onClick(View view) {
                 office.addFarmer(1);
-                TextView farmers = getActivity().findViewById(R.id.farmers);
+                TextView farmers = getActivity().findViewById(R.id.farmersj);
                 String f = "Farmers: " + office.farmers();
                 farmers.setText(f);
             }
@@ -115,7 +113,7 @@ public class jobs extends Fragment {
             @Override
             public void onClick(View view) {
                 office.substractFarmer(1);
-                TextView farmers = getActivity().findViewById(R.id.farmers);
+                TextView farmers = getActivity().findViewById(R.id.farmersj);
                 String f = "Farmers: " + office.farmers();
                 farmers.setText(f);
             }
@@ -124,7 +122,7 @@ public class jobs extends Fragment {
             @Override
             public void onClick(View view) {
                 office.addLumberjack(1);
-                TextView lumberjacks = getActivity().findViewById(R.id.lumberjacks);
+                TextView lumberjacks = getActivity().findViewById(R.id.lumberjacksj);
                 String l = "Lumberjacks: " + office.lumberjacks();
                 lumberjacks.setText(l);
             }
@@ -133,7 +131,7 @@ public class jobs extends Fragment {
             @Override
             public void onClick(View view) {
                 office.substractLumberjack(1);
-                TextView lumberjacks = getActivity().findViewById(R.id.lumberjacks);
+                TextView lumberjacks = getActivity().findViewById(R.id.lumberjacksj);
                 String l = "Lumberjacks: " + office.lumberjacks();
                 lumberjacks.setText(l);
             }
@@ -142,7 +140,7 @@ public class jobs extends Fragment {
             @Override
             public void onClick(View view) {
                 office.addStonemason(1);
-                TextView stonemasons = getActivity().findViewById(R.id.stonemasons);
+                TextView stonemasons = getActivity().findViewById(R.id.stonemasonsj);
                 String s = "Stonemasons: " + office.stonemasons();
                 stonemasons.setText(s);
             }
@@ -151,7 +149,7 @@ public class jobs extends Fragment {
             @Override
             public void onClick(View view) {
                 office.substractStonemason(1);
-                TextView stonemasons = getActivity().findViewById(R.id.stonemasons);
+                TextView stonemasons = getActivity().findViewById(R.id.stonemasonsj);
                 String s = "Stonemasons: " + office.stonemasons();
                 stonemasons.setText(s);
             }
@@ -160,7 +158,7 @@ public class jobs extends Fragment {
             @Override
             public void onClick(View view) {
                 office.addFarmer(10);
-                TextView farmers = getActivity().findViewById(R.id.farmers);
+                TextView farmers = getActivity().findViewById(R.id.farmersj);
                 String f = "Farmers: " + office.farmers();
                 farmers.setText(f);
             }
@@ -169,7 +167,7 @@ public class jobs extends Fragment {
             @Override
             public void onClick(View view) {
                 office.substractFarmer(10);
-                TextView farmers = getActivity().findViewById(R.id.farmers);
+                TextView farmers = getActivity().findViewById(R.id.farmersj);
                 String f = "Farmers: " + office.farmers();
                 farmers.setText(f);
             }
@@ -178,7 +176,7 @@ public class jobs extends Fragment {
             @Override
             public void onClick(View view) {
                 office.addLumberjack(10);
-                TextView lumberjacks = getActivity().findViewById(R.id.lumberjacks);
+                TextView lumberjacks = getActivity().findViewById(R.id.lumberjacksj);
                 String l = "Lumberjacks: " + office.lumberjacks();
                 lumberjacks.setText(l);
             }
@@ -187,7 +185,7 @@ public class jobs extends Fragment {
             @Override
             public void onClick(View view) {
                 office.substractLumberjack(10);
-                TextView lumberjacks = getActivity().findViewById(R.id.lumberjacks);
+                TextView lumberjacks = getActivity().findViewById(R.id.lumberjacksj);
                 String l = "Lumberjacks: " + office.lumberjacks();
                 lumberjacks.setText(l);
             }
@@ -196,7 +194,7 @@ public class jobs extends Fragment {
             @Override
             public void onClick(View view) {
                 office.addStonemason(10);
-                TextView stonemasons = getActivity().findViewById(R.id.stonemasons);
+                TextView stonemasons = getActivity().findViewById(R.id.stonemasonsj);
                 String s = "Stonemasons: " + office.stonemasons();
                 stonemasons.setText(s);
             }
@@ -205,7 +203,7 @@ public class jobs extends Fragment {
             @Override
             public void onClick(View view) {
                 office.substractStonemason(10);
-                TextView stonemasons = getActivity().findViewById(R.id.stonemasons);
+                TextView stonemasons = getActivity().findViewById(R.id.stonemasonsj);
                 String s = "Stonemasons: " + office.stonemasons();
                 stonemasons.setText(s);
             }
@@ -214,7 +212,7 @@ public class jobs extends Fragment {
             @Override
             public void onClick(View view) {
                 office.addFarmer(100);
-                TextView farmers = getActivity().findViewById(R.id.farmers);
+                TextView farmers = getActivity().findViewById(R.id.farmersj);
                 String f = "Farmers: " + office.farmers();
                 farmers.setText(f);
             }
@@ -223,7 +221,7 @@ public class jobs extends Fragment {
             @Override
             public void onClick(View view) {
                 office.substractFarmer(100);
-                TextView farmers = getActivity().findViewById(R.id.farmers);
+                TextView farmers = getActivity().findViewById(R.id.farmersj);
                 String f = "Farmers: " + office.farmers();
                 farmers.setText(f);
             }
@@ -232,7 +230,7 @@ public class jobs extends Fragment {
             @Override
             public void onClick(View view) {
                 office.addLumberjack(100);
-                TextView lumberjacks = getActivity().findViewById(R.id.lumberjacks);
+                TextView lumberjacks = getActivity().findViewById(R.id.lumberjacksj);
                 String l = "Lumberjacks: " + office.lumberjacks();
                 lumberjacks.setText(l);
             }
@@ -241,7 +239,7 @@ public class jobs extends Fragment {
             @Override
             public void onClick(View view) {
                 office.substractLumberjack(100);
-                TextView lumberjacks = getActivity().findViewById(R.id.lumberjacks);
+                TextView lumberjacks = getActivity().findViewById(R.id.lumberjacksj);
                 String l = "Lumberjacks: " + office.lumberjacks();
                 lumberjacks.setText(l);
             }
@@ -250,7 +248,7 @@ public class jobs extends Fragment {
             @Override
             public void onClick(View view) {
                 office.addStonemason(100);
-                TextView stonemasons = getActivity().findViewById(R.id.stonemasons);
+                TextView stonemasons = getActivity().findViewById(R.id.stonemasonsj);
                 String s = "Stonemasons: " + office.stonemasons();
                 stonemasons.setText(s);
             }
@@ -259,7 +257,7 @@ public class jobs extends Fragment {
             @Override
             public void onClick(View view) {
                 office.substractStonemason(100);
-                TextView stonemasons = getActivity().findViewById(R.id.stonemasons);
+                TextView stonemasons = getActivity().findViewById(R.id.stonemasonsj);
                 String s = "Stonemasons: " + office.stonemasons();
                 stonemasons.setText(s);
             }
@@ -268,7 +266,7 @@ public class jobs extends Fragment {
             @Override
             public void onClick(View view) {
                 office.addFarmer(1000);
-                TextView farmers = getActivity().findViewById(R.id.farmers);
+                TextView farmers = getActivity().findViewById(R.id.farmersj);
                 String f = "Farmers: " + office.farmers();
                 farmers.setText(f);
             }
@@ -277,7 +275,7 @@ public class jobs extends Fragment {
             @Override
             public void onClick(View view) {
                 office.substractFarmer(1000);
-                TextView farmers = getActivity().findViewById(R.id.farmers);
+                TextView farmers = getActivity().findViewById(R.id.farmersj);
                 String f = "Farmers: " + office.farmers();
                 farmers.setText(f);
             }
@@ -286,7 +284,7 @@ public class jobs extends Fragment {
             @Override
             public void onClick(View view) {
                 office.addLumberjack(1000);
-                TextView lumberjacks = getActivity().findViewById(R.id.lumberjacks);
+                TextView lumberjacks = getActivity().findViewById(R.id.lumberjacksj);
                 String l = "Lumberjacks: " + office.lumberjacks();
                 lumberjacks.setText(l);
             }
@@ -295,7 +293,7 @@ public class jobs extends Fragment {
             @Override
             public void onClick(View view) {
                 office.substractLumberjack(1000);
-                TextView lumberjacks = getActivity().findViewById(R.id.lumberjacks);
+                TextView lumberjacks = getActivity().findViewById(R.id.lumberjacksj);
                 String l = "Lumberjacks: " + office.lumberjacks();
                 lumberjacks.setText(l);
             }
@@ -304,7 +302,7 @@ public class jobs extends Fragment {
             @Override
             public void onClick(View view) {
                 office.addStonemason(1000);
-                TextView stonemasons = getActivity().findViewById(R.id.stonemasons);
+                TextView stonemasons = getActivity().findViewById(R.id.stonemasonsj);
                 String s = "Stonemasons: " + office.stonemasons();
                 stonemasons.setText(s);
             }
@@ -313,7 +311,7 @@ public class jobs extends Fragment {
             @Override
             public void onClick(View view) {
                 office.substractStonemason(1000);
-                TextView stonemasons = getActivity().findViewById(R.id.stonemasons);
+                TextView stonemasons = getActivity().findViewById(R.id.stonemasonsj);
                 String s = "Stonemasons: " + office.stonemasons();
                 stonemasons.setText(s);
             }
@@ -342,6 +340,8 @@ public class jobs extends Fragment {
         boolean checkMUpgrade();
         String workerAmount(String worker);
         void toast(String string);
+        boolean ECI();
+        void switchfragj(boolean bool);
 
     }
 }

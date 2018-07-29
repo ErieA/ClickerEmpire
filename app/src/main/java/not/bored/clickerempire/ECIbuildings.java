@@ -10,18 +10,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class buildings extends Fragment {
+public class ECIbuildings extends Fragment {
 
 
 
-    public buildings() {}
+    public ECIbuildings() {}
 
     private buildingBuilder builder;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_buildings, container, false);
+        View view = inflater.inflate(R.layout.fragment_ecibuildings, container, false);
         Button buildtent = view.findViewById(R.id.buildtent);
         TextView num_tent = view.findViewById(R.id.num_tent);
         String amt = builder.resourceAmount("TENTS");
@@ -35,14 +35,15 @@ public class buildings extends Fragment {
                     str = "0";
                 }
                 int num = Integer.parseInt(str);
-                num++;
-                boolean build = builder.buildTent(1);
+                EditText customtent = getActivity().findViewById(R.id.customtent);
+                int amt = Integer.parseInt(customtent.getText().toString());
+                num+= amt;
+                boolean build = builder.buildTent(amt);
                 if(build){
                     num_tent.setText(""+num);
                     num_tent.invalidate();
                     num_tent.requestLayout();
                 }
-
             }
         });
         Button buildhut = view.findViewById(R.id.buildhut);
@@ -58,8 +59,10 @@ public class buildings extends Fragment {
                     str = "0";
                 }
                 int num = Integer.parseInt(str);
-                num++;
-                boolean build = builder.buildHut(1);
+                EditText customhut = getActivity().findViewById(R.id.customhut);
+                int amt = Integer.parseInt(customhut.getText().toString());
+                num+= amt;
+                boolean build = builder.buildHut(amt);
                 if(build){
                     num_hut.setText(""+num);
                     num_hut.invalidate();
@@ -81,13 +84,16 @@ public class buildings extends Fragment {
                         str = "0";
                     }
                     int num = Integer.parseInt(str);
-                    num++;
-                    boolean build = builder.buildHouse(1);
+                    EditText customhouse = getActivity().findViewById(R.id.customhouse);
+                    int amt = Integer.parseInt(customhouse.getText().toString());
+                    num+= amt;
+                    boolean build = builder.buildHouse(amt);
                     if(build){
                         num_house.setText(""+num);
                         num_house.invalidate();
                         num_house.requestLayout();
                     }
+
                 }
             });
             Button buildmansion = view.findViewById(R.id.buildmansion);
@@ -103,8 +109,10 @@ public class buildings extends Fragment {
                         str = "0";
                     }
                     int num = Integer.parseInt(str);
-                    num++;
-                    boolean build = builder.buildMansion(1);
+                    EditText custommansion = getActivity().findViewById(R.id.custommansion);
+                    int amt = Integer.parseInt(custommansion.getText().toString());
+                    num+= amt;
+                    boolean build = builder.buildMansion(amt);
                     if(build){
                         num_mansion.setText(""+num);
                         num_mansion.invalidate();
@@ -125,8 +133,10 @@ public class buildings extends Fragment {
                         str = "0";
                     }
                     int num = Integer.parseInt(str);
-                    num++;
-                    boolean build = builder.buildCottage(1);
+                    EditText customcottage = getActivity().findViewById(R.id.customcottage);
+                    int amt = Integer.parseInt(customcottage.getText().toString());
+                    num+= amt;
+                    boolean build = builder.buildCottage(amt);
                     if(build){
                         num_cottage.setText(""+num);
                         num_cottage.invalidate();
@@ -147,8 +157,10 @@ public class buildings extends Fragment {
                         str = "0";
                     }
                     int num = Integer.parseInt(str);
-                    num++;
-                    boolean build = builder.buildTannery(1);
+                    EditText customtannery = getActivity().findViewById(R.id.customtannery);
+                    int amt = Integer.parseInt(customtannery.getText().toString());
+                    num+= amt;
+                    boolean build = builder.buildTannery(amt);
                     if(build){
                         num_tannery.setText(""+num);
                         num_tannery.invalidate();
@@ -169,8 +181,10 @@ public class buildings extends Fragment {
                         str = "0";
                     }
                     int num = Integer.parseInt(str);
-                    num++;
-                    boolean build = builder.buildSmithy(1);
+                    EditText customsmithy = getActivity().findViewById(R.id.customsmithy);
+                    int amt = Integer.parseInt(customsmithy.getText().toString());
+                    num+= amt;
+                    boolean build = builder.buildSmithy(amt);
                     if(build){
                         num_smithy.setText(""+num);
                         num_smithy.invalidate();
@@ -191,8 +205,10 @@ public class buildings extends Fragment {
                         str = "0";
                     }
                     int num = Integer.parseInt(str);
-                    num++;
-                    boolean build = builder.buildApothecary(1);
+                    EditText customapothecaries = getActivity().findViewById(R.id.customapothecary);
+                    int amt = Integer.parseInt(customapothecaries.getText().toString());
+                    num+= amt;
+                    boolean build = builder.buildApothecary(amt);
                     if(build){
                         num_apothecary.setText(""+num);
                         num_apothecary.invalidate();
@@ -213,8 +229,10 @@ public class buildings extends Fragment {
                         str = "0";
                     }
                     int num = Integer.parseInt(str);
-                    num++;
-                    boolean build = builder.buildBarracks(1);
+                    EditText custombarracks = getActivity().findViewById(R.id.custombarracks);
+                    int amt = Integer.parseInt(custombarracks.getText().toString());
+                    num+= amt;
+                    boolean build = builder.buildBarracks(amt);
                     if(build){
                         num_barracks.setText(""+num);
                         num_barracks.invalidate();
@@ -235,8 +253,10 @@ public class buildings extends Fragment {
                         str = "0";
                     }
                     int num = Integer.parseInt(str);
-                    num++;
-                    boolean build = builder.buildStables(1);
+                    EditText customstables = getActivity().findViewById(R.id.customstables);
+                    int amt = Integer.parseInt(customstables.getText().toString());
+                    num+= amt;
+                    boolean build = builder.buildStables(amt);
                     if(build){
                         num_stables.setText(""+num);
                         num_stables.invalidate();
@@ -248,20 +268,28 @@ public class buildings extends Fragment {
         else{
             view.findViewById(R.id.buildcottage).setVisibility(View.GONE);
             view.findViewById(R.id.num_cottage).setVisibility(View.GONE);
+            view.findViewById(R.id.customcottage).setVisibility(View.GONE);
             view.findViewById(R.id.buildhouse).setVisibility(View.GONE);
             view.findViewById(R.id.num_house).setVisibility(View.GONE);
+            view.findViewById(R.id.customhouse).setVisibility(View.GONE);
             view.findViewById(R.id.buildmansion).setVisibility(View.GONE);
             view.findViewById(R.id.num_mansion).setVisibility(View.GONE);
+            view.findViewById(R.id.custommansion).setVisibility(View.GONE);
             view.findViewById(R.id.buildtannery).setVisibility(View.GONE);
             view.findViewById(R.id.num_tannery).setVisibility(View.GONE);
+            view.findViewById(R.id.customtannery).setVisibility(View.GONE);
             view.findViewById(R.id.buildsmithy).setVisibility(View.GONE);
             view.findViewById(R.id.num_smithy).setVisibility(View.GONE);
+            view.findViewById(R.id.customsmithy).setVisibility(View.GONE);
             view.findViewById(R.id.buildapothecary).setVisibility(View.GONE);
             view.findViewById(R.id.num_apothecary).setVisibility(View.GONE);
+            view.findViewById(R.id.customapothecary).setVisibility(View.GONE);
             view.findViewById(R.id.buildbarracks).setVisibility(View.GONE);
             view.findViewById(R.id.num_barracks).setVisibility(View.GONE);
+            view.findViewById(R.id.custombarracks).setVisibility(View.GONE);
             view.findViewById(R.id.buildstables).setVisibility(View.GONE);
             view.findViewById(R.id.num_stables).setVisibility(View.GONE);
+            view.findViewById(R.id.customstables).setVisibility(View.GONE);
         }
         Button buildbarn = view.findViewById(R.id.buildbarn);
         TextView num_barn = view.findViewById(R.id.num_barn);
@@ -276,8 +304,10 @@ public class buildings extends Fragment {
                     str = "0";
                 }
                 int num = Integer.parseInt(str);
-                num++;
-                boolean build = builder.buildBarn(1);
+                EditText custombarn = getActivity().findViewById(R.id.custombarn);
+                int amt = Integer.parseInt(custombarn.getText().toString());
+                num+= amt;
+                boolean build = builder.buildBarn(amt);
                 if(build){
                     num_barn.setText(""+num);
                     num_barn.invalidate();
@@ -298,13 +328,16 @@ public class buildings extends Fragment {
                     str = "0";
                 }
                 int num = Integer.parseInt(str);
-                num++;
-                boolean build = builder.buildWoodStockpile(1);
+                EditText customwoodstockpiles = getActivity().findViewById(R.id.customwoodstockpile);
+                int amt = Integer.parseInt(customwoodstockpiles.getText().toString());
+                num+= amt;
+                boolean build = builder.buildWoodStockpile(amt);
                 if(build){
                     num_woodstockpile.setText(""+num);
                     num_woodstockpile.invalidate();
                     num_woodstockpile.requestLayout();
                 }
+
             }
         });
         Button buildstonestockpile = view.findViewById(R.id.buildstonestockpile);
@@ -320,8 +353,10 @@ public class buildings extends Fragment {
                     str = "0";
                 }
                 int num = Integer.parseInt(str);
-                num++;
-                boolean build = builder.buildStoneStockpile(1);
+                EditText customstoenstockpiles = getActivity().findViewById(R.id.customstonestockpile);
+                int amt = Integer.parseInt(customstoenstockpiles.getText().toString());
+                num+= amt;
+                boolean build = builder.buildStoneStockpile(amt);
                 if(build){
                     num_stonestockpile.setText(""+num);
                     num_stonestockpile.invalidate();

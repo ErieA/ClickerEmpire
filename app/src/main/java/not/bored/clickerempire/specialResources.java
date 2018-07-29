@@ -22,16 +22,27 @@ public class specialResources extends Fragment {
         public void run() {
             try {
                 while (!thread.isInterrupted()) {
-                    Thread.sleep(1000);
+                    Thread.sleep(100);
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            TextView skins = getActivity().findViewById(R.id.num_skins);
-                            skins.setText(resupdater.Skins());
-                            TextView herbs = getActivity().findViewById(R.id.num_herbs);
-                            herbs.setText(resupdater.Herbs());
-                            TextView ore = getActivity().findViewById(R.id.num_ore);
-                            ore.setText(resupdater.Ore());
+                            try{
+                                TextView skins = getActivity().findViewById(R.id.num_skins);
+                                skins.setText(resupdater.Skins());
+                                TextView leather = getActivity().findViewById(R.id.num_leather);
+                                leather.setText(resupdater.Leather());
+                                TextView herbs = getActivity().findViewById(R.id.num_herbs);
+                                herbs.setText(resupdater.Herbs());
+                                TextView piety = getActivity().findViewById(R.id.num_piety);
+                                piety.setText(resupdater.Piety());
+                                TextView ore = getActivity().findViewById(R.id.num_ore);
+                                ore.setText(resupdater.Ore());
+                                TextView metal = getActivity().findViewById(R.id.num_metal);
+                                metal.setText(resupdater.Metal());
+                            }
+                            catch (NullPointerException e) {
+                                e.printStackTrace();
+                            }
                         }
                     });
                 }
@@ -75,7 +86,10 @@ public class specialResources extends Fragment {
     public interface specialResourcesListener {
         // TODO: Update argument type and name
         String Skins();
+        String Leather();
         String Herbs();
+        String Piety();
         String Ore();
+        String Metal();
     }
 }

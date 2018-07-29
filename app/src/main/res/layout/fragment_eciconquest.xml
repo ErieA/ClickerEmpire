@@ -1,0 +1,262 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="not.bored.clickerempire.ECIconquest"
+    android:background="?android:windowBackground">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:background="?android:windowBackground">
+
+        <LinearLayout
+            android:layout_width="307dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/Soldiers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Soldiers: 0"
+                android:textAlignment="center" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/substract_soldier"
+                    android:layout_width="40dp"
+                    android:layout_height="38dp"
+                    android:layout_alignParentLeft="true"
+                    android:text="-"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/customsoldier"
+                    android:layout_width="100dp"
+                    android:layout_height="38dp"
+                    android:layout_toRightOf="@+id/substract_soldier"
+                    android:layout_toLeftOf="@+id/add_soldier"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:textSize="10sp" />
+
+                <Button
+                    android:id="@+id/add_soldier"
+                    android:layout_width="40dp"
+                    android:layout_height="38dp"
+                    android:layout_alignParentRight="true"
+                    android:text="+"
+                    android:textSize="12sp" />
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/Cavalry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cavalry: 0"
+                android:textAlignment="center" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/substract_cavalry"
+                    android:layout_width="40dp"
+                    android:layout_height="38dp"
+                    android:layout_alignParentLeft="true"
+                    android:text="-"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/customcavalry"
+                    android:layout_width="100dp"
+                    android:layout_height="38dp"
+                    android:layout_toRightOf="@+id/substract_cavalry"
+                    android:layout_toLeftOf="@+id/add_cavalry"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:textSize="10sp" />
+
+                <Button
+                    android:id="@+id/add_cavalry"
+                    android:layout_width="40dp"
+                    android:layout_height="38dp"
+                    android:layout_alignParentRight="true"
+                    android:text="+"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/invading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text=""
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/enemyArmy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text=""
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/invading"
+                    app:layout_constraintVertical_bias="0.239" />
+            </android.support.constraint.ConstraintLayout>
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/invadetv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Invade" />
+
+                <Button
+                    android:id="@+id/iThorp"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:text="Thorp"
+                    android:textSize="10sp" />
+
+                <Button
+                    android:id="@+id/iHamlet"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:text="Hamlet"
+                    android:textSize="10sp" />
+
+                <Button
+                    android:id="@+id/iVillage"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:text="Village"
+                    android:textSize="10sp" />
+
+                <Button
+                    android:id="@+id/iSmalltown"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:text="Small Town"
+                    android:textSize="10sp" />
+
+                <Button
+                    android:id="@+id/iLargetown"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:text="Large Town"
+                    android:textSize="10sp" />
+
+                <Button
+                    android:id="@+id/iSmallcity"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:text="Small City"
+                    android:textSize="10sp" />
+
+                <Button
+                    android:id="@+id/iLargecity"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:text="Large City"
+                    android:textSize="10sp" />
+
+                <Button
+                    android:id="@+id/iMetropolis"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:text="Metropolis"
+                    android:textSize="10sp" />
+
+                <Button
+                    android:id="@+id/iSmallnation"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:text="Small Nation"
+                    android:textSize="10sp" />
+
+                <Button
+                    android:id="@+id/iNation"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:text="Nation"
+                    android:textSize="10sp" />
+
+                <Button
+                    android:id="@+id/iLargenation"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:text="Large Nation"
+                    android:textSize="10sp" />
+
+                <Button
+                    android:id="@+id/iEmpire"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:text="Empire"
+                    android:textSize="10sp" />
+
+                <Button
+                    android:id="@+id/iContinentalEmpire"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:text="Continental Empire"
+                    android:textSize="10sp" />
+
+                <Button
+                    android:id="@+id/iWorldConfederation"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:text="Planetary Confederation"
+                    android:textSize="10sp" />
+
+                <Button
+                    android:id="@+id/iUnitedWorld"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:text="United World"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+</FrameLayout>

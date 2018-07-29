@@ -26,7 +26,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:id="@+id/farmerview">
 
             <Button
                 android:id="@+id/substract_farmeru1000"
@@ -107,7 +108,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:id="@+id/lumberjackview">
 
             <Button
                 android:id="@+id/substract_lumberjacku1000"
@@ -173,6 +175,7 @@
 
         </RelativeLayout>
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -189,7 +192,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:id="@+id/stonemasonview">
 
             <Button
                 android:id="@+id/substract_stonemasonu1000"
@@ -271,7 +275,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:id="@+id/tannerview">
 
             <Button
                 android:id="@+id/substract_tannersu1000"
@@ -336,6 +341,7 @@
                 android:text="@string/g" />
         </RelativeLayout>
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -352,7 +358,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:id="@+id/healerview">
 
             <Button
                 android:id="@+id/substract_healersu1000"
@@ -434,7 +441,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:id="@+id/blacksmithview">
 
             <Button
                 android:id="@+id/substract_blacksmithsu1000"
@@ -499,6 +507,8 @@
                 android:text="@string/g" />
 
         </RelativeLayout>
+
+
     </LinearLayout>
 
 </FrameLayout>

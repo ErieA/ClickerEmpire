@@ -61,8 +61,12 @@ public class GameSave extends SQLiteOpenHelper {
     public static final String TANNERS = "TANNERS";
     public static final String BLACKSMITHS = "BLACKSMITHS";
     public static final String HEALERS = "HEALERS";
-
-
+    public static final String LAND = "LAND";
+    public static final String STABLES = "STABLES";
+    public static final String ECI = "ECI";
+    public static final String SOLDIERS = "SOLDIERS";
+    public static final String CAVALRY = "CAVALRY";
+    public static final String OCCUPIEDLAND = "OCCUPIEDLAND";
 
 
     private static GameSave gameSave;
@@ -125,7 +129,12 @@ public class GameSave extends SQLiteOpenHelper {
                 "FARMERPRODUCTIONLEVEL INTEGER NOT NULL," +
                 "TANNERS INTEGER NOT NULL," +
                 "BLACKSMITHS INTEGER NOT NULL," +
-                "HEALERS INTEGER NOT NULL)";
+                "HEALERS INTEGER NOT NULL," +
+                "LAND INTEGER NOT NULL," +
+                "STABLES INTEGER NOT NULL," +
+                "SOLDIERS INTEGER NOT NULL," +
+                "CAVALRY INTEGER NOT NULL," +
+                "OCCUPIEDLAND INTEGER NOT NULL)";
         db.execSQL(sql);
         sql = "INSERT INTO " + RESOURCES + " ( CIVILIZATION_NAME," +
                 " FOOD," +
@@ -170,7 +179,12 @@ public class GameSave extends SQLiteOpenHelper {
                 " FARMERPRODUCTIONLEVEL," +
                 " TANNERS," +
                 " BLACKSMITHS," +
-                " HEALERS) " +
+                " HEALERS," +
+                " LAND," +
+                " STABLES," +
+                " SOLDIERS," +
+                " CAVALRY," +
+                " OCCUPIEDLAND) " +
                 "VALUES ('Clicker'," +
                 "'0'," +
                 "'200'," +
@@ -214,8 +228,20 @@ public class GameSave extends SQLiteOpenHelper {
                 "'0'," +
                 "'0'," +
                 "'0'," +
+                "'0'," +
+                "'100'," +
+                "'0'," +
+                "'0'," +
+                "'0'," +
                 "'0')";
         db.execSQL(sql);
+
+        String esql = "CREATE TABLE " + ECI +
+                "( ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "ECI INTEGER NOT NULL)";
+        db.execSQL(esql);
+        esql = "INSERT INTO " + ECI + " ( ECI ) VALUES ( '0' )";
+        db.execSQL(esql);
     }
 
     @Override
@@ -318,6 +344,30 @@ public class GameSave extends SQLiteOpenHelper {
         long result = db.update(RESOURCES, contentValues, null, null);
         return result != -1;
     }
+    public void setECIchecked(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ECI, 1);
+        db.update(ECI, contentValues, null, null);
+    }
+    public void setECIunchecked(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ECI, 0);
+        db.update(ECI, contentValues, null, null);
+    }
+    public boolean ECI(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "SELECT ECI FROM ECI";
+        Cursor data = db.rawQuery(sql,null);
+        StringBuffer buffer = new StringBuffer();
+        while(data.moveToNext()){
+            buffer.append(data.getString(0));
+        }
+        data.close();
+        int str = Integer.parseInt(buffer.toString());
+        return str == 1;
+    }
     public String resourceAmount(String res){
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "SELECT "+ res + " FROM " + RESOURCES + " WHERE ID = 1";
@@ -345,6 +395,7 @@ public class GameSave extends SQLiteOpenHelper {
     public void resetdb(){
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DROP TABLE IF EXISTS " + RESOURCES);
+        db.execSQL("DROP TABLE IF EXISTS " + ECI);
         onCreate(db);
     }
     public boolean updateName(String name){
@@ -403,18 +454,23 @@ public class GameSave extends SQLiteOpenHelper {
             buffer.append(data.getString(41));buffer.append(",");
             buffer.append(data.getString(42));buffer.append(",");
             buffer.append(data.getString(43));buffer.append(",");
-            buffer.append(data.getString(44));
+            buffer.append(data.getString(44));buffer.append(",");
+            buffer.append(data.getString(45));buffer.append(",");
+            buffer.append(data.getString(46));buffer.append(",");
+            buffer.append(data.getString(47));buffer.append(",");
+            buffer.append(data.getString(48));buffer.append(",");
+            buffer.append(data.getString(48));
         }
         data.close();
         Map<String, String> map = new HashMap<String, String>();
         String save[] = buffer.toString().split(",");
         map.put(CIVILIZATION_NAME, save[0]);
         map.put(FOOD, save[1]);
-        map.put("FOOD_MAX", save[2]);
+        map.put(FOOD_MAX, save[2]);
         map.put(WOOD, save[3]);
-        map.put("WOOD_MAX", save[4]);
+        map.put(WOOD_MAX, save[4]);
         map.put(STONE, save[5]);
-        map.put("STONE_MAX", save[6]);
+        map.put(STONE_MAX, save[6]);
         map.put(SKINS, save[7]);
         map.put(LEATHER, save[8]);
         map.put(HERBS, save[9]);
@@ -422,7 +478,7 @@ public class GameSave extends SQLiteOpenHelper {
         map.put(ORE, save[11]);
         map.put(METAL, save[12]);
         map.put(POPULATION, save[13]);
-        map.put("POPULATION_MAX", save[14]);
+        map.put(POPULATION_MAX, save[14]);
         map.put(TENTS, save[15]);
         map.put(HUTS, save[16]);
         map.put(COTTAGES, save[17]);
@@ -452,6 +508,11 @@ public class GameSave extends SQLiteOpenHelper {
         map.put(TANNERS, save[41]);
         map.put(BLACKSMITHS, save[42]);
         map.put(HEALERS, save[43]);
+        map.put(LAND, save[44]);
+        map.put(STABLES, save[45]);
+        map.put(SOLDIERS, save[46]);
+        map.put(CAVALRY, save[47]);
+        map.put(OCCUPIEDLAND, save[48]);
         return map;
     }
 }

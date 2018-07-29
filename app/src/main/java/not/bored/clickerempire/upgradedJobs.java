@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
@@ -614,6 +615,7 @@ public class upgradedJobs extends Fragment {
         boolean checkMUpgrade();
         String workerAmount(String worker);
         void toast(String string);
+        boolean ECI();
 
     }
 }

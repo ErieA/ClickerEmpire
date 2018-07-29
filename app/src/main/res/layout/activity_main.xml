@@ -29,11 +29,19 @@
                 android:layout_height="55dp"
                 android:background="?attr/colorPrimary"
                 android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
-            <TextView
+                <TextView
                     android:id="@+id/population"
                     android:layout_width="wrap_content"
                     android:layout_height="28dp"
                     android:text="Population : 0/0"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/land"
+                    android:layout_width="wrap_content"
+                    android:layout_height="28dp"
+                    android:text="Land : 0/100"
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -46,7 +54,7 @@
                     android:textSize="18sp"
                     android:textStyle="bold"/>
 
-                <LinearLayout
+            <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -173,12 +181,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
-                    <Button
-                        android:id="@+id/buildings"
-                        android:layout_width="100dp"
-                        android:layout_height="38dp"
-                        android:text="Buildings"
-                        android:layout_weight="1"/>
+
+                <Button
+                    android:id="@+id/buildings"
+                    android:layout_width="100dp"
+                    android:layout_height="38dp"
+                    android:layout_weight="1"
+                    android:text="Buildings"
+                    android:textSize="10sp" />
 
                 <Button
                     android:id="@+id/specialresources"
@@ -186,19 +196,31 @@
                     android:layout_height="38dp"
                     android:layout_weight="1"
                     android:text="S.Resources"
-                    android:textSize="14sp" />
-                    <Button
-                        android:id="@+id/jobs"
-                        android:layout_width="100dp"
-                        android:layout_height="38dp"
-                        android:text="Jobs"
-                        android:layout_weight="1"/>
-                    <Button
-                        android:id="@+id/upgrades"
-                        android:layout_width="100dp"
-                        android:layout_height="38dp"
-                        android:text="Upgrades"
-                        android:layout_weight="1"/>
+                    android:textSize="10sp" />
+
+                <Button
+                    android:id="@+id/jobs"
+                    android:layout_width="100dp"
+                    android:layout_height="38dp"
+                    android:layout_weight="1"
+                    android:text="Jobs"
+                    android:textSize="10sp" />
+
+                <Button
+                    android:id="@+id/upgrades"
+                    android:layout_width="100dp"
+                    android:layout_height="38dp"
+                    android:layout_weight="1"
+                    android:text="Upgrades"
+                    android:textSize="10sp" />
+
+                <Button
+                    android:id="@+id/conquest"
+                    android:layout_width="100dp"
+                    android:layout_height="38dp"
+                    android:layout_weight="1"
+                    android:text="Conquest"
+                    android:textSize="10sp" />
                 </LinearLayout>
 
             <fragment

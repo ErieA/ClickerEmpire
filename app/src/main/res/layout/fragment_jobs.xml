@@ -1,5 +1,4 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -20,15 +19,16 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/farmers"
+                android:id="@+id/farmersj"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18sp" />
+                android:textSize="18sp"/>
         </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:id="@+id/farmerview">
 
             <Button
                 android:id="@+id/substract_farmer1000"
@@ -101,7 +101,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/lumberjacks"
+                android:id="@+id/lumberjacksj"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp" />
@@ -109,7 +109,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:id="@+id/lumberjackview">
 
             <Button
                 android:id="@+id/substract_lumberjack1000"
@@ -182,7 +183,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/stonemasons"
+                android:id="@+id/stonemasonsj"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp" />
@@ -191,7 +192,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:id="@+id/stonemasonview">
 
             <Button
                 android:id="@+id/substract_stonemason1000"
