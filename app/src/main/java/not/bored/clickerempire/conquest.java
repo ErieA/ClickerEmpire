@@ -280,7 +280,7 @@ public class conquest extends Fragment {
         invadeLargeTown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                invade(Math.floor(Math.random() * ((400-100)+1) + 100), "large Town", (int) Math.floor(Math.random() * ((200-100)+1) + 100));
+                invade(Math.floor(Math.random() * ((400-100)+1) + 100), "Large Town", (int) Math.floor(Math.random() * ((200-100)+1) + 100));
             }
         });
         invadeSmallCity.setOnClickListener(new View.OnClickListener() {
@@ -378,7 +378,7 @@ public class conquest extends Fragment {
             try {
                 TextView enemytv = getActivity().findViewById(R.id.enemyArmy);
                 TextView invading = getActivity().findViewById(R.id.invading);
-                enemytv.setText("Enemy Soldiers: " + enemy);
+                enemytv.setText("Enemy Soldiers: 0");
                 invading.setText("Invasion Successful!");
             }catch (NullPointerException x) {
                 x.printStackTrace();
@@ -427,7 +427,7 @@ public class conquest extends Fragment {
             try {
                 TextView enemytv = getActivity().findViewById(R.id.enemyArmy);
                 TextView invading = getActivity().findViewById(R.id.invading);
-                enemytv.setText("Enemy Soldiers: " + enemy);
+                enemytv.setText("Enemy Soldiers: 0");
                 invading.setText("Invasion Successful!");
             }catch (NullPointerException x) {
                 x.printStackTrace();
@@ -475,7 +475,7 @@ public class conquest extends Fragment {
             try {
                 TextView enemytv = getActivity().findViewById(R.id.enemyArmy);
                 TextView invading = getActivity().findViewById(R.id.invading);
-                enemytv.setText("Enemy Soldiers: " + enemy);
+                enemytv.setText("Enemy Soldiers: 0");
                 invading.setText("Invasion Successful!");
             }catch (NullPointerException x) {
                 x.printStackTrace();

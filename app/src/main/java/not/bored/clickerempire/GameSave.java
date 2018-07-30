@@ -459,7 +459,7 @@ public class GameSave extends SQLiteOpenHelper {
             buffer.append(data.getString(46));buffer.append(",");
             buffer.append(data.getString(47));buffer.append(",");
             buffer.append(data.getString(48));buffer.append(",");
-            buffer.append(data.getString(48));
+            buffer.append(data.getString(49));
         }
         data.close();
         Map<String, String> map = new HashMap<String, String>();

@@ -262,7 +262,7 @@ public class ECIconquest extends Fragment {
             try {
                 TextView enemytv = getActivity().findViewById(R.id.enemyArmy);
                 TextView invading = getActivity().findViewById(R.id.invading);
-                enemytv.setText("Enemy Soldiers: " + enemy);
+                enemytv.setText("Enemy Soldiers: 0");
                 invading.setText("Invasion Successful!");
             }catch (NullPointerException x) {
                 x.printStackTrace();
@@ -311,7 +311,7 @@ public class ECIconquest extends Fragment {
             try {
                 TextView enemytv = getActivity().findViewById(R.id.enemyArmy);
                 TextView invading = getActivity().findViewById(R.id.invading);
-                enemytv.setText("Enemy Soldiers: " + enemy);
+                enemytv.setText("Enemy Soldiers: 0");
                 invading.setText("Invasion Successful!");
             }catch (NullPointerException x) {
                 x.printStackTrace();
@@ -359,7 +359,7 @@ public class ECIconquest extends Fragment {
             try {
                 TextView enemytv = getActivity().findViewById(R.id.enemyArmy);
                 TextView invading = getActivity().findViewById(R.id.invading);
-                enemytv.setText("Enemy Soldiers: " + enemy);
+                enemytv.setText("Enemy Soldiers: 0");
                 invading.setText("Invasion Successful!");
             }catch (NullPointerException x) {
                 x.printStackTrace();

@@ -4,7 +4,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/clickerempire_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:screenOrientation="portrait"
@@ -20,7 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Rename" />
-        <activity android:name=".purchasedUpgrades"></activity>
+        <activity android:name=".purchasedUpgrades"
+            android:theme="@style/AppTheme.Custom"></activity>
     </application>
 
 </manifest>

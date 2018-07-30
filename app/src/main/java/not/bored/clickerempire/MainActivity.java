@@ -146,8 +146,8 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 TextView num_food = findViewById(R.id.num_food);
-                collect(num_food, "FOOD", 100);
-                boolean val = new Random().nextInt(10)==0;
+                collect(num_food, "FOOD", 1);
+                boolean val = new Random().nextInt(9)==0;
                 if(val){
                     gameSave.updateNoMax(gameSave.SKINS,1);
                 }
@@ -157,8 +157,8 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 TextView num_wood = findViewById(R.id.num_wood);
-                collect(num_wood,gameSave.WOOD, 100);
-                boolean val = new Random().nextInt(10)==0;
+                collect(num_wood,gameSave.WOOD, 1);
+                boolean val = new Random().nextInt(9)==0;
                 if(val){
                     gameSave.updateNoMax(gameSave.HERBS,1);
                 }
@@ -168,8 +168,8 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 TextView num_stone = findViewById(R.id.num_stone);
-                collect(num_stone, gameSave.STONE, 100);
-                boolean val = new Random().nextInt(10)==0;
+                collect(num_stone, gameSave.STONE, 1);
+                boolean val = new Random().nextInt(9)==0;
                 if(val){
                     gameSave.updateNoMax(gameSave.ORE,1);
                 }
@@ -296,7 +296,7 @@ public class MainActivity extends AppCompatActivity
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     Toast.makeText(MainActivity.this,"Game loaded", Toast.LENGTH_SHORT).show();
                                     loadGame();
-                                    gameSave.updateNoMax(gameSave.LAND,1000000000);
+//                                    gameSave.updateNoMax(gameSave.LAND,1000000000);
                                     resume();
                                 }
                             })
@@ -404,6 +404,37 @@ public class MainActivity extends AppCompatActivity
                             }
                         }
                     }
+                }
+                else if (id == R.id.purchasedUpgrades){
+                    Intent intent = new Intent(MainActivity.this,purchasedUpgrades.class);
+                    if(Integer.parseInt(gameSave.resourceAmount(gameSave.SKINNING)) == 1 ){
+                        intent.putExtra(gameSave.SKINNING,gameSave.SKINNING);
+                    }
+                    if(Integer.parseInt(gameSave.resourceAmount(gameSave.HARVESTING)) == 1 ){
+                        intent.putExtra(gameSave.HARVESTING,gameSave.HARVESTING);
+                    }
+                    if(Integer.parseInt(gameSave.resourceAmount(gameSave.PROSPECTING)) == 1 ){
+                        intent.putExtra(gameSave.PROSPECTING,gameSave.PROSPECTING);
+                    }
+                    if(Integer.parseInt(gameSave.resourceAmount(gameSave.MASONRY)) == 1 ){
+                        intent.putExtra(gameSave.SKINNING,gameSave.MASONRY);
+                    }
+                    if(Integer.parseInt(gameSave.resourceAmount(gameSave.DOMESTICATION)) == 1 ){
+                        intent.putExtra(gameSave.DOMESTICATION,gameSave.DOMESTICATION);
+                    }
+                    if(Integer.parseInt(gameSave.resourceAmount(gameSave.PLOUGHSHARES)) == 1 ){
+                        intent.putExtra(gameSave.PLOUGHSHARES,gameSave.PLOUGHSHARES);
+                    }
+                    if(Integer.parseInt(gameSave.resourceAmount(gameSave.IRRIGATION)) == 1 ){
+                        intent.putExtra(gameSave.IRRIGATION,gameSave.IRRIGATION);
+                    }
+                    if(Integer.parseInt(gameSave.resourceAmount(gameSave.CONSTRUCTION)) == 1 ){
+                        intent.putExtra(gameSave.CONSTRUCTION,gameSave.CONSTRUCTION);
+                    }
+                    if(Integer.parseInt(gameSave.resourceAmount(gameSave.GRANARIES)) == 1 ){
+                        intent.putExtra(gameSave.GRANARIES,gameSave.GRANARIES);
+                    }
+                    startActivity(intent);
                 }
                 return true;
             }
@@ -1066,7 +1097,7 @@ public class MainActivity extends AppCompatActivity
         int land = Integer.parseInt(gameSave.resourceAmount(GameSave.LAND));
         int occupiedland = Integer.parseInt(gameSave.resourceAmount(GameSave.OCCUPIEDLAND));
         if((currentwood<(2*amt)) || (currentstone<(2*amt)) || ((amt*1 + occupiedland)>land)){
-            if((currentwood<(2*amt)) || (currentstone<(2*amt)) && ((amt*1 + occupiedland)>land)){
+            if(((currentwood<(2*amt)) || (currentstone<(2*amt))) && ((amt*1 + occupiedland)>land)){
                 toast("Not enough land and resources to build!");
             }
             else if ((amt*1 + occupiedland)>land) {
@@ -1109,7 +1140,7 @@ public class MainActivity extends AppCompatActivity
         int land = Integer.parseInt(gameSave.resourceAmount(GameSave.LAND));
         int occupiedland = Integer.parseInt(gameSave.resourceAmount(GameSave.OCCUPIEDLAND));
         if((currentwood<(20*amt)) || (currentstone<(10*amt)) || ((amt*2 + occupiedland)>land)){
-            if((currentwood<(20*amt)) || (currentstone<(20*amt)) && ((amt*2 + occupiedland)>land)){
+            if(((currentwood<(20*amt)) || (currentstone<(20*amt))) && ((amt*2 + occupiedland)>land)){
                 toast("Not enough land and resources to build!");
             }
             else if ((amt*20 + occupiedland)>land) {
@@ -1153,7 +1184,7 @@ public class MainActivity extends AppCompatActivity
         int occupiedland = Integer.parseInt(gameSave.resourceAmount(GameSave.OCCUPIEDLAND));
 
         if((currentwood<(10*amt)) || (currentstone<(30*amt)) || ((amt*5 + occupiedland)>land)){
-            if((currentwood<(10*amt)) || (currentstone<(10*amt)) && ((amt*5 + occupiedland)>land)){
+            if(((currentwood<(10*amt)) || (currentstone<(10*amt))) && ((amt*5 + occupiedland)>land)){
                 toast("Not enough land and resources to build!");
             }
             else if ((amt*10 + occupiedland)>land) {
@@ -1196,7 +1227,7 @@ public class MainActivity extends AppCompatActivity
         int land = Integer.parseInt(gameSave.resourceAmount(GameSave.LAND));
         int occupiedland = Integer.parseInt(gameSave.resourceAmount(GameSave.OCCUPIEDLAND));
         if((currentwood<(100*amt)) || (currentstone<(100*amt)) || ((amt*25 + occupiedland)>land)){
-            if((currentwood<(100*amt)) || (currentstone<(100*amt)) && ((amt*25 + occupiedland)>land)){
+            if(((currentwood<(100*amt)) || (currentstone<(100*amt))) && ((amt*25 + occupiedland)>land)){
                 toast("Not enough land and resources to build!");
             }
             else if ((amt*25 + occupiedland)>land) {
@@ -1240,7 +1271,7 @@ public class MainActivity extends AppCompatActivity
         int occupiedland = Integer.parseInt(gameSave.resourceAmount(GameSave.OCCUPIEDLAND));
 
         if((currentwood<(200*amt)) || (currentstone<(200*amt)) || ((amt*50 + occupiedland)>land)){
-            if((currentwood<(200*amt)) || (currentstone<(200*amt)) && ((amt*50 + occupiedland)>land)){
+            if(((currentwood<(200*amt)) || (currentstone<(200*amt))) && ((amt*50 + occupiedland)>land)){
                 toast("Not enough land and resources to build!");
             }
             else if ((amt*50 + occupiedland)>land) {
@@ -1257,7 +1288,7 @@ public class MainActivity extends AppCompatActivity
             String new_val = "" + currentwood + "/" + max;
             String new_val_stone = "" + currentstone + "/" + maxstone;
             int new_pop_max = Integer.parseInt(resourceAmount(gameSave.POPULATION_MAX));
-            new_pop_max = new_pop_max + amt;
+            new_pop_max = new_pop_max + amt*100;
             String new_population_text = "Population: " + Integer.parseInt(resourceAmount(gameSave.POPULATION)) + "/" + new_pop_max;
             population.setText(new_population_text);
             num_wood.setText(new_val);
@@ -1283,7 +1314,7 @@ public class MainActivity extends AppCompatActivity
         int occupiedland = Integer.parseInt(gameSave.resourceAmount(GameSave.OCCUPIEDLAND));
 
         if((currentwood<(100*amt)) || (currentstone<(50*amt)) || ((amt*20 + occupiedland)>land)){
-            if((currentwood<(100*amt)) || (currentstone<(100*amt)) && ((amt*20 + occupiedland)>land)){
+            if(((currentwood<(100*amt)) || (currentstone<(100*amt))) && ((amt*20 + occupiedland)>land)){
                 toast("Not enough land and resources to build!");
             }
             else if ((amt*20 + occupiedland)>land) {
@@ -1302,7 +1333,7 @@ public class MainActivity extends AppCompatActivity
             num_wood.setText(new_val);
             num_stone.setText(new_val_stone);
             TextView num_food = findViewById(R.id.num_food);
-            String maxfood = gameSave.resourceAmount(gameSave.FOOD_MAX) + (barnMax*amt);
+            String maxfood = "" + (Integer.parseInt(gameSave.resourceAmount(gameSave.FOOD_MAX)) + (barnMax*amt));
             String currentfood = gameSave.resourceAmount(gameSave.FOOD);
             String new_food = "" + currentfood + "/" + maxfood;
             num_food.setText(new_food);
@@ -1327,7 +1358,7 @@ public class MainActivity extends AppCompatActivity
         int occupiedland = Integer.parseInt(gameSave.resourceAmount(GameSave.OCCUPIEDLAND));
 
         if((currentwood<(100*amt)) || (currentstone<(50*amt)) || ((amt*20 + occupiedland)>land)){
-            if((currentwood<(100*amt)) || (currentstone<(50*amt)) && ((amt*20 + occupiedland)>land)){
+            if(((currentwood<(100*amt)) || (currentstone<(50*amt))) && ((amt*20 + occupiedland)>land)){
                 toast("Not enough land and resources to build!");
             }
             else if ((amt*20 + occupiedland)>land) {
@@ -1367,7 +1398,7 @@ public class MainActivity extends AppCompatActivity
         int occupiedland = Integer.parseInt(gameSave.resourceAmount(GameSave.OCCUPIEDLAND));
 
         if((currentwood<(100*amt)) || (currentstone<(50*amt)) || ((amt*20 + occupiedland)>land)){
-            if((currentwood<(100*amt)) || (currentstone<(50*amt)) && ((amt*20 + occupiedland)>land)){
+            if(((currentwood<(100*amt)) || (currentstone<(50*amt))) && ((amt*20 + occupiedland)>land)){
                 toast("Not enough land and resources to build!");
             }
             else if ((amt*1 + occupiedland)>land) {
@@ -1410,7 +1441,7 @@ public class MainActivity extends AppCompatActivity
 
         if((currentwood<(30*amt)) || (currentstone<(70*amt)) || (currentskins<(2*amt)) || ((amt*1 + occupiedland)>land)){
 
-            if((currentwood<(30*amt)) || (currentstone<(70*amt)) || (currentskins<(2*amt)) && ((amt*1 + occupiedland)>land)){
+            if(((currentwood<(30*amt)) || (currentstone<(70*amt)) || (currentskins<(2*amt))) && ((amt*1 + occupiedland)>land)){
                 toast("Not enough land and resources to build!");
             }
             else if ((amt*1 + occupiedland)>land) {
@@ -1451,7 +1482,7 @@ public class MainActivity extends AppCompatActivity
 
         if((currentwood<(30*amt)) || (currentstone<(70*amt)) || (currentore<(2*amt)) || ((amt*1 + occupiedland)>land)){
 
-            if((currentwood<(30*amt)) || (currentstone<(70*amt)) || (currentore<(2*amt)) && ((amt*1 + occupiedland)>land)){
+            if(((currentwood<(30*amt)) || (currentstone<(70*amt)) || (currentore<(2*amt))) && ((amt*1 + occupiedland)>land)){
                 toast("Not enough land and resources to build!");
             }
             else if ((amt*1 + occupiedland)>land) {
@@ -1493,7 +1524,7 @@ public class MainActivity extends AppCompatActivity
 
         if((currentwood<(30*amt)) || (currentstone<(70*amt)) || (currentherbs<(2*amt)) || ((amt*1 + occupiedland)>land)){
 
-            if((currentwood<(30*amt)) || (currentstone<(70*amt)) || (currentherbs<(2*amt)) && ((amt*1 + occupiedland)>land)){
+            if(((currentwood<(30*amt)) || (currentstone<(70*amt)) || (currentherbs<(2*amt))) && ((amt*1 + occupiedland)>land)){
                 toast("Not enough land and resources to build!");
             }
             else if ((amt*1 + occupiedland)>land) {
@@ -1535,7 +1566,7 @@ public class MainActivity extends AppCompatActivity
         int occupiedland = Integer.parseInt(gameSave.resourceAmount(GameSave.OCCUPIEDLAND));
         if((currentwood<(60*amt)) || (currentstone<(120*amt)) || (currentmetal<(10*amt)) || (currentfood<(20*amt)) || ((amt*5 + occupiedland)>land)){
 
-            if((currentwood<(60*amt)) || (currentstone<(120*amt)) ||(currentmetal<(10*amt)) || (currentfood<(20*amt)) && ((amt*5 + occupiedland)>land)){
+            if(((currentwood<(60*amt)) || (currentstone<(120*amt)) ||(currentmetal<(10*amt)) || (currentfood<(20*amt))) && ((amt*5 + occupiedland)>land)){
                 toast("Not enough land and resources to build!");
             }
             else if ((amt*1 + occupiedland)>land) {
@@ -1558,8 +1589,8 @@ public class MainActivity extends AppCompatActivity
             String new_val_stone = "" + currentstone + "/" + maxstone;
             num_wood.setText(new_val);
             num_stone.setText(new_val_stone);
-            gameSave.update(GameSave.WOOD, (-120*amt));
-            gameSave.update(GameSave.STONE, (-60*amt));
+            gameSave.update(GameSave.WOOD, (-60*amt));
+            gameSave.update(GameSave.STONE, (-120*amt));
             gameSave.update(GameSave.FOOD, (-20*amt));
             gameSave.createbuilding(GameSave.BARRACKS,amt);
             gameSave.updateNoMax(GameSave.METAL, (-10*amt));
@@ -1583,7 +1614,7 @@ public class MainActivity extends AppCompatActivity
 
         if((currentwood<(60*amt)) || (currentstone<(120*amt)) || (currentleather<(10*amt)) || (currentfood<(60*amt)) || ((amt*5 + occupiedland)>land)){
 
-            if((currentwood<(60*amt)) || (currentstone<(120*amt)) || (currentleather<(10*amt)) || (currentfood<(60*amt)) || ((amt*5 + occupiedland)>land)){
+            if(((currentwood<(60*amt)) || (currentstone<(120*amt)) || (currentleather<(10*amt)) || (currentfood<(60*amt))) && ((amt*5 + occupiedland)>land)){
                 toast("Not enough land and resources to build!");
             }
             else if ((amt*5 + occupiedland)>land) {
@@ -1606,8 +1637,8 @@ public class MainActivity extends AppCompatActivity
             String new_val_stone = "" + df.format(currentstone) + "/" + maxstone;
             num_wood.setText(new_val);
             num_stone.setText(new_val_stone);
-            gameSave.update(GameSave.WOOD, (-120*amt));
-            gameSave.update(GameSave.STONE, (-60*amt));
+            gameSave.update(GameSave.WOOD, (-60*amt));
+            gameSave.update(GameSave.STONE, (-120*amt));
             gameSave.update(GameSave.FOOD, (-60*amt));
             gameSave.createbuilding(GameSave.STABLES,amt);
             gameSave.updateNoMax(GameSave.METAL, (-10*amt));
@@ -2039,27 +2070,25 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void killSoldier(int amount) {
         int soldiers = Integer.parseInt(gameSave.resourceAmount(gameSave.SOLDIERS));
-        if(amount>soldiers){
-            substractSoldier(amount);
-            gameSave.update(gameSave.POPULATION,-soldiers);
-            gameSave.updateNoMax(gameSave.SOLDIERS,-soldiers);
-        }
-        else{
+        if(amount<=soldiers){
             gameSave.update(gameSave.POPULATION,-amount);
             gameSave.updateNoMax(gameSave.SOLDIERS,-amount);
+        }
+        else{
+            gameSave.update(gameSave.POPULATION,-soldiers);
+            gameSave.updateNoMax(gameSave.SOLDIERS,-soldiers);
         }
     }
     @Override
     public void killCavalry(int amount) {
         int cavalry = Integer.parseInt(gameSave.resourceAmount(gameSave.CAVALRY));
-        if(amount>cavalry){
-            substractSoldier(amount);
-            gameSave.update(gameSave.POPULATION,-cavalry);
-            gameSave.updateNoMax(gameSave.CAVALRY,-cavalry);
-        }
-        else{
+        if(amount<=cavalry){
             gameSave.update(gameSave.POPULATION,-amount);
             gameSave.updateNoMax(gameSave.CAVALRY,-amount);
+        }
+        else{
+            gameSave.update(gameSave.POPULATION,-cavalry);
+            gameSave.updateNoMax(gameSave.CAVALRY,-cavalry);
         }
     }
 
