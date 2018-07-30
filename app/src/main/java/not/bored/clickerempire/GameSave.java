@@ -229,7 +229,7 @@ public class GameSave extends SQLiteOpenHelper {
                 "'0'," +
                 "'0'," +
                 "'0'," +
-                "'100'," +
+                "'1000'," +
                 "'0'," +
                 "'0'," +
                 "'0'," +

@@ -294,7 +294,7 @@ public class ECIconquest extends Fragment {
             TextView enemytv = getActivity().findViewById(R.id.enemyArmy);
             enemytv.setText("Enemy Soldiers: " + enemy);
             TextView invading = getActivity().findViewById(R.id.invading);
-            invading.setText("Invading Thorp");
+            invading.setText("Invading Hamlet");
         }catch (NullPointerException x) {
             x.printStackTrace();
         }
@@ -347,8 +347,8 @@ public class ECIconquest extends Fragment {
         }catch (NullPointerException x) {
             x.printStackTrace();
         }
-        int kill = (int) Math.ceil(enemy*.3);
-        enemy-= Integer.parseInt(army.soldiers())*army.SoldierEfficiency() + Integer.parseInt(army.cavalry())*army.CavalryEfficiency();
+        int kill = (int) Math.ceil(enemy*.03);
+        enemy-= Double.parseDouble(army.soldiers())*army.SoldierEfficiency() + Double.parseDouble(army.cavalry())*army.CavalryEfficiency();
         enemy = (int) Math.ceil(enemy);
         army.killSoldier(kill);
         army.killCavalry(kill);
