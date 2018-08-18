@@ -58,7 +58,6 @@ public class ECIupgradedjobs extends Fragment {
                                 blacksmiths.setText(b);
                             }
                             catch (NullPointerException e) {
-                                office.toast("Something fishy is going on");
                                 e.printStackTrace();
                             }
                         }
@@ -286,25 +285,6 @@ public class ECIupgradedjobs extends Fragment {
                 blacksmiths.setText(b);
             }
         });
-
-//        TextView farmers = view.findViewById(R.id.farmer);
-//        String f = "Farmers: " + office.farmers();
-//        farmers.setText(f);
-//        TextView lumberjacks = view.findViewById(R.id.lumberjack);
-//        String l = "Lumberjacks: " + office.lumberjacks();
-//        lumberjacks.setText(l);
-//        TextView stonemasons = view.findViewById(R.id.stonemason);
-//        String s = "Stonemasons: " + office.stonemasons();
-//        stonemasons.setText(s);
-//        TextView tanners = view.findViewById(R.id.tannersu);
-//        String t = "Tanners: " + office.tanners();
-//        tanners.setText(t);
-//        TextView healers = view.findViewById(R.id.healersu);
-//        String h = "Healers: " + office.healers();
-//        healers.setText(h);
-//        TextView blacksmiths = view.findViewById(R.id.blacksmithsu);
-//        String b = "Blacksmiths: " + office.blacksmith();
-//        blacksmiths.setText(b);
         thread.start();
         return view;
     }

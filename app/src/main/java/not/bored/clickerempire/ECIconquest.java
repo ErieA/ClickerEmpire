@@ -19,6 +19,7 @@ public class ECIconquest extends Fragment {
 
 
     private army army;
+    private boolean attack = true;
 
     @Override
     public void onAttach(Context context) {
@@ -44,12 +45,13 @@ public class ECIconquest extends Fragment {
                                 TextView Soldiers = getActivity().findViewById(R.id.Soldiers);
                                 String s = "Soldiers: " + army.soldiers();
                                 Soldiers.setText(s);
-                                TextView cavalry = getActivity().findViewById(R.id.Cavalry);
-                                String c = "Cavalry: " + army.cavalry();
-                                cavalry.setText(c);
+                                if(army.checkUpgrade("HORSEBACKRIDING")){
+                                    TextView cavalry = getActivity().findViewById(R.id.Cavalry);
+                                    String c = "Cavalry: " + army.cavalry();
+                                    cavalry.setText(c);
+                                }
                             }
                             catch (NullPointerException e) {
-                                army.toast("Something fishy is going on");
                                 e.printStackTrace();
                             }
                         }
@@ -79,7 +81,12 @@ public class ECIconquest extends Fragment {
             @Override
             public void onClick(View view) {
                 EditText soldiers = getActivity().findViewById(R.id.customsoldier);
-                int amt = Integer.parseInt(soldiers.getText().toString());
+                int amt;
+                try {
+                    amt = Integer.parseInt(soldiers.getText().toString());
+                } catch (NumberFormatException e) {
+                    amt = 0;
+                }
                 army.addSoldier(amt);
                 TextView soldier = getActivity().findViewById(R.id.Soldiers);
                 String s = "Soldiers: " + army.soldiers();
@@ -90,36 +97,58 @@ public class ECIconquest extends Fragment {
             @Override
             public void onClick(View view) {
                 EditText soldiers = getActivity().findViewById(R.id.customsoldier);
-                int amt = Integer.parseInt(soldiers.getText().toString());
+                int amt;
+                try {
+                    amt = Integer.parseInt(soldiers.getText().toString());
+                } catch (NumberFormatException e) {
+                    amt = 0;
+                }
                 army.substractSoldier(amt);
                 TextView soldier = getActivity().findViewById(R.id.Soldiers);
                 String s = "Soldiers: " + army.soldiers();
                 soldier.setText(s);
             }
         });
-
-        addCavalry.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EditText cavalr = getActivity().findViewById(R.id.customcavalry);
-                int amt = Integer.parseInt(cavalr.getText().toString());
-                army.addCavalry(amt);
-                TextView cavalry = getActivity().findViewById(R.id.Cavalry);
-                String c = "Cavalry: " + army.cavalry();
-                cavalry.setText(c);
-            }
-        });
-        substractCavalry.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EditText cavalr = getActivity().findViewById(R.id.customcavalry);
-                int amt = Integer.parseInt(cavalr.getText().toString());
-                army.substractCavalry(amt);
-                TextView cavalry = getActivity().findViewById(R.id.Cavalry);
-                String c = "Cavalry: " + army.cavalry();
-                cavalry.setText(c);
-            }
-        });
+        if(army.checkUpgrade("HORSEBACKRIDING")){;
+            addCavalry.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    EditText cavalr = getActivity().findViewById(R.id.customcavalry);
+                    int amt;
+                    try {
+                        amt = Integer.parseInt(cavalr.getText().toString());
+                    } catch (NumberFormatException e) {
+                        amt = 0;
+                    }
+                    army.addCavalry(amt);
+                    TextView cavalry = getActivity().findViewById(R.id.Cavalry);
+                    String c = "Cavalry: " + army.cavalry();
+                    cavalry.setText(c);
+                }
+            });
+            substractCavalry.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    EditText cavalr = getActivity().findViewById(R.id.customcavalry);
+                    int amt;
+                    try {
+                        amt = Integer.parseInt(cavalr.getText().toString());
+                    } catch (NumberFormatException e) {
+                        amt = 0;
+                    }
+                    army.substractCavalry(amt);
+                    TextView cavalry = getActivity().findViewById(R.id.Cavalry);
+                    String c = "Cavalry: " + army.cavalry();
+                    cavalry.setText(c);
+                }
+            });
+        }
+        else{
+            addCavalry.setVisibility(View.GONE);
+            view.findViewById(R.id.customcavalry).setVisibility(View.GONE);
+            substractCavalry.setVisibility(View.GONE);
+            view.findViewById(R.id.Cavalry).setVisibility(View.GONE);
+        }
 
 
         Button invadeThorp = view.findViewById(R.id.iThorp);
@@ -140,91 +169,121 @@ public class ECIconquest extends Fragment {
         invadeThorp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                invadeThorp(new Random().nextInt(5),army.amount("SOLDIERS") + army.amount("CAVALRY"));
+                if(attack){
+                    invadeThorp(new Random().nextInt(5),army.amount("SOLDIERS") + army.amount("CAVALRY"));
+                }
             }
         });
         invadeHamlet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                invadeHamlet(Math.floor(Math.random() * ((15-3)+1) + 3),army.amount("SOLDIERS") + army.amount("CAVALRY"));
+                if(attack){
+                    invadeHamlet(Math.floor(Math.random() * ((15-3)+1) + 3),army.amount("SOLDIERS") + army.amount("CAVALRY"));
+                }
             }
         });
         invadeVillage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                invade(Math.floor(Math.random() * ((50-10)+1) + 10), "Village", new Random().nextInt(100)+100);
+                if(attack){
+                    invade(Math.floor(Math.random() * ((50-10)+1) + 10), "Village", new Random().nextInt(100)+100);
+                }
             }
         });
         invadeSmallTown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                invade(Math.floor(Math.random() * ((500-100)+1) + 100), "Small Town", (int) Math.floor(Math.random() * ((2000-1000)+1) + 100));
+                if(attack){
+                    invade(Math.floor(Math.random() * ((500-100)+1) + 100), "Small Town", (int) Math.floor(Math.random() * ((2000-1000)+1) + 100));
+                }
             }
         });
         invadeLargeTown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                invade(Math.floor(Math.random() * ((400-100)+1) + 100), "large Town", (int) Math.floor(Math.random() * ((200-100)+1) + 100));
+                if(attack){
+                    invade(Math.floor(Math.random() * ((1250-250)+1) + 250), "Large Town", (int) Math.floor(Math.random() * ((5000-2500)+1) + 2500));
+                }
             }
         });
         invadeSmallCity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                invade(Math.floor(Math.random() * ((2500-250)+1) + 250), "Small City", (int) Math.floor(Math.random() * ((10000-5000)+1) + 5000));
+                if(attack){
+                    invade(Math.floor(Math.random() * ((2500-500)+1) + 500), "Small City", (int) Math.floor(Math.random() * ((10000-5000)+1) + 5000));
+                }
             }
         });
         invadeLargeCity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                invade(Math.floor(Math.random() * ((5000-1000)+1) + 1000), "Large City", (int) Math.floor(Math.random() * ((20000-10000)+1) + 10000));
+                if(attack){
+                    invade(Math.floor(Math.random() * ((5000-1000)+1) + 1000), "Large City", (int) Math.floor(Math.random() * ((20000-10000)+1) + 10000));
+                }
             }
         });
         invadeMetropolis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                invade(Math.floor(Math.random() * ((12500-2500)+1) + 2500), "Metropolis", (int) Math.floor(Math.random() * ((25000-5000)+1) + 5000));
+                if(attack){
+                    invade(Math.floor(Math.random() * ((12500-2500)+1) + 2500), "Metropolis", (int) Math.floor(Math.random() * ((50000-25000)+1) + 25000));
+                }
             }
         });
         invadeSmallNation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                invade(Math.floor(Math.random() * ((25000-5000)+1) + 5000), "Small Nation", (int) Math.floor(Math.random() * ((100000-50000)+1) + 50000));
+                if(attack){
+                    invade(Math.floor(Math.random() * ((25000-5000)+1) + 5000), "Small Nation", (int) Math.floor(Math.random() * ((100000-50000)+1) + 50000));
+                }
             }
         });
         invadeNation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                invade(Math.floor(Math.random() * ((50000-10000)+1) + 10000), "Nation", (int) Math.floor(Math.random() * ((200000-100000)+1) + 100000));
+                if(attack){
+                    invade(Math.floor(Math.random() * ((50000-10000)+1) + 10000), "Nation", (int) Math.floor(Math.random() * ((200000-100000)+1) + 100000));
+                }
             }
         });
         invadeLargeNation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                invade(Math.floor(Math.random() * ((125000-25000)+1) + 25000), "Large Nation", (int) Math.floor(Math.random() * ((500000-250000)+1) + 250000));
+                if(attack){
+                    invade(Math.floor(Math.random() * ((125000-25000)+1) + 25000), "Large Nation", (int) Math.floor(Math.random() * ((500000-250000)+1) + 250000));
+                }
             }
         });
         invadeEmpire.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                invade(Math.floor(Math.random() * ((250000-50000)+1) + 50000), "Empire", (int) Math.floor(Math.random() * ((1000000-500000)+1) + 500000));
+                if(attack){
+                    invade(Math.floor(Math.random() * ((250000-50000)+1) + 50000), "Empire", (int) Math.floor(Math.random() * ((1000000-500000)+1) + 500000));
+                }
             }
         });
         invadeContinentalEmpire.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                invade(Math.floor(Math.random() * ((1000000-500000)+1) + 500000), "Continental Empire", (int) Math.floor(Math.random() * ((2000000-1000000)+1) + 1000000));
+                if(attack){
+                    invade(Math.floor(Math.random() * ((1000000-500000)+1) + 500000), "Continental Empire", (int) Math.floor(Math.random() * ((2000000-1000000)+1) + 1000000));
+                }
             }
         });
         invadeWorlConfederation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                invade(Math.floor(Math.random() * ((1500000-1000000)+1) + 1000000), "World Confederation", (int) Math.floor(Math.random() * ((4000000-2000000)+1) + 2000000));
+                if(attack){
+                    invade(Math.floor(Math.random() * ((1500000-1000000)+1) + 1000000), "World Confederation", (int) Math.floor(Math.random() * ((4000000-2000000)+1) + 2000000));
+                }
             }
         });
         invadeUnitedWorld.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                invade(Math.floor(Math.random() * ((2000000-1500000)+1) + 1500000), "Village", (int) Math.floor(Math.random() * ((4000000-2000000)+1) + 2000000));
+                if(attack){
+                    invade(Math.floor(Math.random() * ((2000000-1500000)+1) + 1500000), "Village", (int) Math.floor(Math.random() * ((4000000-2000000)+1) + 2000000));
+                }
             }
         });
         thread.start();
@@ -238,6 +297,7 @@ public class ECIconquest extends Fragment {
         thread.interrupt();
     }
     public void invadeThorp(double enemy, double total) {
+        attack = false;
         Handler h = new android.os.Handler();
         final HomeArmy ha = new HomeArmy();
         final Enemy e = new Enemy();
@@ -251,10 +311,15 @@ public class ECIconquest extends Fragment {
         }
         enemy-=1;
         total-=1;
-        if(total%2==0){
+        if(army.checkUpgrade("HORSEBACKRIDING")){
+            if(total%2==0){
+                army.killSoldier(1);
+            }else{
+                army.killCavalry(1);
+            }
+        }
+        else{
             army.killSoldier(1);
-        }else{
-            army.killCavalry(1);
         }
         e.add(enemy);
         ha.soldiers = total;
@@ -268,12 +333,14 @@ public class ECIconquest extends Fragment {
                 x.printStackTrace();
             }
             army.plunderLand((new Random().nextInt(10)) + 10);
+            attack = true;
             return;
         }
         else if(total<=0){
             army.defeat();
             TextView invading = getActivity().findViewById(R.id.invading);
             invading.setText("Invasion Unsuccessful! Army has been defeated.");
+            attack = true;
             return;
         }
         else{
@@ -287,6 +354,7 @@ public class ECIconquest extends Fragment {
 
     }
     public void invadeHamlet(double enemy, double total) {
+        attack = false;
         Handler h = new android.os.Handler();
         final HomeArmy ha = new HomeArmy();
         final Enemy e = new Enemy();
@@ -300,10 +368,15 @@ public class ECIconquest extends Fragment {
         }
         enemy-=1;
         total-=1;
-        if(total%2==0){
+        if(army.checkUpgrade("HORSEBACKRIDING")){
+            if(total%2==0){
+                army.killSoldier(1);
+            }else{
+                army.killCavalry(1);
+            }
+        }
+        else{
             army.killSoldier(1);
-        }else{
-            army.killCavalry(1);
         }
         e.add(enemy);
         ha.soldiers = total;
@@ -317,12 +390,14 @@ public class ECIconquest extends Fragment {
                 x.printStackTrace();
             }
             army.plunderLand((new Random().nextInt(30)) + 30);
+            attack = true;
             return;
         }
         else if(total<=0){
             army.defeat();
             TextView invading = getActivity().findViewById(R.id.invading);
             invading.setText("Invasion Unsuccessful! Army has been defeated.");
+            attack = true;
             return;
         }
         else{
@@ -336,6 +411,7 @@ public class ECIconquest extends Fragment {
 
     }
     public void invade(double enemy, final String civType, final int plunder) {
+        attack = false;
         Handler h = new android.os.Handler();
         final HomeArmy ha = new HomeArmy();
         final Enemy e = new Enemy();
@@ -348,13 +424,21 @@ public class ECIconquest extends Fragment {
             x.printStackTrace();
         }
         int kill = (int) Math.ceil(enemy*.03);
-        enemy-= Double.parseDouble(army.soldiers())*army.SoldierEfficiency() + Double.parseDouble(army.cavalry())*army.CavalryEfficiency();
-        enemy = (int) Math.ceil(enemy);
-        army.killSoldier(kill);
-        army.killCavalry(kill);
-        e.add(enemy);
-        ha.soldiers = Integer.parseInt(army.soldiers());
-        ha.cavalry = Integer.parseInt(army.cavalry());
+        if(army.checkUpgrade("HORSEBACKRIDING")){
+            enemy-= Double.parseDouble(army.soldiers())*army.SoldierEfficiency() + Double.parseDouble(army.cavalry())*army.CavalryEfficiency();
+            enemy = (int) Math.ceil(enemy);
+            army.killSoldier(kill);
+            army.killCavalry(kill);
+            e.add(enemy);
+            ha.soldiers = Integer.parseInt(army.soldiers());
+            ha.cavalry = Integer.parseInt(army.cavalry());
+        }else{
+            enemy-= Double.parseDouble(army.soldiers())*army.SoldierEfficiency();
+            enemy = (int) Math.ceil(enemy);
+            army.killSoldier(kill);
+            e.add(enemy);
+            ha.soldiers = Integer.parseInt(army.soldiers());
+        }
         if(enemy<=0){
             try {
                 TextView enemytv = getActivity().findViewById(R.id.enemyArmy);
@@ -365,12 +449,14 @@ public class ECIconquest extends Fragment {
                 x.printStackTrace();
             }
             army.plunderLand(plunder);
+            attack = true;
             return;
         }
         else if((Integer.parseInt(army.soldiers()) + Integer.parseInt(army.cavalry()))<=0){
             army.defeat();
             TextView invading = getActivity().findViewById(R.id.invading);
             invading.setText("Invasion Unsuccessful! Army has been defeated.");
+            attack = true;
             return;
         }
         else{
@@ -385,9 +471,6 @@ public class ECIconquest extends Fragment {
 
     private class Enemy {
         public double enemySoldiers;
-        public void substract(double d){
-            enemySoldiers -= d;
-        }
         public void add(double d){
             enemySoldiers += d;
         }
@@ -395,18 +478,6 @@ public class ECIconquest extends Fragment {
     private class HomeArmy {
         public double soldiers;
         public double cavalry;
-        public void substract(double d){
-            soldiers -= d/2;
-            cavalry -= d/2;
-        }
-        public void add(double d){
-            soldiers += d/2;
-            cavalry += d/2;
-        }
-        public void setArmy(double c, double s){
-            cavalry = c;
-            soldiers = s;
-        }
     }
 
     public interface army {
@@ -425,21 +496,6 @@ public class ECIconquest extends Fragment {
         void killCavalry(int amount);
         void plunderLand(int amount);
         void defeat();
-//        void invadeThorp();
-//        void invadeHamlet();
-//        void invadeVillage();
-//        void invadeSmallTown();
-//        void invadeLargeTown();
-//        void invadeSmallCity();
-//        void invadeLargeCity();
-//        void invadeMetropolis();
-//        void invadeSmallNation();
-//        void invadeNation();
-//        void invadeLargeNation();
-//        void invadeEmpire();
-//        void invadeContinentalEmpire();
-//        void invadeWorldConfederatio();
-//        void invadeUnitedWorld();
-
+        boolean checkUpgrade(String upgrade);
     }
 }

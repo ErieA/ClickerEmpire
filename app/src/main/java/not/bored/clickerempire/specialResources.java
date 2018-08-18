@@ -62,6 +62,12 @@ public class specialResources extends Fragment {
         herbs.setText(resupdater.Herbs());
         TextView ore = view.findViewById(R.id.num_ore);
         ore.setText(resupdater.Ore());
+        TextView leather = view.findViewById(R.id.num_leather);
+        leather.setText(resupdater.Leather());
+        TextView piety = view.findViewById(R.id.num_piety);
+        piety.setText(resupdater.Piety());
+        TextView metal = view.findViewById(R.id.num_metal);
+        metal.setText(resupdater.Metal());
         thread.start();
         return view;
 

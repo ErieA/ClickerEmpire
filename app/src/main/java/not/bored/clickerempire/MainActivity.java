@@ -3,6 +3,7 @@ package not.bored.clickerempire;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -38,11 +39,10 @@ public class MainActivity extends AppCompatActivity
     double workerWoodProduction = .4;
     double workerStoneProduction = .2;
     double barnMax = 200;
-    double SoldierAttackSpeed = .05;
-    double CavalryAttackSpeed = .11;
     int counter = 0;
     private DrawerLayout mDrawerLayout;
     DecimalFormat df = new DecimalFormat("0.0");
+    DecimalFormat df2 = new DecimalFormat("0");
     Thread thread = new Thread() {
         @Override
         public void run() {
@@ -107,7 +107,6 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        gameSave.resetdb();
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionbar = getSupportActionBar();
@@ -115,6 +114,7 @@ public class MainActivity extends AppCompatActivity
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
         Intent intent = getIntent();
         String o = intent.getStringExtra("rename");
+//        gameSave.resetdb();
         if((o != null) && (o.equals("rename"))){
             String newcivname = intent.getStringExtra("newcivName");
             gameSave.updateName(newcivname);
@@ -296,7 +296,6 @@ public class MainActivity extends AppCompatActivity
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     Toast.makeText(MainActivity.this,"Game loaded", Toast.LENGTH_SHORT).show();
                                     loadGame();
-//                                    gameSave.updateNoMax(gameSave.LAND,1000000000);
                                     resume();
                                 }
                             })
@@ -308,7 +307,7 @@ public class MainActivity extends AppCompatActivity
                                 }
                             });
                     AlertDialog alert = aBuilder.create();
-                    alert.setTitle("Save Game");
+                    alert.setTitle("Load Game");
                     alert.show();
                 }
                 else if (id == R.id.pause) {
@@ -324,7 +323,7 @@ public class MainActivity extends AppCompatActivity
                     MenuItem enablecustomincrements = menu.findItem(R.id.enablecustomincrememtns);
                     if(ECI()){
                         gameSave.setECIunchecked();
-                        enablecustomincrements.setTitle("Enable Custom Increments: Disabled");
+                        enablecustomincrements.setTitle("Custom Increments: Disabled");
                         Fragment buildings = getSupportFragmentManager().findFragmentByTag("ECIbuildings");
                         Fragment conquest = getSupportFragmentManager().findFragmentByTag("ECIconquest");
                         if(buildings != null && buildings.isVisible()){
@@ -366,7 +365,7 @@ public class MainActivity extends AppCompatActivity
                     }
                     else{
                         gameSave.setECIchecked();
-                        enablecustomincrements.setTitle("Enable Custom Increments: Enabled");
+                        enablecustomincrements.setTitle("Custom Increments: Enabled");
                         Fragment buildings = getSupportFragmentManager().findFragmentByTag("buildings");
                         Fragment conquest = getSupportFragmentManager().findFragmentByTag("conquest");
                         if(buildings != null && buildings.isVisible()){
@@ -417,7 +416,7 @@ public class MainActivity extends AppCompatActivity
                         intent.putExtra(gameSave.PROSPECTING,gameSave.PROSPECTING);
                     }
                     if(Integer.parseInt(gameSave.resourceAmount(gameSave.MASONRY)) == 1 ){
-                        intent.putExtra(gameSave.SKINNING,gameSave.MASONRY);
+                        intent.putExtra(gameSave.MASONRY,gameSave.MASONRY);
                     }
                     if(Integer.parseInt(gameSave.resourceAmount(gameSave.DOMESTICATION)) == 1 ){
                         intent.putExtra(gameSave.DOMESTICATION,gameSave.DOMESTICATION);
@@ -433,6 +432,51 @@ public class MainActivity extends AppCompatActivity
                     }
                     if(Integer.parseInt(gameSave.resourceAmount(gameSave.GRANARIES)) == 1 ){
                         intent.putExtra(gameSave.GRANARIES,gameSave.GRANARIES);
+                    }
+                    if(Integer.parseInt(gameSave.resourceAmount(gameSave.TENEMENTS)) == 1 ){
+                        intent.putExtra(gameSave.TENEMENTS,gameSave.TENEMENTS);
+                    }
+                    if(Integer.parseInt(gameSave.resourceAmount(gameSave.BASICSHIELDS)) == 1 ){
+                        intent.putExtra(gameSave.BASICSHIELDS,gameSave.BASICSHIELDS);
+                    }
+                    if(Integer.parseInt(gameSave.resourceAmount(gameSave.BASICWEAPONRY)) == 1 ){
+                        intent.putExtra(gameSave.BASICWEAPONRY,gameSave.BASICWEAPONRY);
+                    }
+                    if(Integer.parseInt(gameSave.resourceAmount(gameSave.PALISADE)) == 1 ){
+                        intent.putExtra(gameSave.PALISADE,gameSave.PALISADE);
+                    }
+                    if(Integer.parseInt(gameSave.resourceAmount(gameSave.GRANARIES)) == 1 ){
+                        intent.putExtra(gameSave.GRANARIES,gameSave.GRANARIES);
+                    }
+                    if(Integer.parseInt(gameSave.resourceAmount(gameSave.BUTCHERING)) == 1 ){
+                        intent.putExtra(gameSave.BUTCHERING,gameSave.BUTCHERING);
+                    }
+                    if(Integer.parseInt(gameSave.resourceAmount(gameSave.GARDENING)) == 1 ){
+                        intent.putExtra(gameSave.GARDENING,gameSave.GARDENING);
+                    }
+                    if(Integer.parseInt(gameSave.resourceAmount(gameSave.EXTRACTION)) == 1 ){
+                        intent.putExtra(gameSave.EXTRACTION,gameSave.EXTRACTION);
+                    }
+                    if(Integer.parseInt(gameSave.resourceAmount(gameSave.ARCHITECTURE)) == 1 ){
+                        intent.putExtra(gameSave.ARCHITECTURE,gameSave.ARCHITECTURE);
+                    }
+                    if(Integer.parseInt(gameSave.resourceAmount(gameSave.FLENSING)) == 1 ){
+                        intent.putExtra(gameSave.FLENSING,gameSave.FLENSING);
+                    }
+                    if(Integer.parseInt(gameSave.resourceAmount(gameSave.MACERATING)) == 1 ){
+                        intent.putExtra(gameSave.MACERATING,gameSave.MACERATING);
+                    }
+                    if(Integer.parseInt(gameSave.resourceAmount(gameSave.CROPROTATION)) == 1 ){
+                        intent.putExtra(gameSave.CROPROTATION,gameSave.CROPROTATION);
+                    }
+                    if(Integer.parseInt(gameSave.resourceAmount(gameSave.SELECTIVEBREEDING)) == 1 ){
+                        intent.putExtra(gameSave.SELECTIVEBREEDING,gameSave.SELECTIVEBREEDING);
+                    }
+                    if(Integer.parseInt(gameSave.resourceAmount(gameSave.FERTILIZERS)) == 1 ){
+                        intent.putExtra(gameSave.FERTILIZERS,gameSave.FERTILIZERS);
+                    }
+                    if(Integer.parseInt(gameSave.resourceAmount(gameSave.SLUMS)) == 1 ){
+                        intent.putExtra(gameSave.SLUMS,gameSave.SLUMS);
                     }
                     startActivity(intent);
                 }
@@ -587,7 +631,6 @@ public class MainActivity extends AppCompatActivity
         if (checkUpgrade(gameSave.GRANARIES)) {
             barnMax = 400;
         }
-        int i = Integer.parseInt(gameSave.resourceAmount(gameSave.IRRIGATION)) + Integer.parseInt(gameSave.resourceAmount(gameSave.DOMESTICATION)) + Integer.parseInt(gameSave.resourceAmount(gameSave.PLOUGHSHARES));
         switch (Integer.parseInt(gameSave.resourceAmount(gameSave.FARMERPRODUCTIONLEVEL))) {
             case 1:
                 workerProduce = 1.5;
@@ -597,6 +640,21 @@ public class MainActivity extends AppCompatActivity
                 break;
             case 3:
                 workerProduce = 1.7;
+                break;
+            case 4:
+                workerProduce = 1.8;
+                break;
+            case 5:
+                workerProduce = 1.9;
+                break;
+            case 6:
+                workerProduce = 2.0;
+                break;
+            case 7:
+                workerProduce = 2.1;
+                break;
+            case 8:
+                workerProduce = 2.2;
                 break;
             default:
                 workerProduce = 1.4;
@@ -687,8 +745,8 @@ public class MainActivity extends AppCompatActivity
         }
     }
     public void createWorker(TextView pop, int amt){
-        int current = Integer.parseInt(gameSave.resourceAmount(gameSave.POPULATION));
-        int max = Integer.parseInt(gameSave.resourceAmount(gameSave.POPULATION_MAX));
+        double current = Double.parseDouble(gameSave.resourceAmount(gameSave.POPULATION));
+        double max = Double.parseDouble(gameSave.resourceAmount(gameSave.POPULATION_MAX));
         double food = Double.parseDouble(gameSave.resourceAmount(GameSave.FOOD));
         double cost = amt * workerCost * (-1);
         food = food + cost;
@@ -700,14 +758,12 @@ public class MainActivity extends AppCompatActivity
             Toast.makeText(MainActivity.this,"Not enough food", Toast.LENGTH_SHORT).show();
         }
         else{
-            String p = "Population: " + current + "/" + max;
+            String p = "Population: " + df2.format(current) + "/" + df2.format(max);
             pop.setText(p);
             TextView unemployed = findViewById(R.id.unemployed);
-            String unemployedtxt = unemployed.getText().toString();
-            int index = unemployedtxt.indexOf(' ') + 1;
-            int unemployedworkers = Integer.parseInt(unemployedtxt.substring(index));
+            int unemployedworkers = Integer.parseInt(gameSave.resourceAmount(gameSave.UNEMPLOYED));
             unemployedworkers += amt;
-            unemployedtxt = "Unemployed: " + unemployedworkers;
+            String unemployedtxt = "Unemployed: " + unemployedworkers;
             unemployed.setText(unemployedtxt);
             gameSave.update(gameSave.POPULATION, amt);
             gameSave.updateNoMax(gameSave.UNEMPLOYED, amt);
@@ -865,7 +921,7 @@ public class MainActivity extends AppCompatActivity
             gameSave.update(res, amount);
             current = current + amount;
             if(current<=max){
-                String new_val = "" + df.format(current) + "/" + max;
+                String new_val = "" + df.format(current) + "/" + df.format(max);
                 tv.setText(new_val);
             }
         }
@@ -875,6 +931,11 @@ public class MainActivity extends AppCompatActivity
         double currentdb = Double.parseDouble(gameSave.resourceAmount(res));
         String speed = "" + df.format(amount)+ "/s";
         sp.setText(speed);
+        if(amount < 0){
+            sp.setTextColor(Color.parseColor("#ff0000"));
+        }else{
+            sp.setTextColor(Color.parseColor("#0000ff"));
+        }
         if(((currentdb+amount)>0)){
             double newcurrent = currentdb + amount;
             if(newcurrent<=max && newcurrent>0){
@@ -887,16 +948,31 @@ public class MainActivity extends AppCompatActivity
                     switch (res) {
                         case "FOOD":
                             if(checkUpgrade(gameSave.SKINNING)){
+                                if(checkUpgrade(gameSave.BUTCHERING)){
+                                    newamt += Math.ceil(newamt*.2);
+                                }
+                                if(checkUpgrade(gameSave.SKINS)){
+                                    newamt += Math.ceil(newamt*.2);
+                                }
                                 gameSave.updateNoMax(gameSave.SKINS,newamt);
                             }
                             break;
                         case "WOOD":
                             if(checkUpgrade(gameSave.HARVESTING)){
+                                if(checkUpgrade(gameSave.GARDENING)){
+                                    newamt += Math.ceil(newamt*.2);
+                                }
                                 gameSave.updateNoMax(gameSave.HERBS,newamt);
                             }
                             break;
                         case "STONE":
                             if(checkUpgrade(gameSave.PROSPECTING)){
+                                if(checkUpgrade(gameSave.EXTRACTION)){
+                                    newamt += Math.ceil(newamt*.2);
+                                }
+                                if(checkUpgrade(gameSave.MACERATING)){
+                                    newamt += Math.ceil(newamt*.2);
+                                }
                                 gameSave.updateNoMax(gameSave.ORE,newamt);
                             }
                             break;
@@ -1043,17 +1119,38 @@ public class MainActivity extends AppCompatActivity
         int healers = Integer.parseInt(gameSave.resourceAmount(gameSave.HEALERS));
         int blacksmiths = Integer.parseInt(gameSave.resourceAmount(gameSave.BLACKSMITHS));
         if(counter == 1){
-            if(Integer.parseInt(gameSave.resourceAmount(gameSave.SKINS))>=tanners){
-                gameSave.updateNoMax(gameSave.SKINS, -tanners);
-                gameSave.updateNoMax(gameSave.LEATHER, tanners);
+            if (tanners >= 1) {
+                if(Integer.parseInt(gameSave.resourceAmount(gameSave.SKINS))>=tanners){
+                    gameSave.updateNoMax(gameSave.SKINS, -tanners);
+                    gameSave.updateNoMax(gameSave.LEATHER, tanners);
+                }
+                else{
+                    int skins = Integer.parseInt(gameSave.resourceAmount(gameSave.SKINS));
+                    gameSave.updateNoMax(gameSave.SKINS, -skins);
+                    gameSave.updateNoMax(gameSave.LEATHER, skins);
+                }
             }
-            if(Integer.parseInt(gameSave.resourceAmount(gameSave.HERBS))>=healers){
-                gameSave.updateNoMax(gameSave.HERBS, -healers);
-                gameSave.updateNoMax(gameSave.PIETY, healers);
+            if (healers >= 1) {
+                if(Integer.parseInt(gameSave.resourceAmount(gameSave.HERBS))>=healers){
+                    gameSave.updateNoMax(gameSave.HERBS, -healers);
+                    gameSave.updateNoMax(gameSave.PIETY, healers);
+                }
+                else{
+                    int herbs = Integer.parseInt(gameSave.resourceAmount(gameSave.HERBS));
+                    gameSave.updateNoMax(gameSave.HERBS, -herbs);
+                    gameSave.updateNoMax(gameSave.PIETY, herbs);
+                }
             }
-            if(Integer.parseInt(gameSave.resourceAmount(gameSave.ORE))>=blacksmiths){
-                gameSave.updateNoMax(gameSave.ORE, -blacksmiths);
-                gameSave.updateNoMax(gameSave.METAL, blacksmiths);
+            if (blacksmiths >= 1){
+                if(Integer.parseInt(gameSave.resourceAmount(gameSave.ORE))>=blacksmiths){
+                    gameSave.updateNoMax(gameSave.ORE, -blacksmiths);
+                    gameSave.updateNoMax(gameSave.METAL, blacksmiths);
+                }
+                else{
+                    int ore = Integer.parseInt(gameSave.resourceAmount(gameSave.ORE));
+                    gameSave.updateNoMax(gameSave.ORE, -ore);
+                    gameSave.updateNoMax(gameSave.METAL, ore);
+                }
             }
         }
     }
@@ -1245,6 +1342,9 @@ public class MainActivity extends AppCompatActivity
             String new_val_stone = "" + currentstone + "/" + maxstone;
             int new_pop_max = Integer.parseInt(resourceAmount(gameSave.POPULATION_MAX));
             new_pop_max = new_pop_max + amt;
+            if(checkUpgrade(gameSave.TENEMENTS)){
+                new_pop_max += 2;
+            }
             String new_population_text = "Population: " + Integer.parseInt(resourceAmount(gameSave.POPULATION)) + "/" + new_pop_max;
             population.setText(new_population_text);
             num_wood.setText(new_val);
@@ -1333,8 +1433,8 @@ public class MainActivity extends AppCompatActivity
             num_wood.setText(new_val);
             num_stone.setText(new_val_stone);
             TextView num_food = findViewById(R.id.num_food);
-            String maxfood = "" + (Integer.parseInt(gameSave.resourceAmount(gameSave.FOOD_MAX)) + (barnMax*amt));
-            String currentfood = gameSave.resourceAmount(gameSave.FOOD);
+            String maxfood = df.format(Double.parseDouble(gameSave.resourceAmount(gameSave.FOOD_MAX)) + (barnMax*amt));
+            String currentfood = df.format(Double.parseDouble(gameSave.resourceAmount(gameSave.FOOD)));
             String new_food = "" + currentfood + "/" + maxfood;
             num_food.setText(new_food);
             gameSave.update(GameSave.WOOD, (-100*amt));
@@ -1373,8 +1473,8 @@ public class MainActivity extends AppCompatActivity
             currentstone-=(50*amt);
             currentwood-=(100*amt);
             max +=(200*amt);
-            String new_val = "" + currentwood + "/" + max;
-            String new_val_stone = "" + currentstone + "/" + maxstone;
+            String new_val = df.format(currentwood) + "/" + df.format(max);
+            String new_val_stone = df.format(currentstone) + "/" + df.format(maxstone);
             num_wood.setText(new_val);
             num_stone.setText(new_val_stone);
             gameSave.update(GameSave.WOOD, (-100*amt));
@@ -1414,8 +1514,8 @@ public class MainActivity extends AppCompatActivity
             currentstone-=(50*amt);
             currentwood-=(100*amt);
             maxstone += (200*amt);
-            String new_val = "" + currentwood + "/" + max;
-            String new_val_stone = "" + currentstone + "/" + maxstone;
+            String new_val = "" + df.format(currentwood) + "/" + df.format(max);
+            String new_val_stone = df.format(currentstone) + "/" + df.format(maxstone);
             num_wood.setText(new_val);
             num_stone.setText(new_val_stone);
             gameSave.update(GameSave.WOOD, (-100*amt));
@@ -1641,7 +1741,7 @@ public class MainActivity extends AppCompatActivity
             gameSave.update(GameSave.STONE, (-120*amt));
             gameSave.update(GameSave.FOOD, (-60*amt));
             gameSave.createbuilding(GameSave.STABLES,amt);
-            gameSave.updateNoMax(GameSave.METAL, (-10*amt));
+            gameSave.updateNoMax(GameSave.LEATHER, (-10*amt));
             gameSave.updateNoMax(gameSave.OCCUPIEDLAND, amt*5);
             return true;
         }
@@ -1918,21 +2018,29 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean upgradeConstruction() {
-        return false;
+        if(Double.parseDouble(gameSave.resourceAmount(GameSave.STONE)) >= 1000 && Double.parseDouble(gameSave.resourceAmount(GameSave.WOOD)) >= 1000){
+            gameSave.update(GameSave.WOOD,-1000);
+            gameSave.update(GameSave.STONE,-1000);
+            return gameSave.setInt(GameSave.CONSTRUCTION,1);
+        }
+        else {
+            Toast.makeText(MainActivity.this,"Not enough resources to purchase this upgrade", Toast.LENGTH_SHORT).show();
+            return false;
+        }
     }
 
     @Override
     public boolean granaries(){
+        toast("1");
         if(Double.parseDouble(gameSave.resourceAmount(GameSave.STONE)) >= 1000 && Double.parseDouble(gameSave.resourceAmount(GameSave.WOOD)) >= 1000){
+            toast("2");
             double max = Double.parseDouble(gameSave.resourceAmount(GameSave.FOOD_MAX));
             max-=200;
             max*=2;
             max+=200;
             gameSave.set(GameSave.FOOD_MAX,max);
-            TextView stone = findViewById(R.id.num_stone);
-            collect(stone,GameSave.STONE, -1000);
-            TextView wood = findViewById(R.id.num_wood);
-            collect(wood,GameSave.WOOD, -1000);
+            gameSave.update(GameSave.STONE, -1000);
+            gameSave.update(GameSave.WOOD, -1000);
             setScreen(getSupportActionBar());
             barnMax = 400;
             return gameSave.setInt(GameSave.GRANARIES,1);
@@ -1942,6 +2050,205 @@ public class MainActivity extends AppCompatActivity
             return false;
         }
     }
+
+    @Override
+    public boolean upgradeTenements() {
+        if(Double.parseDouble(gameSave.resourceAmount(GameSave.STONE)) >= 500 && Double.parseDouble(gameSave.resourceAmount(GameSave.WOOD)) >= 500 && Double.parseDouble(gameSave.resourceAmount(GameSave.FOOD)) >= 200){
+            gameSave.update(GameSave.WOOD,-500);
+            gameSave.update(GameSave.FOOD,-200);
+            gameSave.update(GameSave.STONE,-500);
+            return gameSave.setInt(GameSave.TENEMENTS,1);
+        }
+        else {
+            Toast.makeText(MainActivity.this,"Not enough resources to purchase this upgrade", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean upgradeBasicWeaponry() {
+        if(Double.parseDouble(gameSave.resourceAmount(GameSave.METAL)) >= 500 && Double.parseDouble(gameSave.resourceAmount(GameSave.WOOD)) >= 500){
+            gameSave.update(GameSave.WOOD,-500);
+            gameSave.updateNoMax(GameSave.METAL,-500);
+            return gameSave.setInt(GameSave.BASICWEAPONRY,1);
+        }
+        else {
+            Toast.makeText(MainActivity.this,"Not enough resources to purchase this upgrade", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean upgradeBasicShields() {
+        if(Double.parseDouble(gameSave.resourceAmount(GameSave.LEATHER)) >= 500 && Double.parseDouble(gameSave.resourceAmount(GameSave.WOOD)) >= 500){
+            gameSave.update(GameSave.WOOD,-500);
+            gameSave.updateNoMax(GameSave.LEATHER,-500);
+            return gameSave.setInt(GameSave.BASICWEAPONRY,1);
+        }
+        else {
+            Toast.makeText(MainActivity.this,"Not enough resources to purchase this upgrade", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean upgradePalisade() {
+        if(Double.parseDouble(gameSave.resourceAmount(GameSave.STONE)) >= 1000 && Double.parseDouble(gameSave.resourceAmount(GameSave.WOOD)) >= 2000){
+            gameSave.update(GameSave.WOOD,-2000);
+            gameSave.update(GameSave.STONE,-1000);
+            return gameSave.setInt(GameSave.PALISADE,1);
+        }
+        else {
+            Toast.makeText(MainActivity.this,"Not enough resources to purchase this upgrade", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean upgradeButchering() {
+        if(Double.parseDouble(gameSave.resourceAmount(GameSave.LEATHER)) >= 100){
+            gameSave.updateNoMax(GameSave.LEATHER, -100);
+            return gameSave.setInt(GameSave.BUTCHERING,1);
+        }
+        else {
+            Toast.makeText(MainActivity.this,"Not enough resources to purchase this upgrade", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean upgradeGardening() {
+        if(Double.parseDouble(gameSave.resourceAmount(GameSave.PIETY)) >= 100){
+            gameSave.updateNoMax(GameSave.PIETY, -100);
+            return gameSave.setInt(GameSave.GARDENING,1);
+        }
+        else {
+            Toast.makeText(MainActivity.this,"Not enough resources to purchase this upgrade", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean upgradeExtraction() {
+        if(Double.parseDouble(gameSave.resourceAmount(GameSave.METAL)) >= 100){
+            gameSave.updateNoMax(GameSave.METAL, -100);
+            return gameSave.setInt(GameSave.EXTRACTION,1);
+        }
+        else {
+            Toast.makeText(MainActivity.this,"Not enough resources to purchase this upgrade", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean upgradeHorsebackRiding() {
+        if(Double.parseDouble(gameSave.resourceAmount(GameSave.WOOD)) >= 500 && Double.parseDouble(gameSave.resourceAmount(GameSave.STONE)) >= 500){
+            gameSave.update(GameSave.WOOD,-500);
+            gameSave.updateNoMax(GameSave.STONE,-500);
+            return gameSave.setInt(GameSave.HORSEBACKRIDING,1);
+        }
+        else {
+            Toast.makeText(MainActivity.this,"Not enough resources to purchase this upgrade", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean upgradeArchitecture() {
+        if(Double.parseDouble(gameSave.resourceAmount(GameSave.WOOD)) >= 10000 && Double.parseDouble(gameSave.resourceAmount(GameSave.STONE)) >= 10000){
+            gameSave.update(GameSave.WOOD,-10000);
+            gameSave.updateNoMax(GameSave.STONE,-10000);
+            return gameSave.setInt(GameSave.ARCHITECTURE,1);
+        }
+        else {
+            Toast.makeText(MainActivity.this,"Not enough resources to purchase this upgrade", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean upgradeFlensing() {
+        if(Double.parseDouble(gameSave.resourceAmount(GameSave.METAL)) >= 1000){
+            gameSave.update(GameSave.METAL,-1000);
+            return gameSave.setInt(GameSave.FLENSING,1);
+        }
+        else {
+            Toast.makeText(MainActivity.this,"Not enough resources to purchase this upgrade", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean upgradeMacerating() {
+        if(Double.parseDouble(gameSave.resourceAmount(GameSave.LEATHER)) >= 500 && Double.parseDouble(gameSave.resourceAmount(GameSave.STONE)) >= 500){
+            gameSave.update(GameSave.LEATHER,-500);
+            gameSave.updateNoMax(GameSave.STONE,-500);
+            return gameSave.setInt(GameSave.MACERATING,1);
+        }
+        else {
+            Toast.makeText(MainActivity.this,"Not enough resources to purchase this upgrade", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean upgradeCropRotation() {
+        if(Double.parseDouble(gameSave.resourceAmount(GameSave.HERBS)) >= 5000 && Double.parseDouble(gameSave.resourceAmount(GameSave.PIETY)) >= 2000){
+            gameSave.update(GameSave.HERBS,-5000);
+            gameSave.updateNoMax(GameSave.PIETY,-2000);
+            workerProduce += .1;
+            gameSave.updateNoMax(GameSave.FARMERPRODUCTIONLEVEL,1);
+            return gameSave.setInt(GameSave.CROPROTATION,1);
+        }
+        else {
+            Toast.makeText(MainActivity.this,"Not enough resources to purchase this upgrade", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean upgradeSelectiveBreeding() {
+        if(Double.parseDouble(gameSave.resourceAmount(GameSave.SKINS)) >= 5000 && Double.parseDouble(gameSave.resourceAmount(GameSave.PIETY)) >= 2000){
+            gameSave.update(GameSave.SKINS,-5000);
+            gameSave.updateNoMax(GameSave.PIETY,-2000);
+            workerProduce += .1;
+            gameSave.updateNoMax(GameSave.FARMERPRODUCTIONLEVEL,1);
+            return gameSave.setInt(GameSave.SELECTIVEBREEDING,1);
+        }
+        else {
+            Toast.makeText(MainActivity.this,"Not enough resources to purchase this upgrade", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean upgradeFertilizers() {
+        if(Double.parseDouble(gameSave.resourceAmount(GameSave.ORE)) >= 5000 && Double.parseDouble(gameSave.resourceAmount(GameSave.PIETY)) >= 2000){
+            gameSave.update(GameSave.ORE,-5000);
+            gameSave.updateNoMax(GameSave.PIETY,-2000);
+            workerProduce += .1;
+            gameSave.updateNoMax(GameSave.FARMERPRODUCTIONLEVEL,1);
+            return gameSave.setInt(GameSave.FERTILIZERS,1);
+        }
+        else {
+            Toast.makeText(MainActivity.this,"Not enough resources to purchase this upgrade", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean upgradeSlums() {
+        if(Double.parseDouble(gameSave.resourceAmount(GameSave.WOOD)) >= 1000 && Double.parseDouble(gameSave.resourceAmount(GameSave.STONE)) >= 1000){
+            gameSave.update(GameSave.WOOD,-1000);
+            gameSave.updateNoMax(GameSave.STONE,-1000);
+            return gameSave.setInt(GameSave.SLUMS,1);
+        }
+        else {
+            Toast.makeText(MainActivity.this,"Not enough resources to purchase this upgrade", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
     @Override
     public boolean checkUpgrade(String upgrade) {
         return Integer.parseInt(gameSave.resourceAmount(upgrade)) == 1;
@@ -2061,11 +2368,33 @@ public class MainActivity extends AppCompatActivity
     }
     @Override
     public double SoldierEfficiency(){
-        return SoldierAttackSpeed;
+        double b = .05;
+        if(checkUpgrade(gameSave.BASICWEAPONRY)){
+            b += .01;
+        }
+        if(checkUpgrade(gameSave.BASICSHIELDS)){
+            b += .01;
+        }
+        return b;
     }
     @Override
     public double CavalryEfficiency() {
-        return CavalryAttackSpeed;
+        double b = .11;
+        if(checkUpgrade(gameSave.BASICWEAPONRY)){
+            b += .01;
+        }
+        if(checkUpgrade(gameSave.BASICSHIELDS)){
+            b += .01;
+        }
+        return b;
+    }
+    @Override
+    public double EnemyEfficiency() {
+        double b = .03;
+        if(checkUpgrade(gameSave.PALISADE)){
+            b -= .005;
+        }
+        return b;
     }
     @Override
     public void killSoldier(int amount) {

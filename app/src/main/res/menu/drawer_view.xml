@@ -20,7 +20,7 @@
             android:title="Resume" />
         <item
             android:id="@+id/enablecustomincrememtns"
-            android:title="Enable Custom Increments: Disabled" />
+            android:title="Custom Increments: Disabled" />
         <item
             android:id="@+id/purchasedUpgrades"
             android:title="Purchased Upgrades" />

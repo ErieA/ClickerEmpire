@@ -36,7 +36,12 @@ public class ECIbuildings extends Fragment {
                 }
                 int num = Integer.parseInt(str);
                 EditText customtent = getActivity().findViewById(R.id.customtent);
-                int amt = Integer.parseInt(customtent.getText().toString());
+                int amt;
+                try {
+                    amt = Integer.parseInt(customtent.getText().toString());
+                } catch (NumberFormatException e) {
+                    amt = 0;
+                }
                 num+= amt;
                 boolean build = builder.buildTent(amt);
                 if(build){
@@ -60,7 +65,12 @@ public class ECIbuildings extends Fragment {
                 }
                 int num = Integer.parseInt(str);
                 EditText customhut = getActivity().findViewById(R.id.customhut);
-                int amt = Integer.parseInt(customhut.getText().toString());
+                int amt;
+                try {
+                    amt = Integer.parseInt(customhut.getText().toString());
+                } catch (NumberFormatException e) {
+                    amt = 0;
+                }
                 num+= amt;
                 boolean build = builder.buildHut(amt);
                 if(build){
@@ -85,7 +95,12 @@ public class ECIbuildings extends Fragment {
                     }
                     int num = Integer.parseInt(str);
                     EditText customhouse = getActivity().findViewById(R.id.customhouse);
-                    int amt = Integer.parseInt(customhouse.getText().toString());
+                    int amt;
+                    try {
+                        amt = Integer.parseInt(customhouse.getText().toString());
+                    } catch (NumberFormatException e) {
+                        amt = 0;
+                    }
                     num+= amt;
                     boolean build = builder.buildHouse(amt);
                     if(build){
@@ -110,7 +125,12 @@ public class ECIbuildings extends Fragment {
                     }
                     int num = Integer.parseInt(str);
                     EditText custommansion = getActivity().findViewById(R.id.custommansion);
-                    int amt = Integer.parseInt(custommansion.getText().toString());
+                    int amt;
+                    try {
+                        amt = Integer.parseInt(custommansion.getText().toString());
+                    } catch (NumberFormatException e) {
+                        amt = 0;
+                    }
                     num+= amt;
                     boolean build = builder.buildMansion(amt);
                     if(build){
@@ -134,7 +154,12 @@ public class ECIbuildings extends Fragment {
                     }
                     int num = Integer.parseInt(str);
                     EditText customcottage = getActivity().findViewById(R.id.customcottage);
-                    int amt = Integer.parseInt(customcottage.getText().toString());
+                    int amt;
+                    try {
+                        amt = Integer.parseInt(customcottage.getText().toString());
+                    } catch (NumberFormatException e) {
+                        amt = 0;
+                    }
                     num+= amt;
                     boolean build = builder.buildCottage(amt);
                     if(build){
@@ -158,7 +183,12 @@ public class ECIbuildings extends Fragment {
                     }
                     int num = Integer.parseInt(str);
                     EditText customtannery = getActivity().findViewById(R.id.customtannery);
-                    int amt = Integer.parseInt(customtannery.getText().toString());
+                    int amt;
+                    try {
+                        amt = Integer.parseInt(customtannery.getText().toString());
+                    } catch (NumberFormatException e) {
+                        amt = 0;
+                    }
                     num+= amt;
                     boolean build = builder.buildTannery(amt);
                     if(build){
@@ -182,7 +212,12 @@ public class ECIbuildings extends Fragment {
                     }
                     int num = Integer.parseInt(str);
                     EditText customsmithy = getActivity().findViewById(R.id.customsmithy);
-                    int amt = Integer.parseInt(customsmithy.getText().toString());
+                    int amt;
+                    try {
+                        amt = Integer.parseInt(customsmithy.getText().toString());
+                    } catch (NumberFormatException e) {
+                        amt = 0;
+                    }
                     num+= amt;
                     boolean build = builder.buildSmithy(amt);
                     if(build){
@@ -206,7 +241,12 @@ public class ECIbuildings extends Fragment {
                     }
                     int num = Integer.parseInt(str);
                     EditText customapothecaries = getActivity().findViewById(R.id.customapothecary);
-                    int amt = Integer.parseInt(customapothecaries.getText().toString());
+                    int amt;
+                    try {
+                        amt = Integer.parseInt(customapothecaries.getText().toString());
+                    } catch (NumberFormatException e) {
+                        amt = 0;
+                    }
                     num+= amt;
                     boolean build = builder.buildApothecary(amt);
                     if(build){
@@ -230,7 +270,12 @@ public class ECIbuildings extends Fragment {
                     }
                     int num = Integer.parseInt(str);
                     EditText custombarracks = getActivity().findViewById(R.id.custombarracks);
-                    int amt = Integer.parseInt(custombarracks.getText().toString());
+                    int amt;
+                    try {
+                        amt = Integer.parseInt(custombarracks.getText().toString());
+                    } catch (NumberFormatException e) {
+                        amt = 0;
+                    }
                     num+= amt;
                     boolean build = builder.buildBarracks(amt);
                     if(build){
@@ -240,30 +285,7 @@ public class ECIbuildings extends Fragment {
                     }
                 }
             });
-            Button buildstables = view.findViewById(R.id.buildstables);
-            TextView num_stables = view.findViewById(R.id.num_stables);
-            amt = builder.resourceAmount("STABLES");
-            num_stables.setText(amt);
-            buildstables.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    TextView num_stables = getActivity().findViewById(R.id.num_stables);
-                    String str = num_stables.getText().toString();
-                    if(str == ""){
-                        str = "0";
-                    }
-                    int num = Integer.parseInt(str);
-                    EditText customstables = getActivity().findViewById(R.id.customstables);
-                    int amt = Integer.parseInt(customstables.getText().toString());
-                    num+= amt;
-                    boolean build = builder.buildStables(amt);
-                    if(build){
-                        num_stables.setText(""+num);
-                        num_stables.invalidate();
-                        num_stables.requestLayout();
-                    }
-                }
-            });
+
         }
         else{
             view.findViewById(R.id.buildcottage).setVisibility(View.GONE);
@@ -287,6 +309,39 @@ public class ECIbuildings extends Fragment {
             view.findViewById(R.id.buildbarracks).setVisibility(View.GONE);
             view.findViewById(R.id.num_barracks).setVisibility(View.GONE);
             view.findViewById(R.id.custombarracks).setVisibility(View.GONE);
+        }
+        if(builder.checkUpgrade("HORSEBACKRIDING")){
+            Button buildstables = view.findViewById(R.id.buildstables);
+            TextView num_stables = view.findViewById(R.id.num_stables);
+            amt = builder.resourceAmount("STABLES");
+            num_stables.setText(amt);
+            buildstables.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    TextView num_stables = getActivity().findViewById(R.id.num_stables);
+                    String str = num_stables.getText().toString();
+                    if(str == ""){
+                        str = "0";
+                    }
+                    int num = Integer.parseInt(str);
+                    EditText customstables = getActivity().findViewById(R.id.customstables);
+                    int amt;
+                    try {
+                        amt = Integer.parseInt(customstables.getText().toString());
+                    } catch (NumberFormatException e) {
+                        amt = 0;
+                    }
+                    num+= amt;
+                    boolean build = builder.buildStables(amt);
+                    if(build){
+                        num_stables.setText(""+num);
+                        num_stables.invalidate();
+                        num_stables.requestLayout();
+                    }
+                }
+            });
+        }
+        else {
             view.findViewById(R.id.buildstables).setVisibility(View.GONE);
             view.findViewById(R.id.num_stables).setVisibility(View.GONE);
             view.findViewById(R.id.customstables).setVisibility(View.GONE);
@@ -305,7 +360,12 @@ public class ECIbuildings extends Fragment {
                 }
                 int num = Integer.parseInt(str);
                 EditText custombarn = getActivity().findViewById(R.id.custombarn);
-                int amt = Integer.parseInt(custombarn.getText().toString());
+                int amt;
+                try {
+                    amt = Integer.parseInt(custombarn.getText().toString());
+                } catch (NumberFormatException e) {
+                    amt = 0;
+                }
                 num+= amt;
                 boolean build = builder.buildBarn(amt);
                 if(build){
@@ -329,7 +389,12 @@ public class ECIbuildings extends Fragment {
                 }
                 int num = Integer.parseInt(str);
                 EditText customwoodstockpiles = getActivity().findViewById(R.id.customwoodstockpile);
-                int amt = Integer.parseInt(customwoodstockpiles.getText().toString());
+                int amt;
+                try {
+                    amt = Integer.parseInt(customwoodstockpiles.getText().toString());
+                } catch (NumberFormatException e) {
+                    amt = 0;
+                }
                 num+= amt;
                 boolean build = builder.buildWoodStockpile(amt);
                 if(build){
@@ -354,7 +419,12 @@ public class ECIbuildings extends Fragment {
                 }
                 int num = Integer.parseInt(str);
                 EditText customstoenstockpiles = getActivity().findViewById(R.id.customstonestockpile);
-                int amt = Integer.parseInt(customstoenstockpiles.getText().toString());
+                int amt;
+                try {
+                    amt = Integer.parseInt(customstoenstockpiles.getText().toString());
+                } catch (NumberFormatException e) {
+                    amt = 0;
+                }
                 num+= amt;
                 boolean build = builder.buildStoneStockpile(amt);
                 if(build){
@@ -402,5 +472,6 @@ public class ECIbuildings extends Fragment {
         boolean ECI();
         void toast(String string);
         String resourceAmount(String resource);
+        boolean checkUpgrade(String upgrade);
     }
 }

@@ -222,6 +222,26 @@ public class buildings extends Fragment {
                     }
                 }
             });
+
+        }
+        else{
+            view.findViewById(R.id.buildcottage).setVisibility(View.GONE);
+            view.findViewById(R.id.num_cottage).setVisibility(View.GONE);
+            view.findViewById(R.id.buildhouse).setVisibility(View.GONE);
+            view.findViewById(R.id.num_house).setVisibility(View.GONE);
+            view.findViewById(R.id.buildmansion).setVisibility(View.GONE);
+            view.findViewById(R.id.num_mansion).setVisibility(View.GONE);
+            view.findViewById(R.id.buildtannery).setVisibility(View.GONE);
+            view.findViewById(R.id.num_tannery).setVisibility(View.GONE);
+            view.findViewById(R.id.buildsmithy).setVisibility(View.GONE);
+            view.findViewById(R.id.num_smithy).setVisibility(View.GONE);
+            view.findViewById(R.id.buildapothecary).setVisibility(View.GONE);
+            view.findViewById(R.id.num_apothecary).setVisibility(View.GONE);
+            view.findViewById(R.id.buildbarracks).setVisibility(View.GONE);
+            view.findViewById(R.id.num_barracks).setVisibility(View.GONE);
+
+        }
+        if(builder.checkUpgrade("HORSEBACKRIDING")){
             Button buildstables = view.findViewById(R.id.buildstables);
             TextView num_stables = view.findViewById(R.id.num_stables);
             amt = builder.resourceAmount("STABLES");
@@ -245,21 +265,7 @@ public class buildings extends Fragment {
                 }
             });
         }
-        else{
-            view.findViewById(R.id.buildcottage).setVisibility(View.GONE);
-            view.findViewById(R.id.num_cottage).setVisibility(View.GONE);
-            view.findViewById(R.id.buildhouse).setVisibility(View.GONE);
-            view.findViewById(R.id.num_house).setVisibility(View.GONE);
-            view.findViewById(R.id.buildmansion).setVisibility(View.GONE);
-            view.findViewById(R.id.num_mansion).setVisibility(View.GONE);
-            view.findViewById(R.id.buildtannery).setVisibility(View.GONE);
-            view.findViewById(R.id.num_tannery).setVisibility(View.GONE);
-            view.findViewById(R.id.buildsmithy).setVisibility(View.GONE);
-            view.findViewById(R.id.num_smithy).setVisibility(View.GONE);
-            view.findViewById(R.id.buildapothecary).setVisibility(View.GONE);
-            view.findViewById(R.id.num_apothecary).setVisibility(View.GONE);
-            view.findViewById(R.id.buildbarracks).setVisibility(View.GONE);
-            view.findViewById(R.id.num_barracks).setVisibility(View.GONE);
+        else {
             view.findViewById(R.id.buildstables).setVisibility(View.GONE);
             view.findViewById(R.id.num_stables).setVisibility(View.GONE);
         }
@@ -367,5 +373,6 @@ public class buildings extends Fragment {
         boolean ECI();
         void toast(String string);
         String resourceAmount(String resource);
+        boolean checkUpgrade(String upgrade);
     }
 }

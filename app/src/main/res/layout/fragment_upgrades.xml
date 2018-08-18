@@ -7,11 +7,43 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <TableLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:stretchColumns="0,1,2"
-        android:background="?android:windowBackground">
+        android:layout_height="match_parent">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:windowBackground"
+            android:stretchColumns="0,1,2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/skinning"
+                        android:layout_width="100dp"
+                        android:layout_height="32dp"
+                        android:layout_weight="1"
+                        android:text="Skinning"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="Farmers can collect skins" />
+
+                    <TextView
+                        android:id="@+id/skinning_cost"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Cost: 10 skins" />
+                </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -19,252 +51,736 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/skinning"
+                    android:id="@+id/harvesting"
                     android:layout_width="100dp"
                     android:layout_height="32dp"
                     android:layout_weight="1"
-                    android:text="Skinning"
+                    android:text="Harvesting"
                     android:textSize="10sp" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/textView2"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="Farmers can collect skins" />
+                    android:text="Lumberjacks can collect herbs" />
 
                 <TextView
-                    android:id="@+id/skinning_cost"
+                    android:id="@+id/harvesting_cost"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Cost: 10 skins" />
+                    android:text="Cost: 10 herbs" />
             </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/harvesting"
-                android:layout_width="100dp"
-                android:layout_height="32dp"
-                android:layout_weight="1"
-                android:text="Harvesting"
-                android:textSize="10sp" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="200dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="Lumberjacks can collect herbs" />
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/harvesting_cost"
-                android:layout_width="100dp"
+                <Button
+                    android:id="@+id/prospecting"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:text="Prospecting"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Stonemasons can collect ore" />
+
+                <TextView
+                    android:id="@+id/prospecting_cost"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Cost: 10 ore" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Cost: 10 herbs" />
-        </LinearLayout>
+                android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                <Button
+                    android:id="@+id/masonry"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:text="Masonry"
+                    android:textSize="10sp" />
 
-            <Button
-                android:id="@+id/prospecting"
-                android:layout_width="100dp"
-                android:layout_height="32dp"
-                android:layout_weight="1"
-                android:text="Prospecting"
-                android:textSize="10sp" />
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Unlock more buildings and upgrades" />
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="200dp"
+                <TextView
+                    android:id="@+id/masonry_cost"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Cost: 100 wood, 100 stone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="Stonemasons can collect ore" />
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/prospecting_cost"
-                android:layout_width="100dp"
+                <Button
+                    android:id="@+id/domestication"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:text="Domestication"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Increase farmer output" />
+
+                <TextView
+                    android:id="@+id/skinning_cost2"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Cost: 20 leather" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Cost: 10 ore" />
-        </LinearLayout>
+                android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                <Button
+                    android:id="@+id/ploughshares"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:text="Ploughshares"
+                    android:textSize="10sp" />
 
-            <Button
-                android:id="@+id/masonry"
-                android:layout_width="100dp"
-                android:layout_height="32dp"
-                android:layout_weight="1"
-                android:text="Masonry"
-                android:textSize="10sp" />
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Increase farmer output" />
 
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="200dp"
+                <TextView
+                    android:id="@+id/skinning_cost3"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Cost: 20 metal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="Unlock more buildings and upgrades" />
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/masonry_cost"
-                android:layout_width="100dp"
+                <Button
+                    android:id="@+id/irrigation"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:text="Irrigation"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Increase farmer output" />
+
+                <TextView
+                    android:id="@+id/skinning_cost4"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Cost: 500 wood, 200 stone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Cost: 100 wood, 100 stone" />
-        </LinearLayout>
+                android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                <Button
+                    android:id="@+id/horsebackriding"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:text="Horseback Riding"
+                    android:textSize="10sp" />
 
-            <Button
-                android:id="@+id/domestication"
-                android:layout_width="100dp"
-                android:layout_height="32dp"
-                android:layout_weight="1"
-                android:text="Domestication"
-                android:textSize="10sp" />
+                <TextView
+                    android:id="@+id/horsebackridingtv"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Unlock csvslry and stables" />
 
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="200dp"
+                <TextView
+                    android:id="@+id/horsebackriding_cost"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Cost: 500 wood, 500 stone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="Increase farmer output" />
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/skinning_cost2"
-                android:layout_width="100dp"
+                <Button
+                    android:id="@+id/construction"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:text="Construction"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Unlock more buildings and upgrades" />
+
+                <TextView
+                    android:id="@+id/skinning_cost5"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Cost: 1000 wood, 1000 stone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Cost: 20 leather" />
-        </LinearLayout>
+                android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                <Button
+                    android:id="@+id/granaries"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:text="Granaries"
+                    android:textSize="10sp" />
 
-            <Button
-                android:id="@+id/ploughshares"
-                android:layout_width="100dp"
-                android:layout_height="32dp"
-                android:layout_weight="1"
-                android:text="Ploughshares"
-                android:textSize="10sp" />
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Barns store double the amount of food" />
 
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="200dp"
+                <TextView
+                    android:id="@+id/skinning_cost6"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Cost: 1000 wood, 1000 stone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="Increase farmer output" />
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/skinning_cost3"
-                android:layout_width="100dp"
+                <Button
+                    android:id="@+id/tenements"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:text="Tenements"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Houses can hold +2" />
+
+                <TextView
+                    android:id="@+id/skinning_cost7"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Cost: 200 food, 500 wood, 500 stone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Cost: 20 metal" />
-        </LinearLayout>
+                android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                <Button
+                    android:id="@+id/basicweaponry"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:text="Basic Weaponry"
+                    android:textSize="10sp" />
 
-            <Button
-                android:id="@+id/irrigation"
-                android:layout_width="100dp"
-                android:layout_height="32dp"
-                android:layout_weight="1"
-                android:text="Irrigation"
-                android:textSize="10sp" />
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Improve soldiers" />
 
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="200dp"
+                <TextView
+                    android:id="@+id/skinning_cost8"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Cost: 500 wood, 500 metal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="Increase farmer output" />
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/skinning_cost4"
-                android:layout_width="100dp"
+                <Button
+                    android:id="@+id/basicshields"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:text="Basic Shields"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Improve soldiers" />
+
+                <TextView
+                    android:id="@+id/skinning_cost9"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Cost: 500 wood, 500 leather" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Cost: 500 wood, 200 stone" />
-        </LinearLayout>
+                android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                <Button
+                    android:id="@+id/palisade"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:text="Palisade"
+                    android:textSize="10sp" />
 
-            <Button
-                android:id="@+id/construction"
-                android:layout_width="100dp"
-                android:layout_height="32dp"
-                android:layout_weight="1"
-                android:text="Construction"
-                android:textSize="10sp" />
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Enemy soldiers do less damage" />
 
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_width="200dp"
+                <TextView
+                    android:id="@+id/skinning_cost10"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Cost: 2000 wood, 1000 stone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="Unlock more buildings and upgrades" />
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/skinning_cost5"
-                android:layout_width="100dp"
+                <Button
+                    android:id="@+id/butchering"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:text="Butchering"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Farmers collect more skins" />
+
+                <TextView
+                    android:id="@+id/skinning_cost11"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Cost: 100 leather" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Cost: 1000 wood, 1000 stone" />
-        </LinearLayout>
+                android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                <Button
+                    android:id="@+id/gardening"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:text="Gardening"
+                    android:textSize="10sp" />
 
-            <Button
-                android:id="@+id/granaries"
-                android:layout_width="100dp"
-                android:layout_height="32dp"
-                android:layout_weight="1"
-                android:text="Granaries"
-                android:textSize="10sp" />
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Lumberjacks collect more herbs" />
 
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="200dp"
+                <TextView
+                    android:id="@+id/skinning_cost12"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Cost: 100 piety" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="Barns store double the amount of food" />
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/skinning_cost6"
-                android:layout_width="100dp"
+                <Button
+                    android:id="@+id/extraction"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:text="Extraction"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/textView17"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Stonemasons collect more ore" />
+
+                <TextView
+                    android:id="@+id/skinning_cost13"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Cost: 100 metal" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Cost: 1000 wood, 1000 stone" />
-        </LinearLayout>
+                android:orientation="horizontal">
 
-    </TableLayout>
+                <Button
+                    android:id="@+id/architecture"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:text="Architecture"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/architecturetv"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Unlock more buildings and upgrades" />
+
+                <TextView
+                    android:id="@+id/architecture_cost"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Cost: 10000 wood, 10000 stone" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/flensing"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:text="Flensing"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/flensingtv"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Collect more skins" />
+
+                <TextView
+                    android:id="@+id/flensing_cost"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Cost: 1000 metal" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/macerating"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:text="Macerating"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/maceratingtv"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Collect more ore" />
+
+                <TextView
+                    android:id="@+id/macerating_cost"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Cost: 500 leather, 500 stone" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/croprotation"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:text="Crop Rotation"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/croprotationtv"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Increase farmer food output" />
+
+                <TextView
+                    android:id="@+id/croprotation_cost"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Cost: 5000 herbs, 2000 piety" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/selectivebreeding"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:text="Selective Breeding"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/selectivebreedingtv"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Increase farmer food output" />
+
+                <TextView
+                    android:id="@+id/selectivebreeding_cost"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Cost: 5000 skins, 2000 piety" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/fertilizers"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:text="Fertilizers"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/fertilizerstv"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Increase farmer food output" />
+
+                <TextView
+                    android:id="@+id/fertilizers_cost"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Cost: 5000 ore, 2000 piety" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/slums"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:text="Slums"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/slumstv"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Houses can hold +2" />
+
+                <TextView
+                    android:id="@+id/slums_cost"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Cost: 500 food, 1000 wood, 1000 stone" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/e1"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:visibility="invisible"
+                    android:text="Extraction"
+                    android:textSize="10sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/e2"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:visibility="invisible"
+                    android:text="Extraction"
+                    android:textSize="10sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/e3"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:visibility="invisible"
+                    android:text="Extraction"
+                    android:textSize="10sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/e4"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:visibility="invisible"
+                    android:text="Extraction"
+                    android:textSize="10sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/e5"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:visibility="invisible"
+                    android:text="Extraction"
+                    android:textSize="10sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/e6"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:visibility="invisible"
+                    android:text="Extraction"
+                    android:textSize="10sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/e7"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:visibility="invisible"
+                    android:text="Extraction"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+        </TableLayout>
+    </ScrollView>
 
 </FrameLayout>

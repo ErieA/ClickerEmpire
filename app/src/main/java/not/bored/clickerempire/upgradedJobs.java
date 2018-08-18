@@ -55,7 +55,6 @@ public class upgradedJobs extends Fragment {
                                 stonemasons.setText(s);
                             }
                             catch (NullPointerException e) {
-                                office.toast("Something fishy is going on");
                                 e.printStackTrace();
                             }
                         }

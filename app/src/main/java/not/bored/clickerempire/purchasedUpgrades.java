@@ -4,9 +4,14 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.util.Iterator;
+import java.util.Set;
 
 public class purchasedUpgrades extends AppCompatActivity {
     GameSave gameSave = GameSave.getGameSave(this);
@@ -19,52 +24,18 @@ public class purchasedUpgrades extends AppCompatActivity {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
         getWindow().setLayout(((int) (width*.8)), ((int) (height*.8)));
-        LinearLayout linearLayout = findViewById(R.id.purchased);
         Intent intent = getIntent();
-        if(intent.getStringExtra(gameSave.SKINNING) != null){
+        LinearLayout layout = findViewById(R.id.purchased);
+        Bundle bundle = intent.getExtras();
+        Set<String> keys = bundle.keySet();
+        Iterator<String> it = keys.iterator();
+        while (it.hasNext()) {
+            String key = it.next();
             TextView tv = new TextView(this);
-            tv.setText("Skinning");
-            linearLayout.addView(tv);
-        }
-        if(intent.getStringExtra(gameSave.HARVESTING) != null){
-            TextView tv = new TextView(this);
-            tv.setText("Harvesting");
-            linearLayout.addView(tv);
-        }
-        if(intent.getStringExtra(gameSave.PROSPECTING) != null){
-            TextView tv = new TextView(this);
-            tv.setText("Prospecting");
-            linearLayout.addView(tv);
-        }
-        if(intent.getStringExtra(gameSave.MASONRY) != null){
-            TextView tv = new TextView(this);
-            tv.setText("Masonry");
-            linearLayout.addView(tv);
-        }
-        if(intent.getStringExtra(gameSave.DOMESTICATION) != null){
-            TextView tv = new TextView(this);
-            tv.setText("Domestication");
-            linearLayout.addView(tv);
-        }
-        if(intent.getStringExtra(gameSave.PLOUGHSHARES) != null){
-            TextView tv = new TextView(this);
-            tv.setText("Ploughshares");
-            linearLayout.addView(tv);
-        }
-        if(intent.getStringExtra(gameSave.IRRIGATION) != null){
-            TextView tv = new TextView(this);
-            tv.setText("Irrigation");
-            linearLayout.addView(tv);
-        }
-        if(intent.getStringExtra(gameSave.CONSTRUCTION) != null){
-            TextView tv = new TextView(this);
-            tv.setText("Construction");
-            linearLayout.addView(tv);
-        }
-        if(intent.getStringExtra(gameSave.GRANARIES) != null){
-            TextView tv = new TextView(this);
-            tv.setText("Granaries");
-            linearLayout.addView(tv);
+            String txt = key.substring(0,1) + key.toLowerCase().substring(1);
+            tv.setText("  " +txt);
+            tv.setTextSize(16);
+            layout.addView(tv);
         }
     }
 }

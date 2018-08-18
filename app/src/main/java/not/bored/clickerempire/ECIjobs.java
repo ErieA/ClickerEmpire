@@ -49,7 +49,6 @@ public class ECIjobs extends Fragment {
                                 stonemasons.setText(s);
                             }
                             catch (NullPointerException e) {
-                                office.toast("Something fishy is going on");
                                 e.printStackTrace();
                             }
                         }
@@ -87,10 +86,8 @@ public class ECIjobs extends Fragment {
                 try{
                     amt = Integer.parseInt(farmer.getText().toString());
                 } catch (NumberFormatException e){
-                    office.toast("exception");
                     amt = 0;
                 }
-                office.toast(""+ amt);
                 office.addFarmer(amt);
                 TextView farmers = getActivity().findViewById(R.id.farmer);
                 String f = "Farmers: " + office.farmers();

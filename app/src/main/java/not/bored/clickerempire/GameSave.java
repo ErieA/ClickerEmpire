@@ -67,6 +67,21 @@ public class GameSave extends SQLiteOpenHelper {
     public static final String SOLDIERS = "SOLDIERS";
     public static final String CAVALRY = "CAVALRY";
     public static final String OCCUPIEDLAND = "OCCUPIEDLAND";
+    public static final String BASICWEAPONRY = "BASICWEAPONRY";
+    public static final String BASICSHIELDS = "BASICSHIELDS";
+    public static final String TENEMENTS = "TENEMENTS";
+    public static final String PALISADE = "PALISADE";
+    public static final String BUTCHERING = "BUTCHERING";
+    public static final String GARDENING = "GARDENING";
+    public static final String EXTRACTION = "EXTRACTION";
+    public static final String HORSEBACKRIDING = "HORSEBACKRIDING";
+    public static final String ARCHITECTURE = "ARCHITECTURE";
+    public static final String FLENSING = "FLENSING";
+    public static final String MACERATING = "MACERATING";
+    public static final String CROPROTATION = "CROPROTATION";
+    public static final String SELECTIVEBREEDING = "SELECTIVEBREEDING";
+    public static final String FERTILIZERS = "FERTILIZERS";
+    public static final String SLUMS = "SLUMS";
 
 
     private static GameSave gameSave;
@@ -134,7 +149,22 @@ public class GameSave extends SQLiteOpenHelper {
                 "STABLES INTEGER NOT NULL," +
                 "SOLDIERS INTEGER NOT NULL," +
                 "CAVALRY INTEGER NOT NULL," +
-                "OCCUPIEDLAND INTEGER NOT NULL)";
+                "OCCUPIEDLAND INTEGER NOT NULL," +
+                "BASICWEAPONRY INTEGER NOT NULL," +
+                "BASICSHIELDS INTEGER NOT NULL," +
+                "TENEMENTS INTEGER NOT NULL," +
+                "PALISADE INTEGER NOT NULL," +
+                "BUTCHERING INTEGER NOT NULL," +
+                "GARDENING INTEGER NOT NULL," +
+                "EXTRACTION INTEGER NOT NULL," +
+                "HORSEBACKRIDING INTEGER NOT NULL," +
+                "ARCHITECTURE INTEGER NOT NULL," +
+                "FLENSING INTEGER NOT NULL," +
+                "MACERATING INTEGER NOT NULL," +
+                "CROPROTATION INTEGER NOT NULL," +
+                "SELECTIVEBREEDING INTEGER NOT NULL," +
+                "FERTILIZERS INTEGER NOT NULL," +
+                "SLUMS INTEGER NOT NULL)";
         db.execSQL(sql);
         sql = "INSERT INTO " + RESOURCES + " ( CIVILIZATION_NAME," +
                 " FOOD," +
@@ -184,7 +214,22 @@ public class GameSave extends SQLiteOpenHelper {
                 " STABLES," +
                 " SOLDIERS," +
                 " CAVALRY," +
-                " OCCUPIEDLAND) " +
+                " OCCUPIEDLAND," +
+                " BASICWEAPONRY," +
+                " BASICSHIELDS," +
+                " TENEMENTS," +
+                " PALISADE," +
+                " BUTCHERING," +
+                " GARDENING," +
+                " EXTRACTION," +
+                " HORSEBACKRIDING," +
+                " ARCHITECTURE," +
+                " FLENSING," +
+                " MACERATING," +
+                " CROPROTATION," +
+                " SELECTIVEBREEDING," +
+                " FERTILIZERS," +
+                " SLUMS) " +
                 "VALUES ('Clicker'," +
                 "'0'," +
                 "'200'," +
@@ -230,6 +275,21 @@ public class GameSave extends SQLiteOpenHelper {
                 "'0'," +
                 "'0'," +
                 "'1000'," +
+                "'0'," +
+                "'0'," +
+                "'0'," +
+                "'0'," +
+                "'0'," +
+                "'0'," +
+                "'0'," +
+                "'0'," +
+                "'0'," +
+                "'0'," +
+                "'0'," +
+                "'0'," +
+                "'0'," +
+                "'0'," +
+                "'0'," +
                 "'0'," +
                 "'0'," +
                 "'0'," +
@@ -459,7 +519,23 @@ public class GameSave extends SQLiteOpenHelper {
             buffer.append(data.getString(46));buffer.append(",");
             buffer.append(data.getString(47));buffer.append(",");
             buffer.append(data.getString(48));buffer.append(",");
-            buffer.append(data.getString(49));
+            buffer.append(data.getString(49));buffer.append(",");
+            buffer.append(data.getString(50));buffer.append(",");
+            buffer.append(data.getString(51));buffer.append(",");
+            buffer.append(data.getString(52));buffer.append(",");
+            buffer.append(data.getString(53));buffer.append(",");
+            buffer.append(data.getString(54));buffer.append(",");
+            buffer.append(data.getString(55));buffer.append(",");
+            buffer.append(data.getString(56));buffer.append(",");
+            buffer.append(data.getString(57));buffer.append(",");
+            buffer.append(data.getString(58));buffer.append(",");
+            buffer.append(data.getString(59));buffer.append(",");
+            buffer.append(data.getString(60));buffer.append(",");
+            buffer.append(data.getString(61));buffer.append(",");
+            buffer.append(data.getString(62));buffer.append(",");
+            buffer.append(data.getString(63));buffer.append(",");
+            buffer.append(data.getString(64));
+
         }
         data.close();
         Map<String, String> map = new HashMap<String, String>();
@@ -513,6 +589,22 @@ public class GameSave extends SQLiteOpenHelper {
         map.put(SOLDIERS, save[46]);
         map.put(CAVALRY, save[47]);
         map.put(OCCUPIEDLAND, save[48]);
+        map.put(BASICWEAPONRY, save[49]);
+        map.put(BASICSHIELDS, save[50]);
+        map.put(TENEMENTS, save[51]);
+        map.put(PALISADE, save[52]);
+        map.put(BUTCHERING, save[53]);
+        map.put(GARDENING, save[54]);
+        map.put(EXTRACTION, save[55]);
+        map.put(HORSEBACKRIDING, save[56]);
+        map.put(ARCHITECTURE, save[57]);
+        map.put(FLENSING, save[58]);
+        map.put(MACERATING, save[59]);
+        map.put(CROPROTATION, save[60]);
+        map.put(SELECTIVEBREEDING, save[61]);
+        map.put(FERTILIZERS, save[62]);
+        map.put(SLUMS, save[63]);
+
         return map;
     }
 }
