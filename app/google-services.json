@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "942787491657",
+    "firebase_url": "https://clickerempire.firebaseio.com",
+    "project_id": "clickerempire",
+    "storage_bucket": "clickerempire.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:942787491657:android:d736e09186ee3fd1",
+        "android_client_info": {
+          "package_name": "not.bored.clickerempire"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "942787491657-hq56ak1mqjqfrcdhrk172hn47kjm2dq7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "not.bored.clickerempire",
+            "certificate_hash": "9d27229bb62a0dfa3487f3ce1bff34df32a9283d"
+          }
+        },
+        {
+          "client_id": "942787491657-9ju879esv6cjvrq3hdb4709e5t5ctb63.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALhMhHtXCveoROQy5JCUrKD0x-3fIrsgk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "942787491657-9ju879esv6cjvrq3hdb4709e5t5ctb63.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      },
+      "admob_app_id": "ca-app-pub-2519476145136157~3502779246"
+    }
+  ],
+  "configuration_version": "1"
+}

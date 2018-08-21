@@ -17,232 +17,245 @@
         android:layout_height="match_parent">
 
 
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp">
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:background="?attr/colorPrimary"
-                android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
-                <TextView
-                    android:id="@+id/population"
-                    android:layout_width="wrap_content"
-                    android:layout_height="28dp"
-                    android:text="Population : 0/0"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-                <TextView
-                    android:id="@+id/land"
-                    android:layout_width="wrap_content"
-                    android:layout_height="28dp"
-                    android:text="Land : 0/100"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-                <TextView
-                    android:id="@+id/unemployed"
-                    android:layout_width="wrap_content"
-                    android:layout_height="28dp"
-                    android:text="Unemployed: 0"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:orientation="vertical">
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:background="?attr/colorPrimary"
+                    android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
-                    <Button
-                        android:id="@+id/create_worker"
-                        android:layout_width="144dp"
-                        android:layout_height="38dp"
-                        android:layout_weight="1"
-                        android:text="Create Workers" />
-
-                    <Button
-                        android:id="@+id/substract_worker"
-                        android:layout_width="38dp"
-                        android:layout_height="38dp"
-                        android:layout_weight="1"
-                        android:text="-" />
-
-                    <EditText
-                        android:id="@+id/num_workers"
+                <TextView
+                        android:id="@+id/population"
                         android:layout_width="wrap_content"
-                        android:layout_height="38dp"
-                        android:layout_weight="1"
-                        android:inputType="number"
-                        android:maxLines="1"
-                        android:text="1"
-                        android:textAlignment="center"
-                        android:textAllCaps="false"
-                        android:textAppearance="@style/TextAppearance.AppCompat"
+                        android:layout_height="28dp"
+                        android:text="Population : 0/0"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                <TextView
+                        android:id="@+id/land"
+                        android:layout_width="wrap_content"
+                        android:layout_height="28dp"
+                        android:text="Land : 0/100"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                <TextView
+                        android:id="@+id/unemployed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="28dp"
+                        android:text="Unemployed: 0"
                         android:textColor="@android:color/black"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
-                    <Button
-                        android:id="@+id/add_worker"
-                        android:layout_width="38dp"
-                        android:layout_height="38dp"
-                        android:layout_weight="1"
-                        android:text="+" />
-                </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <Button
-                    android:id="@+id/collect_food"
-                    android:layout_width="144dp"
-                    android:layout_height="38dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:text="Collect Food" />
-
-                <TextView
-                    android:id="@+id/num_food"
-                    android:layout_width="wrap_content"
-                    android:layout_height="38dp"
-                    android:layout_toRightOf="@+id/collect_food"
-                    android:text="0/200"
-                    android:textAppearance="@style/TextAppearance.AppCompat"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/FOOD"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:text="0/s" />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <Button
-                    android:id="@+id/collect_wood"
-                    android:layout_width="144dp"
-                    android:layout_height="38dp"
-                    android:layout_alignParentLeft="true"
-                    android:text="Collect Wood" />
-
-                <TextView
-                    android:id="@+id/num_wood"
-                    android:layout_width="wrap_content"
-                    android:layout_height="38dp"
-                    android:layout_toRightOf="@+id/collect_wood"
-                    android:text="0/200"
-                    android:textAppearance="@style/TextAppearance.AppCompat"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/WOOD"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:text="0/s" />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <Button
-                    android:id="@+id/collect_stone"
-                    android:layout_width="144dp"
-                    android:layout_height="38dp"
-                    android:layout_alignParentLeft="true"
-                    android:text="Collect Stone" />
-
-                <TextView
-                    android:id="@+id/num_stone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="38dp"
-                    android:layout_toRightOf="@+id/collect_stone"
-                    android:text="0/200"
-                    android:textAppearance="@style/TextAppearance.AppCompat"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/STONE"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:text="0/s" />
-            </RelativeLayout>
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/buildings"
-                    android:layout_width="100dp"
-                    android:layout_height="38dp"
-                    android:layout_weight="1"
-                    android:text="Buildings"
-                    android:textSize="10sp" />
-
-                <Button
-                    android:id="@+id/specialresources"
-                    android:layout_width="100dp"
-                    android:layout_height="38dp"
-                    android:layout_weight="1"
-                    android:text="S.Resources"
-                    android:textSize="10sp" />
-
-                <Button
-                    android:id="@+id/jobs"
-                    android:layout_width="100dp"
-                    android:layout_height="38dp"
-                    android:layout_weight="1"
-                    android:text="Jobs"
-                    android:textSize="10sp" />
-
-                <Button
-                    android:id="@+id/upgrades"
-                    android:layout_width="100dp"
-                    android:layout_height="38dp"
-                    android:layout_weight="1"
-                    android:text="Upgrades"
-                    android:textSize="10sp" />
-
-                <Button
-                    android:id="@+id/conquest"
-                    android:layout_width="100dp"
-                    android:layout_height="38dp"
-                    android:layout_weight="1"
-                    android:text="Conquest"
-                    android:textSize="10sp" />
-                </LinearLayout>
-
-            <fragment
-                android:id="@+id/fragment"
-                android:name="not.bored.clickerempire.jobs"
-                android:layout_width="match_parent"
-                android:layout_height="405dp"
-                tools:layout="@layout/fragment_jobs" />
                 <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/create_worker"
+                            android:layout_width="144dp"
+                            android:layout_height="38dp"
+                            android:layout_weight="1"
+                            android:text="Create Workers" />
+
+                        <Button
+                            android:id="@+id/substract_worker"
+                            android:layout_width="38dp"
+                            android:layout_height="38dp"
+                            android:layout_weight="1"
+                            android:text="-" />
+
+                        <EditText
+                            android:id="@+id/num_workers"
+                            android:layout_width="wrap_content"
+                            android:layout_height="38dp"
+                            android:layout_weight="1"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:text="1"
+                            android:textAlignment="center"
+                            android:textAllCaps="false"
+                            android:textAppearance="@style/TextAppearance.AppCompat"
+                            android:textColor="@android:color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <Button
+                            android:id="@+id/add_worker"
+                            android:layout_width="38dp"
+                            android:layout_height="38dp"
+                            android:layout_weight="1"
+                            android:text="+" />
+                    </LinearLayout>
+                <TextView
+                    android:id="@+id/worker_cost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="28dp"
+                    android:text="Cost per 1 worker: 20 food"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center">
+                    android:layout_height="wrap_content">
+
                     <Button
-                        android:id="@+id/resetdb"
+                        android:id="@+id/collect_food"
+                        android:layout_width="144dp"
+                        android:layout_height="38dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:text="Collect Food" />
+
+                    <TextView
+                        android:id="@+id/num_food"
                         android:layout_width="wrap_content"
                         android:layout_height="38dp"
-                        android:text="reset"/>
+                        android:layout_toRightOf="@+id/collect_food"
+                        android:text="0/200"
+                        android:textAppearance="@style/TextAppearance.AppCompat"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/FOOD"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="0/s" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/collect_wood"
+                        android:layout_width="144dp"
+                        android:layout_height="38dp"
+                        android:layout_alignParentLeft="true"
+                        android:text="Collect Wood" />
+
+                    <TextView
+                        android:id="@+id/num_wood"
+                        android:layout_width="wrap_content"
+                        android:layout_height="38dp"
+                        android:layout_toRightOf="@+id/collect_wood"
+                        android:text="0/200"
+                        android:textAppearance="@style/TextAppearance.AppCompat"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/WOOD"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="0/s" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/collect_stone"
+                        android:layout_width="144dp"
+                        android:layout_height="38dp"
+                        android:layout_alignParentLeft="true"
+                        android:text="Collect Stone" />
+
+                    <TextView
+                        android:id="@+id/num_stone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="38dp"
+                        android:layout_toRightOf="@+id/collect_stone"
+                        android:text="0/200"
+                        android:textAppearance="@style/TextAppearance.AppCompat"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/STONE"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="0/s" />
+                </RelativeLayout>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/buildings"
+                        android:layout_width="100dp"
+                        android:layout_height="38dp"
+                        android:layout_weight="1"
+                        android:text="Buildings"
+                        android:textSize="10sp" />
+
+                    <Button
+                        android:id="@+id/specialresources"
+                        android:layout_width="100dp"
+                        android:layout_height="38dp"
+                        android:layout_weight="1"
+                        android:text="S.Resources"
+                        android:textSize="10sp" />
+
+                    <Button
+                        android:id="@+id/jobs"
+                        android:layout_width="100dp"
+                        android:layout_height="38dp"
+                        android:layout_weight="1"
+                        android:text="Jobs"
+                        android:textSize="10sp" />
+
+                    <Button
+                        android:id="@+id/upgrades"
+                        android:layout_width="100dp"
+                        android:layout_height="38dp"
+                        android:layout_weight="1"
+                        android:text="Upgrades"
+                        android:textSize="10sp" />
+
+                    <Button
+                        android:id="@+id/conquest"
+                        android:layout_width="100dp"
+                        android:layout_height="38dp"
+                        android:layout_weight="1"
+                        android:text="Conquest"
+                        android:textSize="10sp" />
                 </LinearLayout>
+                <fragment
+                    android:id="@+id/fragment"
+                    android:name="not.bored.clickerempire.jobs"
+                    android:layout_width="match_parent"
+                    android:layout_height="405dp"
+                    tools:layout="@layout/fragment_jobs" />
+
             </LinearLayout>
+            <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/adView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                ads:adSize="BANNER"
+                ads:adUnitId="ca-app-pub-2519476145136157/5554227519">
+            </com.google.android.gms.ads.AdView>
+        </RelativeLayout>
 
     </FrameLayout>
 

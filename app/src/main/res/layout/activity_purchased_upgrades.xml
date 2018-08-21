@@ -6,9 +6,6 @@
     android:layout_height="match_parent"
     tools:context="not.bored.clickerempire.purchasedUpgrades">
 
-
-
-
     <LinearLayout
         android:id="@+id/purchased"
         android:layout_width="match_parent"

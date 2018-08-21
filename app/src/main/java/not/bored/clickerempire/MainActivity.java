@@ -16,13 +16,21 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import java.text.DecimalFormat;
 import java.util.Map;
 import java.util.Random;
@@ -43,6 +51,8 @@ public class MainActivity extends AppCompatActivity
     private DrawerLayout mDrawerLayout;
     DecimalFormat df = new DecimalFormat("0.0");
     DecimalFormat df2 = new DecimalFormat("0");
+    AdView mAdView;
+    private FirebaseAnalytics mFirebaseAnalytics;
     Thread thread = new Thread() {
         @Override
         public void run() {
@@ -92,6 +102,10 @@ public class MainActivity extends AppCompatActivity
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            workerCost = 20 + Integer.parseInt(gameSave.resourceAmount(gameSave.POPULATION))/4000;
+                            TextView wc = findViewById(R.id.worker_cost);
+                            String w = "Cost per worker: " + workerCost;
+                            wc.setText(w);
                             TextView land = findViewById(R.id.land);
                             String l = "Land: " + gameSave.resourceAmount(gameSave.OCCUPIEDLAND) + "/" + gameSave.resourceAmount(gameSave.LAND);
                             land.setText(l);
@@ -124,7 +138,6 @@ public class MainActivity extends AppCompatActivity
         Button collect_food = findViewById(R.id.collect_food);
         Button collect_wood = findViewById(R.id.collect_wood);
         Button collect_stone = findViewById(R.id.collect_stone);
-        Button reset = findViewById(R.id.resetdb);
         Button createWorkers = findViewById(R.id.create_worker);
         Button add_worker = findViewById(R.id.add_worker);
         Button substract_worker = findViewById(R.id.substract_worker);
@@ -134,14 +147,6 @@ public class MainActivity extends AppCompatActivity
         final Button jobs = findViewById(R.id.jobs);
         final Button specialRes = findViewById(R.id.specialresources);
         final Button conquest = findViewById(R.id.conquest);
-        reset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                gameSave.resetdb();
-                ActionBar actionbar = getSupportActionBar();
-                setScreen(actionbar);
-            }
-        });
         collect_food.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -317,6 +322,15 @@ public class MainActivity extends AppCompatActivity
                 else if (id == R.id.resume) {
                     resume();
                 }
+                else if (id == R.id.reset){
+                    gameSave.resetdb();
+                    ActionBar actionbar = getSupportActionBar();
+                    setScreen(actionbar);
+                }
+                else if (id == R.id.instructions){
+                    Intent intent = new Intent(MainActivity.this,Instructions.class);
+                    startActivity(intent);
+                }
                 else if (id == R.id.enablecustomincrememtns) {
                     NavigationView navigationView = findViewById(R.id.nav_view);
                     Menu menu = navigationView.getMenu();
@@ -486,6 +500,18 @@ public class MainActivity extends AppCompatActivity
         changeFragment(jobs);
         thread.start();
         conquestthread.start();
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        MobileAds.initialize(this,"ca-app-pub-2519476145136157~3502779246");
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        int height = dm.heightPixels;
+        Fragment frag = (getSupportFragmentManager().findFragmentById(R.id.fragment));
+        ViewGroup.LayoutParams params = frag.getView().getLayoutParams();
+        params.height = (int)Math.floor(height * .45);
+        frag.getView().setLayoutParams(params);
     }
 
     public void pause(){
@@ -556,6 +582,10 @@ public class MainActivity extends AppCompatActivity
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
+                                    workerCost = 20 + Integer.parseInt(gameSave.resourceAmount(gameSave.POPULATION))/4000;
+                                    TextView wc = findViewById(R.id.worker_cost);
+                                    String w = "Cost per worker: " + workerCost;
+                                    wc.setText(w);
                                     TextView land = findViewById(R.id.land);
                                     String l = "Land: " + gameSave.resourceAmount(gameSave.OCCUPIEDLAND) + "/" + gameSave.resourceAmount(gameSave.LAND);
                                     land.setText(l);
@@ -613,9 +643,9 @@ public class MainActivity extends AppCompatActivity
     public void setScreen(ActionBar actionBar) {
         String pop = "Population: " + gameSave.resourceAmount(gameSave.POPULATION) + "/" + gameSave.resourceAmount(gameSave.POPULATION_MAX);
         String unemployed = "Unemployed: " + gameSave.resourceAmount(gameSave.UNEMPLOYED);
-        String food = gameSave.resourceAmount(gameSave.FOOD) + "/" + gameSave.resourceAmount(gameSave.FOOD_MAX);
-        String wood = gameSave.resourceAmount(gameSave.WOOD) + "/" + gameSave.resourceAmount(gameSave.WOOD_MAX);
-        String stone = gameSave.resourceAmount(gameSave.STONE) + "/" + gameSave.resourceAmount(gameSave.STONE_MAX);
+        String food = df.format(Double.parseDouble(gameSave.resourceAmount(gameSave.FOOD))) + "/" + df.format(Double.parseDouble(gameSave.resourceAmount(gameSave.FOOD_MAX)));
+        String wood = df.format(Double.parseDouble(gameSave.resourceAmount(gameSave.WOOD))) + "/" + df.format(Double.parseDouble(gameSave.resourceAmount(gameSave.WOOD_MAX)));
+        String stone = df.format(Double.parseDouble(gameSave.resourceAmount(gameSave.STONE))) + "/" + df.format(Double.parseDouble(gameSave.resourceAmount(gameSave.STONE_MAX)));
         TextView poptv = findViewById(R.id.population);
         TextView unemployedtv = findViewById(R.id.unemployed);
         TextView foodtv = findViewById(R.id.num_food);
@@ -785,6 +815,8 @@ public class MainActivity extends AppCompatActivity
                 gameSave.set(gameSave.HEALERS,0);
                 gameSave.set(gameSave.BLACKSMITHS,0);
                 gameSave.set(gameSave.TANNERS,0);
+                gameSave.set(gameSave.CAVALRY,0);
+                gameSave.set(gameSave.SOLDIERS,0);
             }
             else{
                 if(Integer.parseInt(gameSave.resourceAmount(gameSave.POPULATION))>0){
@@ -912,18 +944,18 @@ public class MainActivity extends AppCompatActivity
         population.setText(pop);
     }
     public void collect(TextView tv, String res, double amount) {
-        String str_amt = tv.getText().toString();
-        String array[] = str_amt.split("/");
-        double max = Double.parseDouble(array[1]);
-        double current = Double.parseDouble(array[0]);
+        double max = Double.parseDouble(gameSave.resourceAmount(res+"_MAX"));
         double currentdb = Double.parseDouble(gameSave.resourceAmount(res));
-        if((!((current+amount)<0)) || (!((currentdb+amount)<0))){
+        if((!((currentdb+amount)<0)) && ((currentdb+amount)<=max)){
             gameSave.update(res, amount);
-            current = current + amount;
-            if(current<=max){
-                String new_val = "" + df.format(current) + "/" + df.format(max);
-                tv.setText(new_val);
-            }
+            currentdb = currentdb + amount;
+            String new_val = "" + df.format(currentdb) + "/" + df.format(max);
+            tv.setText(new_val);
+        }
+        else if((!((currentdb+amount)<0)) && ((currentdb+amount)>max)){
+            gameSave.set(res, max);
+            String new_val = "" + df.format(max) + "/" + df.format(max);
+            tv.setText(new_val);
         }
     }
     public void workerCollect(TextView tv, String res, double amount, TextView sp) {
@@ -951,10 +983,12 @@ public class MainActivity extends AppCompatActivity
                                 if(checkUpgrade(gameSave.BUTCHERING)){
                                     newamt += Math.ceil(newamt*.2);
                                 }
-                                if(checkUpgrade(gameSave.SKINS)){
+                                if(checkUpgrade(gameSave.FLENSING)){
                                     newamt += Math.ceil(newamt*.2);
                                 }
-                                gameSave.updateNoMax(gameSave.SKINS,newamt);
+                                if(newamt>0){
+                                    gameSave.updateNoMax(gameSave.SKINS,newamt);
+                                }
                             }
                             break;
                         case "WOOD":
@@ -962,7 +996,9 @@ public class MainActivity extends AppCompatActivity
                                 if(checkUpgrade(gameSave.GARDENING)){
                                     newamt += Math.ceil(newamt*.2);
                                 }
-                                gameSave.updateNoMax(gameSave.HERBS,newamt);
+                                if(newamt>0){
+                                    gameSave.updateNoMax(gameSave.HERBS,newamt);
+                                }
                             }
                             break;
                         case "STONE":
@@ -973,7 +1009,9 @@ public class MainActivity extends AppCompatActivity
                                 if(checkUpgrade(gameSave.MACERATING)){
                                     newamt += Math.ceil(newamt*.2);
                                 }
-                                gameSave.updateNoMax(gameSave.ORE,newamt);
+                                if(newamt>0){
+                                    gameSave.updateNoMax(gameSave.ORE,newamt);
+                                }
                             }
                             break;
                     }
@@ -1111,8 +1149,8 @@ public class MainActivity extends AppCompatActivity
         }
         else {
             return "United World";
-            //
         }
+        //galactic village... etc everything else but with galactic in front
     }
     public void WorkSpecialResource(int counter){
         int tanners = Integer.parseInt(gameSave.resourceAmount(gameSave.TANNERS));
@@ -1210,17 +1248,17 @@ public class MainActivity extends AppCompatActivity
             currentwood-=(2*amt);
             String new_val = "" + currentwood + "/" + max;
             String new_val_stone = "" + currentstone + "/" + maxstone;
-            int new_pop_max = Integer.parseInt(resourceAmount(gameSave.POPULATION_MAX));
-            new_pop_max = new_pop_max + amt;
-            String new_population_text = "Population: " + Integer.parseInt(resourceAmount(gameSave.POPULATION)) + "/" + new_pop_max;
-            population.setText(new_population_text);
-            num_wood.setText(new_val);
-            num_stone.setText(new_val_stone);
             gameSave.update(GameSave.WOOD, (-2*amt));
             gameSave.update(GameSave.STONE, (-2*amt));
             gameSave.updatemax(gameSave.POPULATION, amt);
             gameSave.createbuilding(gameSave.TENTS,amt);
             gameSave.updateNoMax(gameSave.OCCUPIEDLAND, amt);
+            int new_pop_max = Integer.parseInt(resourceAmount(gameSave.POPULATION_MAX));
+            new_pop_max = new_pop_max + amt;
+            String new_population_text = "Population: " + df2.format(Integer.parseInt(resourceAmount(gameSave.POPULATION))) + "/" + df2.format(new_pop_max);
+            population.setText(new_population_text);
+            num_wood.setText(new_val);
+            num_stone.setText(new_val_stone);
             return true;
         }
     }
@@ -1254,17 +1292,17 @@ public class MainActivity extends AppCompatActivity
             currentwood-=(20*amt);
             String new_val = "" + currentwood + "/" + max;
             String new_val_stone = "" + currentstone + "/" + maxstone;
-            int new_pop_max = Integer.parseInt(resourceAmount(gameSave.POPULATION_MAX));
-            new_pop_max = new_pop_max + amt;
-            String new_population_text = "Population: " + Integer.parseInt(resourceAmount(gameSave.POPULATION)) + "/" + new_pop_max;
-            population.setText(new_population_text);
-            num_wood.setText(new_val);
-            num_stone.setText(new_val_stone);
             gameSave.update(GameSave.WOOD, (-20*amt));
             gameSave.update(GameSave.STONE, (-10*amt));
             gameSave.updatemax(gameSave.POPULATION, (4*amt));
             gameSave.createbuilding(gameSave.HUTS,amt);
             gameSave.updateNoMax(gameSave.OCCUPIEDLAND, amt*2);
+            int new_pop_max = Integer.parseInt(resourceAmount(gameSave.POPULATION_MAX));
+            new_pop_max = new_pop_max + amt;
+            String new_population_text = "Population: " + df2.format(Integer.parseInt(resourceAmount(gameSave.POPULATION))) + "/" + df2.format(new_pop_max);
+            population.setText(new_population_text);
+            num_wood.setText(new_val);
+            num_stone.setText(new_val_stone);
             return true;
         }
     }
@@ -1298,17 +1336,17 @@ public class MainActivity extends AppCompatActivity
             currentwood-=(10*amt);
             String new_val = "" + currentwood + "/" + max;
             String new_val_stone = "" + currentstone + "/" + maxstone;
+            gameSave.update(GameSave.WOOD, (-20*amt));
+            gameSave.update(GameSave.STONE, (-10*amt));
+            gameSave.updatemax(gameSave.POPULATION, (8*amt));
+            gameSave.createbuilding(gameSave.COTTAGES,amt);
+            gameSave.updateNoMax(gameSave.OCCUPIEDLAND, amt*5);
             int new_pop_max = Integer.parseInt(resourceAmount(gameSave.POPULATION_MAX));
             new_pop_max = new_pop_max + amt;
-            String new_population_text = "Population: " + Integer.parseInt(resourceAmount(gameSave.POPULATION)) + "/" + new_pop_max;
+            String new_population_text = "Population: " + df2.format(Integer.parseInt(resourceAmount(gameSave.POPULATION))) + "/" + df2.format(new_pop_max);
             population.setText(new_population_text);
             num_wood.setText(new_val);
             num_stone.setText(new_val_stone);
-            gameSave.update(GameSave.WOOD, (-20*amt));
-            gameSave.update(GameSave.STONE, (-10*amt));
-            gameSave.updatemax(gameSave.POPULATION, (4*amt));
-            gameSave.createbuilding(gameSave.COTTAGES,amt);
-            gameSave.updateNoMax(gameSave.OCCUPIEDLAND, amt*5);
             return true;
         }
     }
@@ -1340,20 +1378,31 @@ public class MainActivity extends AppCompatActivity
             currentwood-=(100*amt);
             String new_val = "" + currentwood + "/" + max;
             String new_val_stone = "" + currentstone + "/" + maxstone;
-            int new_pop_max = Integer.parseInt(resourceAmount(gameSave.POPULATION_MAX));
-            new_pop_max = new_pop_max + amt;
-            if(checkUpgrade(gameSave.TENEMENTS)){
-                new_pop_max += 2;
+            int new_pop_max;
+            if(checkUpgrade(gameSave.TENEMENTS) && checkUpgrade(gameSave.SLUMS)){
+                gameSave.updatemax(gameSave.POPULATION, (54*amt));
+                new_pop_max = Integer.parseInt(resourceAmount(gameSave.POPULATION_MAX));
             }
-            String new_population_text = "Population: " + Integer.parseInt(resourceAmount(gameSave.POPULATION)) + "/" + new_pop_max;
+            else if(checkUpgrade(gameSave.SLUMS)){
+                gameSave.updatemax(gameSave.POPULATION, (52*amt));
+                new_pop_max = Integer.parseInt(resourceAmount(gameSave.POPULATION_MAX));
+            }
+            else if(checkUpgrade(gameSave.TENEMENTS)){
+                gameSave.updatemax(gameSave.POPULATION, (52*amt));
+                new_pop_max = Integer.parseInt(resourceAmount(gameSave.POPULATION_MAX));
+            }
+            else{
+                gameSave.updatemax(gameSave.POPULATION, (50*amt));
+                new_pop_max = Integer.parseInt(resourceAmount(gameSave.POPULATION_MAX));
+            }
+            gameSave.update(GameSave.WOOD, (-100*amt));
+            gameSave.update(GameSave.STONE, (-100*amt));
+            gameSave.createbuilding(gameSave.HOUSES,amt);
+            gameSave.updateNoMax(gameSave.OCCUPIEDLAND, amt*25);
+            String new_population_text = "Population: " + df2.format(Integer.parseInt(resourceAmount(gameSave.POPULATION))) + "/" + df2.format(new_pop_max);
             population.setText(new_population_text);
             num_wood.setText(new_val);
             num_stone.setText(new_val_stone);
-            gameSave.update(GameSave.WOOD, (-100*amt));
-            gameSave.update(GameSave.STONE, (-100*amt));
-            gameSave.updatemax(gameSave.POPULATION, (50*amt));
-            gameSave.createbuilding(gameSave.HOUSES,amt);
-            gameSave.updateNoMax(gameSave.OCCUPIEDLAND, amt*25);
             return true;
         }
     }
@@ -1389,7 +1438,7 @@ public class MainActivity extends AppCompatActivity
             String new_val_stone = "" + currentstone + "/" + maxstone;
             int new_pop_max = Integer.parseInt(resourceAmount(gameSave.POPULATION_MAX));
             new_pop_max = new_pop_max + amt*100;
-            String new_population_text = "Population: " + Integer.parseInt(resourceAmount(gameSave.POPULATION)) + "/" + new_pop_max;
+            String new_population_text = "Population: " + df2.format(Integer.parseInt(resourceAmount(gameSave.POPULATION))) + "/" + df2.format(new_pop_max);
             population.setText(new_population_text);
             num_wood.setText(new_val);
             num_stone.setText(new_val_stone);
@@ -1555,8 +1604,8 @@ public class MainActivity extends AppCompatActivity
         else{
             currentstone-=(70*amt);
             currentwood-=(30*amt);
-            String new_val = "" + currentwood + "/" + max;
-            String new_val_stone = "" + currentstone + "/" + maxstone;
+            String new_val = "" + df.format(currentwood) + "/" + df.format(max);
+            String new_val_stone = "" + df.format(currentstone) + "/" + df.format(maxstone);
             num_wood.setText(new_val);
             num_stone.setText(new_val_stone);
             gameSave.update(GameSave.WOOD, (-30*amt));
@@ -1597,8 +1646,8 @@ public class MainActivity extends AppCompatActivity
         else{
             currentstone-=(70*amt);
             currentwood-=(30*amt);
-            String new_val = "" + currentwood + "/" + max;
-            String new_val_stone = "" + currentstone + "/" + maxstone;
+            String new_val = "" + df.format(currentwood) + "/" + df.format(max);
+            String new_val_stone = "" + df.format(currentstone) + "/" + df.format(maxstone);
             num_wood.setText(new_val);
             num_stone.setText(new_val_stone);
             gameSave.update(GameSave.WOOD, (-30*amt));
@@ -1639,8 +1688,8 @@ public class MainActivity extends AppCompatActivity
         else{
             currentstone-=(70*amt);
             currentwood-=(30*amt);
-            String new_val = "" + currentwood + "/" + max;
-            String new_val_stone = "" + currentstone + "/" + maxstone;
+            String new_val = "" + df.format(currentwood) + "/" + df.format(max);
+            String new_val_stone = "" + df.format(currentstone) + "/" + df.format(maxstone);
             num_wood.setText(new_val);
             num_stone.setText(new_val_stone);
             gameSave.update(GameSave.WOOD, (-30*amt));
@@ -1685,8 +1734,8 @@ public class MainActivity extends AppCompatActivity
             TextView num_food = findViewById(R.id.num_food);
             String new_val_food = df.format(currentfood) + "/" + gameSave.resourceAmount(gameSave.FOOD_MAX);
             num_food.setText(new_val_food);
-            String new_val = "" + currentwood + "/" + max;
-            String new_val_stone = "" + currentstone + "/" + maxstone;
+            String new_val = "" + df.format(currentwood) + "/" + df.format(max);
+            String new_val_stone = "" + df.format(currentstone) + "/" + df.format(maxstone);
             num_wood.setText(new_val);
             num_stone.setText(new_val_stone);
             gameSave.update(GameSave.WOOD, (-60*amt));
@@ -1733,8 +1782,8 @@ public class MainActivity extends AppCompatActivity
             TextView num_food = findViewById(R.id.num_food);
             String new_val_food = df.format(currentfood) + "/" + gameSave.resourceAmount(gameSave.FOOD_MAX);
             num_food.setText(new_val_food);
-            String new_val = "" + df.format(currentwood) + "/" + max;
-            String new_val_stone = "" + df.format(currentstone) + "/" + maxstone;
+            String new_val = "" + df.format(currentwood) + "/" + df.format(max);
+            String new_val_stone = "" + df.format(currentstone) + "/" + df.format(maxstone);
             num_wood.setText(new_val);
             num_stone.setText(new_val_stone);
             gameSave.update(GameSave.WOOD, (-60*amt));
@@ -1961,10 +2010,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean upgradeMasonry() {
         if(Double.parseDouble(gameSave.resourceAmount(GameSave.STONE)) >= 100 && Double.parseDouble(gameSave.resourceAmount("WOOD")) >= 100){
-            TextView stone = findViewById(R.id.num_stone);
-            collect(stone,GameSave.STONE, -100);
-            TextView wood = findViewById(R.id.num_wood);
-            collect(wood,GameSave.WOOD, -100);
+            gameSave.update(GameSave.STONE, -100);
+            gameSave.update(GameSave.WOOD, -100);
             return gameSave.setInt(GameSave.MASONRY,1);
         }
         else {
@@ -2031,9 +2078,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean granaries(){
-        toast("1");
         if(Double.parseDouble(gameSave.resourceAmount(GameSave.STONE)) >= 1000 && Double.parseDouble(gameSave.resourceAmount(GameSave.WOOD)) >= 1000){
-            toast("2");
             double max = Double.parseDouble(gameSave.resourceAmount(GameSave.FOOD_MAX));
             max-=200;
             max*=2;
@@ -2083,7 +2128,7 @@ public class MainActivity extends AppCompatActivity
         if(Double.parseDouble(gameSave.resourceAmount(GameSave.LEATHER)) >= 500 && Double.parseDouble(gameSave.resourceAmount(GameSave.WOOD)) >= 500){
             gameSave.update(GameSave.WOOD,-500);
             gameSave.updateNoMax(GameSave.LEATHER,-500);
-            return gameSave.setInt(GameSave.BASICWEAPONRY,1);
+            return gameSave.setInt(GameSave.BASICSHIELDS,1);
         }
         else {
             Toast.makeText(MainActivity.this,"Not enough resources to purchase this upgrade", Toast.LENGTH_SHORT).show();
@@ -2144,7 +2189,7 @@ public class MainActivity extends AppCompatActivity
     public boolean upgradeHorsebackRiding() {
         if(Double.parseDouble(gameSave.resourceAmount(GameSave.WOOD)) >= 500 && Double.parseDouble(gameSave.resourceAmount(GameSave.STONE)) >= 500){
             gameSave.update(GameSave.WOOD,-500);
-            gameSave.updateNoMax(GameSave.STONE,-500);
+            gameSave.update(GameSave.STONE,-500);
             return gameSave.setInt(GameSave.HORSEBACKRIDING,1);
         }
         else {
@@ -2157,7 +2202,7 @@ public class MainActivity extends AppCompatActivity
     public boolean upgradeArchitecture() {
         if(Double.parseDouble(gameSave.resourceAmount(GameSave.WOOD)) >= 10000 && Double.parseDouble(gameSave.resourceAmount(GameSave.STONE)) >= 10000){
             gameSave.update(GameSave.WOOD,-10000);
-            gameSave.updateNoMax(GameSave.STONE,-10000);
+            gameSave.update(GameSave.STONE,-10000);
             return gameSave.setInt(GameSave.ARCHITECTURE,1);
         }
         else {
@@ -2169,7 +2214,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean upgradeFlensing() {
         if(Double.parseDouble(gameSave.resourceAmount(GameSave.METAL)) >= 1000){
-            gameSave.update(GameSave.METAL,-1000);
+            gameSave.updateNoMax(GameSave.METAL,-1000);
             return gameSave.setInt(GameSave.FLENSING,1);
         }
         else {
@@ -2181,8 +2226,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean upgradeMacerating() {
         if(Double.parseDouble(gameSave.resourceAmount(GameSave.LEATHER)) >= 500 && Double.parseDouble(gameSave.resourceAmount(GameSave.STONE)) >= 500){
-            gameSave.update(GameSave.LEATHER,-500);
-            gameSave.updateNoMax(GameSave.STONE,-500);
+            gameSave.updateNoMax(GameSave.LEATHER,-500);
+            gameSave.update(GameSave.STONE,-500);
             return gameSave.setInt(GameSave.MACERATING,1);
         }
         else {
@@ -2194,7 +2239,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean upgradeCropRotation() {
         if(Double.parseDouble(gameSave.resourceAmount(GameSave.HERBS)) >= 5000 && Double.parseDouble(gameSave.resourceAmount(GameSave.PIETY)) >= 2000){
-            gameSave.update(GameSave.HERBS,-5000);
+            gameSave.updateNoMax(GameSave.HERBS,-5000);
             gameSave.updateNoMax(GameSave.PIETY,-2000);
             workerProduce += .1;
             gameSave.updateNoMax(GameSave.FARMERPRODUCTIONLEVEL,1);
@@ -2209,7 +2254,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean upgradeSelectiveBreeding() {
         if(Double.parseDouble(gameSave.resourceAmount(GameSave.SKINS)) >= 5000 && Double.parseDouble(gameSave.resourceAmount(GameSave.PIETY)) >= 2000){
-            gameSave.update(GameSave.SKINS,-5000);
+            gameSave.updateNoMax(GameSave.SKINS,-5000);
             gameSave.updateNoMax(GameSave.PIETY,-2000);
             workerProduce += .1;
             gameSave.updateNoMax(GameSave.FARMERPRODUCTIONLEVEL,1);
@@ -2224,7 +2269,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean upgradeFertilizers() {
         if(Double.parseDouble(gameSave.resourceAmount(GameSave.ORE)) >= 5000 && Double.parseDouble(gameSave.resourceAmount(GameSave.PIETY)) >= 2000){
-            gameSave.update(GameSave.ORE,-5000);
+            gameSave.updateNoMax(GameSave.ORE,-5000);
             gameSave.updateNoMax(GameSave.PIETY,-2000);
             workerProduce += .1;
             gameSave.updateNoMax(GameSave.FARMERPRODUCTIONLEVEL,1);
@@ -2240,7 +2285,7 @@ public class MainActivity extends AppCompatActivity
     public boolean upgradeSlums() {
         if(Double.parseDouble(gameSave.resourceAmount(GameSave.WOOD)) >= 1000 && Double.parseDouble(gameSave.resourceAmount(GameSave.STONE)) >= 1000){
             gameSave.update(GameSave.WOOD,-1000);
-            gameSave.updateNoMax(GameSave.STONE,-1000);
+            gameSave.update(GameSave.STONE,-1000);
             return gameSave.setInt(GameSave.SLUMS,1);
         }
         else {
@@ -2350,7 +2395,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void substractCavalry(int amount) {
-        int amt = Integer.parseInt(gameSave.resourceAmount(GameSave.FARMERS));
+        int amt = Integer.parseInt(gameSave.resourceAmount(GameSave.CAVALRY));
         if(amt>=amount){
             gameSave.updateNoMax(GameSave.CAVALRY, -amount);
             modifyunemployed(amount);
@@ -2452,4 +2497,5 @@ public class MainActivity extends AppCompatActivity
         alert.setTitle("Defeat!");
         alert.show();
     }
+
 }

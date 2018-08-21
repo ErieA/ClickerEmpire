@@ -231,7 +231,7 @@
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="Unlock csvslry and stables" />
+                    android:text="Unlock cavalry and stables" />
 
                 <TextView
                     android:id="@+id/horsebackriding_cost"
@@ -537,7 +537,7 @@
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="Collect more skins" />
+                    android:text="Farmers collect more skins" />
 
                 <TextView
                     android:id="@+id/flensing_cost"
