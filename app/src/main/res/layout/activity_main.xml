@@ -16,10 +16,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                android:orientation="vertical">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="?attr/colorPrimary"
+                android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
             <LinearLayout
                     android:layout_width="match_parent"
@@ -27,12 +39,6 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
                     android:orientation="vertical">
-                <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:background="?attr/colorPrimary"
-                    android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
                 <TextView
                         android:id="@+id/population"
@@ -70,7 +76,10 @@
                         android:layout_height="38dp"
                         android:layout_weight="1"
                         android:background="@drawable/borderbuttonlightblue"
-                        android:text="Create Workers" />
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:text="Create Workers"
+                        android:textColor="@android:color/black" />
 
                     <Button
                         android:id="@+id/substract_worker"
@@ -78,7 +87,10 @@
                         android:layout_height="38dp"
                         android:layout_weight="1"
                         android:background="@drawable/borderbuttonlightblue"
-                        android:text="-" />
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:text="-"
+                        android:textColor="@android:color/black" />
 
                     <EditText
                         android:id="@+id/num_workers"
@@ -101,6 +113,8 @@
                         android:layout_height="38dp"
                         android:layout_weight="1"
                         android:background="@drawable/borderbuttonlightblue"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"
                         android:text="+" />
                 </LinearLayout>
                 <TextView
@@ -119,19 +133,24 @@
                         android:id="@+id/collect_food"
                         android:layout_width="144dp"
                         android:layout_height="38dp"
-                        android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
                         android:layout_alignParentTop="true"
                         android:background="@drawable/borderbuttonlightblue"
-                        android:text="Collect Food" />
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:text="Collect Food"
+                        android:textColor="@android:color/black" />
 
                     <TextView
                         android:id="@+id/num_food"
                         android:layout_width="wrap_content"
                         android:layout_height="38dp"
+                        android:layout_marginLeft="8dp"
                         android:layout_toRightOf="@+id/collect_food"
                         android:text="0/200"
                         android:textAppearance="@style/TextAppearance.AppCompat"
+                        android:textColor="@android:color/black"
                         android:textSize="16sp" />
 
                     <TextView
@@ -139,7 +158,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:text="0/s" />
+                        android:text="0/s"
+                        android:textColor="@android:color/black" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -150,17 +170,22 @@
                         android:id="@+id/collect_wood"
                         android:layout_width="144dp"
                         android:layout_height="38dp"
+                        android:layout_alignParentStart="true"
                         android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
                         android:background="@drawable/borderbuttonlightblue"
-                        android:text="Collect Wood" />
+                        android:text="Collect Wood"
+                        android:textColor="@android:color/black" />
 
                     <TextView
                         android:id="@+id/num_wood"
                         android:layout_width="wrap_content"
                         android:layout_height="38dp"
+                        android:layout_marginLeft="8dp"
                         android:layout_toRightOf="@+id/collect_wood"
                         android:text="0/200"
                         android:textAppearance="@style/TextAppearance.AppCompat"
+                        android:textColor="@android:color/black"
                         android:textSize="16sp" />
 
                     <TextView
@@ -168,7 +193,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:text="0/s" />
+                        android:text="0/s"
+                        android:textColor="@android:color/black" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -181,15 +207,20 @@
                         android:layout_height="38dp"
                         android:layout_alignParentLeft="true"
                         android:background="@drawable/borderbuttonlightblue"
-                        android:text="Collect Stone" />
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:text="Collect Stone"
+                        android:textColor="@android:color/black" />
 
                     <TextView
                         android:id="@+id/num_stone"
                         android:layout_width="wrap_content"
                         android:layout_height="38dp"
+                        android:layout_marginLeft="8dp"
                         android:layout_toRightOf="@+id/collect_stone"
                         android:text="0/200"
                         android:textAppearance="@style/TextAppearance.AppCompat"
+                        android:textColor="@android:color/black"
                         android:textSize="16sp" />
 
                     <TextView
@@ -197,7 +228,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:text="0/s" />
+                        android:text="0/s"
+                        android:textColor="@android:color/black" />
                 </RelativeLayout>
 
                 <LinearLayout
@@ -211,7 +243,10 @@
                         android:layout_height="38dp"
                         android:layout_weight="1"
                         android:background="@drawable/borderbuttonlightblue"
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
                         android:text="Buildings"
+                        android:textColor="@android:color/black"
                         android:textSize="10sp" />
 
                     <Button
@@ -220,7 +255,10 @@
                         android:layout_height="38dp"
                         android:layout_weight="1"
                         android:background="@drawable/borderbuttonlightblue"
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
                         android:text="S.Resources"
+                        android:textColor="@android:color/black"
                         android:textSize="10sp" />
 
                     <Button
@@ -228,8 +266,11 @@
                         android:layout_width="100dp"
                         android:layout_height="38dp"
                         android:layout_weight="1"
-                        android:background="@drawable/borderbuttonlightblue"
+                        android:background="@drawable/borderbuttonlightred"
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
                         android:text="Jobs"
+                        android:textColor="@android:color/black"
                         android:textSize="10sp" />
 
                     <Button
@@ -238,7 +279,10 @@
                         android:layout_height="38dp"
                         android:layout_weight="1"
                         android:background="@drawable/borderbuttonlightblue"
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
                         android:text="Upgrades"
+                        android:textColor="@android:color/black"
                         android:textSize="10sp" />
 
                     <Button
@@ -247,16 +291,20 @@
                         android:layout_height="38dp"
                         android:layout_weight="1"
                         android:background="@drawable/borderbuttonlightblue"
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
                         android:text="Conquest"
+                        android:textColor="@android:color/black"
                         android:textSize="10sp" />
                 </LinearLayout>
                 <fragment
                     android:id="@+id/fragment"
-                    android:name="not.bored.clickerempire.jobs"
                     android:layout_width="match_parent"
                     android:layout_height="405dp"
+                    class = "not.bored.clickerempire.jobs"
                     tools:layout="@layout/fragment_jobs" />
 
+            </LinearLayout>
             </LinearLayout>
             <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/adView"

@@ -42,7 +42,10 @@
                         android:layout_height="38dp"
                         android:layout_alignParentLeft="true"
                         android:text="@string/llll"
-                        android:textSize="6sp" />
+                        android:textSize="6sp"
+                        android:background="@drawable/borderbuttonlightblue"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"/>
 
                     <Button
                         android:id="@+id/add_soldier1000"
@@ -50,7 +53,10 @@
                         android:layout_height="38dp"
                         android:layout_alignParentRight="true"
                         android:text="@string/gggg"
-                        android:textSize="6sp" />
+                        android:textSize="6sp"
+                        android:background="@drawable/borderbuttonlightblue"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"/>
 
                     <Button
                         android:id="@+id/substract_soldier100"
@@ -58,7 +64,10 @@
                         android:layout_height="38dp"
                         android:layout_toRightOf="@+id/substract_soldier1000"
                         android:text="@string/lll"
-                        android:textSize="6sp" />
+                        android:textSize="6sp"
+                        android:background="@drawable/borderbuttonlightblue"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"/>
 
                     <Button
                         android:id="@+id/add_soldier100"
@@ -66,7 +75,10 @@
                         android:layout_height="38dp"
                         android:layout_toLeftOf="@+id/add_soldier1000"
                         android:text="@string/ggg"
-                        android:textSize="6sp" />
+                        android:textSize="6sp"
+                        android:background="@drawable/borderbuttonlightblue"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"/>
 
                     <Button
                         android:id="@+id/substract_soldier10"
@@ -74,7 +86,10 @@
                         android:layout_height="38dp"
                         android:layout_toRightOf="@+id/substract_soldier100"
                         android:text="@string/ll"
-                        android:textSize="7sp" />
+                        android:textSize="7sp"
+                        android:background="@drawable/borderbuttonlightblue"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"/>
 
                     <Button
                         android:id="@+id/add_soldier10"
@@ -82,7 +97,10 @@
                         android:layout_height="38dp"
                         android:layout_toLeftOf="@+id/add_soldier100"
                         android:text="@string/gg"
-                        android:textSize="7sp" />
+                        android:textSize="7sp"
+                        android:background="@drawable/borderbuttonlightblue"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"/>
 
                     <Button
                         android:id="@+id/substract_soldier"
@@ -90,7 +108,10 @@
                         android:layout_height="38dp"
                         android:layout_toRightOf="@+id/substract_soldier10"
                         android:text="@string/l"
-                        android:textSize="10sp" />
+                        android:textSize="10sp"
+                        android:background="@drawable/borderbuttonlightblue"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"/>
 
                     <Button
                         android:id="@+id/add_soldier"
@@ -98,7 +119,10 @@
                         android:layout_height="38dp"
                         android:layout_toLeftOf="@+id/add_soldier10"
                         android:text="@string/g"
-                        android:textSize="10sp" />
+                        android:textSize="10sp"
+                        android:background="@drawable/borderbuttonlightblue"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"/>
 
                 </RelativeLayout>
 
@@ -119,7 +143,10 @@
                         android:layout_height="38dp"
                         android:layout_alignParentLeft="true"
                         android:text="@string/llll"
-                        android:textSize="6sp" />
+                        android:textSize="6sp"
+                        android:background="@drawable/borderbuttonlightblue"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"/>
 
                     <Button
                         android:id="@+id/add_cavalry1000"
@@ -127,7 +154,10 @@
                         android:layout_height="38dp"
                         android:layout_alignParentRight="true"
                         android:text="@string/gggg"
-                        android:textSize="6sp" />
+                        android:textSize="6sp"
+                        android:background="@drawable/borderbuttonlightblue"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"/>
 
                     <Button
                         android:id="@+id/substract_cavalry100"
@@ -135,7 +165,10 @@
                         android:layout_height="38dp"
                         android:layout_toRightOf="@+id/substract_cavalry1000"
                         android:text="@string/lll"
-                        android:textSize="6sp" />
+                        android:textSize="6sp"
+                        android:background="@drawable/borderbuttonlightblue"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"/>
 
                     <Button
                         android:id="@+id/add_cavalry100"
@@ -143,7 +176,10 @@
                         android:layout_height="38dp"
                         android:layout_toLeftOf="@+id/add_cavalry1000"
                         android:text="@string/ggg"
-                        android:textSize="6sp" />
+                        android:textSize="6sp"
+                        android:background="@drawable/borderbuttonlightblue"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"/>
 
                     <Button
                         android:id="@+id/substract_cavalry10"
@@ -151,7 +187,10 @@
                         android:layout_height="38dp"
                         android:layout_toRightOf="@+id/substract_cavalry100"
                         android:text="@string/ll"
-                        android:textSize="7sp" />
+                        android:textSize="7sp"
+                        android:background="@drawable/borderbuttonlightblue"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"/>
 
                     <Button
                         android:id="@+id/add_cavalry10"
@@ -159,7 +198,10 @@
                         android:layout_height="38dp"
                         android:layout_toLeftOf="@+id/add_cavalry100"
                         android:text="@string/gg"
-                        android:textSize="7sp" />
+                        android:textSize="7sp"
+                        android:background="@drawable/borderbuttonlightblue"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"/>
 
                     <Button
                         android:id="@+id/substract_cavalry"
@@ -167,7 +209,10 @@
                         android:layout_height="38dp"
                         android:layout_toRightOf="@+id/substract_cavalry10"
                         android:text="@string/l"
-                        android:textSize="10sp" />
+                        android:textSize="10sp"
+                        android:background="@drawable/borderbuttonlightblue"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"/>
 
                     <Button
                         android:id="@+id/add_cavalry"
@@ -175,7 +220,10 @@
                         android:layout_height="38dp"
                         android:layout_toLeftOf="@+id/add_cavalry10"
                         android:text="@string/g"
-                        android:textSize="10sp" />
+                        android:textSize="10sp"
+                        android:background="@drawable/borderbuttonlightblue"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"/>
 
                 </RelativeLayout>
 
@@ -237,105 +285,150 @@
                         android:layout_width="100dp"
                         android:layout_height="32dp"
                         android:text="Thorp"
-                        android:textSize="10sp" />
+                        android:textSize="10sp"
+                        android:background="@drawable/borderbuttonlightblue"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"/>
 
                     <Button
                         android:id="@+id/iHamlet"
                         android:layout_width="100dp"
                         android:layout_height="32dp"
                         android:text="Hamlet"
-                        android:textSize="10sp" />
+                        android:textSize="10sp"
+                        android:background="@drawable/borderbuttonlightblue"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"/>
 
                     <Button
                         android:id="@+id/iVillage"
                         android:layout_width="100dp"
                         android:layout_height="32dp"
                         android:text="Village"
-                        android:textSize="10sp" />
+                        android:textSize="10sp"
+                        android:background="@drawable/borderbuttonlightblue"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"/>
 
                     <Button
                         android:id="@+id/iSmalltown"
                         android:layout_width="100dp"
                         android:layout_height="32dp"
                         android:text="Small Town"
-                        android:textSize="10sp" />
+                        android:textSize="10sp"
+                        android:background="@drawable/borderbuttonlightblue"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"/>
 
                     <Button
                         android:id="@+id/iLargetown"
                         android:layout_width="100dp"
                         android:layout_height="32dp"
                         android:text="Large Town"
-                        android:textSize="10sp" />
+                        android:textSize="10sp"
+                        android:background="@drawable/borderbuttonlightblue"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"/>
 
                     <Button
                         android:id="@+id/iSmallcity"
                         android:layout_width="100dp"
                         android:layout_height="32dp"
                         android:text="Small City"
-                        android:textSize="10sp" />
+                        android:textSize="10sp"
+                        android:background="@drawable/borderbuttonlightblue"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"/>
 
                     <Button
                         android:id="@+id/iLargecity"
                         android:layout_width="100dp"
                         android:layout_height="32dp"
                         android:text="Large City"
-                        android:textSize="10sp" />
+                        android:textSize="10sp"
+                        android:background="@drawable/borderbuttonlightblue"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"/>
 
                     <Button
                         android:id="@+id/iMetropolis"
                         android:layout_width="100dp"
                         android:layout_height="32dp"
                         android:text="Metropolis"
-                        android:textSize="10sp" />
+                        android:textSize="10sp"
+                        android:background="@drawable/borderbuttonlightblue"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"/>
 
                     <Button
                         android:id="@+id/iSmallnation"
                         android:layout_width="100dp"
                         android:layout_height="32dp"
                         android:text="Small Nation"
-                        android:textSize="10sp" />
+                        android:textSize="10sp"
+                        android:background="@drawable/borderbuttonlightblue"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"/>
 
                     <Button
                         android:id="@+id/iNation"
                         android:layout_width="100dp"
                         android:layout_height="32dp"
                         android:text="Nation"
-                        android:textSize="10sp" />
+                        android:textSize="10sp"
+                        android:background="@drawable/borderbuttonlightblue"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"/>
 
                     <Button
                         android:id="@+id/iLargenation"
                         android:layout_width="100dp"
                         android:layout_height="32dp"
                         android:text="Large Nation"
-                        android:textSize="10sp" />
+                        android:textSize="10sp"
+                        android:background="@drawable/borderbuttonlightblue"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"/>
 
                     <Button
                         android:id="@+id/iEmpire"
                         android:layout_width="100dp"
                         android:layout_height="32dp"
                         android:text="Empire"
-                        android:textSize="10sp" />
+                        android:textSize="10sp"
+                        android:background="@drawable/borderbuttonlightblue"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"/>
 
                     <Button
                         android:id="@+id/iContinentalEmpire"
                         android:layout_width="100dp"
                         android:layout_height="32dp"
                         android:text="Continental Empire"
-                        android:textSize="10sp" />
+                        android:textSize="10sp"
+                        android:background="@drawable/borderbuttonlightblue"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"/>
 
                     <Button
                         android:id="@+id/iWorldConfederation"
                         android:layout_width="100dp"
                         android:layout_height="32dp"
                         android:text="World Confederation"
-                        android:textSize="10sp" />
+                        android:textSize="10sp"
+                        android:background="@drawable/borderbuttonlightblue"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"/>
 
                     <Button
                         android:id="@+id/iUnitedWorld"
                         android:layout_width="100dp"
                         android:layout_height="32dp"
                         android:text="United World"
-                        android:textSize="10sp" />
+                        android:textSize="10sp"
+                        android:background="@drawable/borderbuttonlightblue"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"/>
 
                 </LinearLayout>
             </ScrollView>

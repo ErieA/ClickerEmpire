@@ -31,6 +31,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.text.DecimalFormat;
 import java.util.Map;
@@ -316,6 +317,10 @@ public class MainActivity extends AppCompatActivity
                     AlertDialog alert = aBuilder.create();
                     alert.setTitle("Save Game");
                     alert.show();
+                    Button nbutton = alert.getButton(DialogInterface.BUTTON_NEGATIVE);
+                    nbutton.setTextColor(Color.BLACK);
+                    Button pbutton = alert.getButton(DialogInterface.BUTTON_POSITIVE);
+                    pbutton.setTextColor(Color.BLACK);
                 }
                 else if (id == R.id.load_game){
                     pause();
@@ -340,6 +345,10 @@ public class MainActivity extends AppCompatActivity
                     AlertDialog alert = aBuilder.create();
                     alert.setTitle("Load Game");
                     alert.show();
+                    Button nbutton = alert.getButton(DialogInterface.BUTTON_NEGATIVE);
+                    nbutton.setTextColor(Color.BLACK);
+                    Button pbutton = alert.getButton(DialogInterface.BUTTON_POSITIVE);
+                    pbutton.setTextColor(Color.BLACK);
                 }
                 else if (id == R.id.pause) {
                     Toast.makeText(MainActivity.this,"Paused", Toast.LENGTH_LONG).show();
@@ -367,6 +376,10 @@ public class MainActivity extends AppCompatActivity
                     AlertDialog alert = aBuilder.create();
                     alert.setTitle("Reset?");
                     alert.show();
+                    Button nbutton = alert.getButton(DialogInterface.BUTTON_NEGATIVE);
+                    nbutton.setTextColor(Color.BLACK);
+                    Button pbutton = alert.getButton(DialogInterface.BUTTON_POSITIVE);
+                    pbutton.setTextColor(Color.BLACK);
                     ActionBar actionbar = getSupportActionBar();
                     setScreen(actionbar);
                 }
@@ -374,9 +387,10 @@ public class MainActivity extends AppCompatActivity
                     Intent intent = new Intent(MainActivity.this,Instructions.class);
                     startActivity(intent);
                 }
-//                else if (id == R.id.achievements) {
-//                    showAchievements();
-//                }
+                else if (id == R.id.achievements) {
+                    Intent intent = new Intent(MainActivity.this, Achievements.class);
+                    startActivity(intent);
+                }
                 else if (id == R.id.enablecustomincrememtns) {
                     NavigationView navigationView = findViewById(R.id.nav_view);
                     Menu menu = navigationView.getMenu();
@@ -543,14 +557,20 @@ public class MainActivity extends AppCompatActivity
                 return true;
             }
         });
+//        gameSave.updatemax(GameSave.FOOD,1000000000);
+//        gameSave.updatemax(GameSave.WOOD,1000000000);
+//        gameSave.updatemax(GameSave.STONE,1000000000);
+//        gameSave.update(GameSave.FOOD,1000000000);
+//        gameSave.update(GameSave.WOOD,1000000000);
+//        gameSave.update(GameSave.STONE,1000000000);
         changeFragment(jobs);
         thread.start();
         conquestthread.start();
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-        MobileAds.initialize(this,"ca-app-pub-2519476145136157~3502779246");
-        mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+//        MobileAds.initialize(this,"ca-app-pub-2519476145136157~3502779246");
+//        mAdView = findViewById(R.id.adView);
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        mAdView.loadAd(adRequest);
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int height = dm.heightPixels;
@@ -676,7 +696,12 @@ public class MainActivity extends AppCompatActivity
             if(key.equals(gameSave.CIVILIZATION_NAME)){
                 gameSave.updateName(val);
             }
-            else if((key.equals(gameSave.FOOD)) || (key.equals(gameSave.FOOD_MAX)) || (key.equals(gameSave.WOOD)) || (key.equals(gameSave.WOOD_MAX)) || (key.equals(gameSave.STONE)) || (key.equals(gameSave.STONE_MAX))){
+            else if((key.equals(gameSave.FOOD))
+                    || (key.equals(gameSave.FOOD_MAX))
+                    || (key.equals(gameSave.WOOD))
+                    || (key.equals(gameSave.WOOD_MAX))
+                    || (key.equals(gameSave.STONE))
+                    || (key.equals(gameSave.STONE_MAX))){
                 gameSave.set(key, Double.parseDouble(val));
             }
             else{
@@ -1278,6 +1303,10 @@ public class MainActivity extends AppCompatActivity
             AlertDialog alert = aBuilder.create();
             alert.setTitle("Exit?");
             alert.show();
+            Button nbutton = alert.getButton(DialogInterface.BUTTON_NEGATIVE);
+            nbutton.setTextColor(Color.BLACK);
+            Button pbutton = alert.getButton(DialogInterface.BUTTON_POSITIVE);
+            pbutton.setTextColor(Color.BLACK);
         }
     }
 
@@ -2518,6 +2547,10 @@ public class MainActivity extends AppCompatActivity
         AlertDialog alert = aBuilder.create();
         alert.setTitle("VICTORY!!!");
         alert.show();
+        Button nbutton = alert.getButton(DialogInterface.BUTTON_NEGATIVE);
+        nbutton.setTextColor(Color.BLACK);
+        Button pbutton = alert.getButton(DialogInterface.BUTTON_POSITIVE);
+        pbutton.setTextColor(Color.BLACK);
     }
     @Override
     public void defeat(){
@@ -2533,6 +2566,10 @@ public class MainActivity extends AppCompatActivity
         AlertDialog alert = aBuilder.create();
         alert.setTitle("Defeat!");
         alert.show();
+        Button nbutton = alert.getButton(DialogInterface.BUTTON_NEGATIVE);
+        nbutton.setTextColor(Color.BLACK);
+        Button pbutton = alert.getButton(DialogInterface.BUTTON_POSITIVE);
+        pbutton.setTextColor(Color.BLACK);
     }
 
 }

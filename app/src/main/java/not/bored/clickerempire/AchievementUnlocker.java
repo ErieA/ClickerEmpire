@@ -1,3 +1,4 @@
+
 package not.bored.clickerempire;
 
 import android.app.Activity;
@@ -17,86 +18,32 @@ import java.util.Map;
  * Created by Erie M. Adames on 6/12/2018.
  */
 
-public class GameSave extends SQLiteOpenHelper implements Serializable {
-    public static final String DATABASE_NAME = "GameSave.db";
-    public static final String CIVILIZATION_NAME = "CIVILIZATION_NAME";
-    public static final String RESOURCES = "Resources";
-    public static final String FOOD = "FOOD";
-    public static final String FOOD_MAX = "FOOD_MAX";
-    public static final String WOOD = "WOOD";
-    public static final String WOOD_MAX = "WOOD_MAX";
-    public static final String STONE = "STONE";
-    public static final String STONE_MAX = "STONE_MAX";
-    public static final String SKINS = "SKINS";
-    public static final String LEATHER = "LEATHER";
-    public static final String HERBS = "HERBS";
-    public static final String PIETY = "PIETY";
-    public static final String ORE = "ORE";
-    public static final String METAL = "METAL";
-    public static final String POPULATION = "POPULATION";
-    public static final String POPULATION_MAX = "POPULATION_MAX";
-    public static final String TENTS = "TENTS";
-    public static final String HUTS = "HUTS";
-    public static final String COTTAGES = "COTTAGES";
-    public static final String HOUSES = "HOUSES";
-    public static final String MANSIONS = "MANSIONS";
-    public static final String BARNS = "BARNS";
-    public static final String WOODSTOCKPILES = "WOODSTOCKPILES";
-    public static final String STONESTOCKPILES = "STONESTOCKPILES";
-    public static final String FARMERS = "FARMERS";
-    public static final String LUMBERJACKS = "LUMBERJACKS";
-    public static final String STONEMASONS = "STONEMASONS";
-    public static final String UNEMPLOYED = "UNEMPLOYED";
-    public static final String SKINNING = "SKINNING";
-    public static final String HARVESTING = "HARVESTING";
-    public static final String PROSPECTING = "PROSPECTING";
-    public static final String MASONRY = "MASONRY";
-    public static final String DOMESTICATION = "DOMESTICATION";
-    public static final String PLOUGHSHARES = "PLOUGHSHARES";
-    public static final String IRRIGATION = "IRRIGATION";
-    public static final String CONSTRUCTION = "CONSTRUCTION";
-    public static final String GRANARIES = "GRANARIES";
-    public static final String TANNERIES = "TANNERIES";
-    public static final String SMITHIES = "SMITHIES";
-    public static final String APOTHECARIES = "APOTHECARIES";
-    public static final String BARRACKS = "BARRACKS";
-    public static final String FARMERPRODUCTIONLEVEL = "FARMERPRODUCTIONLEVEL";
-    public static final String TANNERS = "TANNERS";
-    public static final String BLACKSMITHS = "BLACKSMITHS";
-    public static final String HEALERS = "HEALERS";
-    public static final String LAND = "LAND";
-    public static final String STABLES = "STABLES";
-    public static final String ECI = "ECI";
-    public static final String SOLDIERS = "SOLDIERS";
-    public static final String CAVALRY = "CAVALRY";
-    public static final String OCCUPIEDLAND = "OCCUPIEDLAND";
-    public static final String BASICWEAPONRY = "BASICWEAPONRY";
-    public static final String BASICSHIELDS = "BASICSHIELDS";
-    public static final String TENEMENTS = "TENEMENTS";
-    public static final String PALISADE = "PALISADE";
-    public static final String BUTCHERING = "BUTCHERING";
-    public static final String GARDENING = "GARDENING";
-    public static final String EXTRACTION = "EXTRACTION";
-    public static final String HORSEBACKRIDING = "HORSEBACKRIDING";
-    public static final String ARCHITECTURE = "ARCHITECTURE";
-    public static final String FLENSING = "FLENSING";
-    public static final String MACERATING = "MACERATING";
-    public static final String CROPROTATION = "CROPROTATION";
-    public static final String SELECTIVEBREEDING = "SELECTIVEBREEDING";
-    public static final String FERTILIZERS = "FERTILIZERS";
-    public static final String SLUMS = "SLUMS";
+public class AchievementUnlocker extends SQLiteOpenHelper implements Serializable {
+    public static final String DATABASE_NAME = "Achievements.db";
+    public static final String THORP = "THORP";
+    public static final String HAMLET = "HAMLET";
+    public static final String VILLAGE = "VILLAGE";
+    public static final String SMALL_TOWN = "SMALL TOWN";
+    public static final String LARGE_TOWN = "LARGE TOWN";
+    public static final String SMALL_CITY = "SMALL CITY";
+    public static final String METROPOLIS = "METROPOLIS";
+    public static final String SMALL_NATION = "SMALL NATION";
+    public static final String NATION = "NATION";
+    public static final String LARGE_NATION = "LARGE NATION";
+    public static final String EMPIRE = "EMPIRE";
+    public static final String CONTINENTAL_EMPIRE = "CONTINENTAL EMPIRE";
+    public static final String WORLD_CONFEDERATION = "WORLD CONFEDERATION";
+    public static final String UNITED_WORLD = "UNITED WORLD";
 
-
-    private static GameSave gameSave;
-    DecimalFormat df = new DecimalFormat("0.0");
-    public static synchronized GameSave getGameSave(Context context){
-        if(gameSave == null) {
-            gameSave = new GameSave(context);
+    private static AchievementUnlocker achievementUnlocker;
+    public static synchronized AchievementUnlocker getAchievementUnlocker(Context context){
+        if(achievementUnlocker == null) {
+            achievementUnlocker = new AchievementUnlocker(context);
         }
-        return gameSave;
+        return achievementUnlocker;
     }
 
-    private GameSave(Context context) {
+    private AchievementUnlocker(Context context) {
         super(context, DATABASE_NAME, null, 1);
     }
 

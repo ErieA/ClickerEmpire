@@ -27,9 +27,9 @@
         <item
             android:id="@+id/instructions"
             android:title="Instructions" />
-        <!--<item-->
-            <!--android:id="@+id/achievements"-->
-            <!--android:title="Achievements" />-->
+        <item
+            android:id="@+id/achievements"
+            android:title="Achievements" />
     </group>
     <group android:checkableBehavior="single">
         <item

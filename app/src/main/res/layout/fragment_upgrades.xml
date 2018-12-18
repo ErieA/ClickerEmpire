@@ -29,13 +29,17 @@
                         android:layout_height="32dp"
                         android:layout_weight="1"
                         android:text="Skinning"
-                        android:textSize="10sp" />
+                        android:textSize="10sp"
+                        android:background="@drawable/borderbuttonlightblue"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"/>
 
                     <TextView
                         android:id="@+id/textView"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
+                        android:layout_marginLeft="8dp"
                         android:text="Farmers can collect skins" />
 
                     <TextView
@@ -57,13 +61,17 @@
                     android:layout_height="32dp"
                     android:layout_weight="1"
                     android:text="Harvesting"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <TextView
                     android:id="@+id/textView2"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:layout_marginLeft="8dp"
                     android:text="Lumberjacks can collect herbs" />
 
                 <TextView
@@ -85,13 +93,17 @@
                     android:layout_height="32dp"
                     android:layout_weight="1"
                     android:text="Prospecting"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <TextView
                     android:id="@+id/textView3"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:layout_marginLeft="8dp"
                     android:text="Stonemasons can collect ore" />
 
                 <TextView
@@ -113,13 +125,17 @@
                     android:layout_height="32dp"
                     android:layout_weight="1"
                     android:text="Masonry"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <TextView
                     android:id="@+id/textView4"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:layout_marginLeft="8dp"
                     android:text="Unlock more buildings and upgrades" />
 
                 <TextView
@@ -141,13 +157,17 @@
                     android:layout_height="32dp"
                     android:layout_weight="1"
                     android:text="Domestication"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <TextView
                     android:id="@+id/textView6"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:layout_marginLeft="8dp"
                     android:text="Increase farmer output" />
 
                 <TextView
@@ -169,13 +189,17 @@
                     android:layout_height="32dp"
                     android:layout_weight="1"
                     android:text="Ploughshares"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <TextView
                     android:id="@+id/textView7"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:layout_marginLeft="8dp"
                     android:text="Increase farmer output" />
 
                 <TextView
@@ -197,13 +221,17 @@
                     android:layout_height="32dp"
                     android:layout_weight="1"
                     android:text="Irrigation"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <TextView
                     android:id="@+id/textView8"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:layout_marginLeft="8dp"
                     android:text="Increase farmer output" />
 
                 <TextView
@@ -225,13 +253,17 @@
                     android:layout_height="32dp"
                     android:layout_weight="1"
                     android:text="Horseback Riding"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <TextView
                     android:id="@+id/horsebackridingtv"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:layout_marginLeft="8dp"
                     android:text="Unlock cavalry and stables" />
 
                 <TextView
@@ -253,13 +285,17 @@
                     android:layout_height="32dp"
                     android:layout_weight="1"
                     android:text="Construction"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <TextView
                     android:id="@+id/textView9"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:layout_marginLeft="8dp"
                     android:text="Unlock more buildings and upgrades" />
 
                 <TextView
@@ -281,13 +317,17 @@
                     android:layout_height="32dp"
                     android:layout_weight="1"
                     android:text="Granaries"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <TextView
                     android:id="@+id/textView10"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:layout_marginLeft="8dp"
                     android:text="Barns store double the amount of food" />
 
                 <TextView
@@ -309,13 +349,17 @@
                     android:layout_height="32dp"
                     android:layout_weight="1"
                     android:text="Tenements"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <TextView
                     android:id="@+id/textView11"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:layout_marginLeft="8dp"
                     android:text="Houses can hold +2" />
 
                 <TextView
@@ -337,13 +381,17 @@
                     android:layout_height="32dp"
                     android:layout_weight="1"
                     android:text="Basic Weaponry"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <TextView
                     android:id="@+id/textView12"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:layout_marginLeft="8dp"
                     android:text="Improve soldiers" />
 
                 <TextView
@@ -365,13 +413,17 @@
                     android:layout_height="32dp"
                     android:layout_weight="1"
                     android:text="Basic Shields"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <TextView
                     android:id="@+id/textView13"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:layout_marginLeft="8dp"
                     android:text="Improve soldiers" />
 
                 <TextView
@@ -393,13 +445,17 @@
                     android:layout_height="32dp"
                     android:layout_weight="1"
                     android:text="Palisade"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <TextView
                     android:id="@+id/textView14"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:layout_marginLeft="8dp"
                     android:text="Enemy soldiers do less damage" />
 
                 <TextView
@@ -421,13 +477,17 @@
                     android:layout_height="32dp"
                     android:layout_weight="1"
                     android:text="Butchering"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <TextView
                     android:id="@+id/textView15"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:layout_marginLeft="8dp"
                     android:text="Farmers collect more skins" />
 
                 <TextView
@@ -449,13 +509,17 @@
                     android:layout_height="32dp"
                     android:layout_weight="1"
                     android:text="Gardening"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <TextView
                     android:id="@+id/textView16"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:layout_marginLeft="8dp"
                     android:text="Lumberjacks collect more herbs" />
 
                 <TextView
@@ -477,13 +541,17 @@
                     android:layout_height="32dp"
                     android:layout_weight="1"
                     android:text="Extraction"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <TextView
                     android:id="@+id/textView17"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:layout_marginLeft="8dp"
                     android:text="Stonemasons collect more ore" />
 
                 <TextView
@@ -504,13 +572,17 @@
                     android:layout_height="32dp"
                     android:layout_weight="1"
                     android:text="Architecture"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <TextView
                     android:id="@+id/architecturetv"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:layout_marginLeft="8dp"
                     android:text="Unlock more buildings and upgrades" />
 
                 <TextView
@@ -531,13 +603,17 @@
                     android:layout_height="32dp"
                     android:layout_weight="1"
                     android:text="Flensing"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <TextView
                     android:id="@+id/flensingtv"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:layout_marginLeft="8dp"
                     android:text="Farmers collect more skins" />
 
                 <TextView
@@ -558,13 +634,17 @@
                     android:layout_height="32dp"
                     android:layout_weight="1"
                     android:text="Macerating"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <TextView
                     android:id="@+id/maceratingtv"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:layout_marginLeft="8dp"
                     android:text="Collect more ore" />
 
                 <TextView
@@ -585,13 +665,17 @@
                     android:layout_height="32dp"
                     android:layout_weight="1"
                     android:text="Crop Rotation"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <TextView
                     android:id="@+id/croprotationtv"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:layout_marginLeft="8dp"
                     android:text="Increase farmer food output" />
 
                 <TextView
@@ -612,13 +696,17 @@
                     android:layout_height="32dp"
                     android:layout_weight="1"
                     android:text="Selective Breeding"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <TextView
                     android:id="@+id/selectivebreedingtv"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:layout_marginLeft="8dp"
                     android:text="Increase farmer food output" />
 
                 <TextView
@@ -639,13 +727,17 @@
                     android:layout_height="32dp"
                     android:layout_weight="1"
                     android:text="Fertilizers"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <TextView
                     android:id="@+id/fertilizerstv"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:layout_marginLeft="8dp"
                     android:text="Increase farmer food output" />
 
                 <TextView
@@ -666,13 +758,17 @@
                     android:layout_height="32dp"
                     android:layout_weight="1"
                     android:text="Slums"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <TextView
                     android:id="@+id/slumstv"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:layout_marginLeft="8dp"
                     android:text="Houses can hold +2" />
 
                 <TextView

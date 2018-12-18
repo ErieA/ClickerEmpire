@@ -36,7 +36,10 @@
                 android:layout_height="38dp"
                 android:layout_alignParentLeft="true"
                 android:text="@string/llll"
-                android:textSize="8sp" />
+                android:textSize="8sp"
+                android:background="@drawable/borderbuttonlightblue"
+                android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"/>
 
             <Button
                 android:id="@+id/add_farmer1000"
@@ -44,7 +47,10 @@
                 android:layout_height="38dp"
                 android:layout_alignParentRight="true"
                 android:text="@string/gggg"
-                android:textSize="8sp" />
+                android:textSize="8sp"
+                android:background="@drawable/borderbuttonlightblue"
+                android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"/>
 
             <Button
                 android:id="@+id/substract_farmer100"
@@ -52,7 +58,10 @@
                 android:layout_height="38dp"
                 android:layout_toRightOf="@+id/substract_farmer1000"
                 android:text="@string/lll"
-                android:textSize="10sp" />
+                android:textSize="10sp"
+                android:background="@drawable/borderbuttonlightblue"
+                android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"/>
 
             <Button
                 android:id="@+id/add_farmer100"
@@ -60,7 +69,10 @@
                 android:layout_height="38dp"
                 android:layout_toLeftOf="@+id/add_farmer1000"
                 android:text="@string/ggg"
-                android:textSize="10sp" />
+                android:textSize="10sp"
+                android:background="@drawable/borderbuttonlightblue"
+                android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"/>
 
             <Button
                 android:id="@+id/substract_farmer10"
@@ -68,7 +80,10 @@
                 android:layout_height="38dp"
                 android:layout_toRightOf="@+id/substract_farmer100"
                 android:text="@string/ll"
-                android:textSize="11sp" />
+                android:textSize="11sp"
+                android:background="@drawable/borderbuttonlightblue"
+                android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"/>
 
             <Button
                 android:id="@+id/add_farmer10"
@@ -76,21 +91,30 @@
                 android:layout_height="38dp"
                 android:layout_toLeftOf="@+id/add_farmer100"
                 android:text="@string/gg"
-                android:textSize="11sp" />
+                android:textSize="11sp"
+                android:background="@drawable/borderbuttonlightblue"
+                android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"/>
 
             <Button
                 android:id="@+id/substract_farmer"
                 android:layout_width="32dp"
                 android:layout_height="38dp"
                 android:layout_toRightOf="@+id/substract_farmer10"
-                android:text="@string/l" />
+                android:text="@string/l"
+                android:background="@drawable/borderbuttonlightblue"
+                android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"/>
 
             <Button
                 android:id="@+id/add_farmer"
                 android:layout_width="32dp"
                 android:layout_height="38dp"
                 android:layout_toLeftOf="@+id/add_farmer10"
-                android:text="@string/g" />
+                android:text="@string/g"
+                android:background="@drawable/borderbuttonlightblue"
+                android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"/>
 
         </RelativeLayout>
 
@@ -118,7 +142,10 @@
                 android:layout_height="38dp"
                 android:layout_alignParentLeft="true"
                 android:text="@string/llll"
-                android:textSize="8sp" />
+                android:textSize="8sp"
+                android:background="@drawable/borderbuttonlightblue"
+                android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"/>
 
             <Button
                 android:id="@+id/add_lumberjack1000"
@@ -126,7 +153,10 @@
                 android:layout_height="38dp"
                 android:layout_alignParentRight="true"
                 android:text="@string/gggg"
-                android:textSize="8sp" />
+                android:textSize="8sp"
+                android:background="@drawable/borderbuttonlightblue"
+                android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"/>
 
             <Button
                 android:id="@+id/substract_lumberjack100"
@@ -134,7 +164,10 @@
                 android:layout_height="38dp"
                 android:layout_toRightOf="@+id/substract_lumberjack1000"
                 android:text="@string/lll"
-                android:textSize="10sp" />
+                android:textSize="10sp"
+                android:background="@drawable/borderbuttonlightblue"
+                android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"/>
 
             <Button
                 android:id="@+id/add_lumberjack100"
@@ -142,7 +175,10 @@
                 android:layout_height="38dp"
                 android:layout_toLeftOf="@+id/add_lumberjack1000"
                 android:text="@string/ggg"
-                android:textSize="10sp" />
+                android:textSize="10sp"
+                android:background="@drawable/borderbuttonlightblue"
+                android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"/>
 
             <Button
                 android:id="@+id/substract_lumberjack10"
@@ -150,7 +186,10 @@
                 android:layout_height="38dp"
                 android:layout_toRightOf="@+id/substract_lumberjack100"
                 android:text="@string/ll"
-                android:textSize="11sp" />
+                android:textSize="11sp"
+                android:background="@drawable/borderbuttonlightblue"
+                android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"/>
 
             <Button
                 android:id="@+id/add_lumberjack10"
@@ -158,21 +197,30 @@
                 android:layout_height="38dp"
                 android:layout_toLeftOf="@+id/add_lumberjack100"
                 android:text="@string/gg"
-                android:textSize="11sp" />
+                android:textSize="11sp"
+                android:background="@drawable/borderbuttonlightblue"
+                android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"/>
 
             <Button
                 android:id="@+id/substract_lumberjack"
                 android:layout_width="32dp"
                 android:layout_height="38dp"
                 android:layout_toRightOf="@+id/substract_lumberjack10"
-                android:text="@string/l" />
+                android:text="@string/l"
+                android:background="@drawable/borderbuttonlightblue"
+                android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"/>
 
             <Button
                 android:id="@+id/add_lumberjack"
                 android:layout_width="32dp"
                 android:layout_height="38dp"
                 android:layout_toLeftOf="@+id/add_lumberjack10"
-                android:text="@string/g" />
+                android:text="@string/g"
+                android:background="@drawable/borderbuttonlightblue"
+                android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"/>
 
         </RelativeLayout>
 
@@ -201,7 +249,10 @@
                 android:layout_height="38dp"
                 android:layout_alignParentLeft="true"
                 android:text="@string/llll"
-                android:textSize="8sp" />
+                android:textSize="8sp"
+                android:background="@drawable/borderbuttonlightblue"
+                android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"/>
 
             <Button
                 android:id="@+id/add_stonemason1000"
@@ -209,7 +260,10 @@
                 android:layout_height="38dp"
                 android:layout_alignParentRight="true"
                 android:text="@string/gggg"
-                android:textSize="8sp" />
+                android:textSize="8sp"
+                android:background="@drawable/borderbuttonlightblue"
+                android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"/>
 
             <Button
                 android:id="@+id/substract_stonemason100"
@@ -217,7 +271,10 @@
                 android:layout_height="38dp"
                 android:layout_toRightOf="@+id/substract_stonemason1000"
                 android:text="@string/lll"
-                android:textSize="10sp" />
+                android:textSize="10sp"
+                android:background="@drawable/borderbuttonlightblue"
+                android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"/>
 
             <Button
                 android:id="@+id/add_stonemason100"
@@ -225,7 +282,10 @@
                 android:layout_height="38dp"
                 android:layout_toLeftOf="@+id/add_stonemason1000"
                 android:text="@string/ggg"
-                android:textSize="10sp" />
+                android:textSize="10sp"
+                android:background="@drawable/borderbuttonlightblue"
+                android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"/>
 
             <Button
                 android:id="@+id/substract_stonemason10"
@@ -233,7 +293,10 @@
                 android:layout_height="38dp"
                 android:layout_toRightOf="@+id/substract_stonemason100"
                 android:text="@string/ll"
-                android:textSize="11sp" />
+                android:textSize="11sp"
+                android:background="@drawable/borderbuttonlightblue"
+                android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"/>
 
             <Button
                 android:id="@+id/add_stonemason10"
@@ -241,21 +304,30 @@
                 android:layout_height="38dp"
                 android:layout_toLeftOf="@+id/add_stonemason100"
                 android:text="@string/gg"
-                android:textSize="11sp" />
+                android:textSize="11sp"
+                android:background="@drawable/borderbuttonlightblue"
+                android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"/>
 
             <Button
                 android:id="@+id/substract_stonemason"
                 android:layout_width="32dp"
                 android:layout_height="38dp"
                 android:layout_toRightOf="@+id/substract_stonemason10"
-                android:text="@string/l" />
+                android:text="@string/l"
+                android:background="@drawable/borderbuttonlightblue"
+                android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"/>
 
             <Button
                 android:id="@+id/add_stonemason"
                 android:layout_width="32dp"
                 android:layout_height="38dp"
                 android:layout_toLeftOf="@+id/add_stonemason10"
-                android:text="@string/g" />
+                android:text="@string/g"
+                android:background="@drawable/borderbuttonlightblue"
+                android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"/>
 
         </RelativeLayout>
     </LinearLayout>

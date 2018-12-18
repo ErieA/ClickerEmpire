@@ -40,7 +40,10 @@
                     android:layout_height="38dp"
                     android:layout_alignParentLeft="true"
                     android:text="@string/llll"
-                    android:textSize="8sp" />
+                    android:textSize="8sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/add_farmeru1000"
@@ -48,7 +51,10 @@
                     android:layout_height="38dp"
                     android:layout_alignParentRight="true"
                     android:text="@string/gggg"
-                    android:textSize="8sp" />
+                    android:textSize="8sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/substract_farmeru100"
@@ -56,7 +62,10 @@
                     android:layout_height="38dp"
                     android:layout_toRightOf="@+id/substract_farmeru1000"
                     android:text="@string/lll"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/add_farmeru100"
@@ -64,7 +73,10 @@
                     android:layout_height="38dp"
                     android:layout_toLeftOf="@+id/add_farmeru1000"
                     android:text="@string/ggg"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/substract_farmeru10"
@@ -72,7 +84,10 @@
                     android:layout_height="38dp"
                     android:layout_toRightOf="@+id/substract_farmeru100"
                     android:text="@string/ll"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/add_farmeru10"
@@ -80,21 +95,30 @@
                     android:layout_height="38dp"
                     android:layout_toLeftOf="@+id/add_farmeru100"
                     android:text="@string/gg"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/substract_farmeru"
                     android:layout_width="32dp"
                     android:layout_height="38dp"
                     android:layout_toRightOf="@+id/substract_farmeru10"
-                    android:text="@string/l" />
+                    android:text="@string/l"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/add_farmeru"
                     android:layout_width="32dp"
                     android:layout_height="38dp"
                     android:layout_toLeftOf="@+id/add_farmeru10"
-                    android:text="@string/g" />
+                    android:text="@string/g"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
             </RelativeLayout>
 
@@ -122,7 +146,10 @@
                     android:layout_height="38dp"
                     android:layout_alignParentLeft="true"
                     android:text="@string/llll"
-                    android:textSize="8sp" />
+                    android:textSize="8sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/add_lumberjacku1000"
@@ -130,7 +157,10 @@
                     android:layout_height="38dp"
                     android:layout_alignParentRight="true"
                     android:text="@string/gggg"
-                    android:textSize="8sp" />
+                    android:textSize="8sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/substract_lumberjacku100"
@@ -138,7 +168,10 @@
                     android:layout_height="38dp"
                     android:layout_toRightOf="@+id/substract_lumberjacku1000"
                     android:text="@string/lll"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/add_lumberjacku100"
@@ -146,7 +179,10 @@
                     android:layout_height="38dp"
                     android:layout_toLeftOf="@+id/add_lumberjacku1000"
                     android:text="@string/ggg"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/substract_lumberjacku10"
@@ -154,7 +190,10 @@
                     android:layout_height="38dp"
                     android:layout_toRightOf="@+id/substract_lumberjacku100"
                     android:text="@string/ll"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/add_lumberjacku10"
@@ -162,21 +201,30 @@
                     android:layout_height="38dp"
                     android:layout_toLeftOf="@+id/add_lumberjacku100"
                     android:text="@string/gg"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/substract_lumberjacku"
                     android:layout_width="32dp"
                     android:layout_height="38dp"
                     android:layout_toRightOf="@+id/substract_lumberjacku10"
-                    android:text="@string/l" />
+                    android:text="@string/l"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/add_lumberjacku"
                     android:layout_width="32dp"
                     android:layout_height="38dp"
                     android:layout_toLeftOf="@+id/add_lumberjacku10"
-                    android:text="@string/g" />
+                    android:text="@string/g"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
             </RelativeLayout>
 
@@ -206,7 +254,10 @@
                     android:layout_height="38dp"
                     android:layout_alignParentLeft="true"
                     android:text="@string/llll"
-                    android:textSize="8sp" />
+                    android:textSize="8sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/add_stonemasonu1000"
@@ -214,7 +265,10 @@
                     android:layout_height="38dp"
                     android:layout_alignParentRight="true"
                     android:text="@string/gggg"
-                    android:textSize="8sp" />
+                    android:textSize="8sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/substract_stonemasonu100"
@@ -222,7 +276,10 @@
                     android:layout_height="38dp"
                     android:layout_toRightOf="@+id/substract_stonemasonu1000"
                     android:text="@string/lll"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/add_stonemasonu100"
@@ -230,7 +287,10 @@
                     android:layout_height="38dp"
                     android:layout_toLeftOf="@+id/add_stonemasonu1000"
                     android:text="@string/ggg"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/substract_stonemasonu10"
@@ -238,7 +298,10 @@
                     android:layout_height="38dp"
                     android:layout_toRightOf="@+id/substract_stonemasonu100"
                     android:text="@string/ll"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/add_stonemasonu10"
@@ -246,21 +309,30 @@
                     android:layout_height="38dp"
                     android:layout_toLeftOf="@+id/add_stonemasonu100"
                     android:text="@string/gg"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/substract_stonemasonu"
                     android:layout_width="32dp"
                     android:layout_height="38dp"
                     android:layout_toRightOf="@+id/substract_stonemasonu10"
-                    android:text="@string/l" />
+                    android:text="@string/l"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/add_stonemasonu"
                     android:layout_width="32dp"
                     android:layout_height="38dp"
                     android:layout_toLeftOf="@+id/add_stonemasonu10"
-                    android:text="@string/g" />
+                    android:text="@string/g"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
             </RelativeLayout>
 
@@ -289,7 +361,10 @@
                     android:layout_height="38dp"
                     android:layout_alignParentLeft="true"
                     android:text="@string/llll"
-                    android:textSize="8sp" />
+                    android:textSize="8sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/add_tannersu1000"
@@ -297,7 +372,10 @@
                     android:layout_height="38dp"
                     android:layout_alignParentRight="true"
                     android:text="@string/gggg"
-                    android:textSize="8sp" />
+                    android:textSize="8sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/substract_tannersu100"
@@ -305,7 +383,10 @@
                     android:layout_height="38dp"
                     android:layout_toRightOf="@+id/substract_tannersu1000"
                     android:text="@string/lll"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/add_tannersu100"
@@ -313,7 +394,10 @@
                     android:layout_height="38dp"
                     android:layout_toLeftOf="@+id/add_tannersu1000"
                     android:text="@string/ggg"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/substract_tannersu10"
@@ -321,7 +405,10 @@
                     android:layout_height="38dp"
                     android:layout_toRightOf="@+id/substract_tannersu100"
                     android:text="@string/ll"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/add_tannersu10"
@@ -329,21 +416,30 @@
                     android:layout_height="38dp"
                     android:layout_toLeftOf="@+id/add_tannersu100"
                     android:text="@string/gg"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/substract_tannersu"
                     android:layout_width="32dp"
                     android:layout_height="38dp"
                     android:layout_toRightOf="@+id/substract_tannersu10"
-                    android:text="@string/l" />
+                    android:text="@string/l"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/add_tannersu"
                     android:layout_width="32dp"
                     android:layout_height="38dp"
                     android:layout_toLeftOf="@+id/add_tannersu10"
-                    android:text="@string/g" />
+                    android:text="@string/g"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
             </RelativeLayout>
 
 
@@ -372,7 +468,10 @@
                     android:layout_height="38dp"
                     android:layout_alignParentLeft="true"
                     android:text="@string/llll"
-                    android:textSize="8sp" />
+                    android:textSize="8sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/add_healersu1000"
@@ -380,7 +479,10 @@
                     android:layout_height="38dp"
                     android:layout_alignParentRight="true"
                     android:text="@string/gggg"
-                    android:textSize="8sp" />
+                    android:textSize="8sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/substract_healersu100"
@@ -388,7 +490,10 @@
                     android:layout_height="38dp"
                     android:layout_toRightOf="@+id/substract_healersu1000"
                     android:text="@string/lll"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/add_healersu100"
@@ -396,7 +501,10 @@
                     android:layout_height="38dp"
                     android:layout_toLeftOf="@+id/add_healersu1000"
                     android:text="@string/ggg"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/substract_healersu10"
@@ -404,7 +512,10 @@
                     android:layout_height="38dp"
                     android:layout_toRightOf="@+id/substract_healersu100"
                     android:text="@string/ll"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/add_healersu10"
@@ -412,21 +523,30 @@
                     android:layout_height="38dp"
                     android:layout_toLeftOf="@+id/add_healersu100"
                     android:text="@string/gg"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/substract_healersu"
                     android:layout_width="32dp"
                     android:layout_height="38dp"
                     android:layout_toRightOf="@+id/substract_healersu10"
-                    android:text="@string/l" />
+                    android:text="@string/l"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/add_healersu"
                     android:layout_width="32dp"
                     android:layout_height="38dp"
                     android:layout_toLeftOf="@+id/add_healersu10"
-                    android:text="@string/g" />
+                    android:text="@string/g"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
             </RelativeLayout>
 
@@ -455,7 +575,10 @@
                     android:layout_height="38dp"
                     android:layout_alignParentLeft="true"
                     android:text="@string/llll"
-                    android:textSize="8sp" />
+                    android:textSize="8sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/add_blacksmithsu1000"
@@ -463,7 +586,10 @@
                     android:layout_height="38dp"
                     android:layout_alignParentRight="true"
                     android:text="@string/gggg"
-                    android:textSize="8sp" />
+                    android:textSize="8sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/substract_blacksmithsu100"
@@ -471,7 +597,10 @@
                     android:layout_height="38dp"
                     android:layout_toRightOf="@+id/substract_blacksmithsu1000"
                     android:text="@string/lll"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/add_blacksmithsu100"
@@ -479,7 +608,10 @@
                     android:layout_height="38dp"
                     android:layout_toLeftOf="@+id/add_blacksmithsu1000"
                     android:text="@string/ggg"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/substract_blacksmithsu10"
@@ -487,7 +619,10 @@
                     android:layout_height="38dp"
                     android:layout_toRightOf="@+id/substract_blacksmithsu100"
                     android:text="@string/ll"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/add_blacksmithsu10"
@@ -495,21 +630,30 @@
                     android:layout_height="38dp"
                     android:layout_toLeftOf="@+id/add_blacksmithsu100"
                     android:text="@string/gg"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/substract_blacksmithsu"
                     android:layout_width="32dp"
                     android:layout_height="38dp"
                     android:layout_toRightOf="@+id/substract_blacksmithsu10"
-                    android:text="@string/l" />
+                    android:text="@string/l"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/add_blacksmithsu"
                     android:layout_width="32dp"
                     android:layout_height="38dp"
                     android:layout_toLeftOf="@+id/add_blacksmithsu10"
-                    android:text="@string/g" />
+                    android:text="@string/g"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
             </RelativeLayout>
 

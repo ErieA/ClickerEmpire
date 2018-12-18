@@ -27,11 +27,14 @@
 
                 <Button
                     android:id="@+id/buildtent"
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="34dp"
                     android:layout_weight="1"
                     android:text="Build Tent"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <TextView
                     android:id="@+id/num_tent"
@@ -49,11 +52,14 @@
 
                 <Button
                     android:id="@+id/buildhut"
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="34dp"
                     android:layout_weight="1"
                     android:text="Build Hut"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <TextView
                     android:id="@+id/num_hut"
@@ -71,11 +77,14 @@
 
                 <Button
                     android:id="@+id/buildcottage"
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="34dp"
                     android:layout_weight="1"
                     android:text="Build Cottage"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <TextView
                     android:id="@+id/num_cottage"
@@ -94,11 +103,14 @@
 
                 <Button
                     android:id="@+id/buildhouse"
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="34dp"
                     android:layout_weight="1"
                     android:text="Build House"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <TextView
                     android:id="@+id/num_house"
@@ -116,11 +128,14 @@
 
                 <Button
                     android:id="@+id/buildmansion"
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="34dp"
                     android:layout_weight="1"
                     android:text="Build Mansion"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <TextView
                     android:id="@+id/num_mansion"
@@ -139,11 +154,14 @@
 
                 <Button
                     android:id="@+id/buildbarn"
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="34dp"
                     android:layout_weight="1"
                     android:text="Build Barn"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <TextView
                     android:id="@+id/num_barn"
@@ -161,11 +179,14 @@
 
                 <Button
                     android:id="@+id/buildwoodstockpile"
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="34dp"
                     android:layout_weight="1"
                     android:text="Build Wood Stockpile"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <TextView
                     android:id="@+id/num_woodstockpile"
@@ -183,11 +204,14 @@
 
                 <Button
                     android:id="@+id/buildstonestockpile"
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="34dp"
                     android:layout_weight="1"
                     android:text="Build Stone Stockpile"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <TextView
                     android:id="@+id/num_stonestockpile"
@@ -205,11 +229,14 @@
 
                 <Button
                     android:id="@+id/buildtannery"
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="34dp"
                     android:layout_weight="1"
                     android:text="Build Tannery"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <TextView
                     android:id="@+id/num_tannery"
@@ -227,11 +254,14 @@
 
                 <Button
                     android:id="@+id/buildsmithy"
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="34dp"
                     android:layout_weight="1"
                     android:text="Build Smithy"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <TextView
                     android:id="@+id/num_smithy"
@@ -249,11 +279,14 @@
 
                 <Button
                     android:id="@+id/buildapothecary"
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="34dp"
                     android:layout_weight="1"
                     android:text="Build Apothecary"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <TextView
                     android:id="@+id/num_apothecary"
@@ -271,11 +304,14 @@
 
                 <Button
                     android:id="@+id/buildbarracks"
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="34dp"
                     android:layout_weight="1"
                     android:text="Build Barracks"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <TextView
                     android:id="@+id/num_barracks"
@@ -293,11 +329,14 @@
 
                 <Button
                     android:id="@+id/buildstables"
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="34dp"
                     android:layout_weight="1"
                     android:text="Build Stable"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:background="@drawable/borderbuttonlightblue"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"/>
 
                 <TextView
                     android:id="@+id/num_stables"
