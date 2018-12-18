@@ -6,7 +6,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -85,7 +87,7 @@ public class GameSave extends SQLiteOpenHelper {
 
 
     private static GameSave gameSave;
-
+    DecimalFormat df = new DecimalFormat("0.0");
     public static synchronized GameSave getGameSave(Context context){
         if(gameSave == null) {
             gameSave = new GameSave(context);
@@ -309,17 +311,14 @@ public class GameSave extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + RESOURCES);
         onCreate(db);
     }
-    public boolean updateNoMax(String res, double amt){
+    public boolean updateNoMax(String res, double amt) {
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "SELECT " + res + " FROM " + RESOURCES + " WHERE ID = 1";
-        Cursor data = db.rawQuery(sql,null);
-        StringBuffer buffer = new StringBuffer();
-        while(data.moveToNext()){
-            buffer.append(data.getString(0));
+        Cursor data = db.rawQuery(sql, null);
+        double current = 0;
+        while (data.moveToNext()) {
+            current = data.getDouble(0);
         }
-        data.close();
-        String str = buffer.toString();
-        double current = Double.parseDouble(str);
         current = current + amt;
         ContentValues contentValues = new ContentValues();
         contentValues.put(res, current);
@@ -330,17 +329,13 @@ public class GameSave extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "SELECT " + res + ", " + res + "_MAX FROM " + RESOURCES + " WHERE ID = 1";
         Cursor data = db.rawQuery(sql,null);
-        StringBuffer buffer = new StringBuffer();
+        double current = 0;
+        double max = 0;
         while(data.moveToNext()){
-            buffer.append(data.getString(0));
-            buffer.append(",");
-            buffer.append(data.getString(1));
+            current = data.getDouble(0);
+            max = data.getDouble(1);
         }
         data.close();
-        String str = buffer.toString();
-        String[] array = str.split(",");
-        double current = Double.parseDouble(array[0]);
-        Double max = Double.parseDouble(array[1]);
         current = current + amt;
         if(current<=max){
             ContentValues contentValues = new ContentValues();
@@ -359,13 +354,11 @@ public class GameSave extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "SELECT " + res + "_MAX FROM " + RESOURCES + " WHERE ID = 1";
         Cursor data = db.rawQuery(sql,null);
-        StringBuffer buffer = new StringBuffer();
+        double max = 0;
         while(data.moveToNext()){
-            buffer.append(data.getString(0));
+            max = data.getDouble(0);
         }
         data.close();
-        String str = buffer.toString();
-        double max = Double.parseDouble(str);
         max = max + amt;
         ContentValues contentValues = new ContentValues();
         String res_max = res + "_MAX";
@@ -391,13 +384,11 @@ public class GameSave extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "SELECT " + building + " FROM " + RESOURCES + " WHERE ID = 1";
         Cursor data = db.rawQuery(sql,null);
-        StringBuffer buffer = new StringBuffer();
+        int current = 0;
         while(data.moveToNext()){
-            buffer.append(data.getString(0));
+            current = data.getInt(0);
         }
         data.close();
-        String str = buffer.toString();
-        int current = Integer.parseInt(str);
         current = current + amt;
         ContentValues contentValues = new ContentValues();
         contentValues.put(building, current);
@@ -428,21 +419,31 @@ public class GameSave extends SQLiteOpenHelper {
         int str = Integer.parseInt(buffer.toString());
         return str == 1;
     }
-    public String resourceAmount(String res){
+    public double resourceAmountD(String res){
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "SELECT "+ res + " FROM " + RESOURCES + " WHERE ID = 1";
         Cursor data = db.rawQuery(sql,null);
-        StringBuffer buffer = new StringBuffer();
+        double x = 0;
         while(data.moveToNext()){
-            buffer.append(data.getString(0));
+            x = data.getDouble(0);
         }
         data.close();
-        String c = buffer.toString();
-        return  c;
+        return x;
     }
-    public String showamt(String res){
+    public int resourceAmountI(String res){
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "SELECT "+ res + " FROM " + RESOURCES + " WHERE ID = 1";
+        Cursor data = db.rawQuery(sql,null);
+        int x = 0;
+        while(data.moveToNext()){
+            x = data.getInt(0);
+        }
+        data.close();
+        return x;
+    }
+    public String civName(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "SELECT "+ CIVILIZATION_NAME + " FROM " + RESOURCES + " WHERE ID = 1";
         Cursor data = db.rawQuery(sql,null);
         StringBuffer buffer = new StringBuffer();
         while(data.moveToNext()){

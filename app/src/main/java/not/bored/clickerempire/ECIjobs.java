@@ -206,9 +206,7 @@ public class ECIjobs extends Fragment {
         void addStonemason(int amount);
         void substractStonemason(int amount);
         boolean checkMUpgrade();
-        String workerAmount(String worker);
         void toast(String string);
         boolean ECI();
-        void switchfragj(boolean bool);
     }
 }

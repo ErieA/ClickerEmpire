@@ -14,6 +14,7 @@
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="200dp"
             android:background="?android:windowBackground"
             android:stretchColumns="0,1,2">
 
@@ -680,104 +681,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Cost: 500 food, 1000 wood, 1000 stone" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/e1"
-                    android:layout_width="100dp"
-                    android:layout_height="32dp"
-                    android:layout_weight="1"
-                    android:visibility="invisible"
-                    android:text="Extraction"
-                    android:textSize="10sp" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/e2"
-                    android:layout_width="100dp"
-                    android:layout_height="32dp"
-                    android:layout_weight="1"
-                    android:visibility="invisible"
-                    android:text="Extraction"
-                    android:textSize="10sp" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/e3"
-                    android:layout_width="100dp"
-                    android:layout_height="32dp"
-                    android:layout_weight="1"
-                    android:visibility="invisible"
-                    android:text="Extraction"
-                    android:textSize="10sp" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/e4"
-                    android:layout_width="100dp"
-                    android:layout_height="32dp"
-                    android:layout_weight="1"
-                    android:visibility="invisible"
-                    android:text="Extraction"
-                    android:textSize="10sp" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/e5"
-                    android:layout_width="100dp"
-                    android:layout_height="32dp"
-                    android:layout_weight="1"
-                    android:visibility="invisible"
-                    android:text="Extraction"
-                    android:textSize="10sp" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/e6"
-                    android:layout_width="100dp"
-                    android:layout_height="32dp"
-                    android:layout_weight="1"
-                    android:visibility="invisible"
-                    android:text="Extraction"
-                    android:textSize="10sp" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/e7"
-                    android:layout_width="100dp"
-                    android:layout_height="32dp"
-                    android:layout_weight="1"
-                    android:visibility="invisible"
-                    android:text="Extraction"
-                    android:textSize="10sp" />
             </LinearLayout>
 
         </TableLayout>

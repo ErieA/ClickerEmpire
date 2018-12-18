@@ -316,7 +316,6 @@ public class ECIupgradedjobs extends Fragment {
         void addBlacksmith(int amount);
         void substractBlacksmith(int amount);
         boolean checkMUpgrade();
-        String workerAmount(String worker);
         void toast(String string);
         boolean ECI();
     }

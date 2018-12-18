@@ -60,46 +60,49 @@
                         android:textStyle="bold" />
 
                 <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
 
-                        <Button
-                            android:id="@+id/create_worker"
-                            android:layout_width="144dp"
-                            android:layout_height="38dp"
-                            android:layout_weight="1"
-                            android:text="Create Workers" />
+                    <Button
+                        android:id="@+id/create_worker"
+                        android:layout_width="144dp"
+                        android:layout_height="38dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/borderbuttonlightblue"
+                        android:text="Create Workers" />
 
-                        <Button
-                            android:id="@+id/substract_worker"
-                            android:layout_width="38dp"
-                            android:layout_height="38dp"
-                            android:layout_weight="1"
-                            android:text="-" />
+                    <Button
+                        android:id="@+id/substract_worker"
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/borderbuttonlightblue"
+                        android:text="-" />
 
-                        <EditText
-                            android:id="@+id/num_workers"
-                            android:layout_width="wrap_content"
-                            android:layout_height="38dp"
-                            android:layout_weight="1"
-                            android:inputType="number"
-                            android:maxLines="1"
-                            android:text="1"
-                            android:textAlignment="center"
-                            android:textAllCaps="false"
-                            android:textAppearance="@style/TextAppearance.AppCompat"
-                            android:textColor="@android:color/black"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
+                    <EditText
+                        android:id="@+id/num_workers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="38dp"
+                        android:layout_weight="1"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:text="1"
+                        android:textAlignment="center"
+                        android:textAllCaps="false"
+                        android:textAppearance="@style/TextAppearance.AppCompat"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
-                        <Button
-                            android:id="@+id/add_worker"
-                            android:layout_width="38dp"
-                            android:layout_height="38dp"
-                            android:layout_weight="1"
-                            android:text="+" />
-                    </LinearLayout>
+                    <Button
+                        android:id="@+id/add_worker"
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/borderbuttonlightblue"
+                        android:text="+" />
+                </LinearLayout>
                 <TextView
                     android:id="@+id/worker_cost"
                     android:layout_width="wrap_content"
@@ -119,6 +122,7 @@
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentTop="true"
+                        android:background="@drawable/borderbuttonlightblue"
                         android:text="Collect Food" />
 
                     <TextView
@@ -128,7 +132,7 @@
                         android:layout_toRightOf="@+id/collect_food"
                         android:text="0/200"
                         android:textAppearance="@style/TextAppearance.AppCompat"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/FOOD"
@@ -147,6 +151,7 @@
                         android:layout_width="144dp"
                         android:layout_height="38dp"
                         android:layout_alignParentLeft="true"
+                        android:background="@drawable/borderbuttonlightblue"
                         android:text="Collect Wood" />
 
                     <TextView
@@ -156,7 +161,7 @@
                         android:layout_toRightOf="@+id/collect_wood"
                         android:text="0/200"
                         android:textAppearance="@style/TextAppearance.AppCompat"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/WOOD"
@@ -175,6 +180,7 @@
                         android:layout_width="144dp"
                         android:layout_height="38dp"
                         android:layout_alignParentLeft="true"
+                        android:background="@drawable/borderbuttonlightblue"
                         android:text="Collect Stone" />
 
                     <TextView
@@ -184,7 +190,7 @@
                         android:layout_toRightOf="@+id/collect_stone"
                         android:text="0/200"
                         android:textAppearance="@style/TextAppearance.AppCompat"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/STONE"
@@ -204,6 +210,7 @@
                         android:layout_width="100dp"
                         android:layout_height="38dp"
                         android:layout_weight="1"
+                        android:background="@drawable/borderbuttonlightblue"
                         android:text="Buildings"
                         android:textSize="10sp" />
 
@@ -212,6 +219,7 @@
                         android:layout_width="100dp"
                         android:layout_height="38dp"
                         android:layout_weight="1"
+                        android:background="@drawable/borderbuttonlightblue"
                         android:text="S.Resources"
                         android:textSize="10sp" />
 
@@ -220,6 +228,7 @@
                         android:layout_width="100dp"
                         android:layout_height="38dp"
                         android:layout_weight="1"
+                        android:background="@drawable/borderbuttonlightblue"
                         android:text="Jobs"
                         android:textSize="10sp" />
 
@@ -228,6 +237,7 @@
                         android:layout_width="100dp"
                         android:layout_height="38dp"
                         android:layout_weight="1"
+                        android:background="@drawable/borderbuttonlightblue"
                         android:text="Upgrades"
                         android:textSize="10sp" />
 
@@ -236,6 +246,7 @@
                         android:layout_width="100dp"
                         android:layout_height="38dp"
                         android:layout_weight="1"
+                        android:background="@drawable/borderbuttonlightblue"
                         android:text="Conquest"
                         android:textSize="10sp" />
                 </LinearLayout>

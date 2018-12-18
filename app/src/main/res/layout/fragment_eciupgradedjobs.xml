@@ -5,292 +5,297 @@
     tools:context="not.bored.clickerempire.ECIupgradedjobs">
 
     <!-- TODO: Update blank fragment layout -->
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="?android:windowBackground">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:background="?android:windowBackground"
+            android:orientation="vertical"
+            android:paddingBottom="200dp">
 
-            <TextView
-                android:id="@+id/farmersu"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18sp" />
-        </LinearLayout>
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/farmersu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp" />
+            </LinearLayout>
 
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/customfarmerview">
+            <RelativeLayout
+                android:id="@+id/customfarmerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/customadd_farmer"
-                android:layout_width="42dp"
-                android:layout_height="38dp"
-                android:layout_alignParentRight="true"
-                android:text="+"
-                android:textSize="12sp" />
+                <Button
+                    android:id="@+id/customadd_farmer"
+                    android:layout_width="42dp"
+                    android:layout_height="38dp"
+                    android:layout_alignParentRight="true"
+                    android:text="+"
+                    android:textSize="12sp" />
 
-            <EditText
-                android:id="@+id/customfarmer"
-                android:layout_width="100dp"
-                android:layout_height="38dp"
-                android:layout_toRightOf="@+id/customsubstract_farmer"
-                android:layout_toLeftOf="@+id/customadd_farmer"
-                android:ems="10"
-                android:inputType="number"
-                android:textSize="10sp" />
+                <EditText
+                    android:id="@+id/customfarmer"
+                    android:layout_width="100dp"
+                    android:layout_height="38dp"
+                    android:layout_toLeftOf="@+id/customadd_farmer"
+                    android:layout_toRightOf="@+id/customsubstract_farmer"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:textSize="10sp" />
 
-            <Button
-                android:id="@+id/customsubstract_farmer"
-                android:layout_width="42dp"
-                android:layout_height="38dp"
-                android:layout_alignParentLeft="true"
-                android:text="-"
-                android:textSize="12sp" />
+                <Button
+                    android:id="@+id/customsubstract_farmer"
+                    android:layout_width="42dp"
+                    android:layout_height="38dp"
+                    android:layout_alignParentLeft="true"
+                    android:text="-"
+                    android:textSize="12sp" />
 
-        </RelativeLayout>
+            </RelativeLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/lumberjacksu"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18sp" />
-        </LinearLayout>
+                android:gravity="center"
+                android:orientation="horizontal">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/customlumberjackview">
+                <TextView
+                    android:id="@+id/lumberjacksu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp" />
+            </LinearLayout>
 
-            <Button
-                android:id="@+id/customadd_lumberjack"
-                android:layout_width="42dp"
-                android:layout_height="38dp"
-                android:layout_alignParentRight="true"
-                android:text="+"
-                android:textSize="12sp" />
+            <RelativeLayout
+                android:id="@+id/customlumberjackview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/customlumberjack"
-                android:layout_width="100dp"
-                android:layout_height="38dp"
-                android:layout_toRightOf="@+id/customsubstract_lumberjack"
-                android:layout_toLeftOf="@+id/customadd_lumberjack"
-                android:ems="10"
-                android:inputType="number"
-                android:textSize="10sp" />
+                <Button
+                    android:id="@+id/customadd_lumberjack"
+                    android:layout_width="42dp"
+                    android:layout_height="38dp"
+                    android:layout_alignParentRight="true"
+                    android:text="+"
+                    android:textSize="12sp" />
 
-            <Button
-                android:id="@+id/customsubstract_lumberjack"
-                android:layout_width="42dp"
-                android:layout_height="38dp"
-                android:layout_alignParentLeft="true"
-                android:text="-"
-                android:textSize="12sp" />
+                <EditText
+                    android:id="@+id/customlumberjack"
+                    android:layout_width="100dp"
+                    android:layout_height="38dp"
+                    android:layout_toLeftOf="@+id/customadd_lumberjack"
+                    android:layout_toRightOf="@+id/customsubstract_lumberjack"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:textSize="10sp" />
 
-        </RelativeLayout>
+                <Button
+                    android:id="@+id/customsubstract_lumberjack"
+                    android:layout_width="42dp"
+                    android:layout_height="38dp"
+                    android:layout_alignParentLeft="true"
+                    android:text="-"
+                    android:textSize="12sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+            </RelativeLayout>
 
-            <TextView
-                android:id="@+id/stonemasonsu"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18sp" />
+                android:gravity="center"
+                android:orientation="horizontal">
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/stonemasonsu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/customstonemasonview">
+            </LinearLayout>
 
-            <Button
-                android:id="@+id/customadd_stonemason"
-                android:layout_width="42dp"
-                android:layout_height="38dp"
-                android:layout_alignParentRight="true"
-                android:text="+"
-                android:textSize="12sp" />
+            <RelativeLayout
+                android:id="@+id/customstonemasonview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/customstonemason"
-                android:layout_width="100dp"
-                android:layout_height="38dp"
-                android:layout_toRightOf="@+id/customsubstract_stonemason"
-                android:layout_toLeftOf="@+id/customadd_stonemason"
-                android:ems="10"
-                android:inputType="number"
-                android:textSize="10sp" />
+                <Button
+                    android:id="@+id/customadd_stonemason"
+                    android:layout_width="42dp"
+                    android:layout_height="38dp"
+                    android:layout_alignParentRight="true"
+                    android:text="+"
+                    android:textSize="12sp" />
 
-            <Button
-                android:id="@+id/customsubstract_stonemason"
-                android:layout_width="42dp"
-                android:layout_height="38dp"
-                android:layout_alignParentLeft="true"
-                android:text="-"
-                android:textSize="12sp" />
-        </RelativeLayout>
+                <EditText
+                    android:id="@+id/customstonemason"
+                    android:layout_width="100dp"
+                    android:layout_height="38dp"
+                    android:layout_toLeftOf="@+id/customadd_stonemason"
+                    android:layout_toRightOf="@+id/customsubstract_stonemason"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:textSize="10sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+                <Button
+                    android:id="@+id/customsubstract_stonemason"
+                    android:layout_width="42dp"
+                    android:layout_height="38dp"
+                    android:layout_alignParentLeft="true"
+                    android:text="-"
+                    android:textSize="12sp" />
+            </RelativeLayout>
 
-            <TextView
-                android:id="@+id/tannersu"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18sp" />
+                android:gravity="center"
+                android:orientation="horizontal">
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/tannersu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
 
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/customtannerview">
+            <RelativeLayout
+                android:id="@+id/customtannerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/customadd_tanner"
-                android:layout_width="42dp"
-                android:layout_height="38dp"
-                android:layout_alignParentRight="true"
-                android:text="+"
-                android:textSize="12sp" />
+                <Button
+                    android:id="@+id/customadd_tanner"
+                    android:layout_width="42dp"
+                    android:layout_height="38dp"
+                    android:layout_alignParentRight="true"
+                    android:text="+"
+                    android:textSize="12sp" />
 
-            <EditText
-                android:id="@+id/customtanner"
-                android:layout_width="100dp"
-                android:layout_height="38dp"
-                android:layout_toRightOf="@+id/customsubstract_tanner"
-                android:layout_toLeftOf="@+id/customadd_tanner"
-                android:ems="10"
-                android:inputType="number"
-                android:textSize="10sp" />
+                <EditText
+                    android:id="@+id/customtanner"
+                    android:layout_width="100dp"
+                    android:layout_height="38dp"
+                    android:layout_toLeftOf="@+id/customadd_tanner"
+                    android:layout_toRightOf="@+id/customsubstract_tanner"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:textSize="10sp" />
 
-            <Button
-                android:id="@+id/customsubstract_tanner"
-                android:layout_width="42dp"
-                android:layout_height="38dp"
-                android:layout_alignParentLeft="true"
-                android:text="-"
-                android:textSize="12sp" />
-        </RelativeLayout>
+                <Button
+                    android:id="@+id/customsubstract_tanner"
+                    android:layout_width="42dp"
+                    android:layout_height="38dp"
+                    android:layout_alignParentLeft="true"
+                    android:text="-"
+                    android:textSize="12sp" />
+            </RelativeLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/healersu"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18sp" />
+                android:gravity="center"
+                android:orientation="horizontal">
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/healersu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
 
 
+            <RelativeLayout
+                android:id="@+id/customhealerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/customhealerview">
+                <Button
+                    android:id="@+id/customadd_healer"
+                    android:layout_width="42dp"
+                    android:layout_height="38dp"
+                    android:layout_alignParentRight="true"
+                    android:text="+"
+                    android:textSize="12sp" />
 
-            <Button
-                android:id="@+id/customadd_healer"
-                android:layout_width="42dp"
-                android:layout_height="38dp"
-                android:layout_alignParentRight="true"
-                android:text="+"
-                android:textSize="12sp" />
+                <EditText
+                    android:id="@+id/customhealer"
+                    android:layout_width="100dp"
+                    android:layout_height="38dp"
+                    android:layout_toLeftOf="@+id/customadd_healer"
+                    android:layout_toRightOf="@+id/customsubstract_healer"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:textSize="10sp" />
 
-            <EditText
-                android:id="@+id/customhealer"
-                android:layout_width="100dp"
-                android:layout_height="38dp"
-                android:layout_toRightOf="@+id/customsubstract_healer"
-                android:layout_toLeftOf="@+id/customadd_healer"
-                android:ems="10"
-                android:inputType="number"
-                android:textSize="10sp" />
+                <Button
+                    android:id="@+id/customsubstract_healer"
+                    android:layout_width="42dp"
+                    android:layout_height="38dp"
+                    android:layout_alignParentLeft="true"
+                    android:text="-"
+                    android:textSize="12sp" />
+            </RelativeLayout>
 
-            <Button
-                android:id="@+id/customsubstract_healer"
-                android:layout_width="42dp"
-                android:layout_height="38dp"
-                android:layout_alignParentLeft="true"
-                android:text="-"
-                android:textSize="12sp" />
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/blacksmithsu"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18sp" />
+                android:gravity="center"
+                android:orientation="horizontal">
 
+                <TextView
+                    android:id="@+id/blacksmithsu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/customblacksmithview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/customadd_blacksmith"
+                    android:layout_width="42dp"
+                    android:layout_height="38dp"
+                    android:layout_alignParentRight="true"
+                    android:text="+"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/customblacksmith"
+                    android:layout_width="100dp"
+                    android:layout_height="38dp"
+                    android:layout_toLeftOf="@+id/customadd_blacksmith"
+                    android:layout_toRightOf="@+id/customsubstract_blacksmith"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:textSize="10sp" />
+
+                <Button
+                    android:id="@+id/customsubstract_blacksmith"
+                    android:layout_width="42dp"
+                    android:layout_height="38dp"
+                    android:layout_alignParentLeft="true"
+                    android:text="-"
+                    android:textSize="12sp" />
+            </RelativeLayout>
         </LinearLayout>
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/customblacksmithview">
-
-            <Button
-                android:id="@+id/customadd_blacksmith"
-                android:layout_width="42dp"
-                android:layout_height="38dp"
-                android:layout_alignParentRight="true"
-                android:text="+"
-                android:textSize="12sp" />
-
-            <EditText
-                android:id="@+id/customblacksmith"
-                android:layout_width="100dp"
-                android:layout_height="38dp"
-                android:layout_toRightOf="@+id/customsubstract_blacksmith"
-                android:layout_toLeftOf="@+id/customadd_blacksmith"
-                android:ems="10"
-                android:inputType="number"
-                android:textSize="10sp" />
-
-            <Button
-                android:id="@+id/customsubstract_blacksmith"
-                android:layout_width="42dp"
-                android:layout_height="38dp"
-                android:layout_alignParentLeft="true"
-                android:text="-"
-                android:textSize="12sp" />
-        </RelativeLayout>
-    </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>

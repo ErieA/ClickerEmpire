@@ -1,514 +1,520 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context="not.bored.clickerempire.upgradedJobs">
 
     <!-- TODO: Update blank fragment layout -->
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="?android:windowBackground">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:background="?android:windowBackground"
+            android:orientation="vertical"
+            android:paddingBottom="200dp">
 
-            <TextView
-                android:id="@+id/farmersu"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18sp" />
-        </LinearLayout>
+                android:gravity="center"
+                android:orientation="horizontal">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/farmerview">
+                <TextView
+                    android:id="@+id/farmersu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp" />
+            </LinearLayout>
 
-            <Button
-                android:id="@+id/substract_farmeru1000"
-                android:layout_width="42dp"
-                android:layout_height="38dp"
-                android:layout_alignParentLeft="true"
-                android:text="@string/llll"
-                android:textSize="8sp" />
+            <RelativeLayout
+                android:id="@+id/farmerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/add_farmeru1000"
-                android:layout_width="42dp"
-                android:layout_height="38dp"
-                android:layout_alignParentRight="true"
-                android:text="@string/gggg"
-                android:textSize="8sp" />
+                <Button
+                    android:id="@+id/substract_farmeru1000"
+                    android:layout_width="42dp"
+                    android:layout_height="38dp"
+                    android:layout_alignParentLeft="true"
+                    android:text="@string/llll"
+                    android:textSize="8sp" />
 
-            <Button
-                android:id="@+id/substract_farmeru100"
-                android:layout_width="39dp"
-                android:layout_height="38dp"
-                android:layout_toRightOf="@+id/substract_farmeru1000"
-                android:text="@string/lll"
-                android:textSize="10sp" />
+                <Button
+                    android:id="@+id/add_farmeru1000"
+                    android:layout_width="42dp"
+                    android:layout_height="38dp"
+                    android:layout_alignParentRight="true"
+                    android:text="@string/gggg"
+                    android:textSize="8sp" />
 
-            <Button
-                android:id="@+id/add_farmeru100"
-                android:layout_width="39dp"
-                android:layout_height="38dp"
-                android:layout_toLeftOf="@+id/add_farmeru1000"
-                android:text="@string/ggg"
-                android:textSize="10sp" />
+                <Button
+                    android:id="@+id/substract_farmeru100"
+                    android:layout_width="39dp"
+                    android:layout_height="38dp"
+                    android:layout_toRightOf="@+id/substract_farmeru1000"
+                    android:text="@string/lll"
+                    android:textSize="10sp" />
 
-            <Button
-                android:id="@+id/substract_farmeru10"
-                android:layout_width="36dp"
-                android:layout_height="38dp"
-                android:layout_toRightOf="@+id/substract_farmeru100"
-                android:text="@string/ll"
-                android:textSize="11sp" />
+                <Button
+                    android:id="@+id/add_farmeru100"
+                    android:layout_width="39dp"
+                    android:layout_height="38dp"
+                    android:layout_toLeftOf="@+id/add_farmeru1000"
+                    android:text="@string/ggg"
+                    android:textSize="10sp" />
 
-            <Button
-                android:id="@+id/add_farmeru10"
-                android:layout_width="36dp"
-                android:layout_height="38dp"
-                android:layout_toLeftOf="@+id/add_farmeru100"
-                android:text="@string/gg"
-                android:textSize="11sp" />
+                <Button
+                    android:id="@+id/substract_farmeru10"
+                    android:layout_width="36dp"
+                    android:layout_height="38dp"
+                    android:layout_toRightOf="@+id/substract_farmeru100"
+                    android:text="@string/ll"
+                    android:textSize="11sp" />
 
-            <Button
-                android:id="@+id/substract_farmeru"
-                android:layout_width="32dp"
-                android:layout_height="38dp"
-                android:layout_toRightOf="@+id/substract_farmeru10"
-                android:text="@string/l" />
+                <Button
+                    android:id="@+id/add_farmeru10"
+                    android:layout_width="36dp"
+                    android:layout_height="38dp"
+                    android:layout_toLeftOf="@+id/add_farmeru100"
+                    android:text="@string/gg"
+                    android:textSize="11sp" />
 
-            <Button
-                android:id="@+id/add_farmeru"
-                android:layout_width="32dp"
-                android:layout_height="38dp"
-                android:layout_toLeftOf="@+id/add_farmeru10"
-                android:text="@string/g" />
+                <Button
+                    android:id="@+id/substract_farmeru"
+                    android:layout_width="32dp"
+                    android:layout_height="38dp"
+                    android:layout_toRightOf="@+id/substract_farmeru10"
+                    android:text="@string/l" />
 
-        </RelativeLayout>
+                <Button
+                    android:id="@+id/add_farmeru"
+                    android:layout_width="32dp"
+                    android:layout_height="38dp"
+                    android:layout_toLeftOf="@+id/add_farmeru10"
+                    android:text="@string/g" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+            </RelativeLayout>
 
-            <TextView
-                android:id="@+id/lumberjacksu"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18sp" />
-        </LinearLayout>
+                android:gravity="center"
+                android:orientation="horizontal">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/lumberjackview">
+                <TextView
+                    android:id="@+id/lumberjacksu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp" />
+            </LinearLayout>
 
-            <Button
-                android:id="@+id/substract_lumberjacku1000"
-                android:layout_width="42dp"
-                android:layout_height="38dp"
-                android:layout_alignParentLeft="true"
-                android:text="@string/llll"
-                android:textSize="8sp" />
+            <RelativeLayout
+                android:id="@+id/lumberjackview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/add_lumberjacku1000"
-                android:layout_width="42dp"
-                android:layout_height="38dp"
-                android:layout_alignParentRight="true"
-                android:text="@string/gggg"
-                android:textSize="8sp" />
+                <Button
+                    android:id="@+id/substract_lumberjacku1000"
+                    android:layout_width="42dp"
+                    android:layout_height="38dp"
+                    android:layout_alignParentLeft="true"
+                    android:text="@string/llll"
+                    android:textSize="8sp" />
 
-            <Button
-                android:id="@+id/substract_lumberjacku100"
-                android:layout_width="39dp"
-                android:layout_height="38dp"
-                android:layout_toRightOf="@+id/substract_lumberjacku1000"
-                android:text="@string/lll"
-                android:textSize="10sp" />
+                <Button
+                    android:id="@+id/add_lumberjacku1000"
+                    android:layout_width="42dp"
+                    android:layout_height="38dp"
+                    android:layout_alignParentRight="true"
+                    android:text="@string/gggg"
+                    android:textSize="8sp" />
 
-            <Button
-                android:id="@+id/add_lumberjacku100"
-                android:layout_width="39dp"
-                android:layout_height="38dp"
-                android:layout_toLeftOf="@+id/add_lumberjacku1000"
-                android:text="@string/ggg"
-                android:textSize="10sp" />
+                <Button
+                    android:id="@+id/substract_lumberjacku100"
+                    android:layout_width="39dp"
+                    android:layout_height="38dp"
+                    android:layout_toRightOf="@+id/substract_lumberjacku1000"
+                    android:text="@string/lll"
+                    android:textSize="10sp" />
 
-            <Button
-                android:id="@+id/substract_lumberjacku10"
-                android:layout_width="36dp"
-                android:layout_height="38dp"
-                android:layout_toRightOf="@+id/substract_lumberjacku100"
-                android:text="@string/ll"
-                android:textSize="11sp" />
+                <Button
+                    android:id="@+id/add_lumberjacku100"
+                    android:layout_width="39dp"
+                    android:layout_height="38dp"
+                    android:layout_toLeftOf="@+id/add_lumberjacku1000"
+                    android:text="@string/ggg"
+                    android:textSize="10sp" />
 
-            <Button
-                android:id="@+id/add_lumberjacku10"
-                android:layout_width="36dp"
-                android:layout_height="38dp"
-                android:layout_toLeftOf="@+id/add_lumberjacku100"
-                android:text="@string/gg"
-                android:textSize="11sp" />
+                <Button
+                    android:id="@+id/substract_lumberjacku10"
+                    android:layout_width="36dp"
+                    android:layout_height="38dp"
+                    android:layout_toRightOf="@+id/substract_lumberjacku100"
+                    android:text="@string/ll"
+                    android:textSize="11sp" />
 
-            <Button
-                android:id="@+id/substract_lumberjacku"
-                android:layout_width="32dp"
-                android:layout_height="38dp"
-                android:layout_toRightOf="@+id/substract_lumberjacku10"
-                android:text="@string/l" />
+                <Button
+                    android:id="@+id/add_lumberjacku10"
+                    android:layout_width="36dp"
+                    android:layout_height="38dp"
+                    android:layout_toLeftOf="@+id/add_lumberjacku100"
+                    android:text="@string/gg"
+                    android:textSize="11sp" />
 
-            <Button
-                android:id="@+id/add_lumberjacku"
-                android:layout_width="32dp"
-                android:layout_height="38dp"
-                android:layout_toLeftOf="@+id/add_lumberjacku10"
-                android:text="@string/g" />
+                <Button
+                    android:id="@+id/substract_lumberjacku"
+                    android:layout_width="32dp"
+                    android:layout_height="38dp"
+                    android:layout_toRightOf="@+id/substract_lumberjacku10"
+                    android:text="@string/l" />
 
-        </RelativeLayout>
+                <Button
+                    android:id="@+id/add_lumberjacku"
+                    android:layout_width="32dp"
+                    android:layout_height="38dp"
+                    android:layout_toLeftOf="@+id/add_lumberjacku10"
+                    android:text="@string/g" />
+
+            </RelativeLayout>
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/stonemasonsu"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18sp" />
+                android:gravity="center"
+                android:orientation="horizontal">
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/stonemasonsu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/stonemasonview">
+            </LinearLayout>
 
-            <Button
-                android:id="@+id/substract_stonemasonu1000"
-                android:layout_width="42dp"
-                android:layout_height="38dp"
-                android:layout_alignParentLeft="true"
-                android:text="@string/llll"
-                android:textSize="8sp" />
+            <RelativeLayout
+                android:id="@+id/stonemasonview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/add_stonemasonu1000"
-                android:layout_width="42dp"
-                android:layout_height="38dp"
-                android:layout_alignParentRight="true"
-                android:text="@string/gggg"
-                android:textSize="8sp" />
+                <Button
+                    android:id="@+id/substract_stonemasonu1000"
+                    android:layout_width="42dp"
+                    android:layout_height="38dp"
+                    android:layout_alignParentLeft="true"
+                    android:text="@string/llll"
+                    android:textSize="8sp" />
 
-            <Button
-                android:id="@+id/substract_stonemasonu100"
-                android:layout_width="39dp"
-                android:layout_height="38dp"
-                android:layout_toRightOf="@+id/substract_stonemasonu1000"
-                android:text="@string/lll"
-                android:textSize="10sp" />
+                <Button
+                    android:id="@+id/add_stonemasonu1000"
+                    android:layout_width="42dp"
+                    android:layout_height="38dp"
+                    android:layout_alignParentRight="true"
+                    android:text="@string/gggg"
+                    android:textSize="8sp" />
 
-            <Button
-                android:id="@+id/add_stonemasonu100"
-                android:layout_width="39dp"
-                android:layout_height="38dp"
-                android:layout_toLeftOf="@+id/add_stonemasonu1000"
-                android:text="@string/ggg"
-                android:textSize="10sp" />
+                <Button
+                    android:id="@+id/substract_stonemasonu100"
+                    android:layout_width="39dp"
+                    android:layout_height="38dp"
+                    android:layout_toRightOf="@+id/substract_stonemasonu1000"
+                    android:text="@string/lll"
+                    android:textSize="10sp" />
 
-            <Button
-                android:id="@+id/substract_stonemasonu10"
-                android:layout_width="36dp"
-                android:layout_height="38dp"
-                android:layout_toRightOf="@+id/substract_stonemasonu100"
-                android:text="@string/ll"
-                android:textSize="11sp" />
+                <Button
+                    android:id="@+id/add_stonemasonu100"
+                    android:layout_width="39dp"
+                    android:layout_height="38dp"
+                    android:layout_toLeftOf="@+id/add_stonemasonu1000"
+                    android:text="@string/ggg"
+                    android:textSize="10sp" />
 
-            <Button
-                android:id="@+id/add_stonemasonu10"
-                android:layout_width="36dp"
-                android:layout_height="38dp"
-                android:layout_toLeftOf="@+id/add_stonemasonu100"
-                android:text="@string/gg"
-                android:textSize="11sp" />
+                <Button
+                    android:id="@+id/substract_stonemasonu10"
+                    android:layout_width="36dp"
+                    android:layout_height="38dp"
+                    android:layout_toRightOf="@+id/substract_stonemasonu100"
+                    android:text="@string/ll"
+                    android:textSize="11sp" />
 
-            <Button
-                android:id="@+id/substract_stonemasonu"
-                android:layout_width="32dp"
-                android:layout_height="38dp"
-                android:layout_toRightOf="@+id/substract_stonemasonu10"
-                android:text="@string/l" />
+                <Button
+                    android:id="@+id/add_stonemasonu10"
+                    android:layout_width="36dp"
+                    android:layout_height="38dp"
+                    android:layout_toLeftOf="@+id/add_stonemasonu100"
+                    android:text="@string/gg"
+                    android:textSize="11sp" />
 
-            <Button
-                android:id="@+id/add_stonemasonu"
-                android:layout_width="32dp"
-                android:layout_height="38dp"
-                android:layout_toLeftOf="@+id/add_stonemasonu10"
-                android:text="@string/g" />
+                <Button
+                    android:id="@+id/substract_stonemasonu"
+                    android:layout_width="32dp"
+                    android:layout_height="38dp"
+                    android:layout_toRightOf="@+id/substract_stonemasonu10"
+                    android:text="@string/l" />
 
-        </RelativeLayout>
+                <Button
+                    android:id="@+id/add_stonemasonu"
+                    android:layout_width="32dp"
+                    android:layout_height="38dp"
+                    android:layout_toLeftOf="@+id/add_stonemasonu10"
+                    android:text="@string/g" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+            </RelativeLayout>
 
-            <TextView
-                android:id="@+id/tannersu"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18sp" />
+                android:gravity="center"
+                android:orientation="horizontal">
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/tannersu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tannerview">
+            </LinearLayout>
 
-            <Button
-                android:id="@+id/substract_tannersu1000"
-                android:layout_width="42dp"
-                android:layout_height="38dp"
-                android:layout_alignParentLeft="true"
-                android:text="@string/llll"
-                android:textSize="8sp" />
+            <RelativeLayout
+                android:id="@+id/tannerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/add_tannersu1000"
-                android:layout_width="42dp"
-                android:layout_height="38dp"
-                android:layout_alignParentRight="true"
-                android:text="@string/gggg"
-                android:textSize="8sp" />
+                <Button
+                    android:id="@+id/substract_tannersu1000"
+                    android:layout_width="42dp"
+                    android:layout_height="38dp"
+                    android:layout_alignParentLeft="true"
+                    android:text="@string/llll"
+                    android:textSize="8sp" />
 
-            <Button
-                android:id="@+id/substract_tannersu100"
-                android:layout_width="39dp"
-                android:layout_height="38dp"
-                android:layout_toRightOf="@+id/substract_tannersu1000"
-                android:text="@string/lll"
-                android:textSize="10sp" />
+                <Button
+                    android:id="@+id/add_tannersu1000"
+                    android:layout_width="42dp"
+                    android:layout_height="38dp"
+                    android:layout_alignParentRight="true"
+                    android:text="@string/gggg"
+                    android:textSize="8sp" />
 
-            <Button
-                android:id="@+id/add_tannersu100"
-                android:layout_width="39dp"
-                android:layout_height="38dp"
-                android:layout_toLeftOf="@+id/add_tannersu1000"
-                android:text="@string/ggg"
-                android:textSize="10sp" />
+                <Button
+                    android:id="@+id/substract_tannersu100"
+                    android:layout_width="39dp"
+                    android:layout_height="38dp"
+                    android:layout_toRightOf="@+id/substract_tannersu1000"
+                    android:text="@string/lll"
+                    android:textSize="10sp" />
 
-            <Button
-                android:id="@+id/substract_tannersu10"
-                android:layout_width="36dp"
-                android:layout_height="38dp"
-                android:layout_toRightOf="@+id/substract_tannersu100"
-                android:text="@string/ll"
-                android:textSize="11sp" />
+                <Button
+                    android:id="@+id/add_tannersu100"
+                    android:layout_width="39dp"
+                    android:layout_height="38dp"
+                    android:layout_toLeftOf="@+id/add_tannersu1000"
+                    android:text="@string/ggg"
+                    android:textSize="10sp" />
 
-            <Button
-                android:id="@+id/add_tannersu10"
-                android:layout_width="36dp"
-                android:layout_height="38dp"
-                android:layout_toLeftOf="@+id/add_tannersu100"
-                android:text="@string/gg"
-                android:textSize="11sp" />
+                <Button
+                    android:id="@+id/substract_tannersu10"
+                    android:layout_width="36dp"
+                    android:layout_height="38dp"
+                    android:layout_toRightOf="@+id/substract_tannersu100"
+                    android:text="@string/ll"
+                    android:textSize="11sp" />
 
-            <Button
-                android:id="@+id/substract_tannersu"
-                android:layout_width="32dp"
-                android:layout_height="38dp"
-                android:layout_toRightOf="@+id/substract_tannersu10"
-                android:text="@string/l" />
+                <Button
+                    android:id="@+id/add_tannersu10"
+                    android:layout_width="36dp"
+                    android:layout_height="38dp"
+                    android:layout_toLeftOf="@+id/add_tannersu100"
+                    android:text="@string/gg"
+                    android:textSize="11sp" />
 
-            <Button
-                android:id="@+id/add_tannersu"
-                android:layout_width="32dp"
-                android:layout_height="38dp"
-                android:layout_toLeftOf="@+id/add_tannersu10"
-                android:text="@string/g" />
-        </RelativeLayout>
+                <Button
+                    android:id="@+id/substract_tannersu"
+                    android:layout_width="32dp"
+                    android:layout_height="38dp"
+                    android:layout_toRightOf="@+id/substract_tannersu10"
+                    android:text="@string/l" />
+
+                <Button
+                    android:id="@+id/add_tannersu"
+                    android:layout_width="32dp"
+                    android:layout_height="38dp"
+                    android:layout_toLeftOf="@+id/add_tannersu10"
+                    android:text="@string/g" />
+            </RelativeLayout>
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/healersu"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18sp" />
+                android:gravity="center"
+                android:orientation="horizontal">
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/healersu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/healerview">
+            </LinearLayout>
 
-            <Button
-                android:id="@+id/substract_healersu1000"
-                android:layout_width="42dp"
-                android:layout_height="38dp"
-                android:layout_alignParentLeft="true"
-                android:text="@string/llll"
-                android:textSize="8sp" />
+            <RelativeLayout
+                android:id="@+id/healerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/add_healersu1000"
-                android:layout_width="42dp"
-                android:layout_height="38dp"
-                android:layout_alignParentRight="true"
-                android:text="@string/gggg"
-                android:textSize="8sp" />
+                <Button
+                    android:id="@+id/substract_healersu1000"
+                    android:layout_width="42dp"
+                    android:layout_height="38dp"
+                    android:layout_alignParentLeft="true"
+                    android:text="@string/llll"
+                    android:textSize="8sp" />
 
-            <Button
-                android:id="@+id/substract_healersu100"
-                android:layout_width="39dp"
-                android:layout_height="38dp"
-                android:layout_toRightOf="@+id/substract_healersu1000"
-                android:text="@string/lll"
-                android:textSize="10sp" />
+                <Button
+                    android:id="@+id/add_healersu1000"
+                    android:layout_width="42dp"
+                    android:layout_height="38dp"
+                    android:layout_alignParentRight="true"
+                    android:text="@string/gggg"
+                    android:textSize="8sp" />
 
-            <Button
-                android:id="@+id/add_healersu100"
-                android:layout_width="39dp"
-                android:layout_height="38dp"
-                android:layout_toLeftOf="@+id/add_healersu1000"
-                android:text="@string/ggg"
-                android:textSize="10sp" />
+                <Button
+                    android:id="@+id/substract_healersu100"
+                    android:layout_width="39dp"
+                    android:layout_height="38dp"
+                    android:layout_toRightOf="@+id/substract_healersu1000"
+                    android:text="@string/lll"
+                    android:textSize="10sp" />
 
-            <Button
-                android:id="@+id/substract_healersu10"
-                android:layout_width="36dp"
-                android:layout_height="38dp"
-                android:layout_toRightOf="@+id/substract_healersu100"
-                android:text="@string/ll"
-                android:textSize="11sp" />
+                <Button
+                    android:id="@+id/add_healersu100"
+                    android:layout_width="39dp"
+                    android:layout_height="38dp"
+                    android:layout_toLeftOf="@+id/add_healersu1000"
+                    android:text="@string/ggg"
+                    android:textSize="10sp" />
 
-            <Button
-                android:id="@+id/add_healersu10"
-                android:layout_width="36dp"
-                android:layout_height="38dp"
-                android:layout_toLeftOf="@+id/add_healersu100"
-                android:text="@string/gg"
-                android:textSize="11sp" />
+                <Button
+                    android:id="@+id/substract_healersu10"
+                    android:layout_width="36dp"
+                    android:layout_height="38dp"
+                    android:layout_toRightOf="@+id/substract_healersu100"
+                    android:text="@string/ll"
+                    android:textSize="11sp" />
 
-            <Button
-                android:id="@+id/substract_healersu"
-                android:layout_width="32dp"
-                android:layout_height="38dp"
-                android:layout_toRightOf="@+id/substract_healersu10"
-                android:text="@string/l" />
+                <Button
+                    android:id="@+id/add_healersu10"
+                    android:layout_width="36dp"
+                    android:layout_height="38dp"
+                    android:layout_toLeftOf="@+id/add_healersu100"
+                    android:text="@string/gg"
+                    android:textSize="11sp" />
 
-            <Button
-                android:id="@+id/add_healersu"
-                android:layout_width="32dp"
-                android:layout_height="38dp"
-                android:layout_toLeftOf="@+id/add_healersu10"
-                android:text="@string/g" />
+                <Button
+                    android:id="@+id/substract_healersu"
+                    android:layout_width="32dp"
+                    android:layout_height="38dp"
+                    android:layout_toRightOf="@+id/substract_healersu10"
+                    android:text="@string/l" />
 
-        </RelativeLayout>
+                <Button
+                    android:id="@+id/add_healersu"
+                    android:layout_width="32dp"
+                    android:layout_height="38dp"
+                    android:layout_toLeftOf="@+id/add_healersu10"
+                    android:text="@string/g" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+            </RelativeLayout>
 
-            <TextView
-                android:id="@+id/blacksmithsu"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18sp" />
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/blacksmithsu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/blacksmithview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/substract_blacksmithsu1000"
+                    android:layout_width="42dp"
+                    android:layout_height="38dp"
+                    android:layout_alignParentLeft="true"
+                    android:text="@string/llll"
+                    android:textSize="8sp" />
+
+                <Button
+                    android:id="@+id/add_blacksmithsu1000"
+                    android:layout_width="42dp"
+                    android:layout_height="38dp"
+                    android:layout_alignParentRight="true"
+                    android:text="@string/gggg"
+                    android:textSize="8sp" />
+
+                <Button
+                    android:id="@+id/substract_blacksmithsu100"
+                    android:layout_width="39dp"
+                    android:layout_height="38dp"
+                    android:layout_toRightOf="@+id/substract_blacksmithsu1000"
+                    android:text="@string/lll"
+                    android:textSize="10sp" />
+
+                <Button
+                    android:id="@+id/add_blacksmithsu100"
+                    android:layout_width="39dp"
+                    android:layout_height="38dp"
+                    android:layout_toLeftOf="@+id/add_blacksmithsu1000"
+                    android:text="@string/ggg"
+                    android:textSize="10sp" />
+
+                <Button
+                    android:id="@+id/substract_blacksmithsu10"
+                    android:layout_width="36dp"
+                    android:layout_height="38dp"
+                    android:layout_toRightOf="@+id/substract_blacksmithsu100"
+                    android:text="@string/ll"
+                    android:textSize="11sp" />
+
+                <Button
+                    android:id="@+id/add_blacksmithsu10"
+                    android:layout_width="36dp"
+                    android:layout_height="38dp"
+                    android:layout_toLeftOf="@+id/add_blacksmithsu100"
+                    android:text="@string/gg"
+                    android:textSize="11sp" />
+
+                <Button
+                    android:id="@+id/substract_blacksmithsu"
+                    android:layout_width="32dp"
+                    android:layout_height="38dp"
+                    android:layout_toRightOf="@+id/substract_blacksmithsu10"
+                    android:text="@string/l" />
+
+                <Button
+                    android:id="@+id/add_blacksmithsu"
+                    android:layout_width="32dp"
+                    android:layout_height="38dp"
+                    android:layout_toLeftOf="@+id/add_blacksmithsu10"
+                    android:text="@string/g" />
+
+            </RelativeLayout>
+
 
         </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/blacksmithview">
-
-            <Button
-                android:id="@+id/substract_blacksmithsu1000"
-                android:layout_width="42dp"
-                android:layout_height="38dp"
-                android:layout_alignParentLeft="true"
-                android:text="@string/llll"
-                android:textSize="8sp" />
-
-            <Button
-                android:id="@+id/add_blacksmithsu1000"
-                android:layout_width="42dp"
-                android:layout_height="38dp"
-                android:layout_alignParentRight="true"
-                android:text="@string/gggg"
-                android:textSize="8sp" />
-
-            <Button
-                android:id="@+id/substract_blacksmithsu100"
-                android:layout_width="39dp"
-                android:layout_height="38dp"
-                android:layout_toRightOf="@+id/substract_blacksmithsu1000"
-                android:text="@string/lll"
-                android:textSize="10sp" />
-
-            <Button
-                android:id="@+id/add_blacksmithsu100"
-                android:layout_width="39dp"
-                android:layout_height="38dp"
-                android:layout_toLeftOf="@+id/add_blacksmithsu1000"
-                android:text="@string/ggg"
-                android:textSize="10sp" />
-
-            <Button
-                android:id="@+id/substract_blacksmithsu10"
-                android:layout_width="36dp"
-                android:layout_height="38dp"
-                android:layout_toRightOf="@+id/substract_blacksmithsu100"
-                android:text="@string/ll"
-                android:textSize="11sp" />
-
-            <Button
-                android:id="@+id/add_blacksmithsu10"
-                android:layout_width="36dp"
-                android:layout_height="38dp"
-                android:layout_toLeftOf="@+id/add_blacksmithsu100"
-                android:text="@string/gg"
-                android:textSize="11sp" />
-
-            <Button
-                android:id="@+id/substract_blacksmithsu"
-                android:layout_width="32dp"
-                android:layout_height="38dp"
-                android:layout_toRightOf="@+id/substract_blacksmithsu10"
-                android:text="@string/l" />
-
-            <Button
-                android:id="@+id/add_blacksmithsu"
-                android:layout_width="32dp"
-                android:layout_height="38dp"
-                android:layout_toLeftOf="@+id/add_blacksmithsu10"
-                android:text="@string/g" />
-
-        </RelativeLayout>
-
-
-    </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>
