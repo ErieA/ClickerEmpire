@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer_layout"
+    android:id="@+id/coordinator_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:screenOrientation="portrait"
     android:fitsSystemWindows="true">
-
+<android.support.v4.widget.DrawerLayout
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:screenOrientation="portrait">
 
     <FrameLayout
         android:id="@+id/content_frame"
@@ -26,21 +31,21 @@
                 android:layout_marginRight="0dp"
                 android:orientation="vertical">
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:background="?attr/colorPrimary"
-                android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:background="?attr/colorPrimary"
+                    android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
-            <LinearLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
                     android:orientation="vertical">
 
-                <TextView
+                    <TextView
                         android:id="@+id/population"
                         android:layout_width="wrap_content"
                         android:layout_height="28dp"
@@ -48,15 +53,35 @@
                         android:textColor="@android:color/black"
                         android:textSize="18sp"
                         android:textStyle="bold" />
-                <TextView
-                        android:id="@+id/land"
-                        android:layout_width="wrap_content"
-                        android:layout_height="28dp"
-                        android:text="Land : 0/100"
-                        android:textColor="@android:color/black"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-                <TextView
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/land"
+                            android:text="Land : 0/100"
+                            android:layout_width="wrap_content"
+                            android:layout_height="28dp"
+                            android:textColor="@android:color/black"
+                            android:textSize="18sp"
+                            android:layout_alignParentStart="true"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/sick"
+                            android:layout_width="wrap_content"
+                            android:layout_height="28dp"
+                            android:textColor="@android:color/black"
+                            android:textSize="18sp"
+                            android:text=""
+                            android:layout_alignParentEnd="true"
+                            android:layout_gravity="left"
+                            android:textStyle="bold"  />
+                    </RelativeLayout>
+
+                    <TextView
                         android:id="@+id/unemployed"
                         android:layout_width="wrap_content"
                         android:layout_height="28dp"
@@ -65,246 +90,248 @@
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:orientation="horizontal">
 
-                    <Button
-                        android:id="@+id/create_worker"
-                        android:layout_width="144dp"
-                        android:layout_height="38dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/borderbuttonlightblue"
-                        android:clickable="true"
-                        android:foreground="?attr/selectableItemBackground"
-                        android:text="Create Workers"
-                        android:textColor="@android:color/black" />
+                        <Button
+                            android:id="@+id/create_worker"
+                            android:layout_width="144dp"
+                            android:layout_height="38dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/borderbuttonlightblue"
+                            android:clickable="true"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:text="Create Workers"
+                            android:textColor="@android:color/black" />
 
-                    <Button
-                        android:id="@+id/substract_worker"
-                        android:layout_width="38dp"
-                        android:layout_height="38dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/borderbuttonlightblue"
-                        android:clickable="true"
-                        android:foreground="?attr/selectableItemBackground"
-                        android:text="-"
-                        android:textColor="@android:color/black" />
+                        <Button
+                            android:id="@+id/substract_worker"
+                            android:layout_width="38dp"
+                            android:layout_height="38dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/borderbuttonlightblue"
+                            android:clickable="true"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:text="-"
+                            android:textColor="@android:color/black" />
 
-                    <EditText
-                        android:id="@+id/num_workers"
+                        <EditText
+                            android:id="@+id/num_workers"
+                            android:layout_width="wrap_content"
+                            android:layout_height="38dp"
+                            android:layout_weight="1"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:text="1"
+                            android:textAlignment="center"
+                            android:textAllCaps="false"
+                            android:textAppearance="@style/TextAppearance.AppCompat"
+                            android:textColor="@android:color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <Button
+                            android:id="@+id/add_worker"
+                            android:layout_width="38dp"
+                            android:layout_height="38dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/borderbuttonlightblue"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:text="+" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/worker_cost"
                         android:layout_width="wrap_content"
-                        android:layout_height="38dp"
-                        android:layout_weight="1"
-                        android:inputType="number"
-                        android:maxLines="1"
-                        android:text="1"
-                        android:textAlignment="center"
-                        android:textAllCaps="false"
-                        android:textAppearance="@style/TextAppearance.AppCompat"
+                        android:layout_height="28dp"
+                        android:text="Cost per 1 worker: 20 food"
                         android:textColor="@android:color/black"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textSize="18sp" />
 
-                    <Button
-                        android:id="@+id/add_worker"
-                        android:layout_width="38dp"
-                        android:layout_height="38dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/borderbuttonlightblue"
-                        android:foreground="?attr/selectableItemBackground"
-                        android:clickable="true"
-                        android:text="+" />
-                </LinearLayout>
-                <TextView
-                    android:id="@+id/worker_cost"
-                    android:layout_width="wrap_content"
-                    android:layout_height="28dp"
-                    android:text="Cost per 1 worker: 20 food"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp" />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                        <Button
+                            android:id="@+id/collect_food"
+                            android:layout_width="144dp"
+                            android:layout_height="38dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentTop="true"
+                            android:background="@drawable/borderbuttonlightblue"
+                            android:clickable="true"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:text="Collect Food"
+                            android:textColor="@android:color/black" />
 
-                    <Button
-                        android:id="@+id/collect_food"
-                        android:layout_width="144dp"
-                        android:layout_height="38dp"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentTop="true"
-                        android:background="@drawable/borderbuttonlightblue"
-                        android:clickable="true"
-                        android:foreground="?attr/selectableItemBackground"
-                        android:text="Collect Food"
-                        android:textColor="@android:color/black" />
+                        <TextView
+                            android:id="@+id/num_food"
+                            android:layout_width="wrap_content"
+                            android:layout_height="38dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_toRightOf="@+id/collect_food"
+                            android:text="0/200"
+                            android:textAppearance="@style/TextAppearance.AppCompat"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp" />
 
-                    <TextView
-                        android:id="@+id/num_food"
-                        android:layout_width="wrap_content"
-                        android:layout_height="38dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_toRightOf="@+id/collect_food"
-                        android:text="0/200"
-                        android:textAppearance="@style/TextAppearance.AppCompat"
-                        android:textColor="@android:color/black"
-                        android:textSize="16sp" />
+                        <TextView
+                            android:id="@+id/FOOD"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:text="0/s"
+                            android:textColor="@android:color/black" />
+                    </RelativeLayout>
 
-                    <TextView
-                        android:id="@+id/FOOD"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:text="0/s"
-                        android:textColor="@android:color/black" />
-                </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                        <Button
+                            android:id="@+id/collect_wood"
+                            android:layout_width="144dp"
+                            android:layout_height="38dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentTop="true"
+                            android:background="@drawable/borderbuttonlightblue"
+                            android:clickable="true"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:text="Collect Wood"
+                            android:textColor="@android:color/black" />
 
-                    <Button
-                        android:id="@+id/collect_wood"
-                        android:layout_width="144dp"
-                        android:layout_height="38dp"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentTop="true"
-                        android:background="@drawable/borderbuttonlightblue"
-                        android:text="Collect Wood"
-                        android:textColor="@android:color/black" />
+                        <TextView
+                            android:id="@+id/num_wood"
+                            android:layout_width="wrap_content"
+                            android:layout_height="38dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_toRightOf="@+id/collect_wood"
+                            android:text="0/200"
+                            android:textAppearance="@style/TextAppearance.AppCompat"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp" />
 
-                    <TextView
-                        android:id="@+id/num_wood"
-                        android:layout_width="wrap_content"
-                        android:layout_height="38dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_toRightOf="@+id/collect_wood"
-                        android:text="0/200"
-                        android:textAppearance="@style/TextAppearance.AppCompat"
-                        android:textColor="@android:color/black"
-                        android:textSize="16sp" />
+                        <TextView
+                            android:id="@+id/WOOD"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:text="0/s"
+                            android:textColor="@android:color/black" />
+                    </RelativeLayout>
 
-                    <TextView
-                        android:id="@+id/WOOD"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:text="0/s"
-                        android:textColor="@android:color/black" />
-                </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                        <Button
+                            android:id="@+id/collect_stone"
+                            android:layout_width="144dp"
+                            android:layout_height="38dp"
+                            android:layout_alignParentLeft="true"
+                            android:background="@drawable/borderbuttonlightblue"
+                            android:clickable="true"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:text="Collect Stone"
+                            android:textColor="@android:color/black" />
 
-                    <Button
-                        android:id="@+id/collect_stone"
-                        android:layout_width="144dp"
-                        android:layout_height="38dp"
-                        android:layout_alignParentLeft="true"
-                        android:background="@drawable/borderbuttonlightblue"
-                        android:clickable="true"
-                        android:foreground="?attr/selectableItemBackground"
-                        android:text="Collect Stone"
-                        android:textColor="@android:color/black" />
+                        <TextView
+                            android:id="@+id/num_stone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="38dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_toRightOf="@+id/collect_stone"
+                            android:text="0/200"
+                            android:textAppearance="@style/TextAppearance.AppCompat"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp" />
 
-                    <TextView
-                        android:id="@+id/num_stone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="38dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_toRightOf="@+id/collect_stone"
-                        android:text="0/200"
-                        android:textAppearance="@style/TextAppearance.AppCompat"
-                        android:textColor="@android:color/black"
-                        android:textSize="16sp" />
+                        <TextView
+                            android:id="@+id/STONE"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:text="0/s"
+                            android:textColor="@android:color/black" />
+                    </RelativeLayout>
 
-                    <TextView
-                        android:id="@+id/STONE"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:text="0/s"
-                        android:textColor="@android:color/black" />
-                </RelativeLayout>
-
-                <LinearLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                    <Button
-                        android:id="@+id/buildings"
-                        android:layout_width="100dp"
-                        android:layout_height="38dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/borderbuttonlightblue"
-                        android:clickable="true"
-                        android:foreground="?attr/selectableItemBackground"
-                        android:text="Buildings"
-                        android:textColor="@android:color/black"
-                        android:textSize="10sp" />
+                        <Button
+                            android:id="@+id/buildings"
+                            android:layout_width="100dp"
+                            android:layout_height="38dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/borderbuttonlightblue"
+                            android:clickable="true"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:text="Buildings"
+                            android:textColor="@android:color/black"
+                            android:textSize="10sp" />
 
-                    <Button
-                        android:id="@+id/specialresources"
-                        android:layout_width="100dp"
-                        android:layout_height="38dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/borderbuttonlightblue"
-                        android:clickable="true"
-                        android:foreground="?attr/selectableItemBackground"
-                        android:text="S.Resources"
-                        android:textColor="@android:color/black"
-                        android:textSize="10sp" />
+                        <Button
+                            android:id="@+id/specialresources"
+                            android:layout_width="100dp"
+                            android:layout_height="38dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/borderbuttonlightblue"
+                            android:clickable="true"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:text="S.Resources"
+                            android:textColor="@android:color/black"
+                            android:textSize="10sp" />
 
-                    <Button
-                        android:id="@+id/jobs"
-                        android:layout_width="100dp"
-                        android:layout_height="38dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/borderbuttonlightred"
-                        android:clickable="true"
-                        android:foreground="?attr/selectableItemBackground"
-                        android:text="Jobs"
-                        android:textColor="@android:color/black"
-                        android:textSize="10sp" />
+                        <Button
+                            android:id="@+id/jobs"
+                            android:layout_width="100dp"
+                            android:layout_height="38dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/borderbuttonlightred"
+                            android:clickable="true"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:text="Jobs"
+                            android:textColor="@android:color/black"
+                            android:textSize="10sp" />
 
-                    <Button
-                        android:id="@+id/upgrades"
-                        android:layout_width="100dp"
-                        android:layout_height="38dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/borderbuttonlightblue"
-                        android:clickable="true"
-                        android:foreground="?attr/selectableItemBackground"
-                        android:text="Upgrades"
-                        android:textColor="@android:color/black"
-                        android:textSize="10sp" />
+                        <Button
+                            android:id="@+id/upgrades"
+                            android:layout_width="100dp"
+                            android:layout_height="38dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/borderbuttonlightblue"
+                            android:clickable="true"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:text="Upgrades"
+                            android:textColor="@android:color/black"
+                            android:textSize="10sp" />
 
-                    <Button
-                        android:id="@+id/conquest"
-                        android:layout_width="100dp"
-                        android:layout_height="38dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/borderbuttonlightblue"
-                        android:clickable="true"
-                        android:foreground="?attr/selectableItemBackground"
-                        android:text="Conquest"
-                        android:textColor="@android:color/black"
-                        android:textSize="10sp" />
+                        <Button
+                            android:id="@+id/conquest"
+                            android:layout_width="100dp"
+                            android:layout_height="38dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/borderbuttonlightblue"
+                            android:clickable="true"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:text="Conquest"
+                            android:textColor="@android:color/black"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+                    <fragment
+                        android:id="@+id/fragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="405dp"
+                        class = "not.bored.clickerempire.jobs"
+                        tools:layout="@layout/fragment_jobs" />
+
                 </LinearLayout>
-                <fragment
-                    android:id="@+id/fragment"
-                    android:layout_width="match_parent"
-                    android:layout_height="405dp"
-                    class = "not.bored.clickerempire.jobs"
-                    tools:layout="@layout/fragment_jobs" />
-
-            </LinearLayout>
             </LinearLayout>
             <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/adView"
@@ -326,5 +353,7 @@
         android:fitsSystemWindows="true"
         app:menu="@menu/drawer_view"
         app:headerLayout="@layout/nav_header"/>
-
 </android.support.v4.widget.DrawerLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>

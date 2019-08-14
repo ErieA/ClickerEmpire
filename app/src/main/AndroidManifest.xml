@@ -24,7 +24,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Rename" />
+        <activity
+            android:name=".Rename"
+            android:theme="@style/DarkMain"/>
         <activity
             android:name=".purchasedUpgrades"
             android:theme="@style/AppTheme.Custom" />

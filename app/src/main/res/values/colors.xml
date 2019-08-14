@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#FF48C4F1</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#efefef</color>
+    <color name="colorAccent">#fe7a7c</color>
     <color name="black">#000</color>
     <color name="ClickkerButton">#fe7a7c</color>
 </resources>

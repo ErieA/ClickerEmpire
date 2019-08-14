@@ -1,12 +1,10 @@
 package not.bored.clickerempire;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -32,7 +30,7 @@ public class Rename extends AppCompatActivity {
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
         actionbar.setTitle(name);
         mDrawerLayout = findViewById(R.id.drawer_layout);
-        Button rename = findViewById(R.id.rename_button);
+        Button rename = findViewById(R.id.achievements_layout);
         EditText ET = findViewById(R.id.new_empire_name);
         ET.setText(name);
         rename.setOnClickListener(new View.OnClickListener() {

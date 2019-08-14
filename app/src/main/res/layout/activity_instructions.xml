@@ -9,8 +9,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,27 +22,34 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Instructions"
-            android:textStyle="bold"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="     In this game, you must manage resources and make sure that your civilization doesn't perish. Keep your workers alive by making sure that you are providing enough food for them. Make sure to have a standing army so that you can conquer lands and expand your empire. Be careful, if you do not build barracks and stables before you run out of land, you will not be able to create and army"
             android:textColor="@color/black"
-            android:text="     In this game, you must manage resources and make sure that your civilization doesn't perish. Keep your workers alive by making sure that you are providing enough food for them. Make sure to have a standing army so that you can conquer lands and expand your empire. Be careful, if you do not build barracks and stables before you run out of land, you will not be able to create and army" />
+            android:textSize="20sp" />
+
         <TextView
             android:id="@+id/textView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cost"
-            android:textStyle="bold"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/textView8"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Initial worker cost: 20 food \nSoldier: 10 metal, 10 leather \nTent: 2 wood, 2 stone, 1 land. Holds 1 worker \nHut: 20 wood, 10 stone, 2 land. Holds 4 workers \nCottage: 10 wood, 30 stone, 5 land. Holds 8 workers \nHouse: 100 wood, 100 stone, 25 land. Holds 50 workers \nMansion: 200 wood, 200 stone, 50 land. Holds 100 workers \nBarn: 100 wood, 50 stone, 20 land. Holds 200 food \nWood Stockpile: 100 wood, 50 stone, 25 land. Holds 200 wood\nStone Stockpile: 100 wood, 50 stone, 25 land. Holds 200 stone\nTannery: 30 wood, 70 stone, 1 land, 2 skins. Holds 1 tanner\nSmithy: 30 wood, 70 stone, 1 land, 2 ore. Holds 1 blacksmith\nApothecary: 30 wood, 70 stone, 1 land, 2 herbs. Holds 1 healer\nBarracks: 60 wood, 120 stone, 20 food, 10 metal, 5 land. Holds 10 soldiers\nStables: 60 wood, 120 stone, 60 food, 10 leather, 5 land. Holds 10 cavalry\n"
             android:textColor="@color/black"
-            android:text="Initial worker cost: 20 food \nSoldier: 10 metal, 10 leather \nTent: 2 wood, 2 stone, 1 land. Holds 1 worker \nHut: 20 wood, 10 stone, 2 land. Holds 4 workers \nCottage: 10 wood, 30 stone, 5 land. Holds 8 workers \nHouse: 100 wood, 100 stone, 25 land. Holds 50 workers \nMansion: 200 wood, 200 stone, 50 land. Holds 100 workers \nBarn: 100 wood, 50 stone, 20 land. Holds 200 food \nWood Stockpile: 100 wood, 50 stone, 25 land. Holds 200 wood\nStone Stockpile: 100 wood, 50 stone, 25 land. Holds 200 stone\nTannery: 30 wood, 70 stone, 1 land, 2 skins. Holds 1 tanner\nSmithy: 30 wood, 70 stone, 1 land, 2 ore. Holds 1 blacksmith\nApothecary: 30 wood, 70 stone, 1 land, 2 herbs. Holds 1 healer\nBarracks: 60 wood, 120 stone, 20 food, 10 metal, 5 land. Holds 10 soldiers\nStables: 60 wood, 120 stone, 60 food, 10 leather, 5 land. Holds 10 cavalry\n" />
+            android:textSize="20sp" />
     </LinearLayout>
 
 </android.support.v4.widget.DrawerLayout>

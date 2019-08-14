@@ -285,7 +285,7 @@ public class ECIconquest extends Fragment {
             @Override
             public void onClick(View v) {
                 if(attack){
-                    invade(Math.floor(Math.random() * ((2000000-1500000)+1) + 1500000), "Village", (int) Math.floor(Math.random() * ((4000000-2000000)+1) + 2000000));
+                    invade(Math.floor(Math.random() * ((2000000-1500000)+1) + 1500000), "United World", (int) Math.floor(Math.random() * ((4000000-2000000)+1) + 2000000));
                 }
             }
         });
@@ -332,6 +332,8 @@ public class ECIconquest extends Fragment {
                 TextView invading = getActivity().findViewById(R.id.invading);
                 enemytv.setText("Enemy Soldiers: 0");
                 invading.setText("Invasion Successful!");
+                army.invadeCiv(GameSave.THORP);
+                army.invadeAchievementmaker();
             }catch (NullPointerException x) {
                 x.printStackTrace();
             }
@@ -343,6 +345,7 @@ public class ECIconquest extends Fragment {
             army.defeat();
             TextView invading = getActivity().findViewById(R.id.invading);
             invading.setText("Invasion Unsuccessful! Army has been defeated.");
+            army.defeatAchievementmaker();
             attack = true;
             return;
         }
@@ -389,6 +392,8 @@ public class ECIconquest extends Fragment {
                 TextView invading = getActivity().findViewById(R.id.invading);
                 enemytv.setText("Enemy Soldiers: 0");
                 invading.setText("Invasion Successful!");
+                army.invadeAchievementmaker();
+                army.invadeCiv(GameSave.HAMLET);
             }catch (NullPointerException x) {
                 x.printStackTrace();
             }
@@ -400,6 +405,7 @@ public class ECIconquest extends Fragment {
             army.defeat();
             TextView invading = getActivity().findViewById(R.id.invading);
             invading.setText("Invasion Unsuccessful! Army has been defeated.");
+            army.defeatAchievementmaker();
             attack = true;
             return;
         }
@@ -448,6 +454,9 @@ public class ECIconquest extends Fragment {
                 TextView invading = getActivity().findViewById(R.id.invading);
                 enemytv.setText("Enemy Soldiers: 0");
                 invading.setText("Invasion Successful!");
+                army.invadeAchievementmaker();
+                String civTypeA = "CONQUEROR_" + (civType.replace(" ","_")).toUpperCase();
+                army.invadeCiv(civTypeA);
             }catch (NullPointerException x) {
                 x.printStackTrace();
             }
@@ -459,6 +468,7 @@ public class ECIconquest extends Fragment {
             army.defeat();
             TextView invading = getActivity().findViewById(R.id.invading);
             invading.setText("Invasion Unsuccessful! Army has been defeated.");
+            army.defeatAchievementmaker();
             attack = true;
             return;
         }
@@ -500,5 +510,8 @@ public class ECIconquest extends Fragment {
         void plunderLand(int amount);
         void defeat();
         boolean checkUpgrade(String upgrade);
+        void invadeAchievementmaker();
+        void defeatAchievementmaker();
+        void invadeCiv(String civ);
     }
 }

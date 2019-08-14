@@ -35,6 +35,19 @@ tools:context=".Achievements">
                 android:text="Achievements"
                 android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/achievements_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="0dp"
+                    android:orientation="vertical"/>
+            </ScrollView>
+
         </LinearLayout>
         <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
             android:id="@+id/adView"

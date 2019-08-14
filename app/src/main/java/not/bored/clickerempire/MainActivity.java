@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -30,12 +32,16 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.games.achievement.Achievement;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.text.DecimalFormat;
 import java.util.Map;
 import java.util.Random;
+
+import static not.bored.clickerempire.R.*;
+
 @TargetApi(21)
 public class MainActivity extends AppCompatActivity
         implements buildings.buildingBuilder, jobs.employmentOffice, upgrades.upgrade,
@@ -67,24 +73,24 @@ public class MainActivity extends AppCompatActivity
                             counter = (counter + 1)%5;
                             WorkSpecialResource(counter);
                             double farm = consume();
-                            TextView food = findViewById(R.id.num_food);
-                            TextView foodspeed = findViewById(R.id.FOOD);
+                            TextView food = findViewById(id.num_food);
+                            TextView foodspeed = findViewById(id.FOOD);
                             workerCollect(food, gameSave.FOOD, farm, foodspeed);
                             killWorkers(farm);
                             populationControl();
                             setUnemployed();
                             double lumberjacks = gameSave.resourceAmountD(gameSave.LUMBERJACKS);
-                            TextView wood = findViewById(R.id.num_wood);
-                            TextView woodspeed = findViewById(R.id.WOOD);
+                            TextView wood = findViewById(id.num_wood);
+                            TextView woodspeed = findViewById(id.WOOD);
                             workerCollect(wood, gameSave.WOOD, lumberjacks * workerWoodProduction, woodspeed);
                             double stonemasons = gameSave.resourceAmountD(gameSave.STONEMASONS);
-                            TextView stone = findViewById(R.id.num_stone);
-                            TextView stonespeed = findViewById(R.id.STONE);
+                            TextView stone = findViewById(id.num_stone);
+                            TextView stonespeed = findViewById(id.STONE);
                             workerCollect(stone, gameSave.STONE, stonemasons * workerStoneProduction, stonespeed);
                             ActionBar actionBar = getSupportActionBar();
                             String name = civType() + " of " + gameSave.civName();
                             actionBar.setTitle(name);
-                            TextView land = findViewById(R.id.land);
+                            TextView land = findViewById(id.land);
                             String l = "Land: " + gameSave.resourceAmountI(gameSave.OCCUPIEDLAND) + "/" + gameSave.resourceAmountI(gameSave.LAND);
                             land.setText(l);
                         }
@@ -100,17 +106,18 @@ public class MainActivity extends AppCompatActivity
         public void run() {
             try {
                 while (conquestthread != null) {
-                    Thread.sleep(100);
+                    Thread.sleep(400);
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             workerCost = 20 + gameSave.resourceAmountI(gameSave.POPULATION)/4000;
-                            TextView wc = findViewById(R.id.worker_cost);
+                            TextView wc = findViewById(id.worker_cost);
                             String w = "Cost per worker: " + workerCost;
                             wc.setText(w);
-                            TextView land = findViewById(R.id.land);
+                            TextView land = findViewById(id.land);
                             String l = "Land: " + gameSave.resourceAmountI(gameSave.OCCUPIEDLAND) + "/" + gameSave.resourceAmountI(gameSave.LAND);
                             land.setText(l);
+                            showDefInvAchievements();
                         }
                     });
                 }
@@ -122,12 +129,13 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        final Toolbar toolbar = findViewById(R.id.toolbar);
+        setContentView(layout.activity_main);
+        gameSave.addAchievementDB();
+        final Toolbar toolbar = findViewById(id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionbar = getSupportActionBar();
         actionbar.setDisplayHomeAsUpEnabled(true);
-        actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
+        actionbar.setHomeAsUpIndicator(drawable.ic_menu);
         Intent intent = getIntent();
         String o = intent.getStringExtra("rename");
 //        gameSave.resetdb();
@@ -137,22 +145,22 @@ public class MainActivity extends AppCompatActivity
             String name = civType() + " of " + newcivname;
             actionbar.setTitle(name);
         }
-        Button collect_food = findViewById(R.id.collect_food);
-        Button collect_wood = findViewById(R.id.collect_wood);
-        Button collect_stone = findViewById(R.id.collect_stone);
-        Button createWorkers = findViewById(R.id.create_worker);
-        Button add_worker = findViewById(R.id.add_worker);
-        Button substract_worker = findViewById(R.id.substract_worker);
+        Button collect_food = findViewById(id.collect_food);
+        Button collect_wood = findViewById(id.collect_wood);
+        Button collect_stone = findViewById(id.collect_stone);
+        Button createWorkers = findViewById(id.create_worker);
+        Button add_worker = findViewById(id.add_worker);
+        Button substract_worker = findViewById(id.substract_worker);
         setScreen(actionbar);
-        final Button buildings = findViewById(R.id.buildings);
-        final Button upgrades = findViewById(R.id.upgrades);
-        final Button jobs = findViewById(R.id.jobs);
-        final Button specialRes = findViewById(R.id.specialresources);
-        final Button conquest = findViewById(R.id.conquest);
+        final Button buildings = findViewById(id.buildings);
+        final Button upgrades = findViewById(id.upgrades);
+        final Button jobs = findViewById(id.jobs);
+        final Button specialRes = findViewById(id.specialresources);
+        final Button conquest = findViewById(id.conquest);
         collect_food.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TextView num_food = findViewById(R.id.num_food);
+                TextView num_food = findViewById(id.num_food);
                 collect(num_food, "FOOD", 1);
                 boolean val = new Random().nextInt(9)==0;
                 if(val){
@@ -163,7 +171,7 @@ public class MainActivity extends AppCompatActivity
         collect_wood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TextView num_wood = findViewById(R.id.num_wood);
+                TextView num_wood = findViewById(id.num_wood);
                 collect(num_wood,gameSave.WOOD, 1);
                 boolean val = new Random().nextInt(9)==0;
                 if(val){
@@ -174,7 +182,7 @@ public class MainActivity extends AppCompatActivity
         collect_stone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TextView num_stone = findViewById(R.id.num_stone);
+                TextView num_stone = findViewById(id.num_stone);
                 collect(num_stone, gameSave.STONE, 1);
                 boolean val = new Random().nextInt(9)==0;
                 if(val){
@@ -185,63 +193,63 @@ public class MainActivity extends AppCompatActivity
         buildings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                buildings.setBackground(getDrawable(R.drawable.borderbuttonlightred));
-                specialRes.setBackground(getDrawable(R.drawable.borderbuttonlightblue));
-                jobs.setBackground(getDrawable(R.drawable.borderbuttonlightblue));
-                upgrades.setBackground(getDrawable(R.drawable.borderbuttonlightblue));
-                conquest.setBackground(getDrawable(R.drawable.borderbuttonlightblue));
+                buildings.setBackground(getDrawable(drawable.borderbuttonlightred));
+                specialRes.setBackground(getDrawable(drawable.borderbuttonlightblue));
+                jobs.setBackground(getDrawable(drawable.borderbuttonlightblue));
+                upgrades.setBackground(getDrawable(drawable.borderbuttonlightblue));
+                conquest.setBackground(getDrawable(drawable.borderbuttonlightblue));
                 changeFragment(buildings);
             }
         });
         specialRes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                buildings.setBackground(getDrawable(R.drawable.borderbuttonlightblue));
-                specialRes.setBackground(getDrawable(R.drawable.borderbuttonlightred));
-                jobs.setBackground(getDrawable(R.drawable.borderbuttonlightblue));
-                upgrades.setBackground(getDrawable(R.drawable.borderbuttonlightblue));
-                conquest.setBackground(getDrawable(R.drawable.borderbuttonlightblue));
+                buildings.setBackground(getDrawable(drawable.borderbuttonlightblue));
+                specialRes.setBackground(getDrawable(drawable.borderbuttonlightred));
+                jobs.setBackground(getDrawable(drawable.borderbuttonlightblue));
+                upgrades.setBackground(getDrawable(drawable.borderbuttonlightblue));
+                conquest.setBackground(getDrawable(drawable.borderbuttonlightblue));
                 changeFragment(specialRes);
             }
         });
         upgrades.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                buildings.setBackground(getDrawable(R.drawable.borderbuttonlightblue));
-                specialRes.setBackground(getDrawable(R.drawable.borderbuttonlightblue));
-                jobs.setBackground(getDrawable(R.drawable.borderbuttonlightblue));
-                upgrades.setBackground(getDrawable(R.drawable.borderbuttonlightred));
-                conquest.setBackground(getDrawable(R.drawable.borderbuttonlightblue));
+                buildings.setBackground(getDrawable(drawable.borderbuttonlightblue));
+                specialRes.setBackground(getDrawable(drawable.borderbuttonlightblue));
+                jobs.setBackground(getDrawable(drawable.borderbuttonlightblue));
+                upgrades.setBackground(getDrawable(drawable.borderbuttonlightred));
+                conquest.setBackground(getDrawable(drawable.borderbuttonlightblue));
                 changeFragment(upgrades);
             }
         });
         jobs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                buildings.setBackground(getDrawable(R.drawable.borderbuttonlightblue));
-                specialRes.setBackground(getDrawable(R.drawable.borderbuttonlightblue));
-                jobs.setBackground(getDrawable(R.drawable.borderbuttonlightred));
-                upgrades.setBackground(getDrawable(R.drawable.borderbuttonlightblue));
-                conquest.setBackground(getDrawable(R.drawable.borderbuttonlightblue));
+                buildings.setBackground(getDrawable(drawable.borderbuttonlightblue));
+                specialRes.setBackground(getDrawable(drawable.borderbuttonlightblue));
+                jobs.setBackground(getDrawable(drawable.borderbuttonlightred));
+                upgrades.setBackground(getDrawable(drawable.borderbuttonlightblue));
+                conquest.setBackground(getDrawable(drawable.borderbuttonlightblue));
                 changeFragment(jobs);
             }
         });
         conquest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                buildings.setBackground(getDrawable(R.drawable.borderbuttonlightblue));
-                specialRes.setBackground(getDrawable(R.drawable.borderbuttonlightblue));
-                jobs.setBackground(getDrawable(R.drawable.borderbuttonlightblue));
-                upgrades.setBackground(getDrawable(R.drawable.borderbuttonlightblue));
-                conquest.setBackground(getDrawable(R.drawable.borderbuttonlightred));
+                buildings.setBackground(getDrawable(drawable.borderbuttonlightblue));
+                specialRes.setBackground(getDrawable(drawable.borderbuttonlightblue));
+                jobs.setBackground(getDrawable(drawable.borderbuttonlightblue));
+                upgrades.setBackground(getDrawable(drawable.borderbuttonlightblue));
+                conquest.setBackground(getDrawable(drawable.borderbuttonlightred));
                 changeFragment(conquest);
             }
         });
         createWorkers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TextView population = findViewById(R.id.population);
-                EditText num_workers = findViewById(R.id.num_workers);
+                TextView population = findViewById(id.population);
+                EditText num_workers = findViewById(id.num_workers);
                 int amt;
                 if(num_workers.getText().toString().equals("")){
                     amt = 0;
@@ -257,7 +265,7 @@ public class MainActivity extends AppCompatActivity
         add_worker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText num_workers = findViewById(R.id.num_workers);
+                EditText num_workers = findViewById(id.num_workers);
                 int amt = Integer.parseInt(num_workers.getText().toString());
                 amt++;
                 String a = "" + amt;
@@ -267,7 +275,7 @@ public class MainActivity extends AppCompatActivity
         substract_worker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText num_workers = findViewById(R.id.num_workers);
+                EditText num_workers = findViewById(id.num_workers);
                 int amt = Integer.parseInt(num_workers.getText().toString());
                 amt--;
                 if(amt>=1){
@@ -276,8 +284,8 @@ public class MainActivity extends AppCompatActivity
                 }
             }
         });
-        mDrawerLayout = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        mDrawerLayout = findViewById(id.drawer_layout);
+        NavigationView navigationView = findViewById(id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -387,10 +395,10 @@ public class MainActivity extends AppCompatActivity
                     Intent intent = new Intent(MainActivity.this,Instructions.class);
                     startActivity(intent);
                 }
-                else if (id == R.id.achievements) {
-                    Intent intent = new Intent(MainActivity.this, Achievements.class);
-                    startActivity(intent);
-                }
+//                else if (id == R.id.achievements) {
+//                    Intent intent = new Intent(MainActivity.this, Achievements.class);
+//                    startActivity(intent);
+//                }
                 else if (id == R.id.enablecustomincrememtns) {
                     NavigationView navigationView = findViewById(R.id.nav_view);
                     Menu menu = navigationView.getMenu();
@@ -557,24 +565,41 @@ public class MainActivity extends AppCompatActivity
                 return true;
             }
         });
-//        gameSave.updatemax(GameSave.FOOD,1000000000);
-//        gameSave.updatemax(GameSave.WOOD,1000000000);
-//        gameSave.updatemax(GameSave.STONE,1000000000);
-//        gameSave.update(GameSave.FOOD,1000000000);
-//        gameSave.update(GameSave.WOOD,1000000000);
-//        gameSave.update(GameSave.STONE,1000000000);
+        gameSave.ShowAchievement(GameSave.RAIDER_ONE);
+        gameSave.ShowAchievement(GameSave.RAIDER_TWO);
+        gameSave.ShowAchievement(GameSave.RAIDER_THREE);
+        gameSave.ShowAchievement(GameSave.RAIDER_FOUR);
+        gameSave.ShowAchievement(GameSave.RAIDER_FIVE);
+        gameSave.ShowAchievement(GameSave.RAIDER_SIX);
+        gameSave.ShowAchievement(GameSave.RAIDER_SEVEN);
+        gameSave.ShowAchievement(GameSave.RAIDER_EIGHT);
+        gameSave.ShowAchievement(GameSave.RAIDER_NINE);
+        gameSave.ShowAchievement(GameSave.RAIDER_TEN);
+        gameSave.ShowAchievement(GameSave.DEFEAT_ONE);
+        gameSave.ShowAchievement(GameSave.DEFEAT_TWO);
+        gameSave.ShowAchievement(GameSave.DEFEAT_THREE);
+        gameSave.ShowAchievement(GameSave.DEFEAT_FOUR);
+        gameSave.ShowAchievement(GameSave.DEFEAT_FIVE);
+        gameSave.ShowAchievement(GameSave.DEFEAT_SIX);
+        gameSave.ShowAchievement(GameSave.DEFEAT_SEVEN);
+        gameSave.ShowAchievement(GameSave.DEFEAT_EIGHT);
+        gameSave.ShowAchievement(GameSave.DEFEAT_NINE);
+        gameSave.ShowAchievement(GameSave.DEFEAT_TEN);
+
+
+
         changeFragment(jobs);
         thread.start();
         conquestthread.start();
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-//        MobileAds.initialize(this,"ca-app-pub-2519476145136157~3502779246");
-//        mAdView = findViewById(R.id.adView);
-//        AdRequest adRequest = new AdRequest.Builder().build();
-//        mAdView.loadAd(adRequest);
+        MobileAds.initialize(this,"ca-app-pub-2519476145136157~3502779246");
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int height = dm.heightPixels;
-        Fragment frag = (getSupportFragmentManager().findFragmentById(R.id.fragment));
+        Fragment frag = (getSupportFragmentManager().findFragmentById(id.fragment));
         ViewGroup.LayoutParams params = frag.getView().getLayoutParams();
         params.height = (int)Math.floor(height * .45);
         frag.getView().setLayoutParams(params);
@@ -610,19 +635,19 @@ public class MainActivity extends AppCompatActivity
                                     counter = (counter + 1)%5;
                                     WorkSpecialResource(counter);
                                     double farm = consume();
-                                    TextView food = findViewById(R.id.num_food);
-                                    TextView foodspeed = findViewById(R.id.FOOD);
+                                    TextView food = findViewById(id.num_food);
+                                    TextView foodspeed = findViewById(id.FOOD);
                                     workerCollect(food, gameSave.FOOD, farm, foodspeed);
                                     killWorkers(farm);
                                     populationControl();
                                     setUnemployed();
                                     double lumberjacks = gameSave.resourceAmountD(gameSave.LUMBERJACKS);
-                                    TextView wood = findViewById(R.id.num_wood);
-                                    TextView woodspeed = findViewById(R.id.WOOD);
+                                    TextView wood = findViewById(id.num_wood);
+                                    TextView woodspeed = findViewById(id.WOOD);
                                     workerCollect(wood, gameSave.WOOD, lumberjacks * workerWoodProduction, woodspeed);
                                     double stonemasons = gameSave.resourceAmountD(gameSave.STONEMASONS);
-                                    TextView stone = findViewById(R.id.num_stone);
-                                    TextView stonespeed = findViewById(R.id.STONE);
+                                    TextView stone = findViewById(id.num_stone);
+                                    TextView stonespeed = findViewById(id.STONE);
                                     workerCollect(stone, gameSave.STONE, stonemasons * workerStoneProduction, stonespeed);
                                     ActionBar actionBar = getSupportActionBar();
                                     String name = civType() + " of " + gameSave.civName();
@@ -648,10 +673,10 @@ public class MainActivity extends AppCompatActivity
                                 @Override
                                 public void run() {
                                     workerCost = 20 + gameSave.resourceAmountI(gameSave.POPULATION)/4000;
-                                    TextView wc = findViewById(R.id.worker_cost);
+                                    TextView wc = findViewById(id.worker_cost);
                                     String w = "Cost per worker: " + workerCost;
                                     wc.setText(w);
-                                    TextView land = findViewById(R.id.land);
+                                    TextView land = findViewById(id.land);
                                     String l = "Land: " + gameSave.resourceAmountI(gameSave.OCCUPIEDLAND) + "/" + gameSave.resourceAmountI(gameSave.LAND);
                                     land.setText(l);
                                 }
@@ -686,6 +711,17 @@ public class MainActivity extends AppCompatActivity
             editor.putString(key, val);
         }
         editor.apply();
+        SharedPreferences saveGameAchievements = getSharedPreferences("saveGameAchievements",MODE_PRIVATE);
+        SharedPreferences.Editor editorAchievements = saveGameAchievements.edit();
+        editorAchievements.clear();
+        editorAchievements.apply();
+        Map<String, String> mapAchievements = gameSave.saveAchievements();
+        for (Map.Entry<String, String> entry : mapAchievements.entrySet()){
+            String key = entry.getKey();
+            String val = entry.getValue();
+            editor.putString(key, val);
+        }
+        editorAchievements.apply();
     }
     public void loadGame(){
         SharedPreferences loadGame = getSharedPreferences("saveGame", MODE_PRIVATE);
@@ -708,6 +744,13 @@ public class MainActivity extends AppCompatActivity
                 gameSave.set(key, Integer.parseInt(val));
             }
         }
+        SharedPreferences loadGameAchievements = getSharedPreferences("saveGameAchievements", MODE_PRIVATE);
+        Map<String, String> mapAchievements = (Map<String, String>) loadGameAchievements.getAll();
+        for (Map.Entry<String, String> entry : mapAchievements.entrySet()){
+            String key = entry.getKey();
+            String val = entry.getValue();
+            gameSave.setAchievementDB(key, Integer.parseInt(val));
+        }
         setScreen(getSupportActionBar());
     }
     public void setScreen(ActionBar actionBar) {
@@ -716,11 +759,11 @@ public class MainActivity extends AppCompatActivity
         String food = df.format(gameSave.resourceAmountD(gameSave.FOOD)) + "/" + df.format(gameSave.resourceAmountD(gameSave.FOOD_MAX));
         String wood = df.format(gameSave.resourceAmountD(gameSave.WOOD)) + "/" + df.format(gameSave.resourceAmountD(gameSave.WOOD_MAX));
         String stone = df.format(gameSave.resourceAmountD(gameSave.STONE)) + "/" + df.format(gameSave.resourceAmountD(gameSave.STONE_MAX));
-        TextView poptv = findViewById(R.id.population);
-        TextView unemployedtv = findViewById(R.id.unemployed);
-        TextView foodtv = findViewById(R.id.num_food);
-        TextView woodtv = findViewById(R.id.num_wood);
-        TextView stonetv = findViewById(R.id.num_stone);
+        TextView poptv = findViewById(id.population);
+        TextView unemployedtv = findViewById(id.unemployed);
+        TextView foodtv = findViewById(id.num_food);
+        TextView woodtv = findViewById(id.num_wood);
+        TextView stonetv = findViewById(id.num_stone);
         poptv.setText(pop);
         unemployedtv.setText(unemployed);
         foodtv.setText(food);
@@ -763,43 +806,43 @@ public class MainActivity extends AppCompatActivity
     }
     public void changeFragment(View view){
         Fragment fragment;
-        if(view == findViewById(R.id.buildings)){
+        if(view == findViewById(id.buildings)){
             if(ECI()){
                 fragment = new ECIbuildings();
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.fragment, fragment,"ECIbuildings");
+                ft.replace(id.fragment, fragment,"ECIbuildings");
                 ft.commit();
             }
             else{
                 fragment = new buildings();
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.fragment, fragment,"buildings");
+                ft.replace(id.fragment, fragment,"buildings");
                 ft.commit();
             }
         }
-        else if(view == findViewById(R.id.upgrades)){
+        else if(view == findViewById(id.upgrades)){
             fragment = new upgrades();
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
-            ft.replace(R.id.fragment, fragment);
+            ft.replace(id.fragment, fragment);
             ft.commit();
         }
-        else if(view == findViewById(R.id.jobs)){
+        else if(view == findViewById(id.jobs)){
             if(checkMUpgrade()){
                 if(ECI()){
                     fragment = new ECIupgradedjobs();
                     FragmentManager fm = getSupportFragmentManager();
                     FragmentTransaction ft = fm.beginTransaction();
-                    ft.replace(R.id.fragment, fragment, "ECIupgradedJobs");
+                    ft.replace(id.fragment, fragment, "ECIupgradedJobs");
                     ft.commit();
                 }
                 else{
                     fragment = new upgradedJobs();
                     FragmentManager fm = getSupportFragmentManager();
                     FragmentTransaction ft = fm.beginTransaction();
-                    ft.replace(R.id.fragment, fragment, "upgradedJobs");
+                    ft.replace(id.fragment, fragment, "upgradedJobs");
                     ft.commit();
                 }
             }
@@ -808,45 +851,45 @@ public class MainActivity extends AppCompatActivity
                     fragment = new ECIjobs();
                     FragmentManager fm = getSupportFragmentManager();
                     FragmentTransaction ft = fm.beginTransaction();
-                    ft.replace(R.id.fragment, fragment, "ECIjobs");
+                    ft.replace(id.fragment, fragment, "ECIjobs");
                     ft.commit();
                 }
                 else{
                     fragment = new jobs();
                     FragmentManager fm = getSupportFragmentManager();
                     FragmentTransaction ft = fm.beginTransaction();
-                    ft.replace(R.id.fragment, fragment, "jobs");
+                    ft.replace(id.fragment, fragment, "jobs");
                     ft.commit();
                 }
             }
         }
-        else if(view == findViewById(R.id.specialresources)){
+        else if(view == findViewById(id.specialresources)){
             fragment = new specialResources();
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
-            ft.replace(R.id.fragment, fragment);
+            ft.replace(id.fragment, fragment);
             ft.commit();
         }
-        else if(view == findViewById(R.id.conquest)){
+        else if(view == findViewById(id.conquest)){
             if(ECI()){
                 fragment = new ECIconquest();
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.fragment, fragment, "ECIconquest");
+                ft.replace(id.fragment, fragment, "ECIconquest");
                 ft.commit();
             }
             else{
                 fragment = new conquest();
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.fragment, fragment, "conquest");
+                ft.replace(id.fragment, fragment, "conquest");
                 ft.commit();
             }
         }
     }
     public void createWorker(TextView pop, int amt){
-        double current = gameSave.resourceAmountD(gameSave.POPULATION);
-        double max = gameSave.resourceAmountD(gameSave.POPULATION_MAX);
+        double current = gameSave.resourceAmountD(GameSave.POPULATION);
+        double max = gameSave.resourceAmountD(GameSave.POPULATION_MAX);
         double food = gameSave.resourceAmountD(GameSave.FOOD);
         double cost = amt * workerCost * (-1);
         food = food + cost;
@@ -860,15 +903,15 @@ public class MainActivity extends AppCompatActivity
         else{
             String p = "Population: " + df2.format(current) + "/" + df2.format(max);
             pop.setText(p);
-            TextView unemployed = findViewById(R.id.unemployed);
-            int unemployedworkers = gameSave.resourceAmountI(gameSave.UNEMPLOYED);
+            TextView unemployed = findViewById(id.unemployed);
+            int unemployedworkers = gameSave.resourceAmountI(GameSave.UNEMPLOYED);
             unemployedworkers += amt;
             String unemployedtxt = "Unemployed: " + unemployedworkers;
             unemployed.setText(unemployedtxt);
-            gameSave.update(gameSave.POPULATION, amt);
-            gameSave.updateNoMax(gameSave.UNEMPLOYED, amt);
-            TextView foodtv = findViewById(R.id.num_food);
-            collect(foodtv, gameSave.FOOD, cost);
+            gameSave.update(GameSave.POPULATION, amt);
+            gameSave.updateNoMax(GameSave.UNEMPLOYED, amt);
+            TextView foodtv = findViewById(id.num_food);
+            collect(foodtv, GameSave.FOOD, cost);
         }
     }
     public void killWorkers(double amt){
@@ -1010,7 +1053,7 @@ public class MainActivity extends AppCompatActivity
     }
     public void populationControl(){
         String pop = "Population: " + gameSave.resourceAmountI(gameSave.POPULATION) + "/" + gameSave.resourceAmountI(gameSave.POPULATION_MAX);
-        TextView population = findViewById(R.id.population);
+        TextView population = findViewById(id.population);
         population.setText(pop);
     }
     public void collect(TextView tv, String res, double amount) {
@@ -1162,7 +1205,7 @@ public class MainActivity extends AppCompatActivity
         setUnemployed();
     }
     public void setUnemployed(){
-        TextView unemployed = findViewById(R.id.unemployed);
+        TextView unemployed = findViewById(id.unemployed);
         String u = "Unemployed: " + gameSave.resourceAmountI(gameSave.UNEMPLOYED);
         unemployed.setText(u);
     }
@@ -1177,63 +1220,123 @@ public class MainActivity extends AppCompatActivity
     public String civType(){
         int pop = gameSave.resourceAmountI(gameSave.POPULATION);
         if(pop<20){
-//            achievements.unlock("CgkIlLzXjcEfEAIQAQ");
+            if(gameSave.AchievementShown(GameSave.THORP) != true){
+                AchievementSnack("Thorp");
+                toast("" + gameSave.ShowAchievement(gameSave.THORP));
+                gameSave.UnlockAchievement(GameSave.THORP);
+            }
             return "Thorp";
         }
         else if(pop>=20 && pop<60){
-//            achievements.unlock("CgkIlLzXjcEfEAIQAg");
+            if(gameSave.AchievementShown(GameSave.HAMLET) != true){
+                AchievementSnack("Hamlet");
+                gameSave.ShowAchievement(gameSave.HAMLET);
+                gameSave.UnlockAchievement(GameSave.HAMLET);
+            }
             return "Hamlet";
         }
         else if(pop>=60 && pop<200){
-//            achievements.unlock("CgkIlLzXjcEfEAIQAw");
+            if(gameSave.AchievementShown(GameSave.VILLAGE) != true){
+                AchievementSnack("Village");
+                gameSave.ShowAchievement(gameSave.VILLAGE);
+                gameSave.UnlockAchievement(GameSave.VILLAGE);
+            }
             return "Village";
         }
         else if(pop>=200 && pop<2000){
-//            achievements.unlock("CgkIlLzXjcEfEAIQBA");
+            if(gameSave.AchievementShown(GameSave.SMALL_TOWN) != true){
+                AchievementSnack("Small Town");
+                gameSave.ShowAchievement(gameSave.SMALL_TOWN);
+                gameSave.UnlockAchievement(GameSave.SMALL_TOWN);
+            }
             return "Small Town";
         }
         else if(pop>=2000 && pop<5000){
-//            achievements.unlock("CgkIlLzXjcEfEAIQBQ");
+            if(gameSave.AchievementShown(GameSave.LARGE_TOWN) != true){
+                AchievementSnack("Large Town");
+                gameSave.ShowAchievement(gameSave.LARGE_TOWN);
+                gameSave.UnlockAchievement(GameSave.LARGE_TOWN);
+            }
             return "Large Town";
         }
         else if(pop>=5000 && pop<10000){
-//            achievements.unlock("CgkIlLzXjcEfEAIQBg");
+            if(gameSave.AchievementShown(GameSave.SMALL_CITY) != true){
+                AchievementSnack("Small City");
+                gameSave.ShowAchievement(gameSave.SMALL_CITY);
+                gameSave.UnlockAchievement(GameSave.SMALL_CITY);
+            }
             return "Small City";
         }
         else if(pop>=10000 && pop<20000){
-//            achievements.unlock("CgkIlLzXjcEfEAIQBw");
+            if(gameSave.AchievementShown(GameSave.LARGE_CITY) != true){
+                AchievementSnack("Large City");
+                gameSave.ShowAchievement(gameSave.LARGE_CITY);
+                gameSave.UnlockAchievement(GameSave.LARGE_CITY);
+            }
             return "Large City";
         }
         else if(pop>=20000 && pop<50000){
-//            achievements.unlock("CgkIlLzXjcEfEAIQCA");
+            if(gameSave.AchievementShown(GameSave.METROPOLIS) != true){
+                AchievementSnack("Metropolis");
+                gameSave.ShowAchievement(gameSave.METROPOLIS);
+                gameSave.UnlockAchievement(GameSave.METROPOLIS);
+            }
             return "Metropolis";
         }
         else if(pop>=50000 && pop<100000){
-//            achievements.unlock("CgkIlLzXjcEfEAIQCQ");
+            if(gameSave.AchievementShown(GameSave.SMALL_NATION) != true){
+                AchievementSnack("Small Nation");
+                gameSave.ShowAchievement(gameSave.SMALL_NATION);
+                gameSave.UnlockAchievement(GameSave.SMALL_NATION);
+            }
             return "Small Nation";
         }
         else if(pop>=100000 && pop<200000){
-//            achievements.unlock("CgkIlLzXjcEfEAIQCg");
+            if(gameSave.AchievementShown(GameSave.NATION) != true){
+                AchievementSnack("Nation");
+                gameSave.ShowAchievement(gameSave.NATION);
+                gameSave.UnlockAchievement(GameSave.NATION);
+            }
             return "Nation";
         }
         else if(pop>=200000 && pop<500000){
-//            achievements.unlock("CgkIlLzXjcEfEAIQCw");
+            if(gameSave.AchievementShown(GameSave.LARGE_NATION) != true){
+                AchievementSnack("Large Nation");
+                gameSave.ShowAchievement(gameSave.LARGE_NATION);
+                gameSave.UnlockAchievement(GameSave.LARGE_NATION);
+            }
             return "Large Nation";
         }
         else if (pop>=500000 && pop<1000000) {
-//            achievements.unlock("CgkIlLzXjcEfEAIQDA");
+            if(gameSave.AchievementShown(GameSave.EMPIRE) != true){
+                AchievementSnack("Empire");
+                gameSave.ShowAchievement(gameSave.EMPIRE);
+                gameSave.UnlockAchievement(GameSave.EMPIRE);
+            }
             return "Empire";
         }
         else if (pop>=1000000 && pop<2000000) {
-//            achievements.unlock("CgkIlLzXjcEfEAIQDQ");
+            if(gameSave.AchievementShown(GameSave.CONTINENTAL_EMPIRE) != true){
+                AchievementSnack("Continental Empire");
+                gameSave.ShowAchievement(gameSave.CONTINENTAL_EMPIRE);
+                gameSave.UnlockAchievement(GameSave.CONTINENTAL_EMPIRE);
+            }
             return "Continental Empire";
         }
         else if (pop>=2000000 && pop<5000000) {
-//            achievements.unlock("CgkIlLzXjcEfEAIQDg");
+            if(gameSave.AchievementShown(GameSave.WORLD_CONFEDERATION) != true){
+                AchievementSnack("World Confederation");
+                gameSave.ShowAchievement(gameSave.WORLD_CONFEDERATION);
+                gameSave.UnlockAchievement(GameSave.WORLD_CONFEDERATION);
+            }
             return "World Confederation";
         }
         else {
-//            achievements.unlock("CgkIlLzXjcEfEAIQDw");
+            if(gameSave.AchievementShown(GameSave.UNITED_WORLD) != true){
+                AchievementSnack("United World");
+                gameSave.ShowAchievement(gameSave.UNITED_WORLD);
+                gameSave.UnlockAchievement(GameSave.UNITED_WORLD);
+            }
             return "United World";
         }
         //galactic village... etc everything else but with galactic in front
@@ -1280,7 +1383,7 @@ public class MainActivity extends AppCompatActivity
     }
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         }
@@ -1312,13 +1415,13 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean buildTent(int amt) {
-        TextView num_wood = findViewById(R.id.num_wood);
+        TextView num_wood = findViewById(id.num_wood);
         double max = gameSave.resourceAmountD(gameSave.WOOD_MAX);
         double currentwood = gameSave.resourceAmountD(gameSave.WOOD);
-        TextView num_stone = findViewById(R.id.num_stone);
+        TextView num_stone = findViewById(id.num_stone);
         double maxstone = gameSave.resourceAmountD(gameSave.STONE_MAX);
         double currentstone = gameSave.resourceAmountD(gameSave.STONE);
-        TextView population = findViewById(R.id.population);
+        TextView population = findViewById(id.population);
         int land = gameSave.resourceAmountI(GameSave.LAND);
         int occupiedland = gameSave.resourceAmountI(GameSave.OCCUPIEDLAND);
         if((currentwood<(2*amt)) || (currentstone<(2*amt)) || ((amt*1 + occupiedland)>land)){
@@ -1356,13 +1459,13 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean buildHut(int amt) {
-        TextView num_wood = findViewById(R.id.num_wood);
+        TextView num_wood = findViewById(id.num_wood);
         double max = gameSave.resourceAmountD(gameSave.WOOD_MAX);
         double currentwood = gameSave.resourceAmountD(gameSave.WOOD);
-        TextView num_stone = findViewById(R.id.num_stone);
+        TextView num_stone = findViewById(id.num_stone);
         double maxstone = gameSave.resourceAmountD(gameSave.STONE_MAX);
         double currentstone = gameSave.resourceAmountD(gameSave.STONE);
-        TextView population = findViewById(R.id.population);
+        TextView population = findViewById(id.population);
         int land = gameSave.resourceAmountI(GameSave.LAND);
         int occupiedland = gameSave.resourceAmountI(GameSave.OCCUPIEDLAND);
         if((currentwood<(20*amt)) || (currentstone<(10*amt)) || ((amt*2 + occupiedland)>land)){
@@ -1398,13 +1501,13 @@ public class MainActivity extends AppCompatActivity
     }
     @Override
     public boolean buildCottage(int amt) {
-        TextView num_wood = findViewById(R.id.num_wood);
+        TextView num_wood = findViewById(id.num_wood);
         double max = gameSave.resourceAmountD(gameSave.WOOD_MAX);
         double currentwood = gameSave.resourceAmountD(gameSave.WOOD);
-        TextView num_stone = findViewById(R.id.num_stone);
+        TextView num_stone = findViewById(id.num_stone);
         double maxstone = gameSave.resourceAmountD(gameSave.STONE_MAX);
         double currentstone = gameSave.resourceAmountD(gameSave.STONE);
-        TextView population = findViewById(R.id.population);
+        TextView population = findViewById(id.population);
         int land = gameSave.resourceAmountI(GameSave.LAND);
         int occupiedland = gameSave.resourceAmountI(GameSave.OCCUPIEDLAND);
 
@@ -1441,13 +1544,13 @@ public class MainActivity extends AppCompatActivity
     }
     @Override
     public boolean buildHouse(int amt) {
-        TextView num_wood = findViewById(R.id.num_wood);
+        TextView num_wood = findViewById(id.num_wood);
         double max = gameSave.resourceAmountD(gameSave.WOOD_MAX);
         double currentwood = gameSave.resourceAmountD(gameSave.WOOD);
-        TextView num_stone = findViewById(R.id.num_stone);
+        TextView num_stone = findViewById(id.num_stone);
         double maxstone = gameSave.resourceAmountD(gameSave.STONE_MAX);
         double currentstone = gameSave.resourceAmountD(gameSave.STONE);
-        TextView population = findViewById(R.id.population);
+        TextView population = findViewById(id.population);
         int land = gameSave.resourceAmountI(GameSave.LAND);
         int occupiedland = gameSave.resourceAmountI(GameSave.OCCUPIEDLAND);
         if((currentwood<(100*amt)) || (currentstone<(100*amt)) || ((amt*25 + occupiedland)>land)){
@@ -1498,13 +1601,13 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean buildMansion(int amt) {
-        TextView num_wood = findViewById(R.id.num_wood);
+        TextView num_wood = findViewById(id.num_wood);
         double max = gameSave.resourceAmountD(gameSave.WOOD_MAX);
         double currentwood = gameSave.resourceAmountD(gameSave.WOOD);
-        TextView num_stone = findViewById(R.id.num_stone);
+        TextView num_stone = findViewById(id.num_stone);
         double maxstone = gameSave.resourceAmountD(gameSave.STONE_MAX);
         double currentstone = gameSave.resourceAmountD(gameSave.STONE);
-        TextView population = findViewById(R.id.population);
+        TextView population = findViewById(id.population);
         int land = gameSave.resourceAmountI(GameSave.LAND);
         int occupiedland = gameSave.resourceAmountI(GameSave.OCCUPIEDLAND);
 
@@ -1542,10 +1645,10 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean buildBarn(int amt) {
-        TextView num_wood = findViewById(R.id.num_wood);
+        TextView num_wood = findViewById(id.num_wood);
         double max = gameSave.resourceAmountD(gameSave.WOOD_MAX);
         double currentwood = gameSave.resourceAmountD(gameSave.WOOD);
-        TextView num_stone = findViewById(R.id.num_stone);
+        TextView num_stone = findViewById(id.num_stone);
         double maxstone = gameSave.resourceAmountD(gameSave.STONE_MAX);
         double currentstone = gameSave.resourceAmountD(gameSave.STONE);
         int land = gameSave.resourceAmountI(GameSave.LAND);
@@ -1570,7 +1673,7 @@ public class MainActivity extends AppCompatActivity
             String new_val_stone = df.format(currentstone) + "/" + df.format(maxstone);
             num_wood.setText(new_val);
             num_stone.setText(new_val_stone);
-            TextView num_food = findViewById(R.id.num_food);
+            TextView num_food = findViewById(id.num_food);
             String maxfood = df.format(gameSave.resourceAmountD(gameSave.FOOD_MAX)) + (barnMax*amt);
             String currentfood = df.format(gameSave.resourceAmountD(gameSave.FOOD));
             String new_food = "" + currentfood + "/" + maxfood;
@@ -1586,10 +1689,10 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean buildWoodStockpile(int amt) {
-        TextView num_wood = findViewById(R.id.num_wood);
+        TextView num_wood = findViewById(id.num_wood);
         double max = gameSave.resourceAmountD(gameSave.WOOD_MAX);
         double currentwood = gameSave.resourceAmountD(gameSave.WOOD);
-        TextView num_stone = findViewById(R.id.num_stone);
+        TextView num_stone = findViewById(id.num_stone);
         double maxstone = gameSave.resourceAmountD(gameSave.STONE_MAX);
         double currentstone = gameSave.resourceAmountD(gameSave.STONE);
         int land = gameSave.resourceAmountI(GameSave.LAND);
@@ -1626,10 +1729,10 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean buildStoneStockpile(int amt) {
-        TextView num_wood = findViewById(R.id.num_wood);
+        TextView num_wood = findViewById(id.num_wood);
         double max = gameSave.resourceAmountD(gameSave.WOOD_MAX);
         double currentwood = gameSave.resourceAmountD(gameSave.WOOD);
-        TextView num_stone = findViewById(R.id.num_stone);
+        TextView num_stone = findViewById(id.num_stone);
         double maxstone = gameSave.resourceAmountD(gameSave.STONE_MAX);
         double currentstone = gameSave.resourceAmountD(gameSave.STONE);
         int land = gameSave.resourceAmountI(GameSave.LAND);
@@ -1667,10 +1770,10 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean buildTannery(int amt) {
-        TextView num_wood = findViewById(R.id.num_wood);
+        TextView num_wood = findViewById(id.num_wood);
         double max = gameSave.resourceAmountD(gameSave.WOOD_MAX);
         double currentwood = gameSave.resourceAmountD(gameSave.WOOD);
-        TextView num_stone = findViewById(R.id.num_stone);
+        TextView num_stone = findViewById(id.num_stone);
         double maxstone = gameSave.resourceAmountD(gameSave.STONE_MAX);
         double currentstone = gameSave.resourceAmountD(gameSave.STONE);
         double currentskins = gameSave.resourceAmountD(gameSave.SKINS);
@@ -1708,10 +1811,10 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean buildSmithy(int amt) {
-        TextView num_wood = findViewById(R.id.num_wood);
+        TextView num_wood = findViewById(id.num_wood);
         double max = gameSave.resourceAmountD(gameSave.WOOD_MAX);
         double currentwood = gameSave.resourceAmountD(gameSave.WOOD);
-        TextView num_stone = findViewById(R.id.num_stone);
+        TextView num_stone = findViewById(id.num_stone);
         double maxstone = gameSave.resourceAmountD(gameSave.STONE_MAX);
         double currentstone = gameSave.resourceAmountD(gameSave.STONE);
         double currentore = gameSave.resourceAmountD(gameSave.ORE);
@@ -1750,10 +1853,10 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean buildApothecary(int amt) {
-        TextView num_wood = findViewById(R.id.num_wood);
+        TextView num_wood = findViewById(id.num_wood);
         double max = gameSave.resourceAmountD(gameSave.WOOD_MAX);
         double currentwood = gameSave.resourceAmountD(gameSave.WOOD);
-        TextView num_stone = findViewById(R.id.num_stone);
+        TextView num_stone = findViewById(id.num_stone);
         double maxstone = gameSave.resourceAmountD(gameSave.STONE_MAX);
         double currentstone = gameSave.resourceAmountD(gameSave.STONE);
         double currentherbs = gameSave.resourceAmountD(gameSave.HERBS);
@@ -1792,10 +1895,10 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean buildBarracks(int amt) {
-        TextView num_wood = findViewById(R.id.num_wood);
+        TextView num_wood = findViewById(id.num_wood);
         double max = gameSave.resourceAmountD(gameSave.WOOD_MAX);
         double currentwood = gameSave.resourceAmountD(gameSave.WOOD);
-        TextView num_stone = findViewById(R.id.num_stone);
+        TextView num_stone = findViewById(id.num_stone);
         double maxstone = gameSave.resourceAmountD(gameSave.STONE_MAX);
         double currentstone = gameSave.resourceAmountD(gameSave.STONE);
         double currentmetal = gameSave.resourceAmountD(gameSave.METAL);
@@ -1820,7 +1923,7 @@ public class MainActivity extends AppCompatActivity
             currentstone-=(120*amt);
             currentwood-=(60*amt);
             currentfood-=(20*amt);
-            TextView num_food = findViewById(R.id.num_food);
+            TextView num_food = findViewById(id.num_food);
             String new_val_food = df.format(currentfood) + "/" + df.format(gameSave.resourceAmountD(gameSave.FOOD_MAX));
             num_food.setText(new_val_food);
             String new_val = "" + df.format(currentwood) + "/" + df.format(max);
@@ -1839,10 +1942,10 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean buildStables(int amt) {
-        TextView num_wood = findViewById(R.id.num_wood);
+        TextView num_wood = findViewById(id.num_wood);
         double max = gameSave.resourceAmountD(gameSave.WOOD_MAX);
         double currentwood = gameSave.resourceAmountD(gameSave.WOOD);
-        TextView num_stone = findViewById(R.id.num_stone);
+        TextView num_stone = findViewById(id.num_stone);
         double maxstone = gameSave.resourceAmountD(gameSave.STONE_MAX);
         double currentstone = gameSave.resourceAmountD(gameSave.STONE);
         double currentleather = gameSave.resourceAmountD(gameSave.LEATHER);
@@ -1868,7 +1971,7 @@ public class MainActivity extends AppCompatActivity
             currentstone-=(120*amt);
             currentwood-=(60*amt);
             currentfood-=(60*amt);
-            TextView num_food = findViewById(R.id.num_food);
+            TextView num_food = findViewById(id.num_food);
             String new_val_food = df.format(currentfood) + "/" + df.format(gameSave.resourceAmountD(gameSave.FOOD_MAX));
             num_food.setText(new_val_food);
             String new_val = "" + df.format(currentwood) + "/" + df.format(max);
@@ -2366,6 +2469,21 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    public void invadeAchievementmaker() {
+        gameSave.InvasionCounter();
+    }
+
+    @Override
+    public void defeatAchievementmaker() {
+        gameSave.DefeatCounter();
+    }
+
+    @Override
+    public void invadeCiv(String civ) {
+        gameSave.invadeCiv(civ);
+    }
+
+    @Override
     public String Skins() {
         return "" + gameSave.resourceAmountI(GameSave.SKINS);
     }
@@ -2472,7 +2590,242 @@ public class MainActivity extends AppCompatActivity
     public void toast(String string){
         Toast.makeText(MainActivity.this, string, Toast.LENGTH_SHORT).show();
     }
+    public void AchievementSnack(String string){
+        CharSequence achievement = "Achievement Unlocked: " +  string;
+        CoordinatorLayout cc = findViewById(id.coordinator_layout);
+        Snackbar mySnackbar = Snackbar.make(cc, achievement, Snackbar.LENGTH_LONG);
+        mySnackbar.show();
+    }
+    public void showDefInvAchievements(){
+        int defeats = gameSave.NumDefInv(0);
+        int invasions = gameSave.NumDefInv(1);
+        int thorpInvasions = gameSave.NumCivInv(GameSave.CONQUEROR_THORP);
+        int hamletInvasions = gameSave.NumCivInv(GameSave.CONQUEROR_HAMLET);
+        int villageInvasions = gameSave.NumCivInv(GameSave.CONQUEROR_VILLAGE);
+        int smalltownInvasions = gameSave.NumCivInv(GameSave.CONQUEROR_SMALL_TOWN);
+        int largetownInvasions = gameSave.NumCivInv(GameSave.CONQUEROR_LARGE_TOWN);
+        int smallcityInvasions = gameSave.NumCivInv(GameSave.CONQUEROR_SMALL_CITY);
+        int largecityInvasions = gameSave.NumCivInv(GameSave.CONQUEROR_LARGE_CITY);
+        int metropolisInvasions = gameSave.NumCivInv(GameSave.CONQUEROR_METROPOLIS);
+        int smallnationInvasions = gameSave.NumCivInv(GameSave.CONQUEROR_SMALL_NATION);
+        int nationInvasions = gameSave.NumCivInv(GameSave.CONQUEROR_NATION);
+        int largenationInvasions = gameSave.NumCivInv(GameSave.CONQUEROR_LARGE_NATION);
+        int empireInvasions = gameSave.NumCivInv(GameSave.CONQUEROR_EMPIRE);
+        int continentalempireInvasions = gameSave.NumCivInv(GameSave.CONQUEROR_CONTINENTAL_EMPIRE);
+        int worldconfederationInvasions = gameSave.NumCivInv(GameSave.CONQUEROR_WORLD_CONFEDERATION);
+        int unitedworldInvasions = gameSave.NumCivInv(GameSave.CONQUEROR_UNITED_WORLD);
 
+        if(10 <= invasions && invasions < 20){
+            if(!gameSave.AchievementShown(gameSave.RAIDER_ONE)){
+                AchievementSnack("Raider 1");
+                gameSave.ShowAchievement(GameSave.RAIDER_ONE);
+            }
+        }
+        else if(20 <= invasions && invasions < 30){
+            if(!gameSave.AchievementShown(gameSave.RAIDER_TWO)){
+                AchievementSnack("Raider 2");
+                gameSave.ShowAchievement(GameSave.RAIDER_TWO);
+            }
+        }
+        else if(10 <= invasions && invasions < 40){
+            if(!gameSave.AchievementShown(gameSave.RAIDER_THREE)){
+                AchievementSnack("Raider 3");
+                gameSave.ShowAchievement(GameSave.RAIDER_THREE);
+            }
+        }
+        else if(10 <= invasions && invasions < 50){
+            if(!gameSave.AchievementShown(gameSave.RAIDER_FOUR)){
+                AchievementSnack("Raider 4");
+                gameSave.ShowAchievement(GameSave.RAIDER_FOUR);
+            }
+        }
+        else if(10 <= invasions && invasions < 60){
+            if(!gameSave.AchievementShown(gameSave.RAIDER_FIVE)){
+                AchievementSnack("Raider 5");
+                gameSave.ShowAchievement(GameSave.RAIDER_FIVE);
+            }
+        }
+        else if(10 <= invasions && invasions < 70){
+            if(!gameSave.AchievementShown(gameSave.RAIDER_SIX)){
+                AchievementSnack("Raider 6");
+                gameSave.ShowAchievement(GameSave.RAIDER_SIX);
+            }
+        }
+        else if(10 <= invasions && invasions < 80){
+            if(gameSave.AchievementShown(gameSave.RAIDER_SEVEN) != true){
+                AchievementSnack("Raider 7");
+                gameSave.ShowAchievement(GameSave.RAIDER_SEVEN);
+            }
+        }
+        else if(10 <= invasions && invasions < 90){
+            if(gameSave.AchievementShown(gameSave.RAIDER_EIGHT) != true){
+                AchievementSnack("Raider 8");
+                gameSave.ShowAchievement(GameSave.RAIDER_EIGHT);
+            }
+        }
+        else if(10 <= invasions && invasions < 100){
+            if(gameSave.AchievementShown(gameSave.RAIDER_NINE) != true){
+                AchievementSnack("Raider 9");
+                gameSave.ShowAchievement(GameSave.RAIDER_NINE);
+            }
+        }
+        else if(100 <= invasions){
+            if(gameSave.AchievementShown(gameSave.RAIDER_TEN) != true){
+                AchievementSnack("Raider 10");
+                gameSave.ShowAchievement(GameSave.RAIDER_TEN);
+            }
+        }
+        if(10 <= defeats && defeats < 20){
+            if(gameSave.AchievementShown(gameSave.DEFEAT_ONE) != true){
+                AchievementSnack("Defeats 1");
+                gameSave.ShowAchievement(GameSave.DEFEAT_ONE);
+            }
+        }
+        else if(20 <= defeats && defeats < 30){
+            if(gameSave.AchievementShown(gameSave.DEFEAT_TWO) != true){
+                AchievementSnack("Defeats 2");
+                gameSave.ShowAchievement(GameSave.DEFEAT_TWO);
+            }
+        }
+        else if(10 <= defeats && defeats < 40){
+            if(gameSave.AchievementShown(gameSave.DEFEAT_THREE) != true){
+                AchievementSnack("Defeats 3");
+                gameSave.ShowAchievement(GameSave.DEFEAT_THREE);
+            }
+        }
+        else if(10 <= defeats && defeats < 50){
+            if(gameSave.AchievementShown(gameSave.DEFEAT_FOUR) != true){
+                AchievementSnack("Defeats 4");
+                gameSave.ShowAchievement(GameSave.DEFEAT_FOUR);
+            }
+        }
+        else if(10 <= defeats && defeats < 60){
+            if(gameSave.AchievementShown(gameSave.DEFEAT_FIVE) != true){
+                AchievementSnack("Defeats 5");
+                gameSave.ShowAchievement(GameSave.DEFEAT_FIVE);
+            }
+        }
+        else if(10 <= defeats && defeats < 70){
+            if(gameSave.AchievementShown(gameSave.DEFEAT_SIX) != true){
+                AchievementSnack("Defeats 6");
+                gameSave.ShowAchievement(GameSave.DEFEAT_SIX);
+            }
+        }
+        else if(10 <= defeats && defeats < 80){
+            if(gameSave.AchievementShown(gameSave.DEFEAT_SEVEN) != true){
+                AchievementSnack("Defeats 7");
+                gameSave.ShowAchievement(GameSave.DEFEAT_SEVEN);
+            }
+        }
+        else if(10 <= defeats && defeats < 90){
+            if(gameSave.AchievementShown(gameSave.DEFEAT_EIGHT) != true){
+                AchievementSnack("Defeats 8");
+                gameSave.ShowAchievement(GameSave.DEFEAT_EIGHT);
+            }
+        }
+        else if(10 <= defeats && defeats < 100){
+            if(gameSave.AchievementShown(gameSave.DEFEAT_NINE) != true){
+                AchievementSnack("Defeats 9");
+                gameSave.ShowAchievement(GameSave.DEFEAT_NINE);
+            }
+        }
+        else if(100 <= defeats){
+            if(gameSave.AchievementShown(gameSave.DEFEAT_TEN) != true){
+                AchievementSnack("Defeats 10");
+                gameSave.ShowAchievement(GameSave.DEFEAT_TEN);
+            }
+        }
+        if (thorpInvasions >= 10){
+            if(!gameSave.AchievementShown(GameSave.CONQUEROR_THORP)){
+                AchievementSnack("Thorp Conqueror");
+                gameSave.ShowAchievement(GameSave.CONQUEROR_THORP);
+            }
+        }
+        if (hamletInvasions>= 10){
+            if(!gameSave.AchievementShown(GameSave.CONQUEROR_HAMLET)){
+                AchievementSnack("Hamlet Conqueror");
+                gameSave.ShowAchievement(GameSave.CONQUEROR_HAMLET);
+            }
+        }
+        if (villageInvasions>= 10){
+            if(!gameSave.AchievementShown(GameSave.CONQUEROR_VILLAGE)){
+                AchievementSnack("Village Conqueror");
+                gameSave.ShowAchievement(GameSave.CONQUEROR_VILLAGE);
+            }
+        }
+        if (smalltownInvasions>= 10){
+            if(!gameSave.AchievementShown(GameSave.CONQUEROR_SMALL_TOWN)){
+                AchievementSnack("Small Town Conqueror");
+                gameSave.ShowAchievement(GameSave.CONQUEROR_SMALL_TOWN);
+            }
+        }
+        if (largetownInvasions>= 10){
+            if(!gameSave.AchievementShown(GameSave.CONQUEROR_LARGE_TOWN)){
+                AchievementSnack("Large Town Conqueror");
+                gameSave.ShowAchievement(GameSave.CONQUEROR_LARGE_TOWN);
+            }
+        }
+        if (smallcityInvasions >= 10){
+            if(!gameSave.AchievementShown(GameSave.CONQUEROR_SMALL_CITY)){
+                AchievementSnack("Small City Conqueror");
+                gameSave.ShowAchievement(GameSave.CONQUEROR_SMALL_CITY);
+            }
+        }
+        if (largecityInvasions >= 10){
+            if(!gameSave.AchievementShown(GameSave.CONQUEROR_LARGE_CITY)){
+                AchievementSnack("Large City Conqueror");
+                gameSave.ShowAchievement(GameSave.CONQUEROR_LARGE_CITY);
+            }
+        }
+        if (metropolisInvasions >= 10){
+            if(!gameSave.AchievementShown(GameSave.CONQUEROR_METROPOLIS)){
+                AchievementSnack("Metropolis Conqueror");
+                gameSave.ShowAchievement(GameSave.CONQUEROR_METROPOLIS);
+            }
+        }
+        if (smallnationInvasions>= 10){
+            if(!gameSave.AchievementShown(GameSave.CONQUEROR_SMALL_NATION)){
+                AchievementSnack("Small Nation Conqueror");
+                gameSave.ShowAchievement(GameSave.CONQUEROR_SMALL_NATION);
+            }
+        }
+        if (nationInvasions >= 10){
+            if(!gameSave.AchievementShown(GameSave.CONQUEROR_NATION)){
+                AchievementSnack("Nation Conqueror");
+                gameSave.ShowAchievement(GameSave.CONQUEROR_NATION);
+            }
+        }
+        if (largenationInvasions>= 10){
+            if(!gameSave.AchievementShown(GameSave.CONQUEROR_LARGE_NATION)){
+                AchievementSnack("Large Nation Conqueror");
+                gameSave.ShowAchievement(GameSave.CONQUEROR_LARGE_NATION);
+            }
+        }
+        if (empireInvasions >= 10){
+            if(!gameSave.AchievementShown(GameSave.CONQUEROR_EMPIRE)){
+                AchievementSnack("Empire Conqueror");
+                gameSave.ShowAchievement(GameSave.CONQUEROR_EMPIRE);
+            }
+        }
+        if (continentalempireInvasions>= 10){
+            if(!gameSave.AchievementShown(GameSave.CONQUEROR_CONTINENTAL_EMPIRE)){
+                AchievementSnack("Continental Empire Conqueror");
+                gameSave.ShowAchievement(GameSave.CONQUEROR_CONTINENTAL_EMPIRE);
+            }
+        }
+        if (worldconfederationInvasions>= 10){
+            if(!gameSave.AchievementShown(GameSave.CONQUEROR_WORLD_CONFEDERATION)){
+                AchievementSnack("World Confederation Conqueror");
+                gameSave.ShowAchievement(GameSave.CONQUEROR_WORLD_CONFEDERATION);
+            }
+        }
+        if (unitedworldInvasions >= 10){
+            if(!gameSave.AchievementShown(GameSave.CONQUEROR_UNITED_WORLD)){
+                AchievementSnack("United World Conqueror");
+                gameSave.ShowAchievement(GameSave.CONQUEROR_UNITED_WORLD);
+            }
+        }
+    }
     @Override
     public int amount(String res){
         return gameSave.resourceAmountI(res);
