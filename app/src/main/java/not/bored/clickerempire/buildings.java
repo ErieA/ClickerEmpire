@@ -14,14 +14,16 @@ import android.widget.TextView;
 public class buildings extends Fragment {
 
 
-
-    public buildings() {}
+    public buildings() {
+    }
 
     private buildingBuilder builder;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -36,14 +38,14 @@ public class buildings extends Fragment {
             public void onClick(View view) {
                 TextView num_tent = getActivity().findViewById(R.id.num_tent);
                 String str = num_tent.getText().toString();
-                if(str == ""){
+                if (str == "") {
                     str = "0";
                 }
                 int num = Integer.parseInt(str);
                 num++;
                 boolean build = builder.buildTent(1);
-                if(build){
-                    num_tent.setText(""+num);
+                if (build) {
+                    num_tent.setText("" + num);
                     num_tent.invalidate();
                     num_tent.requestLayout();
                 }
@@ -59,20 +61,20 @@ public class buildings extends Fragment {
             public void onClick(View view) {
                 TextView num_hut = getActivity().findViewById(R.id.num_hut);
                 String str = num_hut.getText().toString();
-                if(str == ""){
+                if (str == "") {
                     str = "0";
                 }
                 int num = Integer.parseInt(str);
                 num++;
                 boolean build = builder.buildHut(1);
-                if(build){
-                    num_hut.setText(""+num);
+                if (build) {
+                    num_hut.setText("" + num);
                     num_hut.invalidate();
                     num_hut.requestLayout();
                 }
             }
         });
-        if(builder.checkMUpgrade()){
+        if (builder.checkMUpgrade()) {
             Button buildhouse = view.findViewById(R.id.buildhouse);
             TextView num_house = view.findViewById(R.id.num_house);
             amt = builder.resourceAmount("HOUSES");
@@ -82,14 +84,14 @@ public class buildings extends Fragment {
                 public void onClick(View view) {
                     TextView num_house = getActivity().findViewById(R.id.num_house);
                     String str = num_house.getText().toString();
-                    if(str == ""){
+                    if (str == "") {
                         str = "0";
                     }
                     int num = Integer.parseInt(str);
                     num++;
                     boolean build = builder.buildHouse(1);
-                    if(build){
-                        num_house.setText(""+num);
+                    if (build) {
+                        num_house.setText("" + num);
                         num_house.invalidate();
                         num_house.requestLayout();
                     }
@@ -104,14 +106,14 @@ public class buildings extends Fragment {
                 public void onClick(View view) {
                     TextView num_mansion = getActivity().findViewById(R.id.num_mansion);
                     String str = num_mansion.getText().toString();
-                    if(str == ""){
+                    if (str == "") {
                         str = "0";
                     }
                     int num = Integer.parseInt(str);
                     num++;
                     boolean build = builder.buildMansion(1);
-                    if(build){
-                        num_mansion.setText(""+num);
+                    if (build) {
+                        num_mansion.setText("" + num);
                         num_mansion.invalidate();
                         num_mansion.requestLayout();
                     }
@@ -126,14 +128,14 @@ public class buildings extends Fragment {
                 public void onClick(View view) {
                     TextView num_cottage = getActivity().findViewById(R.id.num_cottage);
                     String str = num_cottage.getText().toString();
-                    if(str == ""){
+                    if (str == "") {
                         str = "0";
                     }
                     int num = Integer.parseInt(str);
                     num++;
                     boolean build = builder.buildCottage(1);
-                    if(build){
-                        num_cottage.setText(""+num);
+                    if (build) {
+                        num_cottage.setText("" + num);
                         num_cottage.invalidate();
                         num_cottage.requestLayout();
                     }
@@ -148,14 +150,14 @@ public class buildings extends Fragment {
                 public void onClick(View view) {
                     TextView num_tannery = getActivity().findViewById(R.id.num_tannery);
                     String str = num_tannery.getText().toString();
-                    if(str == ""){
+                    if (str == "") {
                         str = "0";
                     }
                     int num = Integer.parseInt(str);
                     num++;
                     boolean build = builder.buildTannery(1);
-                    if(build){
-                        num_tannery.setText(""+num);
+                    if (build) {
+                        num_tannery.setText("" + num);
                         num_tannery.invalidate();
                         num_tannery.requestLayout();
                     }
@@ -170,14 +172,14 @@ public class buildings extends Fragment {
                 public void onClick(View view) {
                     TextView num_smithy = getActivity().findViewById(R.id.num_smithy);
                     String str = num_smithy.getText().toString();
-                    if(str == ""){
+                    if (str == "") {
                         str = "0";
                     }
                     int num = Integer.parseInt(str);
                     num++;
                     boolean build = builder.buildSmithy(1);
-                    if(build){
-                        num_smithy.setText(""+num);
+                    if (build) {
+                        num_smithy.setText("" + num);
                         num_smithy.invalidate();
                         num_smithy.requestLayout();
                     }
@@ -192,14 +194,14 @@ public class buildings extends Fragment {
                 public void onClick(View view) {
                     TextView num_apothecary = getActivity().findViewById(R.id.num_apothecary);
                     String str = num_apothecary.getText().toString();
-                    if(str == ""){
+                    if (str == "") {
                         str = "0";
                     }
                     int num = Integer.parseInt(str);
                     num++;
                     boolean build = builder.buildApothecary(1);
-                    if(build){
-                        num_apothecary.setText(""+num);
+                    if (build) {
+                        num_apothecary.setText("" + num);
                         num_apothecary.invalidate();
                         num_apothecary.requestLayout();
                     }
@@ -214,22 +216,21 @@ public class buildings extends Fragment {
                 public void onClick(View view) {
                     TextView num_barracks = getActivity().findViewById(R.id.num_barracks);
                     String str = num_barracks.getText().toString();
-                    if(str == ""){
+                    if (str == "") {
                         str = "0";
                     }
                     int num = Integer.parseInt(str);
                     num++;
                     boolean build = builder.buildBarracks(1);
-                    if(build){
-                        num_barracks.setText(""+num);
+                    if (build) {
+                        num_barracks.setText("" + num);
                         num_barracks.invalidate();
                         num_barracks.requestLayout();
                     }
                 }
             });
 
-        }
-        else{
+        } else {
             view.findViewById(R.id.buildcottage).setVisibility(View.GONE);
             view.findViewById(R.id.num_cottage).setVisibility(View.GONE);
             view.findViewById(R.id.buildhouse).setVisibility(View.GONE);
@@ -246,7 +247,7 @@ public class buildings extends Fragment {
             view.findViewById(R.id.num_barracks).setVisibility(View.GONE);
 
         }
-        if(builder.checkUpgrade("HORSEBACKRIDING")){
+        if (builder.checkUpgrade("HORSEBACKRIDING")) {
             Button buildstables = view.findViewById(R.id.buildstables);
             TextView num_stables = view.findViewById(R.id.num_stables);
             amt = builder.resourceAmount("STABLES");
@@ -256,21 +257,20 @@ public class buildings extends Fragment {
                 public void onClick(View view) {
                     TextView num_stables = getActivity().findViewById(R.id.num_stables);
                     String str = num_stables.getText().toString();
-                    if(str == ""){
+                    if (str == "") {
                         str = "0";
                     }
                     int num = Integer.parseInt(str);
                     num++;
                     boolean build = builder.buildStables(1);
-                    if(build){
-                        num_stables.setText(""+num);
+                    if (build) {
+                        num_stables.setText("" + num);
                         num_stables.invalidate();
                         num_stables.requestLayout();
                     }
                 }
             });
-        }
-        else {
+        } else {
             view.findViewById(R.id.buildstables).setVisibility(View.GONE);
             view.findViewById(R.id.num_stables).setVisibility(View.GONE);
         }
@@ -283,14 +283,14 @@ public class buildings extends Fragment {
             public void onClick(View view) {
                 TextView num_barn = getActivity().findViewById(R.id.num_barn);
                 String str = num_barn.getText().toString();
-                if(str == ""){
+                if (str == "") {
                     str = "0";
                 }
                 int num = Integer.parseInt(str);
                 num++;
                 boolean build = builder.buildBarn(1);
-                if(build){
-                    num_barn.setText(""+num);
+                if (build) {
+                    num_barn.setText("" + num);
                     num_barn.invalidate();
                     num_barn.requestLayout();
                 }
@@ -305,14 +305,14 @@ public class buildings extends Fragment {
             public void onClick(View view) {
                 TextView num_woodstockpile = getActivity().findViewById(R.id.num_woodstockpile);
                 String str = num_woodstockpile.getText().toString();
-                if(str == ""){
+                if (str == "") {
                     str = "0";
                 }
                 int num = Integer.parseInt(str);
                 num++;
                 boolean build = builder.buildWoodStockpile(1);
-                if(build){
-                    num_woodstockpile.setText(""+num);
+                if (build) {
+                    num_woodstockpile.setText("" + num);
                     num_woodstockpile.invalidate();
                     num_woodstockpile.requestLayout();
                 }
@@ -327,14 +327,14 @@ public class buildings extends Fragment {
             public void onClick(View view) {
                 TextView num_stonestockpile = getActivity().findViewById(R.id.num_stonestockpile);
                 String str = num_stonestockpile.getText().toString();
-                if(str == ""){
+                if (str == "") {
                     str = "0";
                 }
                 int num = Integer.parseInt(str);
                 num++;
                 boolean build = builder.buildStoneStockpile(1);
-                if(build){
-                    num_stonestockpile.setText(""+num);
+                if (build) {
+                    num_stonestockpile.setText("" + num);
                     num_stonestockpile.invalidate();
                     num_stonestockpile.requestLayout();
                 }
@@ -358,26 +358,44 @@ public class buildings extends Fragment {
     public void onDetach() {
         super.onDetach();
     }
+
     public interface buildingBuilder {
         // TODO: Update argument type and name
         //add in amount and make default 1
         boolean buildTent(int amt);
+
         boolean buildHut(int amt);
+
         boolean buildCottage(int amt);
+
         boolean buildHouse(int amt);
+
         boolean buildMansion(int amt);
+
         boolean buildBarn(int amt);
+
         boolean buildWoodStockpile(int amt);
+
         boolean buildStoneStockpile(int amt);
+
         boolean buildTannery(int amt);
+
         boolean buildSmithy(int amt);
+
         boolean buildApothecary(int amt);
+
         boolean buildBarracks(int amt);
+
         boolean buildStables(int amt);
+
         boolean checkMUpgrade();
+
         boolean ECI();
+
         void toast(String string);
+
         String resourceAmount(String resource);
+
         boolean checkUpgrade(String upgrade);
     }
 }

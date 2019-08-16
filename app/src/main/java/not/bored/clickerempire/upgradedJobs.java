@@ -15,6 +15,7 @@ public class upgradedJobs extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private upgradedemploymentOffice office;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -25,6 +26,7 @@ public class upgradedJobs extends Fragment {
                     + " must implement OnFragmentInteractionListener");
         }
     }
+
     Thread thread = new Thread() {
         @Override
         public void run() {
@@ -34,7 +36,7 @@ public class upgradedJobs extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            try{
+                            try {
                                 TextView healers = getActivity().findViewById(R.id.healersu);
                                 String h = "Healers: " + office.healers();
                                 healers.setText(h);
@@ -53,8 +55,7 @@ public class upgradedJobs extends Fragment {
                                 TextView stonemasons = getActivity().findViewById(R.id.stonemasonsu);
                                 String s = "Stonemasons: " + office.stonemasons();
                                 stonemasons.setText(s);
-                            }
-                            catch (NullPointerException e) {
+                            } catch (NullPointerException e) {
                                 e.printStackTrace();
                             }
                         }
@@ -64,13 +65,16 @@ public class upgradedJobs extends Fragment {
             }
         }
     };
+
     public upgradedJobs() {
         // Required empty public constructor
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -88,7 +92,7 @@ public class upgradedJobs extends Fragment {
         Button substractTanner = view.findViewById(R.id.substract_tannersu);
         Button addHealer = view.findViewById(R.id.add_healersu);
         Button substractHealer = view.findViewById(R.id.substract_healersu);
-        Button addBlacksmith= view.findViewById(R.id.add_blacksmithsu);
+        Button addBlacksmith = view.findViewById(R.id.add_blacksmithsu);
         Button substractBlacksmith = view.findViewById(R.id.substract_blacksmithsu);
 
         //10
@@ -597,25 +601,45 @@ public class upgradedJobs extends Fragment {
     public interface upgradedemploymentOffice {
         // TODO: Update argument type and name
         String farmers();
+
         void addFarmer(int amount);
+
         void substractFarmer(int amount);
+
         String lumberjacks();
+
         void addLumberjack(int amount);
+
         void substractLumberjack(int amount);
+
         String stonemasons();
+
         void addStonemason(int amount);
+
         void substractStonemason(int amount);
+
         String tanners();
+
         void addTanner(int amount);
+
         void substractTanner(int amount);
+
         String healers();
+
         void addHealer(int amount);
+
         void substractHealer(int amount);
+
         String blacksmith();
+
         void addBlacksmith(int amount);
+
         void substractBlacksmith(int amount);
+
         boolean checkMUpgrade();
+
         void toast(String string);
+
         boolean ECI();
 
     }

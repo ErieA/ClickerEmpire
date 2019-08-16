@@ -13,11 +13,14 @@ public class upgrades extends Fragment {
     public upgrades() {
         // Required empty public constructor
     }
+
     private upgrade upgrades;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -27,7 +30,7 @@ public class upgrades extends Fragment {
         upgradeFlensing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(upgrades.upgradeFlensing()) {
+                if (upgrades.upgradeFlensing()) {
                     upgradeFlensing.setVisibility(View.GONE);
                     view.findViewById(R.id.flensing_cost).setVisibility(View.GONE);
                     view.findViewById(R.id.flensingtv).setVisibility(View.GONE);
@@ -39,7 +42,7 @@ public class upgrades extends Fragment {
         upgradeMacerating.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(upgrades.upgradeMacerating()) {
+                if (upgrades.upgradeMacerating()) {
                     upgradeMacerating.setVisibility(View.GONE);
                     view.findViewById(R.id.macerating_cost).setVisibility(View.GONE);
                     view.findViewById(R.id.maceratingtv).setVisibility(View.GONE);
@@ -50,7 +53,7 @@ public class upgrades extends Fragment {
         upgradeCropRotation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(upgrades.upgradeCropRotation()) {
+                if (upgrades.upgradeCropRotation()) {
                     upgradeCropRotation.setVisibility(View.GONE);
                     view.findViewById(R.id.croprotation_cost).setVisibility(View.GONE);
                     view.findViewById(R.id.croprotationtv).setVisibility(View.GONE);
@@ -61,7 +64,7 @@ public class upgrades extends Fragment {
         upgradeSelectiveBreeding.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(upgrades.upgradeSelectiveBreeding()) {
+                if (upgrades.upgradeSelectiveBreeding()) {
                     upgradeSelectiveBreeding.setVisibility(View.GONE);
                     view.findViewById(R.id.selectivebreeding_cost).setVisibility(View.GONE);
                     view.findViewById(R.id.selectivebreedingtv).setVisibility(View.GONE);
@@ -72,7 +75,7 @@ public class upgrades extends Fragment {
         upgradeFertilizers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(upgrades.upgradeFertilizers()) {
+                if (upgrades.upgradeFertilizers()) {
                     upgradeFertilizers.setVisibility(View.GONE);
                     view.findViewById(R.id.fertilizers_cost).setVisibility(View.GONE);
                     view.findViewById(R.id.fertilizerstv).setVisibility(View.GONE);
@@ -83,7 +86,7 @@ public class upgrades extends Fragment {
         upgradeSlums.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(upgrades.upgradeSlums()) {
+                if (upgrades.upgradeSlums()) {
                     upgradeSlums.setVisibility(View.GONE);
                     view.findViewById(R.id.slums_cost).setVisibility(View.GONE);
                     view.findViewById(R.id.slumstv).setVisibility(View.GONE);
@@ -94,7 +97,7 @@ public class upgrades extends Fragment {
         upgradeArchitecture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(upgrades.upgradeArchitecture()){
+                if (upgrades.upgradeArchitecture()) {
                     upgradeArchitecture.setVisibility(View.GONE);
                     view.findViewById(R.id.architecture_cost).setVisibility(View.GONE);
                     view.findViewById(R.id.architecturetv).setVisibility(View.GONE);
@@ -120,7 +123,7 @@ public class upgrades extends Fragment {
                 }
             }
         });
-        if(upgrades.checkUpgrade("ARCHITECTURE")){
+        if (upgrades.checkUpgrade("ARCHITECTURE")) {
             upgradeArchitecture.setVisibility(View.GONE);
             view.findViewById(R.id.architecture_cost).setVisibility(View.GONE);
             view.findViewById(R.id.architecturetv).setVisibility(View.GONE);
@@ -142,7 +145,7 @@ public class upgrades extends Fragment {
             upgradeSlums.setVisibility(View.VISIBLE);
             view.findViewById(R.id.slumstv).setVisibility(View.VISIBLE);
             view.findViewById(R.id.slums_cost).setVisibility(View.VISIBLE);
-        }else {
+        } else {
             upgradeFlensing.setVisibility(View.GONE);
             view.findViewById(R.id.flensing_cost).setVisibility(View.GONE);
             view.findViewById(R.id.flensingtv).setVisibility(View.GONE);
@@ -166,7 +169,7 @@ public class upgrades extends Fragment {
         upgradeSkinning.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(upgrades.upgradeSkinning()){
+                if (upgrades.upgradeSkinning()) {
                     upgradeSkinning.setVisibility(View.GONE);
                     view.findViewById(R.id.textView).setVisibility(View.GONE);
                     view.findViewById(R.id.skinning_cost).setVisibility(View.GONE);
@@ -177,7 +180,7 @@ public class upgrades extends Fragment {
         upgradeHarvesting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(upgrades.upgradeHarvesting()){
+                if (upgrades.upgradeHarvesting()) {
                     upgradeHarvesting.setVisibility(View.GONE);
                     view.findViewById(R.id.textView2).setVisibility(View.GONE);
                     view.findViewById(R.id.harvesting_cost).setVisibility(View.GONE);
@@ -188,7 +191,7 @@ public class upgrades extends Fragment {
         upgradeProspecting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(upgrades.upgradeProspecting()){
+                if (upgrades.upgradeProspecting()) {
                     upgradeProspecting.setVisibility(View.GONE);
                     view.findViewById(R.id.textView3).setVisibility(View.GONE);
                     view.findViewById(R.id.prospecting_cost).setVisibility(View.GONE);
@@ -199,7 +202,7 @@ public class upgrades extends Fragment {
         upgradeDomestication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(upgrades.upgradeDomestication()){
+                if (upgrades.upgradeDomestication()) {
                     upgradeDomestication.setVisibility(View.GONE);
                     view.findViewById(R.id.textView6).setVisibility(View.GONE);
                     view.findViewById(R.id.skinning_cost2).setVisibility(View.GONE);
@@ -210,7 +213,7 @@ public class upgrades extends Fragment {
         upgradePloughshares.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(upgrades.upgradePloughshares()){
+                if (upgrades.upgradePloughshares()) {
                     upgradePloughshares.setVisibility(View.GONE);
                     view.findViewById(R.id.textView7).setVisibility(View.GONE);
                     view.findViewById(R.id.skinning_cost3).setVisibility(View.GONE);
@@ -221,7 +224,7 @@ public class upgrades extends Fragment {
         upgradeIrrigation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(upgrades.upgradeIrrigation()){
+                if (upgrades.upgradeIrrigation()) {
                     upgradeIrrigation.setVisibility(View.GONE);
                     view.findViewById(R.id.textView8).setVisibility(View.GONE);
                     view.findViewById(R.id.skinning_cost4).setVisibility(View.GONE);
@@ -232,7 +235,7 @@ public class upgrades extends Fragment {
         upgradeGranaries.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(upgrades.granaries()) {
+                if (upgrades.granaries()) {
                     upgradeGranaries.setVisibility(View.GONE);
                     view.findViewById(R.id.textView10).setVisibility(View.GONE);
                     view.findViewById(R.id.skinning_cost6).setVisibility(View.GONE);
@@ -243,7 +246,7 @@ public class upgrades extends Fragment {
         upgradeTenements.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(upgrades.upgradeTenements()) {
+                if (upgrades.upgradeTenements()) {
                     upgradeTenements.setVisibility(View.GONE);
                     view.findViewById(R.id.textView11).setVisibility(View.GONE);
                     view.findViewById(R.id.skinning_cost7).setVisibility(View.GONE);
@@ -254,7 +257,7 @@ public class upgrades extends Fragment {
         upgradeBasicWeaponry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(upgrades.upgradeBasicWeaponry()) {
+                if (upgrades.upgradeBasicWeaponry()) {
                     upgradeBasicWeaponry.setVisibility(View.GONE);
                     view.findViewById(R.id.textView12).setVisibility(View.GONE);
                     view.findViewById(R.id.skinning_cost8).setVisibility(View.GONE);
@@ -265,7 +268,7 @@ public class upgrades extends Fragment {
         upgradeBasicShields.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(upgrades.upgradeBasicShields()) {
+                if (upgrades.upgradeBasicShields()) {
                     upgradeBasicShields.setVisibility(View.GONE);
                     view.findViewById(R.id.textView13).setVisibility(View.GONE);
                     view.findViewById(R.id.skinning_cost9).setVisibility(View.GONE);
@@ -276,7 +279,7 @@ public class upgrades extends Fragment {
         upgradePalisade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(upgrades.upgradePalisade()) {
+                if (upgrades.upgradePalisade()) {
                     upgradePalisade.setVisibility(View.GONE);
                     view.findViewById(R.id.textView14).setVisibility(View.GONE);
                     view.findViewById(R.id.skinning_cost10).setVisibility(View.GONE);
@@ -287,7 +290,7 @@ public class upgrades extends Fragment {
         upgradeButchering.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(upgrades.upgradeButchering()) {
+                if (upgrades.upgradeButchering()) {
                     upgradeButchering.setVisibility(View.GONE);
                     view.findViewById(R.id.textView15).setVisibility(View.GONE);
                     view.findViewById(R.id.skinning_cost11).setVisibility(View.GONE);
@@ -298,7 +301,7 @@ public class upgrades extends Fragment {
         upgradeGardening.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(upgrades.upgradeGardening()) {
+                if (upgrades.upgradeGardening()) {
                     upgradeGardening.setVisibility(View.GONE);
                     view.findViewById(R.id.textView16).setVisibility(View.GONE);
                     view.findViewById(R.id.skinning_cost12).setVisibility(View.GONE);
@@ -309,7 +312,7 @@ public class upgrades extends Fragment {
         upgradeExtraction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(upgrades.upgradeExtraction()) {
+                if (upgrades.upgradeExtraction()) {
                     upgradeExtraction.setVisibility(View.GONE);
                     view.findViewById(R.id.textView17).setVisibility(View.GONE);
                     view.findViewById(R.id.skinning_cost13).setVisibility(View.GONE);
@@ -320,7 +323,7 @@ public class upgrades extends Fragment {
         upgradeHorsebackRiding.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(upgrades.upgradeHorsebackRiding()) {
+                if (upgrades.upgradeHorsebackRiding()) {
                     upgradeHorsebackRiding.setVisibility(View.GONE);
                     view.findViewById(R.id.horsebackriding_cost).setVisibility(View.GONE);
                     view.findViewById(R.id.horsebackridingtv).setVisibility(View.GONE);
@@ -331,7 +334,7 @@ public class upgrades extends Fragment {
         upgradeConstruction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(upgrades.upgradeConstruction()){
+                if (upgrades.upgradeConstruction()) {
                     upgradeConstruction.setVisibility(View.GONE);
                     view.findViewById(R.id.textView9).setVisibility(View.GONE);
                     view.findViewById(R.id.skinning_cost5).setVisibility(View.GONE);
@@ -350,12 +353,11 @@ public class upgrades extends Fragment {
                 }
             }
         });
-        if(upgrades.checkUpgrade("CONSTRUCTION")){
+        if (upgrades.checkUpgrade("CONSTRUCTION")) {
             upgradeConstruction.setVisibility(View.GONE);
             view.findViewById(R.id.textView9).setVisibility(View.GONE);
             view.findViewById(R.id.skinning_cost5).setVisibility(View.GONE);
-        }
-        else {
+        } else {
             upgradeButchering.setVisibility(View.GONE);
             upgradeGardening.setVisibility(View.GONE);
             upgradeExtraction.setVisibility(View.GONE);
@@ -373,7 +375,7 @@ public class upgrades extends Fragment {
         upgradeMasonry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(upgrades.upgradeMasonry()){
+                if (upgrades.upgradeMasonry()) {
                     upgradeMasonry.setVisibility(View.GONE);
                     view.findViewById(R.id.textView4).setVisibility(View.GONE);
                     view.findViewById(R.id.masonry_cost).setVisibility(View.GONE);
@@ -410,11 +412,11 @@ public class upgrades extends Fragment {
                 }
             }
         });
-        if(upgrades.checkUpgrade("MASONRY")){
+        if (upgrades.checkUpgrade("MASONRY")) {
             upgradeMasonry.setVisibility(View.GONE);
             view.findViewById(R.id.textView4).setVisibility(View.GONE);
             view.findViewById(R.id.masonry_cost).setVisibility(View.GONE);
-        }else {
+        } else {
             upgradeDomestication.setVisibility(View.GONE);
             upgradePloughshares.setVisibility(View.GONE);
             upgradeIrrigation.setVisibility(View.GONE);
@@ -447,107 +449,107 @@ public class upgrades extends Fragment {
             view.findViewById(R.id.horsebackridingtv).setVisibility(View.GONE);
 
         }
-        if(upgrades.checkUpgrade("FLENSING")){
+        if (upgrades.checkUpgrade("FLENSING")) {
             upgradeFlensing.setVisibility(View.GONE);
             view.findViewById(R.id.flensingtv).setVisibility(View.GONE);
             view.findViewById(R.id.flensing_cost).setVisibility(View.GONE);
         }
-        if(upgrades.checkUpgrade("MACERATING")){
+        if (upgrades.checkUpgrade("MACERATING")) {
             upgradeMacerating.setVisibility(View.GONE);
             view.findViewById(R.id.maceratingtv).setVisibility(View.GONE);
             view.findViewById(R.id.macerating_cost).setVisibility(View.GONE);
         }
-        if(upgrades.checkUpgrade("CROPROTATION")){
+        if (upgrades.checkUpgrade("CROPROTATION")) {
             upgradeCropRotation.setVisibility(View.GONE);
             view.findViewById(R.id.croprotationtv).setVisibility(View.GONE);
             view.findViewById(R.id.croprotation_cost).setVisibility(View.GONE);
         }
-        if(upgrades.checkUpgrade("SELECTIVEBREEDING")){
+        if (upgrades.checkUpgrade("SELECTIVEBREEDING")) {
             upgradeSelectiveBreeding.setVisibility(View.GONE);
             view.findViewById(R.id.selectivebreedingtv).setVisibility(View.GONE);
             view.findViewById(R.id.selectivebreeding_cost).setVisibility(View.GONE);
         }
-        if(upgrades.checkUpgrade("FERTILIZERS")){
+        if (upgrades.checkUpgrade("FERTILIZERS")) {
             upgradeFertilizers.setVisibility(View.GONE);
             view.findViewById(R.id.fertilizerstv).setVisibility(View.GONE);
             view.findViewById(R.id.fertilizers_cost).setVisibility(View.GONE);
         }
-        if(upgrades.checkUpgrade("SLUMS")){
+        if (upgrades.checkUpgrade("SLUMS")) {
             upgradeSlums.setVisibility(View.GONE);
             view.findViewById(R.id.slumstv).setVisibility(View.GONE);
             view.findViewById(R.id.slums_cost).setVisibility(View.GONE);
         }
-        if(upgrades.checkUpgrade("SKINNING")){
+        if (upgrades.checkUpgrade("SKINNING")) {
             upgradeSkinning.setVisibility(View.GONE);
             view.findViewById(R.id.textView).setVisibility(View.GONE);
             view.findViewById(R.id.skinning_cost).setVisibility(View.GONE);
         }
-        if(upgrades.checkUpgrade("HARVESTING")){
+        if (upgrades.checkUpgrade("HARVESTING")) {
             upgradeHarvesting.setVisibility(View.GONE);
             view.findViewById(R.id.textView2).setVisibility(View.GONE);
             view.findViewById(R.id.harvesting_cost).setVisibility(View.GONE);
         }
-        if(upgrades.checkUpgrade("PROSPECTING")){
+        if (upgrades.checkUpgrade("PROSPECTING")) {
             upgradeProspecting.setVisibility(View.GONE);
             view.findViewById(R.id.textView3).setVisibility(View.GONE);
             view.findViewById(R.id.prospecting_cost).setVisibility(View.GONE);
         }
-        if(upgrades.checkUpgrade("DOMESTICATION")){
+        if (upgrades.checkUpgrade("DOMESTICATION")) {
             upgradeDomestication.setVisibility(View.GONE);
             view.findViewById(R.id.textView6).setVisibility(View.GONE);
             view.findViewById(R.id.skinning_cost2).setVisibility(View.GONE);
         }
-        if(upgrades.checkUpgrade("PLOUGHSHARES")){
+        if (upgrades.checkUpgrade("PLOUGHSHARES")) {
             upgradePloughshares.setVisibility(View.GONE);
             view.findViewById(R.id.textView7).setVisibility(View.GONE);
             view.findViewById(R.id.skinning_cost3).setVisibility(View.GONE);
         }
-        if(upgrades.checkUpgrade("IRRIGATION")){
+        if (upgrades.checkUpgrade("IRRIGATION")) {
             upgradeIrrigation.setVisibility(View.GONE);
             view.findViewById(R.id.textView8).setVisibility(View.GONE);
             view.findViewById(R.id.skinning_cost4).setVisibility(View.GONE);
         }
-        if(upgrades.checkUpgrade("GRANARIES")){
+        if (upgrades.checkUpgrade("GRANARIES")) {
             upgradeGranaries.setVisibility(View.GONE);
             view.findViewById(R.id.textView10).setVisibility(View.GONE);
             view.findViewById(R.id.skinning_cost6).setVisibility(View.GONE);
         }
-        if(upgrades.checkUpgrade("TENEMENTS")){
+        if (upgrades.checkUpgrade("TENEMENTS")) {
             upgradeTenements.setVisibility(View.GONE);
             view.findViewById(R.id.textView11).setVisibility(View.GONE);
             view.findViewById(R.id.skinning_cost7).setVisibility(View.GONE);
         }
-        if(upgrades.checkUpgrade("BASICWEAPONRY")){
+        if (upgrades.checkUpgrade("BASICWEAPONRY")) {
             upgradeBasicWeaponry.setVisibility(View.GONE);
             view.findViewById(R.id.textView12).setVisibility(View.GONE);
             view.findViewById(R.id.skinning_cost8).setVisibility(View.GONE);
         }
-        if(upgrades.checkUpgrade("BASICSHIELDS")){
+        if (upgrades.checkUpgrade("BASICSHIELDS")) {
             upgradeBasicShields.setVisibility(View.GONE);
             view.findViewById(R.id.textView13).setVisibility(View.GONE);
             view.findViewById(R.id.skinning_cost9).setVisibility(View.GONE);
         }
-        if(upgrades.checkUpgrade("PALISADE")){
+        if (upgrades.checkUpgrade("PALISADE")) {
             upgradePalisade.setVisibility(View.GONE);
             view.findViewById(R.id.textView14).setVisibility(View.GONE);
             view.findViewById(R.id.skinning_cost10).setVisibility(View.GONE);
         }
-        if(upgrades.checkUpgrade("BUTCHERING")){
+        if (upgrades.checkUpgrade("BUTCHERING")) {
             upgradeButchering.setVisibility(View.GONE);
             view.findViewById(R.id.textView15).setVisibility(View.GONE);
             view.findViewById(R.id.skinning_cost11).setVisibility(View.GONE);
         }
-        if(upgrades.checkUpgrade("GARDENING")){
+        if (upgrades.checkUpgrade("GARDENING")) {
             upgradeGardening.setVisibility(View.GONE);
             view.findViewById(R.id.textView16).setVisibility(View.GONE);
             view.findViewById(R.id.skinning_cost12).setVisibility(View.GONE);
         }
-        if(upgrades.checkUpgrade("EXTRACTION")){
+        if (upgrades.checkUpgrade("EXTRACTION")) {
             upgradeExtraction.setVisibility(View.GONE);
             view.findViewById(R.id.textView17).setVisibility(View.GONE);
             view.findViewById(R.id.skinning_cost13).setVisibility(View.GONE);
         }
-        if(upgrades.checkUpgrade("HORSEBACKRIDING")){
+        if (upgrades.checkUpgrade("HORSEBACKRIDING")) {
             upgradeHorsebackRiding.setVisibility(View.GONE);
             view.findViewById(R.id.horsebackriding_cost).setVisibility(View.GONE);
             view.findViewById(R.id.horsebackridingtv).setVisibility(View.GONE);
@@ -555,6 +557,7 @@ public class upgrades extends Fragment {
 
         return view;
     }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -568,30 +571,55 @@ public class upgrades extends Fragment {
 
     public interface upgrade {
         boolean upgradeSkinning();
+
         boolean upgradeHarvesting();
+
         boolean upgradeProspecting();
+
         boolean upgradeMasonry();
+
         boolean upgradeDomestication();
+
         boolean upgradePloughshares();
+
         boolean upgradeIrrigation();
+
         boolean upgradeConstruction();
+
         boolean granaries();
+
         boolean upgradeTenements();
+
         boolean upgradeBasicWeaponry();
+
         boolean upgradeBasicShields();
+
         boolean upgradePalisade();
+
         boolean upgradeButchering();
+
         boolean upgradeGardening();
+
         boolean upgradeExtraction();
+
         boolean upgradeHorsebackRiding();
+
         boolean upgradeArchitecture();
+
         boolean upgradeFlensing();
+
         boolean upgradeMacerating();
+
         boolean upgradeCropRotation();
+
         boolean upgradeSelectiveBreeding();
+
         boolean upgradeFertilizers();
+
         boolean upgradeSlums();
+
         boolean checkUpgrade(String upgrade);
+
         void toast(String string);
     }
 }

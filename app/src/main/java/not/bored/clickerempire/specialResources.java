@@ -16,6 +16,7 @@ public class specialResources extends Fragment {
     public specialResources() {
         // Required empty public constructor
     }
+
     private specialResourcesListener resupdater;
     Thread thread = new Thread() {
         @Override
@@ -26,7 +27,7 @@ public class specialResources extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            try{
+                            try {
                                 TextView skins = getActivity().findViewById(R.id.num_skins);
                                 skins.setText(resupdater.Skins());
                                 TextView leather = getActivity().findViewById(R.id.num_leather);
@@ -39,8 +40,7 @@ public class specialResources extends Fragment {
                                 ore.setText(resupdater.Ore());
                                 TextView metal = getActivity().findViewById(R.id.num_metal);
                                 metal.setText(resupdater.Metal());
-                            }
-                            catch (NullPointerException e) {
+                            } catch (NullPointerException e) {
                                 e.printStackTrace();
                             }
                         }
@@ -50,10 +50,12 @@ public class specialResources extends Fragment {
             }
         }
     };
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -75,6 +77,7 @@ public class specialResources extends Fragment {
         return view;
 
     }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -87,7 +90,7 @@ public class specialResources extends Fragment {
     }
 
     @Override
-    public void onDetach(){
+    public void onDetach() {
         super.onDetach();
         thread.interrupt();
     }
@@ -95,10 +98,15 @@ public class specialResources extends Fragment {
     public interface specialResourcesListener {
         // TODO: Update argument type and name
         String Skins();
+
         String Leather();
+
         String Herbs();
+
         String Piety();
+
         String Ore();
+
         String Metal();
     }
 }

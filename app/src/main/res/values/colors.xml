@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FF48C4F1</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#fe7a7c</color>
+    <color name="colorPrimary">#5c88c5</color>
+    <color name="colorPrimaryDark">#11538c</color>
+    <color name="colorAccent">#ed403c</color>
     <color name="black">#000</color>
-    <color name="ClickkerButton">#fe7a7c</color>
+    <color name="ClickkerButton">#f58225</color>
 </resources>

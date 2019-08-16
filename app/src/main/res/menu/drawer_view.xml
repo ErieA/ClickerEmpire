@@ -22,6 +22,9 @@
             android:id="@+id/enablecustomincrememtns"
             android:title="Custom Increments: Disabled" />
         <item
+            android:id="@+id/achievements"
+            android:title="Achievements" />
+        <item
             android:id="@+id/purchasedUpgrades"
             android:title="Purchased Upgrades" />
         <item

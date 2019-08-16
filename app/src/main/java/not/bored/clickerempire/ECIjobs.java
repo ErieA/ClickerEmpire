@@ -18,6 +18,7 @@ public class ECIjobs extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private ECIemploymentOffice office;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -28,6 +29,7 @@ public class ECIjobs extends Fragment {
                     + " must implement OnFragmentInteractionListener");
         }
     }
+
     Thread thread = new Thread() {
         @Override
         public void run() {
@@ -37,7 +39,7 @@ public class ECIjobs extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            try{
+                            try {
                                 TextView farmers = getActivity().findViewById(R.id.farmer);
                                 String f = "Farmers: " + office.farmers();
                                 farmers.setText(f);
@@ -47,8 +49,7 @@ public class ECIjobs extends Fragment {
                                 TextView stonemasons = getActivity().findViewById(R.id.stonemason);
                                 String s = "Stonemasons: " + office.stonemasons();
                                 stonemasons.setText(s);
-                            }
-                            catch (NullPointerException e) {
+                            } catch (NullPointerException e) {
                                 e.printStackTrace();
                             }
                         }
@@ -58,13 +59,16 @@ public class ECIjobs extends Fragment {
             }
         }
     };
+
     public ECIjobs() {
         // Required empty public constructor
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -80,15 +84,14 @@ public class ECIjobs extends Fragment {
         Button substractstonemason = view.findViewById(R.id.customsubstract_stonemason);
 
 
-
         addFarmer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 EditText farmer = getActivity().findViewById(R.id.customfarmer);
                 int amt;
-                try{
+                try {
                     amt = Integer.parseInt(farmer.getText().toString());
-                } catch (NumberFormatException e){
+                } catch (NumberFormatException e) {
                     amt = 0;
                 }
                 office.addFarmer(amt);
@@ -102,9 +105,9 @@ public class ECIjobs extends Fragment {
             public void onClick(View view) {
                 EditText farmer = getActivity().findViewById(R.id.customfarmer);
                 int amt;
-                try{
+                try {
                     amt = Integer.parseInt(farmer.getText().toString());
-                } catch (NumberFormatException e){
+                } catch (NumberFormatException e) {
                     amt = 0;
                 }
                 office.substractFarmer(amt);
@@ -118,9 +121,9 @@ public class ECIjobs extends Fragment {
             public void onClick(View view) {
                 EditText lumberjack = getActivity().findViewById(R.id.customlumberjack);
                 int amt;
-                try{
+                try {
                     amt = Integer.parseInt(lumberjack.getText().toString());
-                } catch (NumberFormatException e){
+                } catch (NumberFormatException e) {
                     amt = 0;
                 }
                 office.addLumberjack(amt);
@@ -134,9 +137,9 @@ public class ECIjobs extends Fragment {
             public void onClick(View view) {
                 EditText lumberjack = getActivity().findViewById(R.id.customlumberjack);
                 int amt;
-                try{
+                try {
                     amt = Integer.parseInt(lumberjack.getText().toString());
-                } catch (NumberFormatException e){
+                } catch (NumberFormatException e) {
                     amt = 0;
                 }
                 office.substractLumberjack(amt);
@@ -150,9 +153,9 @@ public class ECIjobs extends Fragment {
             public void onClick(View view) {
                 EditText stonemason = getActivity().findViewById(R.id.customstonemason);
                 int amt;
-                try{
+                try {
                     amt = Integer.parseInt(stonemason.getText().toString());
-                } catch (NumberFormatException e){
+                } catch (NumberFormatException e) {
                     amt = 0;
                 }
                 office.addStonemason(amt);
@@ -166,9 +169,9 @@ public class ECIjobs extends Fragment {
             public void onClick(View view) {
                 EditText stonemason = getActivity().findViewById(R.id.customstonemason);
                 int amt;
-                try{
+                try {
                     amt = Integer.parseInt(stonemason.getText().toString());
-                } catch (NumberFormatException e){
+                } catch (NumberFormatException e) {
                     amt = 0;
                 }
                 office.substractStonemason(amt);
@@ -200,16 +203,27 @@ public class ECIjobs extends Fragment {
     public interface ECIemploymentOffice {
         // TODO: Update argument type and name
         String farmers();
+
         void addFarmer(int amount);
+
         void substractFarmer(int amount);
+
         String lumberjacks();
+
         void addLumberjack(int amount);
+
         void substractLumberjack(int amount);
+
         String stonemasons();
+
         void addStonemason(int amount);
+
         void substractStonemason(int amount);
+
         boolean checkMUpgrade();
+
         void toast(String string);
+
         boolean ECI();
     }
 }

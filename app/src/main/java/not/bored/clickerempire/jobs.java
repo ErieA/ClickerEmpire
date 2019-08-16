@@ -17,6 +17,7 @@ public class jobs extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private employmentOffice office;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -27,6 +28,7 @@ public class jobs extends Fragment {
                     + " must implement OnFragmentInteractionListener");
         }
     }
+
     Thread thread = new Thread() {
         @Override
         public void run() {
@@ -36,7 +38,7 @@ public class jobs extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            try{
+                            try {
                                 TextView farmers = getActivity().findViewById(R.id.farmersj);
                                 String f = "Farmers: " + office.farmers();
                                 farmers.setText(f);
@@ -46,8 +48,7 @@ public class jobs extends Fragment {
                                 TextView stonemasons = getActivity().findViewById(R.id.stonemasonsj);
                                 String s = "Stonemasons: " + office.stonemasons();
                                 stonemasons.setText(s);
-                            }
-                            catch (NullPointerException e) {
+                            } catch (NullPointerException e) {
                                 e.printStackTrace();
                             }
                         }
@@ -57,13 +58,16 @@ public class jobs extends Fragment {
             }
         }
     };
+
     public jobs() {
         // Required empty public constructor
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -331,16 +335,27 @@ public class jobs extends Fragment {
     public interface employmentOffice {
         // TODO: Update argument type and name
         String farmers();
+
         void addFarmer(int amount);
+
         void substractFarmer(int amount);
+
         String lumberjacks();
+
         void addLumberjack(int amount);
+
         void substractLumberjack(int amount);
+
         String stonemasons();
+
         void addStonemason(int amount);
+
         void substractStonemason(int amount);
+
         boolean checkMUpgrade();
+
         void toast(String string);
+
         boolean ECI();
 
     }

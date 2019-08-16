@@ -163,8 +163,9 @@ public class GameSave extends SQLiteOpenHelper implements Serializable {
 
     private static GameSave gameSave;
     DecimalFormat df = new DecimalFormat("0.0");
-    public static synchronized GameSave getGameSave(Context context){
-        if(gameSave == null) {
+
+    public static synchronized GameSave getGameSave(Context context) {
+        if (gameSave == null) {
             gameSave = new GameSave(context);
         }
         return gameSave;
@@ -454,7 +455,7 @@ public class GameSave extends SQLiteOpenHelper implements Serializable {
                 "DEFEAT_NINE_V INTEGER NOT NULL," +
                 "DEFEAT_TEN INTEGER NOT NULL," +
                 "DEFEAT_TEN_V INTEGER NOT NULL," +
-                "INVASIONCOUNTER INTEGER NOT NULL,"+
+                "INVASIONCOUNTER INTEGER NOT NULL," +
                 "DEFEATCOUNTER INTEGER NOT NULL," +
                 "CONQUEROR_THORP INTEGER NOT NULL," +
                 "CONQUEROR_THORP_COUNTER INTEGER NOT NULL," +
@@ -748,7 +749,8 @@ public class GameSave extends SQLiteOpenHelper implements Serializable {
 
         onCreate(db);
     }
-    public void createAchievementDB(SQLiteDatabase db){
+
+    public void createAchievementDB(SQLiteDatabase db) {
         String asql = "CREATE TABLE ACHIEVEMENTS" +
                 "( ID INTEGER PRIMARY KEY," +
                 "THORP INTEGER NOT NULL," +
@@ -821,7 +823,7 @@ public class GameSave extends SQLiteOpenHelper implements Serializable {
                 "DEFEAT_NINE_V INTEGER NOT NULL," +
                 "DEFEAT_TEN INTEGER NOT NULL," +
                 "DEFEAT_TEN_V INTEGER NOT NULL," +
-                "INVASIONCOUNTER INTEGER NOT NULL,"+
+                "INVASIONCOUNTER INTEGER NOT NULL," +
                 "DEFEATCOUNTER INTEGER NOT NULL," +
                 "CONQUEROR_THORP INTEGER NOT NULL," +
                 "CONQUEROR_THORP_COUNTER INTEGER NOT NULL," +
@@ -1108,7 +1110,8 @@ public class GameSave extends SQLiteOpenHelper implements Serializable {
                 "'0')";
         db.execSQL(asql);
     }
-    public void updateDB(SQLiteDatabase db){
+
+    public void updateDB(SQLiteDatabase db) {
         String sql = "CREATE TABLE " + RESOURCES +
                 "( ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "CIVILIZATION_NAME TEXT NOT NULL," +
@@ -1309,65 +1312,65 @@ public class GameSave extends SQLiteOpenHelper implements Serializable {
                 "'0')";
         db.execSQL(sql);
     }
-    public void addAchievementDB(){
-        try{
+
+    public void addAchievementDB() {
+        try {
             AchievementShown(CONQUEROR_UNITED_WORLD);
-        } catch (SQLException e){
+        } catch (SQLException e) {
             SQLiteDatabase db = this.getWritableDatabase();
-            if (e.getMessage().contains("no such column")){
+            if (e.getMessage().contains("no such column")) {
                 Map<String, String> achievements = saveAchievementsDBhelper();
                 db.execSQL("DROP TABLE IF EXISTS ACHIEVEMENTS");
                 createAchievementDB(db);
-                for (Map.Entry<String, String> entry : achievements.entrySet()){
+                for (Map.Entry<String, String> entry : achievements.entrySet()) {
                     String key = entry.getKey();
                     String val = entry.getValue();
                     gameSave.setAchievementDB(key, Integer.parseInt(val));
                 }
-            }
-            else{
+            } else {
                 createAchievementDB(db);
             }
         }
         try {
             gameSave.resourceAmountI(SICK);
-        }catch (SQLException e){
+        } catch (SQLException e) {
             SQLiteDatabase db = this.getWritableDatabase();
             Map<String, String> data = gameSave.dbUpdateHelper();
             db.execSQL("DROP TABLE IF EXISTS RESOURCES");
             updateDB(db);
-            for (Map.Entry<String, String> entry : data.entrySet()){
+            for (Map.Entry<String, String> entry : data.entrySet()) {
                 String key = entry.getKey();
                 String val = entry.getValue();
-                if(key.equals(gameSave.CIVILIZATION_NAME)){
+                if (key.equals(GameSave.CIVILIZATION_NAME)) {
                     gameSave.updateName(val);
-                }
-                else if((key.equals(gameSave.FOOD))
-                        || (key.equals(gameSave.FOOD_MAX))
-                        || (key.equals(gameSave.WOOD))
-                        || (key.equals(gameSave.WOOD_MAX))
-                        || (key.equals(gameSave.STONE))
-                        || (key.equals(gameSave.STONE_MAX))){
+                } else if ((key.equals(GameSave.FOOD))
+                        || (key.equals(GameSave.FOOD_MAX))
+                        || (key.equals(GameSave.WOOD))
+                        || (key.equals(GameSave.WOOD_MAX))
+                        || (key.equals(GameSave.STONE))
+                        || (key.equals(GameSave.STONE_MAX))) {
                     gameSave.set(key, Double.parseDouble(val));
-                }
-                else{
+                } else {
                     gameSave.set(key, Integer.parseInt(val));
                 }
             }
         }
     }
-    public boolean setAchievementDB(String res, int amt){
+
+    public boolean setAchievementDB(String res, int amt) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(res, amt);
         long result = db.update("ACHIEVEMENTS", contentValues, null, null);
         return result != -1;
     }
-    public boolean InvasionCounter(){
+
+    public boolean InvasionCounter() {
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "SELECT " + INVASIONCOUNTER + " FROM ACHIEVEMENTS WHERE ID = 1";
-        Cursor data = db.rawQuery(sql,null);
+        Cursor data = db.rawQuery(sql, null);
         double current = 0;
-        while(data.moveToNext()){
+        while (data.moveToNext()) {
             current = data.getInt(0);
         }
         data.close();
@@ -1377,38 +1380,41 @@ public class GameSave extends SQLiteOpenHelper implements Serializable {
         long result = db.update("ACHIEVEMENTS", contentValues, null, null);
         return result != -1;
     }
-    public boolean invadeCiv(String civ){
+
+    public boolean invadeCiv(String civ) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String sql = "SELECT " + civ + "_COUNTER FROM ACHIEVEMENTS WHERE ID = 1";
-        Cursor data = db.rawQuery(sql,null);
+        String sql = "SELECT CONQUEROR_" + civ + "_COUNTER FROM ACHIEVEMENTS WHERE ID = 1";
+        Cursor data = db.rawQuery(sql, null);
         double current = 0;
-        while(data.moveToNext()){
+        while (data.moveToNext()) {
             current = data.getInt(0);
         }
         data.close();
         current = current + 1;
         ContentValues contentValues = new ContentValues();
-        contentValues.put(civ + "_COUNTER", current);
+        contentValues.put("CONQUEROR_" + civ + "_COUNTER", current);
         long result = db.update("ACHIEVEMENTS", contentValues, null, null);
         return result != -1;
     }
-    public int NumCivInv(String civ){
+
+    public int NumCivInv(String civ) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String sql = "SELECT "+ civ + "_COUNTER FROM ACHIEVEMENTS WHERE ID = 1";
-        Cursor data = db.rawQuery(sql,null);
+        String sql = "SELECT " + civ + "_COUNTER FROM ACHIEVEMENTS WHERE ID = 1";
+        Cursor data = db.rawQuery(sql, null);
         int x = 0;
-        while(data.moveToNext()){
+        while (data.moveToNext()) {
             x = data.getInt(0);
         }
         data.close();
         return x;
     }
-    public boolean DefeatCounter(){
+
+    public boolean DefeatCounter() {
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "SELECT " + DEFEATCOUNTER + " FROM ACHIEVEMENTS WHERE ID = 1";
-        Cursor data = db.rawQuery(sql,null);
+        Cursor data = db.rawQuery(sql, null);
         double current = 0;
-        while(data.moveToNext()){
+        while (data.moveToNext()) {
             current = data.getInt(0);
         }
         data.close();
@@ -1418,14 +1424,16 @@ public class GameSave extends SQLiteOpenHelper implements Serializable {
         long result = db.update("ACHIEVEMENTS", contentValues, null, null);
         return result != -1;
     }
-    public boolean UnlockAchievement(String res){
+
+    public boolean UnlockAchievement(String res) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(res, 1);
         long result = db.update("ACHIEVEMENTS", contentValues, null, null);
         return result != -1;
     }
-    public boolean ShowAchievement(String res){
+
+    public boolean ShowAchievement(String res) {
         String res2 = res + "_V";
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -1433,35 +1441,37 @@ public class GameSave extends SQLiteOpenHelper implements Serializable {
         long result = db.update("ACHIEVEMENTS", contentValues, null, null);
         return result != -1;
     }
-    public boolean AchievementShown(String res){
+
+    public boolean AchievementShown(String res) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String sql = "SELECT "+ res + "_V FROM ACHIEVEMENTS WHERE ID = 1";
-        Cursor data = db.rawQuery(sql,null);
+        String sql = "SELECT " + res + "_V FROM ACHIEVEMENTS WHERE ID = 1";
+        Cursor data = db.rawQuery(sql, null);
         int x = 0;
-        while(data.moveToNext()){
+        while (data.moveToNext()) {
             x = data.getInt(0);
         }
         data.close();
         return x == 1;
     }
-    public int NumDefInv(int i){
+
+    public int NumDefInv(int i) {
         String res;
-        if(i == 1){
+        if (i == 1) {
             res = INVASIONCOUNTER;
-        }
-        else {
+        } else {
             res = DEFEATCOUNTER;
         }
         SQLiteDatabase db = this.getWritableDatabase();
-        String sql = "SELECT "+ res + " FROM ACHIEVEMENTS WHERE ID = 1";
-        Cursor data = db.rawQuery(sql,null);
+        String sql = "SELECT " + res + " FROM ACHIEVEMENTS WHERE ID = 1";
+        Cursor data = db.rawQuery(sql, null);
         int x = 0;
-        while(data.moveToNext()){
+        while (data.moveToNext()) {
             x = data.getInt(0);
         }
         data.close();
         return x;
     }
+
     public boolean updateNoMax(String res, double amt) {
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "SELECT " + res + " FROM " + RESOURCES + " WHERE ID = 1";
@@ -1476,37 +1486,38 @@ public class GameSave extends SQLiteOpenHelper implements Serializable {
         long result = db.update(RESOURCES, contentValues, null, null);
         return result != -1;
     }
-    public boolean update(String res, double amt){
+
+    public boolean update(String res, double amt) {
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "SELECT " + res + ", " + res + "_MAX FROM " + RESOURCES + " WHERE ID = 1";
-        Cursor data = db.rawQuery(sql,null);
+        Cursor data = db.rawQuery(sql, null);
         double current = 0;
         double max = 0;
-        while(data.moveToNext()){
+        while (data.moveToNext()) {
             current = data.getDouble(0);
             max = data.getDouble(1);
         }
         data.close();
         current = current + amt;
-        if(current<=max){
+        if (current <= max) {
             ContentValues contentValues = new ContentValues();
             contentValues.put(res, current);
             long result = db.update(RESOURCES, contentValues, null, null);
             return result != -1;
-        }
-        else{
+        } else {
             ContentValues contentValues = new ContentValues();
             contentValues.put(res, max);
             long result = db.update(RESOURCES, contentValues, null, null);
             return result != -1;
         }
     }
-    public boolean updatemax(String res, double amt){
+
+    public boolean updatemax(String res, double amt) {
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "SELECT " + res + "_MAX FROM " + RESOURCES + " WHERE ID = 1";
-        Cursor data = db.rawQuery(sql,null);
+        Cursor data = db.rawQuery(sql, null);
         double max = 0;
-        while(data.moveToNext()){
+        while (data.moveToNext()) {
             max = data.getDouble(0);
         }
         data.close();
@@ -1517,26 +1528,29 @@ public class GameSave extends SQLiteOpenHelper implements Serializable {
         long result = db.update(RESOURCES, contentValues, null, null);
         return result != -1;
     }
-    public boolean set(String res, double amt){
+
+    public boolean set(String res, double amt) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(res, amt);
         long result = db.update(RESOURCES, contentValues, null, null);
         return result != -1;
     }
-    public boolean setInt(String res, int amt){
+
+    public boolean setInt(String res, int amt) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(res, amt);
         long result = db.update(RESOURCES, contentValues, null, null);
         return result != -1;
     }
-    public boolean createbuilding(String building, int amt){
+
+    public boolean createbuilding(String building, int amt) {
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "SELECT " + building + " FROM " + RESOURCES + " WHERE ID = 1";
-        Cursor data = db.rawQuery(sql,null);
+        Cursor data = db.rawQuery(sql, null);
         int current = 0;
-        while(data.moveToNext()){
+        while (data.moveToNext()) {
             current = data.getInt(0);
         }
         data.close();
@@ -1546,147 +1560,219 @@ public class GameSave extends SQLiteOpenHelper implements Serializable {
         long result = db.update(RESOURCES, contentValues, null, null);
         return result != -1;
     }
-    public void setECIchecked(){
+
+    public void setECIchecked() {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(ECI, 1);
         db.update(ECI, contentValues, null, null);
     }
-    public void setECIunchecked(){
+
+    public void setECIunchecked() {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(ECI, 0);
         db.update(ECI, contentValues, null, null);
     }
-    public boolean ECI(){
+
+    public boolean ECI() {
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "SELECT ECI FROM ECI";
-        Cursor data = db.rawQuery(sql,null);
+        Cursor data = db.rawQuery(sql, null);
         StringBuffer buffer = new StringBuffer();
-        while(data.moveToNext()){
+        while (data.moveToNext()) {
             buffer.append(data.getString(0));
         }
         data.close();
         int str = Integer.parseInt(buffer.toString());
         return str == 1;
     }
-    public double resourceAmountD(String res){
+
+    public double resourceAmountD(String res) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String sql = "SELECT "+ res + " FROM " + RESOURCES + " WHERE ID = 1";
-        Cursor data = db.rawQuery(sql,null);
+        String sql = "SELECT " + res + " FROM " + RESOURCES + " WHERE ID = 1";
+        Cursor data = db.rawQuery(sql, null);
         double x = 0;
-        while(data.moveToNext()){
+        while (data.moveToNext()) {
             x = data.getDouble(0);
         }
         data.close();
         return x;
     }
-    public int resourceAmountI(String res){
+
+    public int resourceAmountI(String res) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String sql = "SELECT "+ res + " FROM " + RESOURCES + " WHERE ID = 1";
-        Cursor data = db.rawQuery(sql,null);
+        String sql = "SELECT " + res + " FROM " + RESOURCES + " WHERE ID = 1";
+        Cursor data = db.rawQuery(sql, null);
         int x = 0;
-        while(data.moveToNext()){
+        while (data.moveToNext()) {
             x = data.getInt(0);
         }
         data.close();
         return x;
     }
-    public String civName(){
+
+    public String civName() {
         SQLiteDatabase db = this.getWritableDatabase();
-        String sql = "SELECT "+ CIVILIZATION_NAME + " FROM " + RESOURCES + " WHERE ID = 1";
-        Cursor data = db.rawQuery(sql,null);
+        String sql = "SELECT " + CIVILIZATION_NAME + " FROM " + RESOURCES + " WHERE ID = 1";
+        Cursor data = db.rawQuery(sql, null);
         StringBuffer buffer = new StringBuffer();
-        while(data.moveToNext()){
+        while (data.moveToNext()) {
             buffer.append(data.getString(0));
         }
         data.close();
         String c = buffer.toString();
-        return  c;
+        return c;
     }
-    public void resetdb(){
+
+    public void resetdb() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DROP TABLE IF EXISTS " + RESOURCES);
         db.execSQL("DROP TABLE IF EXISTS ACHIEVEMENTS");
         db.execSQL("DROP TABLE IF EXISTS " + ECI);
         onCreate(db);
     }
-    public boolean updateName(String name){
+
+    public boolean updateName(String name) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("CIVILIZATION_NAME", name);
         long result = db.update(RESOURCES, contentValues, null, null);
         return result != -1;
     }
-    public Map<String, String> dbUpdateHelper(){
+
+    public Map<String, String> dbUpdateHelper() {
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "SELECT * FROM " + RESOURCES + " WHERE ID = 1";
-        Cursor data = db.rawQuery(sql,null);
+        Cursor data = db.rawQuery(sql, null);
         StringBuffer buffer = new StringBuffer();
-        while(data.moveToNext()){
-            buffer.append(data.getString(1));buffer.append(",");
-            buffer.append(data.getString(2));buffer.append(",");
-            buffer.append(data.getString(3));buffer.append(",");
-            buffer.append(data.getString(4));buffer.append(",");
-            buffer.append(data.getString(5));buffer.append(",");
-            buffer.append(data.getString(6));buffer.append(",");
-            buffer.append(data.getString(7));buffer.append(",");
-            buffer.append(data.getString(8));buffer.append(",");
-            buffer.append(data.getString(9));buffer.append(",");
-            buffer.append(data.getString(10));buffer.append(",");
-            buffer.append(data.getString(11));buffer.append(",");
-            buffer.append(data.getString(12));buffer.append(",");
-            buffer.append(data.getString(13));buffer.append(",");
-            buffer.append(data.getString(14));buffer.append(",");
-            buffer.append(data.getString(15));buffer.append(",");
-            buffer.append(data.getString(16));buffer.append(",");
-            buffer.append(data.getString(17));buffer.append(",");
-            buffer.append(data.getString(18));buffer.append(",");
-            buffer.append(data.getString(19));buffer.append(",");
-            buffer.append(data.getString(20));buffer.append(",");
-            buffer.append(data.getString(21));buffer.append(",");
-            buffer.append(data.getString(22));buffer.append(",");
-            buffer.append(data.getString(23));buffer.append(",");
-            buffer.append(data.getString(24));buffer.append(",");
-            buffer.append(data.getString(25));buffer.append(",");
-            buffer.append(data.getString(26));buffer.append(",");
-            buffer.append(data.getString(27));buffer.append(",");
-            buffer.append(data.getString(28));buffer.append(",");
-            buffer.append(data.getString(29));buffer.append(",");
-            buffer.append(data.getString(30));buffer.append(",");
-            buffer.append(data.getString(31));buffer.append(",");
-            buffer.append(data.getString(32));buffer.append(",");
-            buffer.append(data.getString(33));buffer.append(",");
-            buffer.append(data.getString(34));buffer.append(",");
-            buffer.append(data.getString(35));buffer.append(",");
-            buffer.append(data.getString(36));buffer.append(",");
-            buffer.append(data.getString(37));buffer.append(",");
-            buffer.append(data.getString(38));buffer.append(",");
-            buffer.append(data.getString(39));buffer.append(",");
-            buffer.append(data.getString(40));buffer.append(",");
-            buffer.append(data.getString(41));buffer.append(",");
-            buffer.append(data.getString(42));buffer.append(",");
-            buffer.append(data.getString(43));buffer.append(",");
-            buffer.append(data.getString(44));buffer.append(",");
-            buffer.append(data.getString(45));buffer.append(",");
-            buffer.append(data.getString(46));buffer.append(",");
-            buffer.append(data.getString(47));buffer.append(",");
-            buffer.append(data.getString(48));buffer.append(",");
-            buffer.append(data.getString(49));buffer.append(",");
-            buffer.append(data.getString(50));buffer.append(",");
-            buffer.append(data.getString(51));buffer.append(",");
-            buffer.append(data.getString(52));buffer.append(",");
-            buffer.append(data.getString(53));buffer.append(",");
-            buffer.append(data.getString(54));buffer.append(",");
-            buffer.append(data.getString(55));buffer.append(",");
-            buffer.append(data.getString(56));buffer.append(",");
-            buffer.append(data.getString(57));buffer.append(",");
-            buffer.append(data.getString(58));buffer.append(",");
-            buffer.append(data.getString(59));buffer.append(",");
-            buffer.append(data.getString(60));buffer.append(",");
-            buffer.append(data.getString(61));buffer.append(",");
-            buffer.append(data.getString(62));buffer.append(",");
-            buffer.append(data.getString(63));buffer.append(",");
+        while (data.moveToNext()) {
+            buffer.append(data.getString(1));
+            buffer.append(",");
+            buffer.append(data.getString(2));
+            buffer.append(",");
+            buffer.append(data.getString(3));
+            buffer.append(",");
+            buffer.append(data.getString(4));
+            buffer.append(",");
+            buffer.append(data.getString(5));
+            buffer.append(",");
+            buffer.append(data.getString(6));
+            buffer.append(",");
+            buffer.append(data.getString(7));
+            buffer.append(",");
+            buffer.append(data.getString(8));
+            buffer.append(",");
+            buffer.append(data.getString(9));
+            buffer.append(",");
+            buffer.append(data.getString(10));
+            buffer.append(",");
+            buffer.append(data.getString(11));
+            buffer.append(",");
+            buffer.append(data.getString(12));
+            buffer.append(",");
+            buffer.append(data.getString(13));
+            buffer.append(",");
+            buffer.append(data.getString(14));
+            buffer.append(",");
+            buffer.append(data.getString(15));
+            buffer.append(",");
+            buffer.append(data.getString(16));
+            buffer.append(",");
+            buffer.append(data.getString(17));
+            buffer.append(",");
+            buffer.append(data.getString(18));
+            buffer.append(",");
+            buffer.append(data.getString(19));
+            buffer.append(",");
+            buffer.append(data.getString(20));
+            buffer.append(",");
+            buffer.append(data.getString(21));
+            buffer.append(",");
+            buffer.append(data.getString(22));
+            buffer.append(",");
+            buffer.append(data.getString(23));
+            buffer.append(",");
+            buffer.append(data.getString(24));
+            buffer.append(",");
+            buffer.append(data.getString(25));
+            buffer.append(",");
+            buffer.append(data.getString(26));
+            buffer.append(",");
+            buffer.append(data.getString(27));
+            buffer.append(",");
+            buffer.append(data.getString(28));
+            buffer.append(",");
+            buffer.append(data.getString(29));
+            buffer.append(",");
+            buffer.append(data.getString(30));
+            buffer.append(",");
+            buffer.append(data.getString(31));
+            buffer.append(",");
+            buffer.append(data.getString(32));
+            buffer.append(",");
+            buffer.append(data.getString(33));
+            buffer.append(",");
+            buffer.append(data.getString(34));
+            buffer.append(",");
+            buffer.append(data.getString(35));
+            buffer.append(",");
+            buffer.append(data.getString(36));
+            buffer.append(",");
+            buffer.append(data.getString(37));
+            buffer.append(",");
+            buffer.append(data.getString(38));
+            buffer.append(",");
+            buffer.append(data.getString(39));
+            buffer.append(",");
+            buffer.append(data.getString(40));
+            buffer.append(",");
+            buffer.append(data.getString(41));
+            buffer.append(",");
+            buffer.append(data.getString(42));
+            buffer.append(",");
+            buffer.append(data.getString(43));
+            buffer.append(",");
+            buffer.append(data.getString(44));
+            buffer.append(",");
+            buffer.append(data.getString(45));
+            buffer.append(",");
+            buffer.append(data.getString(46));
+            buffer.append(",");
+            buffer.append(data.getString(47));
+            buffer.append(",");
+            buffer.append(data.getString(48));
+            buffer.append(",");
+            buffer.append(data.getString(49));
+            buffer.append(",");
+            buffer.append(data.getString(50));
+            buffer.append(",");
+            buffer.append(data.getString(51));
+            buffer.append(",");
+            buffer.append(data.getString(52));
+            buffer.append(",");
+            buffer.append(data.getString(53));
+            buffer.append(",");
+            buffer.append(data.getString(54));
+            buffer.append(",");
+            buffer.append(data.getString(55));
+            buffer.append(",");
+            buffer.append(data.getString(56));
+            buffer.append(",");
+            buffer.append(data.getString(57));
+            buffer.append(",");
+            buffer.append(data.getString(58));
+            buffer.append(",");
+            buffer.append(data.getString(59));
+            buffer.append(",");
+            buffer.append(data.getString(60));
+            buffer.append(",");
+            buffer.append(data.getString(61));
+            buffer.append(",");
+            buffer.append(data.getString(62));
+            buffer.append(",");
+            buffer.append(data.getString(63));
+            buffer.append(",");
             buffer.append(data.getString(64));
 
         }
@@ -1760,76 +1846,141 @@ public class GameSave extends SQLiteOpenHelper implements Serializable {
 
         return map;
     }
-    public Map<String, String> save(){
+
+    public Map<String, String> save() {
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "SELECT * FROM " + RESOURCES + " WHERE ID = 1";
-        Cursor data = db.rawQuery(sql,null);
+        Cursor data = db.rawQuery(sql, null);
         StringBuffer buffer = new StringBuffer();
-        while(data.moveToNext()){
-            buffer.append(data.getString(1));buffer.append(",");
-            buffer.append(data.getString(2));buffer.append(",");
-            buffer.append(data.getString(3));buffer.append(",");
-            buffer.append(data.getString(4));buffer.append(",");
-            buffer.append(data.getString(5));buffer.append(",");
-            buffer.append(data.getString(6));buffer.append(",");
-            buffer.append(data.getString(7));buffer.append(",");
-            buffer.append(data.getString(8));buffer.append(",");
-            buffer.append(data.getString(9));buffer.append(",");
-            buffer.append(data.getString(10));buffer.append(",");
-            buffer.append(data.getString(11));buffer.append(",");
-            buffer.append(data.getString(12));buffer.append(",");
-            buffer.append(data.getString(13));buffer.append(",");
-            buffer.append(data.getString(14));buffer.append(",");
-            buffer.append(data.getString(15));buffer.append(",");
-            buffer.append(data.getString(16));buffer.append(",");
-            buffer.append(data.getString(17));buffer.append(",");
-            buffer.append(data.getString(18));buffer.append(",");
-            buffer.append(data.getString(19));buffer.append(",");
-            buffer.append(data.getString(20));buffer.append(",");
-            buffer.append(data.getString(21));buffer.append(",");
-            buffer.append(data.getString(22));buffer.append(",");
-            buffer.append(data.getString(23));buffer.append(",");
-            buffer.append(data.getString(24));buffer.append(",");
-            buffer.append(data.getString(25));buffer.append(",");
-            buffer.append(data.getString(26));buffer.append(",");
-            buffer.append(data.getString(27));buffer.append(",");
-            buffer.append(data.getString(28));buffer.append(",");
-            buffer.append(data.getString(29));buffer.append(",");
-            buffer.append(data.getString(30));buffer.append(",");
-            buffer.append(data.getString(31));buffer.append(",");
-            buffer.append(data.getString(32));buffer.append(",");
-            buffer.append(data.getString(33));buffer.append(",");
-            buffer.append(data.getString(34));buffer.append(",");
-            buffer.append(data.getString(35));buffer.append(",");
-            buffer.append(data.getString(36));buffer.append(",");
-            buffer.append(data.getString(37));buffer.append(",");
-            buffer.append(data.getString(38));buffer.append(",");
-            buffer.append(data.getString(39));buffer.append(",");
-            buffer.append(data.getString(40));buffer.append(",");
-            buffer.append(data.getString(41));buffer.append(",");
-            buffer.append(data.getString(42));buffer.append(",");
-            buffer.append(data.getString(43));buffer.append(",");
-            buffer.append(data.getString(44));buffer.append(",");
-            buffer.append(data.getString(45));buffer.append(",");
-            buffer.append(data.getString(46));buffer.append(",");
-            buffer.append(data.getString(47));buffer.append(",");
-            buffer.append(data.getString(48));buffer.append(",");
-            buffer.append(data.getString(49));buffer.append(",");
-            buffer.append(data.getString(50));buffer.append(",");
-            buffer.append(data.getString(51));buffer.append(",");
-            buffer.append(data.getString(52));buffer.append(",");
-            buffer.append(data.getString(53));buffer.append(",");
-            buffer.append(data.getString(54));buffer.append(",");
-            buffer.append(data.getString(55));buffer.append(",");
-            buffer.append(data.getString(56));buffer.append(",");
-            buffer.append(data.getString(57));buffer.append(",");
-            buffer.append(data.getString(58));buffer.append(",");
-            buffer.append(data.getString(59));buffer.append(",");
-            buffer.append(data.getString(60));buffer.append(",");
-            buffer.append(data.getString(61));buffer.append(",");
-            buffer.append(data.getString(62));buffer.append(",");
-            buffer.append(data.getString(63));buffer.append(",");
-            buffer.append(data.getString(64));buffer.append(",");
+        while (data.moveToNext()) {
+            buffer.append(data.getString(1));
+            buffer.append(",");
+            buffer.append(data.getString(2));
+            buffer.append(",");
+            buffer.append(data.getString(3));
+            buffer.append(",");
+            buffer.append(data.getString(4));
+            buffer.append(",");
+            buffer.append(data.getString(5));
+            buffer.append(",");
+            buffer.append(data.getString(6));
+            buffer.append(",");
+            buffer.append(data.getString(7));
+            buffer.append(",");
+            buffer.append(data.getString(8));
+            buffer.append(",");
+            buffer.append(data.getString(9));
+            buffer.append(",");
+            buffer.append(data.getString(10));
+            buffer.append(",");
+            buffer.append(data.getString(11));
+            buffer.append(",");
+            buffer.append(data.getString(12));
+            buffer.append(",");
+            buffer.append(data.getString(13));
+            buffer.append(",");
+            buffer.append(data.getString(14));
+            buffer.append(",");
+            buffer.append(data.getString(15));
+            buffer.append(",");
+            buffer.append(data.getString(16));
+            buffer.append(",");
+            buffer.append(data.getString(17));
+            buffer.append(",");
+            buffer.append(data.getString(18));
+            buffer.append(",");
+            buffer.append(data.getString(19));
+            buffer.append(",");
+            buffer.append(data.getString(20));
+            buffer.append(",");
+            buffer.append(data.getString(21));
+            buffer.append(",");
+            buffer.append(data.getString(22));
+            buffer.append(",");
+            buffer.append(data.getString(23));
+            buffer.append(",");
+            buffer.append(data.getString(24));
+            buffer.append(",");
+            buffer.append(data.getString(25));
+            buffer.append(",");
+            buffer.append(data.getString(26));
+            buffer.append(",");
+            buffer.append(data.getString(27));
+            buffer.append(",");
+            buffer.append(data.getString(28));
+            buffer.append(",");
+            buffer.append(data.getString(29));
+            buffer.append(",");
+            buffer.append(data.getString(30));
+            buffer.append(",");
+            buffer.append(data.getString(31));
+            buffer.append(",");
+            buffer.append(data.getString(32));
+            buffer.append(",");
+            buffer.append(data.getString(33));
+            buffer.append(",");
+            buffer.append(data.getString(34));
+            buffer.append(",");
+            buffer.append(data.getString(35));
+            buffer.append(",");
+            buffer.append(data.getString(36));
+            buffer.append(",");
+            buffer.append(data.getString(37));
+            buffer.append(",");
+            buffer.append(data.getString(38));
+            buffer.append(",");
+            buffer.append(data.getString(39));
+            buffer.append(",");
+            buffer.append(data.getString(40));
+            buffer.append(",");
+            buffer.append(data.getString(41));
+            buffer.append(",");
+            buffer.append(data.getString(42));
+            buffer.append(",");
+            buffer.append(data.getString(43));
+            buffer.append(",");
+            buffer.append(data.getString(44));
+            buffer.append(",");
+            buffer.append(data.getString(45));
+            buffer.append(",");
+            buffer.append(data.getString(46));
+            buffer.append(",");
+            buffer.append(data.getString(47));
+            buffer.append(",");
+            buffer.append(data.getString(48));
+            buffer.append(",");
+            buffer.append(data.getString(49));
+            buffer.append(",");
+            buffer.append(data.getString(50));
+            buffer.append(",");
+            buffer.append(data.getString(51));
+            buffer.append(",");
+            buffer.append(data.getString(52));
+            buffer.append(",");
+            buffer.append(data.getString(53));
+            buffer.append(",");
+            buffer.append(data.getString(54));
+            buffer.append(",");
+            buffer.append(data.getString(55));
+            buffer.append(",");
+            buffer.append(data.getString(56));
+            buffer.append(",");
+            buffer.append(data.getString(57));
+            buffer.append(",");
+            buffer.append(data.getString(58));
+            buffer.append(",");
+            buffer.append(data.getString(59));
+            buffer.append(",");
+            buffer.append(data.getString(60));
+            buffer.append(",");
+            buffer.append(data.getString(61));
+            buffer.append(",");
+            buffer.append(data.getString(62));
+            buffer.append(",");
+            buffer.append(data.getString(63));
+            buffer.append(",");
+            buffer.append(data.getString(64));
+            buffer.append(",");
             buffer.append(data.getString(65));
 
         }
@@ -1904,108 +2055,202 @@ public class GameSave extends SQLiteOpenHelper implements Serializable {
 
         return map;
     }
-    public Map<String, String> saveAchievements(){
+
+    public Map<String, String> saveAchievements() {
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "SELECT * FROM ACHIEVEMENTS WHERE ID = 1";
-        Cursor data = db.rawQuery(sql,null);
+        Cursor data = db.rawQuery(sql, null);
         StringBuffer buffer = new StringBuffer();
-        while(data.moveToNext()){
-            buffer.append(data.getString(1));buffer.append(",");
-            buffer.append(data.getString(2));buffer.append(",");
-            buffer.append(data.getString(3));buffer.append(",");
-            buffer.append(data.getString(4));buffer.append(",");
-            buffer.append(data.getString(5));buffer.append(",");
-            buffer.append(data.getString(6));buffer.append(",");
-            buffer.append(data.getString(7));buffer.append(",");
-            buffer.append(data.getString(8));buffer.append(",");
-            buffer.append(data.getString(9));buffer.append(",");
-            buffer.append(data.getString(10));buffer.append(",");
-            buffer.append(data.getString(11));buffer.append(",");
-            buffer.append(data.getString(12));buffer.append(",");
-            buffer.append(data.getString(13));buffer.append(",");
-            buffer.append(data.getString(14));buffer.append(",");
-            buffer.append(data.getString(15));buffer.append(",");
-            buffer.append(data.getString(16));buffer.append(",");
-            buffer.append(data.getString(17));buffer.append(",");
-            buffer.append(data.getString(18));buffer.append(",");
-            buffer.append(data.getString(19));buffer.append(",");
-            buffer.append(data.getString(20));buffer.append(",");
-            buffer.append(data.getString(21));buffer.append(",");
-            buffer.append(data.getString(22));buffer.append(",");
-            buffer.append(data.getString(23));buffer.append(",");
-            buffer.append(data.getString(24));buffer.append(",");
-            buffer.append(data.getString(25));buffer.append(",");
-            buffer.append(data.getString(26));buffer.append(",");
-            buffer.append(data.getString(27));buffer.append(",");
-            buffer.append(data.getString(28));buffer.append(",");
-            buffer.append(data.getString(29));buffer.append(",");
-            buffer.append(data.getString(30));buffer.append(",");
-            buffer.append(data.getString(31));buffer.append(",");
-            buffer.append(data.getString(32));buffer.append(",");
-            buffer.append(data.getString(33));buffer.append(",");
-            buffer.append(data.getString(34));buffer.append(",");
-            buffer.append(data.getString(35));buffer.append(",");
-            buffer.append(data.getString(36));buffer.append(",");
-            buffer.append(data.getString(37));buffer.append(",");
-            buffer.append(data.getString(38));buffer.append(",");
-            buffer.append(data.getString(39));buffer.append(",");
-            buffer.append(data.getString(40));buffer.append(",");
-            buffer.append(data.getString(41));buffer.append(",");
-            buffer.append(data.getString(42));buffer.append(",");
-            buffer.append(data.getString(43));buffer.append(",");
-            buffer.append(data.getString(44));buffer.append(",");
-            buffer.append(data.getString(45));buffer.append(",");
-            buffer.append(data.getString(46));buffer.append(",");
-            buffer.append(data.getString(47));buffer.append(",");
-            buffer.append(data.getString(48));buffer.append(",");
-            buffer.append(data.getString(49));buffer.append(",");
-            buffer.append(data.getString(50));buffer.append(",");
-            buffer.append(data.getString(51));buffer.append(",");
-            buffer.append(data.getString(52));buffer.append(",");
-            buffer.append(data.getString(53));buffer.append(",");
-            buffer.append(data.getString(54));buffer.append(",");
-            buffer.append(data.getString(55));buffer.append(",");
-            buffer.append(data.getString(56));buffer.append(",");
-            buffer.append(data.getString(57));buffer.append(",");
-            buffer.append(data.getString(58));buffer.append(",");
-            buffer.append(data.getString(59));buffer.append(",");
-            buffer.append(data.getString(60));buffer.append(",");
-            buffer.append(data.getString(61));buffer.append(",");
-            buffer.append(data.getString(62));buffer.append(",");
-            buffer.append(data.getString(63));buffer.append(",");
-            buffer.append(data.getString(64));buffer.append(",");
-            buffer.append(data.getString(65));buffer.append(",");
-            buffer.append(data.getString(66));buffer.append(",");
-            buffer.append(data.getString(67));buffer.append(",");
-            buffer.append(data.getString(68));buffer.append(",");
-            buffer.append(data.getString(69));buffer.append(",");
-            buffer.append(data.getString(70));buffer.append(",");
-            buffer.append(data.getString(71));buffer.append(",");
-            buffer.append(data.getString(72));buffer.append(",");
-            buffer.append(data.getString(73));buffer.append(",");
-            buffer.append(data.getString(74));buffer.append(",");
-            buffer.append(data.getString(75));buffer.append(",");
-            buffer.append(data.getString(76));buffer.append(",");
-            buffer.append(data.getString(77));buffer.append(",");
-            buffer.append(data.getString(78));buffer.append(",");
-            buffer.append(data.getString(79));buffer.append(",");
-            buffer.append(data.getString(80));buffer.append(",");
-            buffer.append(data.getString(81));buffer.append(",");
-            buffer.append(data.getString(82));buffer.append(",");
-            buffer.append(data.getString(83));buffer.append(",");
-            buffer.append(data.getString(84));buffer.append(",");
-            buffer.append(data.getString(85));buffer.append(",");
-            buffer.append(data.getString(86));buffer.append(",");
-            buffer.append(data.getString(87));buffer.append(",");
-            buffer.append(data.getString(88));buffer.append(",");
-            buffer.append(data.getString(89));buffer.append(",");
-            buffer.append(data.getString(90));buffer.append(",");
-            buffer.append(data.getString(91));buffer.append(",");
-            buffer.append(data.getString(92));buffer.append(",");
-            buffer.append(data.getString(93));buffer.append(",");
-            buffer.append(data.getString(94));buffer.append(",");
+        while (data.moveToNext()) {
+            buffer.append(data.getString(1));
+            buffer.append(",");
+            buffer.append(data.getString(2));
+            buffer.append(",");
+            buffer.append(data.getString(3));
+            buffer.append(",");
+            buffer.append(data.getString(4));
+            buffer.append(",");
+            buffer.append(data.getString(5));
+            buffer.append(",");
+            buffer.append(data.getString(6));
+            buffer.append(",");
+            buffer.append(data.getString(7));
+            buffer.append(",");
+            buffer.append(data.getString(8));
+            buffer.append(",");
+            buffer.append(data.getString(9));
+            buffer.append(",");
+            buffer.append(data.getString(10));
+            buffer.append(",");
+            buffer.append(data.getString(11));
+            buffer.append(",");
+            buffer.append(data.getString(12));
+            buffer.append(",");
+            buffer.append(data.getString(13));
+            buffer.append(",");
+            buffer.append(data.getString(14));
+            buffer.append(",");
+            buffer.append(data.getString(15));
+            buffer.append(",");
+            buffer.append(data.getString(16));
+            buffer.append(",");
+            buffer.append(data.getString(17));
+            buffer.append(",");
+            buffer.append(data.getString(18));
+            buffer.append(",");
+            buffer.append(data.getString(19));
+            buffer.append(",");
+            buffer.append(data.getString(20));
+            buffer.append(",");
+            buffer.append(data.getString(21));
+            buffer.append(",");
+            buffer.append(data.getString(22));
+            buffer.append(",");
+            buffer.append(data.getString(23));
+            buffer.append(",");
+            buffer.append(data.getString(24));
+            buffer.append(",");
+            buffer.append(data.getString(25));
+            buffer.append(",");
+            buffer.append(data.getString(26));
+            buffer.append(",");
+            buffer.append(data.getString(27));
+            buffer.append(",");
+            buffer.append(data.getString(28));
+            buffer.append(",");
+            buffer.append(data.getString(29));
+            buffer.append(",");
+            buffer.append(data.getString(30));
+            buffer.append(",");
+            buffer.append(data.getString(31));
+            buffer.append(",");
+            buffer.append(data.getString(32));
+            buffer.append(",");
+            buffer.append(data.getString(33));
+            buffer.append(",");
+            buffer.append(data.getString(34));
+            buffer.append(",");
+            buffer.append(data.getString(35));
+            buffer.append(",");
+            buffer.append(data.getString(36));
+            buffer.append(",");
+            buffer.append(data.getString(37));
+            buffer.append(",");
+            buffer.append(data.getString(38));
+            buffer.append(",");
+            buffer.append(data.getString(39));
+            buffer.append(",");
+            buffer.append(data.getString(40));
+            buffer.append(",");
+            buffer.append(data.getString(41));
+            buffer.append(",");
+            buffer.append(data.getString(42));
+            buffer.append(",");
+            buffer.append(data.getString(43));
+            buffer.append(",");
+            buffer.append(data.getString(44));
+            buffer.append(",");
+            buffer.append(data.getString(45));
+            buffer.append(",");
+            buffer.append(data.getString(46));
+            buffer.append(",");
+            buffer.append(data.getString(47));
+            buffer.append(",");
+            buffer.append(data.getString(48));
+            buffer.append(",");
+            buffer.append(data.getString(49));
+            buffer.append(",");
+            buffer.append(data.getString(50));
+            buffer.append(",");
+            buffer.append(data.getString(51));
+            buffer.append(",");
+            buffer.append(data.getString(52));
+            buffer.append(",");
+            buffer.append(data.getString(53));
+            buffer.append(",");
+            buffer.append(data.getString(54));
+            buffer.append(",");
+            buffer.append(data.getString(55));
+            buffer.append(",");
+            buffer.append(data.getString(56));
+            buffer.append(",");
+            buffer.append(data.getString(57));
+            buffer.append(",");
+            buffer.append(data.getString(58));
+            buffer.append(",");
+            buffer.append(data.getString(59));
+            buffer.append(",");
+            buffer.append(data.getString(60));
+            buffer.append(",");
+            buffer.append(data.getString(61));
+            buffer.append(",");
+            buffer.append(data.getString(62));
+            buffer.append(",");
+            buffer.append(data.getString(63));
+            buffer.append(",");
+            buffer.append(data.getString(64));
+            buffer.append(",");
+            buffer.append(data.getString(65));
+            buffer.append(",");
+            buffer.append(data.getString(66));
+            buffer.append(",");
+            buffer.append(data.getString(67));
+            buffer.append(",");
+            buffer.append(data.getString(68));
+            buffer.append(",");
+            buffer.append(data.getString(69));
+            buffer.append(",");
+            buffer.append(data.getString(70));
+            buffer.append(",");
+            buffer.append(data.getString(71));
+            buffer.append(",");
+            buffer.append(data.getString(72));
+            buffer.append(",");
+            buffer.append(data.getString(73));
+            buffer.append(",");
+            buffer.append(data.getString(74));
+            buffer.append(",");
+            buffer.append(data.getString(75));
+            buffer.append(",");
+            buffer.append(data.getString(76));
+            buffer.append(",");
+            buffer.append(data.getString(77));
+            buffer.append(",");
+            buffer.append(data.getString(78));
+            buffer.append(",");
+            buffer.append(data.getString(79));
+            buffer.append(",");
+            buffer.append(data.getString(80));
+            buffer.append(",");
+            buffer.append(data.getString(81));
+            buffer.append(",");
+            buffer.append(data.getString(82));
+            buffer.append(",");
+            buffer.append(data.getString(83));
+            buffer.append(",");
+            buffer.append(data.getString(84));
+            buffer.append(",");
+            buffer.append(data.getString(85));
+            buffer.append(",");
+            buffer.append(data.getString(86));
+            buffer.append(",");
+            buffer.append(data.getString(87));
+            buffer.append(",");
+            buffer.append(data.getString(88));
+            buffer.append(",");
+            buffer.append(data.getString(89));
+            buffer.append(",");
+            buffer.append(data.getString(90));
+            buffer.append(",");
+            buffer.append(data.getString(91));
+            buffer.append(",");
+            buffer.append(data.getString(92));
+            buffer.append(",");
+            buffer.append(data.getString(93));
+            buffer.append(",");
+            buffer.append(data.getString(94));
+            buffer.append(",");
             buffer.append(data.getString(95));
-
 
 
         }
@@ -2112,63 +2357,115 @@ public class GameSave extends SQLiteOpenHelper implements Serializable {
 
         return map;
     }
-    public Map<String, String> saveAchievementsDBhelper(){
+
+    public Map<String, String> saveAchievementsDBhelper() {
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "SELECT * FROM ACHIEVEMENTS WHERE ID = 1";
-        Cursor data = db.rawQuery(sql,null);
+        Cursor data = db.rawQuery(sql, null);
         StringBuffer buffer = new StringBuffer();
-        while(data.moveToNext()){
-            buffer.append(data.getString(1));buffer.append(",");
-            buffer.append(data.getString(2));buffer.append(",");
-            buffer.append(data.getString(3));buffer.append(",");
-            buffer.append(data.getString(4));buffer.append(",");
-            buffer.append(data.getString(5));buffer.append(",");
-            buffer.append(data.getString(6));buffer.append(",");
-            buffer.append(data.getString(7));buffer.append(",");
-            buffer.append(data.getString(8));buffer.append(",");
-            buffer.append(data.getString(9));buffer.append(",");
-            buffer.append(data.getString(10));buffer.append(",");
-            buffer.append(data.getString(11));buffer.append(",");
-            buffer.append(data.getString(12));buffer.append(",");
-            buffer.append(data.getString(13));buffer.append(",");
-            buffer.append(data.getString(14));buffer.append(",");
-            buffer.append(data.getString(15));buffer.append(",");
-            buffer.append(data.getString(16));buffer.append(",");
-            buffer.append(data.getString(17));buffer.append(",");
-            buffer.append(data.getString(18));buffer.append(",");
-            buffer.append(data.getString(19));buffer.append(",");
-            buffer.append(data.getString(20));buffer.append(",");
-            buffer.append(data.getString(21));buffer.append(",");
-            buffer.append(data.getString(22));buffer.append(",");
-            buffer.append(data.getString(23));buffer.append(",");
-            buffer.append(data.getString(24));buffer.append(",");
-            buffer.append(data.getString(25));buffer.append(",");
-            buffer.append(data.getString(26));buffer.append(",");
-            buffer.append(data.getString(27));buffer.append(",");
-            buffer.append(data.getString(28));buffer.append(",");
-            buffer.append(data.getString(29));buffer.append(",");
-            buffer.append(data.getString(30));buffer.append(",");
-            buffer.append(data.getString(31));buffer.append(",");
-            buffer.append(data.getString(32));buffer.append(",");
-            buffer.append(data.getString(33));buffer.append(",");
-            buffer.append(data.getString(34));buffer.append(",");
-            buffer.append(data.getString(35));buffer.append(",");
-            buffer.append(data.getString(36));buffer.append(",");
-            buffer.append(data.getString(37));buffer.append(",");
-            buffer.append(data.getString(38));buffer.append(",");
-            buffer.append(data.getString(39));buffer.append(",");
-            buffer.append(data.getString(40));buffer.append(",");
-            buffer.append(data.getString(41));buffer.append(",");
-            buffer.append(data.getString(42));buffer.append(",");
-            buffer.append(data.getString(43));buffer.append(",");
-            buffer.append(data.getString(44));buffer.append(",");
-            buffer.append(data.getString(45));buffer.append(",");
-            buffer.append(data.getString(46));buffer.append(",");
-            buffer.append(data.getString(47));buffer.append(",");
-            buffer.append(data.getString(48));buffer.append(",");
-            buffer.append(data.getString(49));buffer.append(",");
-            buffer.append(data.getString(50));buffer.append(",");
-            buffer.append(data.getString(51));buffer.append(",");
+        while (data.moveToNext()) {
+            buffer.append(data.getString(1));
+            buffer.append(",");
+            buffer.append(data.getString(2));
+            buffer.append(",");
+            buffer.append(data.getString(3));
+            buffer.append(",");
+            buffer.append(data.getString(4));
+            buffer.append(",");
+            buffer.append(data.getString(5));
+            buffer.append(",");
+            buffer.append(data.getString(6));
+            buffer.append(",");
+            buffer.append(data.getString(7));
+            buffer.append(",");
+            buffer.append(data.getString(8));
+            buffer.append(",");
+            buffer.append(data.getString(9));
+            buffer.append(",");
+            buffer.append(data.getString(10));
+            buffer.append(",");
+            buffer.append(data.getString(11));
+            buffer.append(",");
+            buffer.append(data.getString(12));
+            buffer.append(",");
+            buffer.append(data.getString(13));
+            buffer.append(",");
+            buffer.append(data.getString(14));
+            buffer.append(",");
+            buffer.append(data.getString(15));
+            buffer.append(",");
+            buffer.append(data.getString(16));
+            buffer.append(",");
+            buffer.append(data.getString(17));
+            buffer.append(",");
+            buffer.append(data.getString(18));
+            buffer.append(",");
+            buffer.append(data.getString(19));
+            buffer.append(",");
+            buffer.append(data.getString(20));
+            buffer.append(",");
+            buffer.append(data.getString(21));
+            buffer.append(",");
+            buffer.append(data.getString(22));
+            buffer.append(",");
+            buffer.append(data.getString(23));
+            buffer.append(",");
+            buffer.append(data.getString(24));
+            buffer.append(",");
+            buffer.append(data.getString(25));
+            buffer.append(",");
+            buffer.append(data.getString(26));
+            buffer.append(",");
+            buffer.append(data.getString(27));
+            buffer.append(",");
+            buffer.append(data.getString(28));
+            buffer.append(",");
+            buffer.append(data.getString(29));
+            buffer.append(",");
+            buffer.append(data.getString(30));
+            buffer.append(",");
+            buffer.append(data.getString(31));
+            buffer.append(",");
+            buffer.append(data.getString(32));
+            buffer.append(",");
+            buffer.append(data.getString(33));
+            buffer.append(",");
+            buffer.append(data.getString(34));
+            buffer.append(",");
+            buffer.append(data.getString(35));
+            buffer.append(",");
+            buffer.append(data.getString(36));
+            buffer.append(",");
+            buffer.append(data.getString(37));
+            buffer.append(",");
+            buffer.append(data.getString(38));
+            buffer.append(",");
+            buffer.append(data.getString(39));
+            buffer.append(",");
+            buffer.append(data.getString(40));
+            buffer.append(",");
+            buffer.append(data.getString(41));
+            buffer.append(",");
+            buffer.append(data.getString(42));
+            buffer.append(",");
+            buffer.append(data.getString(43));
+            buffer.append(",");
+            buffer.append(data.getString(44));
+            buffer.append(",");
+            buffer.append(data.getString(45));
+            buffer.append(",");
+            buffer.append(data.getString(46));
+            buffer.append(",");
+            buffer.append(data.getString(47));
+            buffer.append(",");
+            buffer.append(data.getString(48));
+            buffer.append(",");
+            buffer.append(data.getString(49));
+            buffer.append(",");
+            buffer.append(data.getString(50));
+            buffer.append(",");
+            buffer.append(data.getString(51));
+            buffer.append(",");
             buffer.append(data.getString(52));
 
         }
