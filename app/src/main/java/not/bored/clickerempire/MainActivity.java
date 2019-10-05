@@ -1392,7 +1392,6 @@ public class MainActivity extends AppCompatActivity
             gameSave.createbuilding(GameSave.TENTS, amt);
             gameSave.updateNoMax(GameSave.OCCUPIEDLAND, amt);
             int new_pop_max = gameSave.resourceAmountI(GameSave.POPULATION_MAX);
-            toast("old pop max: " + oldpop + " new pop max: " + new_pop_max);
             String new_population_text = "Population: " + df2.format(gameSave.resourceAmountI(GameSave.POPULATION)) + "/" + df2.format(new_pop_max);
             population.setText(new_population_text);
             num_wood.setText(new_val);
