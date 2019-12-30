@@ -284,6 +284,9 @@ public class MainActivity extends AppCompatActivity
         });
         mDrawerLayout = findViewById(id.drawer_layout);
         NavigationView navigationView = findViewById(id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        TextView navUsername = headerView.findViewById(id.CivName);
+        navUsername.setText(gameSave.civName());
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
